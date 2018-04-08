@@ -43,11 +43,11 @@ apps=(
     docker
     docker-compose
 
-    # For images confert
+    # Image
     imagemagick --with-webp
     jpeg
 
-    # For developement
+    # Developement
     node
     php71
     python
@@ -57,10 +57,11 @@ apps=(
     watchman
     openssl
 
-    # For terminal
+    # Terminal
     wget
     curl
     tree
+    htop
 
     # IRC
     weechat

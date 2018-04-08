@@ -53,5 +53,5 @@ fi
 # Autocorrect typos in path names when using "cd".
 shopt -s cdspell
 
-# set PS1 format
+# set PS1 format.
 export PS1="[\u:\[$(tput sgr0)\]\[$(tput setaf 5)\]\w\[$(tput sgr0)\]]\[$(tput setaf 3)\]\$(git_branch)\[$(tput sgr0)\]\\$ \[$(tput sgr0)\]"
