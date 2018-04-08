@@ -1,0 +1,97 @@
+#! /usr/bin/env python3
+# -*- coding: utf-8 -*-
+# vim:fenc=utf-8
+#
+
+"""
+TODO
+"""
+
+import re
+from bs4 import BeautifulSoup
+from tqdm import tqdm
+import requests
+import sys
+from urllib.parse import urlencode
+
+class CoreRadio():
+    def __init__(self):
+        self.BASE_URL = 'http://coreradio.ru'
+
+    def prepare_download_filename(self, album, uri):
+        filename = re.search(r'.+\/(.+)\?.+', uri, re.IGNORECASE).group(1)
+        ext = filename.split('.', 1)[1]
+        return '{}.{}'.format(album['title'], ext)
+
+    def fetch_download_uri(self, uri):
+        html = requests.get(uri).text
+        soup = BeautifulSoup(html, 'html.parser')
+
+        pattern = r'.*\?s=(https?\:\/\/.*)'
+        link = soup.find(attrs={'href': re.compile(pattern)})
+
+        if link:
+            url = re.search(pattern, link['href'], re.IGNORECASE)
+            return url.group(1) if url else False
+
+        return False;
+
+    def search(self, keywords):
+        print ('Searching...')
+        kw = keywords.replace(' ', '+')
+        params = {
+            'do': 'search',
+            'subaction': 'search',
+            'x': '0',
+            'y': '0',
+            'story': keywords
+        }
+
+        html = requests.get('{}/index.php?{}'.format(self.BASE_URL, urlencode(params))).text;
+        soup = BeautifulSoup(html, 'html.parser')
+
+        results = []
+        for index, link in enumerate(soup.select('li.main-news .tcarusel-item-title a')):
+            download_link = self.fetch_download_uri(link['href'])
+            if isinstance(download_link, str):
+                results.append({
+                    'title': link.string,
+                    'uri': download_link
+                })
+
+        if len(results) < 1:
+            sys.exit('No results found for "{}"'.format(keywords))
+
+        for index, item in enumerate(results):
+            print('[{}] {}'.format(index+1, item['title']));
+
+        try:
+            indexes = [x.strip() for x in input("Enter 1 or more numbers to download (separated by comma): ").split(',')]
+            for index in indexes:
+                album = results[int(index)-1]
+                self.download(album);
+        except (IndexError, ValueError):
+            sys.exit("[ERROR] You must specify an index")
+
+    def download(self, album):
+        print('\nFetching contents for "{}"...'.format(album['title']))
+        print('This may take a while')
+        response = requests.get(album['uri'])
+        if response.status_code == 200:
+            filename = self.prepare_download_filename(album, response.url)
+            print('Saving as: "{}"'.format(filename))
+            with open(filename, "wb") as file:
+                file.write(response.content)
+            print ('Done')
+        else:
+            sys.exit('[ERROR] Download failed')
+
+
+if __name__ == '__main__':
+    coreradio = CoreRadio()
+
+    if len(sys.argv) < 3:
+        sys.exit('Usage: coreradio.py <command> <query>\n\nExamples:\n./coreradio.py search <query>')
+    elif sys.argv[1] == 'search':
+        coreradio.search(sys.argv[2])
+

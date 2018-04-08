@@ -1,0 +1,18 @@
+[user]
+  email = koomen@protonmail.com
+  name = Kim K
+[alias]
+  cleanup = "!git branch --merged | grep -v '\\*\\|master\\|develop\\|development\\|origin' | xargs -n 1 git branch -d"
+  pom = push origin master
+  pum = pull origin master
+  pod = push origin develop
+  pud = pull origin develop
+  d = diff
+  ds = diff --stat=160,120
+  aa = add --all
+  st = status
+  b = branch
+  c = checkout
+  l = log --graph --pretty=format:'%Cred%h%Creset %Cblue<%ae>%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
+[push]
+  default = simple
