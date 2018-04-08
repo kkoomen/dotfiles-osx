@@ -64,11 +64,16 @@ apps=(
 
     # IRC
     weechat
+
+    # Tags
+    ctags
 )
 
 brew install "${apps[@]}"
 
 # Remove outdated versions from the cellar
 brew cleanup
+
+echo "Installed homebrew packages."
 
 exit 0

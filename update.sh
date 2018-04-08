@@ -13,11 +13,11 @@ FILES=(
   .bashrc
   .bash_aliases
   .bash_functions
+  .bash_profile
   .vimrc
+  .inputrc
   .weechat/weechat.conf
   .weechat/buffers.conf
-  .mpd/mpd.conf
-  .ncmpcpp/config
   .gitconfig
 
   # Directories to symlink.
@@ -26,18 +26,12 @@ FILES=(
 
 # Files that must exist.
 TOUCH_FILES=(
-  .mpd/mpdstate
-  .mpd/mpd.pid
-  .mpd/mpd.db
-  .mpd/mpd.log
 )
 
 # Directories that must exist.
 TOUCH_DIRS=(
   .ssh/
   .weechat/
-  .ncmpcpp/
-  .mpd/playlists/
 )
 
 # :: SETUP PROCESS
