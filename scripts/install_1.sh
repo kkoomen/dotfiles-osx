@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-# Setup the macbook by settings the preferred settings. 
+# Setup the macbook by settings the preferred settings.
 
 ORANGE='\033[0;33m'
 NC='\033[0m'
@@ -14,7 +14,7 @@ sudo -v
 # General settings                                                            #
 ###############################################################################
 
-defaults write NSGlobalDomain KeyRepeat -int 1 
+defaults write NSGlobalDomain KeyRepeat -int 1
 defaults write NSGlobalDomain InitialKeyRepeat -int 10
 echo "[Setting] A really fast keyrepeat is set."
 
@@ -29,8 +29,33 @@ defaults write com.apple.mail-shared DisableURLLoading -bool true
 # Show battery percent
 defaults write com.apple.menuextra.battery ShowPercent -string "YES"
 
-# Disable AirDrop 
+# Disable AirDrop
 defaults write com.apple.NetworkBrowser DisableAirDrop -bool true
+
+# Set spotlight.
+defaults write com.apple.spotlight orderedItems -array \
+  '{"enabled" = 1;"name" = "APPLICATIONS";}' \
+  '{"enabled" = 1;"name" = "SYSTEM_PREFS";}' \
+  '{"enabled" = 1;"name" = "DIRECTORIES";}' \
+  '{"enabled" = 1;"name" = "PDF";}' \
+  '{"enabled" = 1;"name" = "FONTS";}' \
+  '{"enabled" = 0;"name" = "DOCUMENTS";}' \
+  '{"enabled" = 0;"name" = "MESSAGES";}' \
+  '{"enabled" = 0;"name" = "CONTACT";}' \
+  '{"enabled" = 0;"name" = "EVENT_TODO";}' \
+  '{"enabled" = 0;"name" = "IMAGES";}' \
+  '{"enabled" = 0;"name" = "BOOKMARKS";}' \
+  '{"enabled" = 0;"name" = "MUSIC";}' \
+  '{"enabled" = 0;"name" = "MOVIES";}' \
+  '{"enabled" = 0;"name" = "PRESENTATIONS";}' \
+  '{"enabled" = 0;"name" = "SPREADSHEETS";}' \
+  '{"enabled" = 0;"name" = "SOURCE";}' \
+  '{"enabled" = 0;"name" = "MENU_DEFINITION";}' \
+  '{"enabled" = 0;"name" = "MENU_OTHER";}' \
+  '{"enabled" = 0;"name" = "MENU_CONVERSION";}' \
+  '{"enabled" = 0;"name" = "MENU_EXPRESSION";}' \
+  '{"enabled" = 0;"name" = "MENU_WEBSEARCH";}' \
+  '{"enabled" = 0;"name" = "MENU_SPOTLIGHT_SUGGESTIONS";}'
 
 echo "What should the name of your hostname mac be?"
 read macbook_name
@@ -197,12 +222,12 @@ sudo pmset -a hibernatemode 25
 # Disable powernap.
 sudo pmset -a powernap 0
 
-# Disable automatically going standby. 
+# Disable automatically going standby.
 sudo pmset -a standby 0
 sudo pmset -a standbydelay 0
 sudo pmset -a autopoweroff 0
 
-# Enable fireFault. 
+# Enable fireFault.
 sudo fdesetup enable
 sudo /usr/libexec/ApplicationFirewall/socketfilterfw --setglobalstate on
 
@@ -236,7 +261,7 @@ sudo defaults write /Library/Preferences/com.apple.mDNSResponder.plist NoMultica
 
 defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
 
-# Disable siri 
+# Disable siri.
 sudo launchctl unload -w /System/Library/LaunchAgents/com.apple.Siri.agent.plist
 # sudo launchctl unload -w /System/Library/LaunchAgents/com.apple.photolibraryd.plist
 # sudo launchctl unload -w /System/Library/LaunchAgents/com.apple.SocialPushAgent.plist
