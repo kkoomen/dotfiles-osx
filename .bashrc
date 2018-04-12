@@ -11,6 +11,7 @@ esac
 # Base variable exporting.
 export EDITOR=vim
 export NODE_ENV="development"
+export BROWSER="firefox"
 
 # Don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options

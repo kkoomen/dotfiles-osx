@@ -39,35 +39,38 @@ export PATH="/usr/local/bin:$PATH"
 # Install the Homebrew packages I use
 
 apps=(
-    # Install Docker
-    docker
-    docker-compose
+  # General handy tools
+  brew cask install kap
 
-    # Image
-    imagemagick --with-webp
-    jpeg
+  # Install Docker
+  docker
+  docker-compose
 
-    # Developement
-    node
-    php71
-    python
-    python3
-    ruby
-    sqlite
-    watchman
-    openssl
+  # Image
+  imagemagick --with-webp --with-librsvg
+  jpeg
 
-    # Terminal
-    wget
-    curl
-    tree
-    htop
+  # Developement
+  node
+  php71
+  python
+  python3
+  ruby
+  sqlite
+  watchman
+  openssl
 
-    # IRC
-    weechat
+  # Terminal
+  wget
+  curl
+  tree
+  htop
 
-    # Tags
-    ctags
+  # IRC
+  weechat
+
+  # Tags
+  ctags
 )
 
 brew install "${apps[@]}"

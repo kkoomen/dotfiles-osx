@@ -11,37 +11,38 @@ syntax enable
 
 " General
 " -------
-set hidden                " Hide when switching buffers, don't unload
-set mouse=a               " Enable mouse in all modes
-set nowrap                " No word wrap
-set number                " Show line numbers
-set nocursorline          " Disable cursor line (makes vim very slow)
-set title                 " Use filename in window title
-set ttyfast               " Indicates a fast terminal connection
-set lazyredraw            " Will buffer screen updates instead of updating all the time
-set clipboard=unnamed     " Enable clipboard
-set autoread              " Set to auto read when a file is changed from the outside
-set nospell               " Disable spellcheck on default
-set so=7                  " Minimal number of screen lines to keep above and below the cursor when scrolling
-set colorcolumn=80        " Highlight the 80th column
-set tw=80                 " Set a max text width
-set nocompatible          " Use vim defaults instead of vi
+set hidden                     " Hide when switching buffers, don't unload
+set mouse=a                    " Enable mouse in all modes
+set nowrap                     " No word wrap
+set number                     " Show line numbers
+set nocursorline               " Disable cursor line (makes vim very slow)
+set title                      " Use filename in window title
+set ttyfast                    " Indicates a fast terminal connection
+set lazyredraw                 " Will buffer screen updates instead of updating all the time
+set clipboard=unnamed          " Enable clipboard
+set autoread                   " Set to auto read when a file is changed from the outside
+set nospell                    " Disable spellcheck on default
+set so=7                       " Minimal number of screen lines to keep above and below the cursor when scrolling
+set colorcolumn=80             " Highlight the 80th column
+set tw=80                      " Set a max text width
+set nocompatible               " Use vim defaults instead of vi
+set backspace=indent,eol,start " Set priorities for the backspace key
 
-" Search
-" ------
-set ignorecase            " Case insensitive
-set incsearch             " Show match as search proceeds
-set hlsearch              " Search highlighting
+                               " Search
+                               " ------
+set ignorecase                 " Case insensitive
+set incsearch                  " Show match as search proceeds
+set hlsearch                   " Search highlighting
 
-" Tabs
-" ----
-set autoindent            " Copy indent from previous line
-set smartindent           " Auto indent when starting a new line
-set expandtab             " Replace tabs with spaces
-set shiftwidth=2          " Spaces for autoindenting
-set smarttab              " <BS> removes shiftwidth worth of spaces
-set softtabstop=2         " Spaces for editing, e.g. <Tab> or <BS>
-set tabstop=2             " Spaces for <Tab>
+                               " Tabs
+                               " ----
+set autoindent                 " Copy indent from previous line
+set smartindent                " Auto indent when starting a new line
+set expandtab                  " Replace tabs with spaces
+set shiftwidth=2               " Spaces for autoindenting
+set smarttab                   " <BS> removes shiftwidth worth of spaces
+set softtabstop=2              " Spaces for editing, e.g. <Tab> or <BS>
+set tabstop=2                  " Spaces for <Tab>
 
 " Textwidth
 " -----------------------------------------------------------------------

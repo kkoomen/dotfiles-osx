@@ -4,7 +4,7 @@ shopt -s expand_aliases
 alias dsize='du -hs'
 alias mkdir='mkdir -pv'
 alias vi='vim'
-alias ls='ls -lG'
+alias ls='ls -lhG'
 alias sl='ls'
 alias tree='tree -C'
 alias calc='bc -l'

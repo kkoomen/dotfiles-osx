@@ -18,8 +18,8 @@ defaults write NSGlobalDomain KeyRepeat -int 1
 defaults write NSGlobalDomain InitialKeyRepeat -int 10
 echo "[Setting] A really fast keyrepeat is set."
 
-# defaults write com.apple.dock wvous-br-corner -int 5
-# defaults write com.apple.dock wvous-br-modifier -int 0
+defaults write com.apple.dock wvous-br-corner -int 5
+defaults write com.apple.dock wvous-br-modifier -int 0
 # echo "[Setting] Run the screensaver if we're in the bottom-right hot corner."
 
 # Disable inline attachments in Mail.app (just show the icons)
