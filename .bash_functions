@@ -10,13 +10,16 @@ function editorconfig-init {
         echo "[*]" >> .editorconfig
         echo "indent_style = space" >> .editorconfig
         echo "indent_size = 2" >> .editorconfig
-        echo "end_of_line = lf" >> .editorconfig
+        echo "end_of_line = LF" >> .editorconfig
         echo "charset = utf-8" >> .editorconfig
         echo "trim_trailing_whitespace = true" >> .editorconfig
         echo "insert_final_newline = true" >> .editorconfig
         echo "" >> .editorconfig
         echo "[*.md]" >> .editorconfig
         echo "trim_trailing_whitespace = false" >> .editorconfig
+        echo "" >> .editorconfig
+        echo "[{composer,package}.{json,lock}]" >> .editorconfig
+        echo "indent_size = 4" >> .editorconfig
     fi
 }
 
@@ -41,4 +44,8 @@ function prefix-css {
   else
     echo "No executable: autoprefixer-cli. Install it via [sudo] npm install -g autoprefixer-cli"
   fi
+}
+
+function set-docker-permissions {
+  docker-compose exec bg-sync chown -R 82:82 /var/www/html/
 }

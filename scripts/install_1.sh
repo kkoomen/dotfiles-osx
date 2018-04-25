@@ -130,7 +130,7 @@ defaults write com.apple.appstore ShowDebugMenu -bool true
 defaults write com.apple.screensaver askForPassword -int 1
 defaults write com.apple.screensaver askForPasswordDelay -int 0
 
-touch "${HOME}/Pictures/screenshots"
+mkdir "${HOME}/Pictures/screenshots"
 
 # Save screenshots to desktop and disable the drop-shadow.
 defaults write com.apple.screencapture location -string "${HOME}/Pictures/screenshots"

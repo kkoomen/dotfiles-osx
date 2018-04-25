@@ -36,12 +36,21 @@ brew analytics off
 # Add brew to the commands
 export PATH="/usr/local/bin:$PATH"
 
-# Install the Homebrew packages I use
+cask_apps=(
+  # Video
+  kap
+
+  # Screenshot
+  skitch
+
+  # Requirements for curlftpfs
+  xquartz
+  osxfuse
+)
+
+brew cask install "${cask_apps[@]}"
 
 apps=(
-  # General handy tools
-  brew cask install kap
-
   # Install Docker
   docker
   docker-compose
@@ -59,6 +68,8 @@ apps=(
   sqlite
   watchman
   openssl
+  composer
+  curlftpfs
 
   # Terminal
   wget
@@ -71,6 +82,9 @@ apps=(
 
   # Tags
   ctags
+
+  # Compression
+  p7zip
 )
 
 brew install "${apps[@]}"

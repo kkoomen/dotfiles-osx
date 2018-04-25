@@ -4,13 +4,15 @@
 "
 " --------------------------------------------
 
+" ==============================================================================
 " Syntax
-" ------
-syntax on    " enable syntax highlighting
+" ==============================================================================
+syntax on                      " enable syntax highlighting
 syntax enable
 
+" ==============================================================================
 " General
-" -------
+" ==============================================================================
 set hidden                     " Hide when switching buffers, don't unload
 set mouse=a                    " Enable mouse in all modes
 set nowrap                     " No word wrap
@@ -28,14 +30,12 @@ set tw=80                      " Set a max text width
 set nocompatible               " Use vim defaults instead of vi
 set backspace=indent,eol,start " Set priorities for the backspace key
 
-                               " Search
-                               " ------
+" Search
 set ignorecase                 " Case insensitive
 set incsearch                  " Show match as search proceeds
 set hlsearch                   " Search highlighting
 
-                               " Tabs
-                               " ----
+" Tabs
 set autoindent                 " Copy indent from previous line
 set smartindent                " Auto indent when starting a new line
 set expandtab                  " Replace tabs with spaces
@@ -44,22 +44,27 @@ set smarttab                   " <BS> removes shiftwidth worth of spaces
 set softtabstop=2              " Spaces for editing, e.g. <Tab> or <BS>
 set tabstop=2                  " Spaces for <Tab>
 
+" ==============================================================================
 " Textwidth
-" -----------------------------------------------------------------------
+" ==============================================================================
+"
 " Keeps the visual textwidth but doesn't add new line in insert mode when
 " passing the 'tw' value.
 " -----------------------------------------------------------------------
 autocmd FileType * set formatoptions-=t
 autocmd FileType .* set formatoptions-=t
 
+" ==============================================================================
 " Expand bash aliases
-" ---------------------------------------------------------------
+" ==============================================================================
+"
 " Make our custom aliases available within a non-interactive vim.
-" ---------------------------------------------------------------
+" ------------------------------------------------------------------------------
 let $BASH_ENV = "~/.bash_aliases"
 
+" ==============================================================================
 " Wildmenu
-" --------
+" ==============================================================================
 set wildmenu
 set wildmode=list:longest,full
 set wildignore+=.gitkeep
@@ -67,29 +72,35 @@ set wildignore+=.hg,.git,.svn
 set wildignore+=*.exe,*.dll
 set wildignore+=*.zip,*.tar.gz,*.tar.bz2,*.rar,*.tar.xz
 
+" ==============================================================================
 " Enable pathogen
-" ---------------
+" ==============================================================================
 call pathogen#infect()
 
+" ==============================================================================
 " File detection
-" --------------
+" ==============================================================================
 filetype plugin indent on
 
+" ==============================================================================
 " Syntax
-" ------
+" ==============================================================================
 let python_highlight_all = 1
 let python_highlight_space_errors = 0
 
+" ==============================================================================
 " Color scheme
-" ------------
+" ==============================================================================
 set background=dark
 let g:gruvbox_bold = 0
 let g:gruvbox_termcolors=16
 let g:gruvbox_invert_selection=0
 colorscheme gruvbox
 
+" ==============================================================================
 " Autocompletion
-" ------------------------------------------------------------------------------
+" ==============================================================================
+"
 "  - Append extra characters to the 'iskeyword' for autocompletion.
 "  - Enable omni completion.
 " ------------------------------------------------------------------------------
@@ -100,42 +111,49 @@ autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType php setlocal omnifunc=phpcomplete#CompletePHP
 
+" ==============================================================================
 " Tags
-" ---------------------------------------------------------------------------
+" ==============================================================================
+"
 " Look for a 'tags' file starting from the cwd up til root level. This is a
 " fallback, because we use vim-gutentags which will look for a tags-file in a
 " project its root directory already by default.
-" ---------------------------------------------------------------------------
+" ------------------------------------------------------------------------------
 set tags=./tags;/
 
+" ==============================================================================
 " UTF8 encoding
-" -------------
+" ==============================================================================
 set encoding=utf-8
 set termencoding=utf-8
 set fileencoding=utf-8
 
+" ==============================================================================
 " Hooks
-" -----
+" ==============================================================================
 autocmd BufWritePre * :call OnBufWritePre()
 autocmd BufReadPost * :call OnBufReadPost()
 
+" ==============================================================================
 " Undo history
-" -----------------------
+" ==============================================================================
 set undofile                  " Save undo's after file closes
 set undodir=~/.vim/undo,/tmp " where to save undo histories
 set undolevels=1000          " How many undos
 set undoreload=10000         " number of lines to save for undo
 set history=500              " sets how many lines of history VIM has to remember
 
+" ==============================================================================
 " Swap files
-" ----------
+" ==============================================================================
 set directory=~/.vim/swap,~/tmp,.
 set backupdir=~/.vim/backup,~/tmp,.
 set noswapfile
 set nobackup
 
+" ==============================================================================
 " Filetypes
-" ---------
+" ==============================================================================
 if has("autocmd")
   " Drupal *.module and *.install files.
   augroup module
@@ -151,17 +169,17 @@ if has("autocmd")
 
   " Bash
   augroup general
-    autocmd BufNewFile,BufRead *.bash_* set ft=sh
+    autocmd BufNewFile,BufRead *.bash_*,*.sh set ft=sh
     autocmd BufRead,BufNewFile *.js set filetype=javascript
     autocmd BufRead,BufNewFile *.json set filetype=javascript
   augroup END
 endif
 
-" --------------------------------------------
+" ------------------------------------------------------------------------------
 "
 "   Functions
 "
-" --------------------------------------------
+" ------------------------------------------------------------------------------
 
 " Indent if we're at the beginning of a line. Else, do completion.
 function! InsertTabWrapper()
@@ -190,75 +208,91 @@ function! OnBufReadPost()
   endif
 endfunction
 
-" --------------------------------------------
+" ------------------------------------------------------------------------------
 "
 "   mapping
 "
-" --------------------------------------------
+" ------------------------------------------------------------------------------
 
+" ==============================================================================
 " Buffers
-" ----------------------
+" ==============================================================================
 nnoremap Z :bprev<cr>
 nnoremap X :bnext<cr>
 nnoremap Q :bw<cr>
 
+" ==============================================================================
 " Set pastetoggle
-" ---------------
+" ==============================================================================
 set pastetoggle=<F2>
 
+" ==============================================================================
 " System clipboard pasting
-" ------------------------
+" ==============================================================================
 nnoremap <Leader>y :call system('xclip', @0)<cr>
 nnoremap <Leader>p "+p
 
+" ==============================================================================
 " Commenting
-" ----------
+" ==============================================================================
 map <C-c> <Leader>cm<cr>
 map <C-x> <Leader>cu<cr>
 map <C-a> <Leader>cs<cr>
 
+" ==============================================================================
 " Rot13
-" -----
+" ==============================================================================
 nnoremap <silent> <F6> ggg?G<cr>
 
+" ==============================================================================
 " Space bar un-highligts search
-" -----------------------------
+" ==============================================================================
 noremap <silent> <Space> :silent noh<Bar>echo<CR>
 
+" ==============================================================================
 " Saving file as sudo in non-sudo opened file
-" --------------------------------------------------------------------
+" ==============================================================================
+"
 " Allow saving of files as sudo when I forgot to start vim using sudo.
-" --------------------------------------------------------------------
+" ------------------------------------------------------------------------------
 cnoremap w!! w !sudo tee > /dev/null %
 
+" ==============================================================================
 " Spell check
-" -----------
+" ==============================================================================
 nnoremap <leader>sc :setlocal spell!<cr>
 
+" ==============================================================================
 " Remove ^M
-" ---------
+" ==============================================================================
 noremap <Leader>m :%s/\r//g<cr>
 
+" ==============================================================================
 " Map ; to : for simplicity
-" -------------------------
+" ==============================================================================
 noremap ; :
 
 
+" ==============================================================================
 " Selection
-" -------------------
+" ==============================================================================
+"
 " Make selection stay
-" -------------------
+" ------------------------------------------------------------------------------
 noremap > >gv
 noremap < <gv
 
+" ==============================================================================
 " Auto complete
-" -------------
+" ==============================================================================
 "inoremap <expr> <tab> InsertTabWrapper()
 
+" ==============================================================================
 " Typo's while saving
-" ------------------------------------------------
+" ==============================================================================
+"
 " Avoid saving files like ; and w; and other typos
-" ------------------------------------------------
+" ------------------------------------------------------------------------------
 cnoremap w; w
 cnoremap w: w
 
@@ -266,64 +300,58 @@ cnoremap x; x
 cnoremap x: x
 
 
-" --------------------------------------------
+" ------------------------------------------------------------------------------
 "
 "   plugins
 "
-" --------------------------------------------
+" ------------------------------------------------------------------------------
 
+" ==============================================================================
 " HTML Close Tag
-" --------------
+" ==============================================================================
 let g:closetag_filenames = "*.html,*.xhtml,*.phtml,*.tpl,*.twig,*.htm,*.php,*.pug,*.jsx"
 
+" ==============================================================================
 " auto-pairs
-" ----------
+" ==============================================================================
 let g:AutoPairsMultilineClose = 0
 
+" ==============================================================================
 " Templating
-" ----------
+" ==============================================================================
 let g:username = "Kim Koomen"
 let g:email = 'koomen@protonail.com'
 
+" ==============================================================================
 " vim-jsx
-" -------
+" ==============================================================================
 let g:jsx_ext_required = 0
 
+" ==============================================================================
 " Indentline
-" ----------
+" ==============================================================================
 let g:indentLine_char = '|'
 
-" Syntastic
-" ---------
-"set statusline+=%#warningmsg#
-"set statusline+=%{SyntasticStatuslineFlag()}
-"set statusline+=%*
-
-"let g:syntastic_always_populate_loc_list=1
-"let g:syntastic_auto_loc_list=1
-"let g:syntastic_check_on_open = 1
-"let g:syntastic_check_on_wq = 0
-
-"let g:syntastic_javascript_checkers=['eslint']
-"let g:syntastic_php_checkers = ['phpcs', 'php']
-"let g:syntastic_php_phpcs_args="--standard=Drupal --extensions=php,module,inc,install,test,profile,theme"
-
+" ==============================================================================
 " Ultisnips
-" ---------
+" ==============================================================================
 let g:UltiSnipsExpandTrigger = "<tab>"
 let g:UltiSnipsJumpForwardTrigger = "<tab>"
 let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 "let g:UltiSnipsSnippetDirectories = ['~/.vim/snippets/UltiSnips', 'UltiSnips']
 let g:UltiSnipsSnippetsDir="~/.vim/UltiSnips"
 
+" ==============================================================================
 " Emmet
-" -----------------------------------------------------------------------
+" ==============================================================================
+"
 "  After the leader key you should always enter a comma to trigger emmet.
-" -----------------------------------------------------------------------
+" ------------------------------------------------------------------------------
 let g:user_emmet_leader_key='<C-f>'
 
+" ==============================================================================
 " CtrlP
-" -----
+" ==============================================================================
 let g:ctrlp_use_caching = 0
 let g:ctrlp_custom_ignore = {
   \ 'dir':  '\.git$\|\.hg$\|\.svn$\|data\|log\|tmp$\|node_modules\|bower_components',
@@ -338,8 +366,9 @@ let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
 " since you determine the ignored files with your user command.
 let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 
+" ==============================================================================
 " GitGutter
-" ---------
+" ==============================================================================
 let g:gitgutter_map_keys = 0
 let g:gitgutter_override_sign_column_highlight = 0
 let g:gitgutter_sign_added = '+'
@@ -352,8 +381,9 @@ let g:gitgutter_sign_modified_removed = 'M-'
 "let g:gitgutter_realtime = 0
 "let g:gitgutter_eager = 0
 
+" ==============================================================================
 " Supertab
-" ------------
+" ==============================================================================
 let g:SuperTabCrMapping = 0
 let g:SuperTabDefaultCompletionType = 'context'
 "let g:SuperTabDefaultCompletionType = '<C-n>'
@@ -363,12 +393,14 @@ autocmd FileType *
     \     call SuperTabChain(&omnifunc, '<c-p>') |
     \ endif
 
+" ==============================================================================
 " Airline
-" -------
+" ==============================================================================
 let g:airline_theme='base16_grayscale'
 
+" ==============================================================================
 " Ale
-" ---
+" ==============================================================================
 let g:ale_sign_error = '••'
 let g:ale_sign_warning = '•'
 
@@ -379,6 +411,9 @@ let g:ale_open_list = 0
 let g:ale_set_loclist = 0
 let g:ale_set_quickfix = 1
 
+let g:ale_lint_on_save = 1
+let g:ale_lint_on_text_changed = 1
+let g:ale_lint_on_enter = 0
 let g:ale_php_phpcs_standard = 'Drupal'
 let g:ale_linters = {
       \   'php': ['php', 'phpcs'],

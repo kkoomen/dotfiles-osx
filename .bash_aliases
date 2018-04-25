@@ -26,6 +26,7 @@ alias reload='source ~/.bashrc'
 alias ix="curl -s -F 'f:1=<-' ix.io"
 alias pb="curl -s -F c=@- https://ptpb.pw/ | grep url"
 
-# FIREWALL
-# alias httpon='sudo ufw allow http'
-# alias httpoff='sudo ufw delete allow http'
+# LINTERS
+alias drupalcs="phpcs --standard=Drupal --extensions='php,module,inc,install,test,profile,theme,css,info,txt,md'"
+alias drupalcsp="phpcs --standard=DrupalPractice --extensions='php,module,inc,install,test,profile,theme,css,info,txt,md'"
+alias drupalcbf="phpcbf --standard=Drupal --extensions='php,module,inc,install,test,profile,theme,css,info,txt,md'"
