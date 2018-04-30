@@ -15,12 +15,12 @@ alias rsync='rsync -avzh -P --stats --timeout=60'
 
 # NETWORK
 alias xip='curl icanhazip.com'
-alias lip="ifconfig | grep -A 1 'en0' | tail -1 | cut -d ':' -f 2 | cut -d ' ' -f 1"
+alias lip="ipconfig getifaddr en0"
 
 # DOTFILES
 alias bashrc='vim ~/.bashrc'
 alias vimrc='vim ~/.vimrc'
-alias reload='source ~/.bashrc'
+alias reload='source ~/.bash_profile'
 
 # PASTEBINS
 alias ix="curl -s -F 'f:1=<-' ix.io"

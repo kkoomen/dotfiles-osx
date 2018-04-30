@@ -112,16 +112,6 @@ autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType php setlocal omnifunc=phpcomplete#CompletePHP
 
 " ==============================================================================
-" Tags
-" ==============================================================================
-"
-" Look for a 'tags' file starting from the cwd up til root level. This is a
-" fallback, because we use vim-gutentags which will look for a tags-file in a
-" project its root directory already by default.
-" ------------------------------------------------------------------------------
-set tags=./tags;/
-
-" ==============================================================================
 " UTF8 encoding
 " ==============================================================================
 set encoding=utf-8
@@ -169,7 +159,8 @@ if has("autocmd")
 
   " Bash
   augroup general
-    autocmd BufNewFile,BufRead *.bash_*,*.sh set ft=sh
+    autocmd BufNewFile,BufRead *.bash_* set ft=sh
+    autocmd BufNewFile,BufRead *.sh set ft=sh
     autocmd BufRead,BufNewFile *.js set filetype=javascript
     autocmd BufRead,BufNewFile *.json set filetype=javascript
   augroup END

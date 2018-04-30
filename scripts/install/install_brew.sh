@@ -51,6 +51,9 @@ cask_apps=(
 brew cask install "${cask_apps[@]}"
 
 apps=(
+  # Shell
+  bash-completion
+
   # Install Docker
   docker
   docker-compose
@@ -79,9 +82,6 @@ apps=(
 
   # IRC
   weechat
-
-  # Tags
-  ctags
 
   # Compression
   p7zip

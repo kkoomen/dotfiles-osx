@@ -30,7 +30,7 @@ defaults write com.apple.mail-shared DisableURLLoading -bool true
 defaults write com.apple.menuextra.battery ShowPercent -string "YES"
 
 # Disable AirDrop
-defaults write com.apple.NetworkBrowser DisableAirDrop -bool true
+# defaults write com.apple.NetworkBrowser DisableAirDrop -bool true
 
 # Set spotlight.
 defaults write com.apple.spotlight orderedItems -array \
