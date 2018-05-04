@@ -39,8 +39,8 @@ function git_branch {
 }
 
 function prefix-css {
-  if [[ -x /usr/bin/autoprefixer-cli ]]; then
-    /usr/bin/autoprefixer-cli --no-remove --no-cascade -o "$2" "$1" -b "> 1%, last 4 versions, IE > 10, iOS > 6, safari > 6, Firefox ESR" > /dev/null 2>&1
+  if [[ -x /usr/local/bin/autoprefixer-cli ]]; then
+    /usr/local/bin/autoprefixer-cli --no-remove --no-cascade -o "$2" "$1" -b "> 1%, last 4 versions, IE > 10, iOS > 6, safari > 6, Firefox ESR" > /dev/null 2>&1
   else
     echo "No executable: autoprefixer-cli. Install it via [sudo] npm install -g autoprefixer-cli"
   fi
