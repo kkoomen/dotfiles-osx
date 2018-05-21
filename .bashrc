@@ -35,10 +35,7 @@ shopt -s checkwinsize
 [[ -f ~/.bash_aliases ]] && . ~/.bash_aliases
 [[ -f ~/.bash_functions ]] && . ~/.bash_functions
 [[ -f ~/.bash_private ]] && . ~/.bash_private
-
-if [ -f $(brew --prefix)/etc/bash_completion ]; then
-  . $(brew --prefix)/etc/bash_completion
-fi
+[[ -f ~/.git_completion ]] && . ~/.git_completion
 
 # Autocorrect typos in path names when using "cd".
 shopt -s cdspell

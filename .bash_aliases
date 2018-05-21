@@ -11,7 +11,7 @@ alias calc='bc -l'
 alias cb="pbcopy"
 alias yt-dl='youtube-dl --extract-audio --audio-format mp3 -o "%(title)s.%(ext)s"'
 alias make-tar='tar -czvf'
-alias rsync='rsync -avzh -P --stats --timeout=60'
+alias rsync='rsync -avzh -P --stats --timeout=120'
 
 # NETWORK
 alias xip='curl icanhazip.com'
@@ -26,7 +26,5 @@ alias reload='source ~/.bash_profile'
 alias ix="curl -s -F 'f:1=<-' ix.io"
 alias pb="curl -s -F c=@- https://ptpb.pw/ | grep url"
 
-# LINTERS
-alias drupalcs="phpcs --standard=Drupal --extensions='php,module,inc,install,test,profile,theme,css,info,txt,md'"
-alias drupalcsp="phpcs --standard=DrupalPractice --extensions='php,module,inc,install,test,profile,theme,css,info,txt,md'"
-alias drupalcbf="phpcbf --standard=Drupal --extensions='php,module,inc,install,test,profile,theme,css,info,txt,md'"
+# DOCKER
+alias dsh='docker-compose exec php sh'

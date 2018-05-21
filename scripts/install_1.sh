@@ -135,7 +135,7 @@ mkdir "${HOME}/Pictures/screenshots"
 # Save screenshots to desktop and disable the drop-shadow.
 defaults write com.apple.screencapture location -string "${HOME}/Pictures/screenshots"
 defaults write com.apple.screencapture type -string "png"
-defaults write com.apple.screencapture disable-shadow -bool true
+#defaults write com.apple.screencapture disable-shadow -bool true
 
 # Enable sub-pixel rendering on non-Apple LCDs.
 defaults write NSGlobalDomain AppleFontSmoothing -int 2
@@ -213,7 +213,7 @@ sudo defaults write /Library/Preferences/com.apple.Bluetooth.plist ControllerPow
 
 # Turn off hibernation [laptops only].
 sudo pmset -a hibernatemode 0
-sudo rm /var/vm/sleepimage
+# sudo rm /var/vm/sleepimage
 
 # remove FileVault keys on hibernation.
 sudo pmset -a destroyfvkeyonstandby 1

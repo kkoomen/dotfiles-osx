@@ -46,6 +46,16 @@ cask_apps=(
   # Requirements for curlftpfs
   xquartz
   osxfuse
+
+  # Quicklook
+  qlcolorcode
+  qlstephen
+  qlmarkdown
+  quicklook-json
+  qlimagesize
+  suspicious-package
+  quicklookase
+  qlvideo
 )
 
 brew cask install "${cask_apps[@]}"
