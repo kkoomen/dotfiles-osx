@@ -37,6 +37,9 @@ brew analytics off
 export PATH="/usr/local/bin:$PATH"
 
 cask_apps=(
+  # Terminals
+  iterm2
+
   # Video
   kap
 
@@ -64,10 +67,6 @@ apps=(
   # Shell
   bash-completion
 
-  # Install Docker
-  docker
-  docker-compose
-
   # Image
   imagemagick --with-webp --with-librsvg
   jpeg
@@ -85,6 +84,7 @@ apps=(
   curlftpfs
 
   # Terminal
+  vim
   wget
   curl
   tree
