@@ -330,7 +330,7 @@ let g:templates_user_variables = [
 function! GetFileOrDirectory()
   " A structure we have with React apps is: dir/index.jsx
   " and if we have this, we want the index.jsx have the directory name.
-  let filename = expand('%:r')
+  let filename = expand('%:t:r')
   let directory = expand('%:p:h:t')
   if filename == 'index'
     return directory
