@@ -213,6 +213,16 @@ nnoremap X :bnext<cr>
 nnoremap Q :bw<cr>
 
 " ==============================================================================
+" Moving lines up or down
+" ==============================================================================
+nnoremap <C-j> :m .+1<CR>==
+nnoremap <C-k> :m .-2<CR>==
+inoremap <C-j> <Esc>:m .+1<CR>==gi
+inoremap <C-k> <Esc>:m .-2<CR>==gi
+vnoremap <C-j> :m '>+1<CR>gv=gv
+vnoremap <C-k> :m '<-2<CR>gv=gv
+
+" ==============================================================================
 " Set pastetoggle
 " ==============================================================================
 set pastetoggle=<F2>
@@ -407,7 +417,7 @@ let g:ale_lint_on_text_changed = 1
 let g:ale_lint_on_enter = 0
 let g:ale_php_phpcs_standard = 'Drupal'
 let g:ale_linters = {
-      \   'php': ['php', 'phpcs'],
+      \   'php': [],
       \   'javascript': [],
       \   'jsx': ['stylelint', 'eslint'],
       \}
