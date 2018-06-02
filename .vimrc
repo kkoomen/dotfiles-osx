@@ -323,6 +323,22 @@ let g:AutoPairsMultilineClose = 0
 let g:username = "Kim Koomen"
 let g:email = 'koomen@protonail.com'
 
+let g:templates_user_variables = [
+  \   ['FILE_OR_DIRECTORY', 'GetFileOrDirectory'],
+  \ ]
+
+function! GetFileOrDirectory()
+  " A structure we have with React apps is: dir/index.jsx
+  " and if we have this, we want the index.jsx have the directory name.
+  let filename = expand('%:r')
+  let directory = expand('%:p:h:t')
+  if filename == 'index'
+    return directory
+  else
+    return filename
+  endif
+endfunction
+
 " ==============================================================================
 " vim-jsx
 " ==============================================================================
