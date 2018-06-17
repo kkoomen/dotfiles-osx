@@ -205,8 +205,14 @@ endfunction
 "
 " ------------------------------------------------------------------------------
 
+
 " ==============================================================================
-" Buffers
+" Leader key
+" ==============================================================================
+let mapleader = "\<Space>"
+
+" ==============================================================================
+" buffers
 " ==============================================================================
 nnoremap Z :bprev<cr>
 nnoremap X :bnext<cr>
@@ -215,12 +221,12 @@ nnoremap Q :bw<cr>
 " ==============================================================================
 " Moving lines up or down
 " ==============================================================================
-nnoremap <C-j> :m .+1<CR>==
-nnoremap <C-k> :m .-2<CR>==
-inoremap <C-j> <Esc>:m .+1<CR>==gi
-inoremap <C-k> <Esc>:m .-2<CR>==gi
-vnoremap <C-j> :m '>+1<CR>gv=gv
-vnoremap <C-k> :m '<-2<CR>gv=gv
+nnoremap <C-Down> :m .+1<CR>==
+nnoremap <C-Up> :m .-2<CR>==
+inoremap <C-Down> <Esc>:m .+1<CR>==gi
+inoremap <C-Up> <Esc>:m .-2<CR>==gi
+vnoremap <C-Down> :m '>+1<CR>gv=gv
+vnoremap <C-Up> :m '<-2<CR>gv=gv
 
 " ==============================================================================
 " Set pastetoggle
@@ -444,3 +450,10 @@ let g:ale_pattern_options = {
 \ '\.min\.js$': {'ale_linters': [], 'ale_fixers': []},
 \ '\.min\.css$': {'ale_linters': [], 'ale_fixers': []},
 \}
+
+" ==============================================================================
+" Prettier
+" ==============================================================================
+let g:prettier#autoformat = 0
+let g:prettier#exec_cmd_async = 1
+noremap <Leader>p :PrettierAsync<cr>

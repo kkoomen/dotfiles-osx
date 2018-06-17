@@ -1,4 +1,5 @@
 # vim: ft=config
+.vim/.netrwhist
 .DS_Store
 
 # Ignore generated tags
