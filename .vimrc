@@ -157,7 +157,7 @@ if has("autocmd")
     autocmd BufRead,BufNewFile *.view set filetype=php
   augroup END
 
-  " Bash
+  " General
   augroup general
     autocmd BufNewFile,BufRead *.bash_* set ft=sh
     autocmd BufNewFile,BufRead *.sh set ft=sh
