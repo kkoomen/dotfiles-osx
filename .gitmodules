@@ -49,3 +49,6 @@
 [submodule ".vim/bundle/auto-pairs"]
   path = .vim/bundle/auto-pairs
   url = https://github.com/jiangmiao/auto-pairs
+[submodule ".vim/bundle/vim-prettier"]
+	path = .vim/bundle/vim-prettier
+	url = https://github.com/prettier/vim-prettier

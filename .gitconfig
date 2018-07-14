@@ -2,7 +2,7 @@
   email = koomen@protonmail.com
   name = Kim K
 [alias]
-  cleanup = "!git branch --merged | grep -v '\\*\\|master\\|develop\\|development\\|origin' | xargs -n 1 git branch -d"
+  cleanup = "!git branch --merged | grep -v '\\*\\|master\\|develop\\|development\\|origin' | xargs -n 1 git branch -D"
   pom = push origin master
   pum = pull origin master
   pod = push origin develop
