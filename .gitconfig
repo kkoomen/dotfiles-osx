@@ -15,4 +15,4 @@
   c = checkout
   l = log --graph --pretty=format:'%Cred%h%Creset %Cblue<%ae>%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
 [push]
-  default = simple
+  default = current
