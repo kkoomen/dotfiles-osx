@@ -89,6 +89,7 @@ apps=(
   curl
   tree
   htop
+  acrogenesis/macchanger/macchanger
 
   # IRC
   weechat
