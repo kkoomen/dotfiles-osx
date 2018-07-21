@@ -64,6 +64,9 @@ cask_apps=(
 brew cask install "${cask_apps[@]}"
 
 apps=(
+  # Compiling
+  cmake
+
   # Shell
   bash-completion
 
@@ -82,6 +85,7 @@ apps=(
   openssl
   composer
   curlftpfs
+  typescript
 
   # Terminal
   vim

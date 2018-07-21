@@ -4,5 +4,7 @@
 
 bash ./../update.sh
 bash ./bin/install_brew.sh
+bash ./bin/install_linters.sh
 bash ./bin/install_npm_modules.sh
 bash ./bin/install_pip_modules.sh
+bash ./bin/install_vim_bundles.sh

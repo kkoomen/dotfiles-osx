@@ -1,0 +1,14 @@
+{
+  "libs": [
+    "browser",
+    "jquery",
+    "react",
+    "ecmascript"
+  ],
+  "plugins": {
+    "node": {},
+    "es_modules": {},
+    "webpack": {}
+  },
+  "ecmaVersion": 6
+ }

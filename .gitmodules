@@ -40,9 +40,6 @@
 [submodule ".vim/bundle/vim-gitgutter"]
   path = .vim/bundle/vim-gitgutter
   url = https://github.com/airblade/vim-gitgutter
-[submodule ".vim/bundle/supertab"]
-  path = .vim/bundle/supertab
-  url = https://github.com/ervandew/supertab
 [submodule ".vim/bundle/ale"]
   path = .vim/bundle/ale
   url = https://github.com/w0rp/ale
@@ -50,5 +47,8 @@
   path = .vim/bundle/auto-pairs
   url = https://github.com/jiangmiao/auto-pairs
 [submodule ".vim/bundle/vim-prettier"]
-	path = .vim/bundle/vim-prettier
-	url = https://github.com/prettier/vim-prettier
+  path = .vim/bundle/vim-prettier
+  url = https://github.com/prettier/vim-prettier
+[submodule ".vim/bundle/YouCompleteMe"]
+	path = .vim/bundle/YouCompleteMe
+	url = https://github.com/Valloric/YouCompleteMe

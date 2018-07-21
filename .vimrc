@@ -369,15 +369,6 @@ let g:jsx_ext_required = 0
 let g:indentLine_char = '|'
 
 " ==============================================================================
-" Ultisnips
-" ==============================================================================
-let g:UltiSnipsExpandTrigger = "<tab>"
-let g:UltiSnipsJumpForwardTrigger = "<tab>"
-let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
-"let g:UltiSnipsSnippetDirectories = ['~/.vim/snippets/UltiSnips', 'UltiSnips']
-let g:UltiSnipsSnippetsDir="~/.vim/UltiSnips"
-
-" ==============================================================================
 " Emmet
 " ==============================================================================
 "
@@ -417,18 +408,45 @@ let g:gitgutter_sign_modified_removed = 'M-'
 "let g:gitgutter_realtime = 0
 "let g:gitgutter_eager = 0
 
+" ==============================================================================
+" Ultisnips
+" ==============================================================================
+let g:UltiSnipsExpandTrigger = "<tab>"
+let g:UltiSnipsJumpForwardTrigger = "<tab>"
+let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
+let g:UltiSnipsSnippetsDir="~/.vim/UltiSnips"
+let g:UltiSnipsListSnippets="<c-e>"
+
+function! g:UltiSnips_Complete()
+  call UltiSnips#ExpandSnippet()
+  if g:ulti_expand_res == 0
+    if pumvisible()
+      return "\<C-n>"
+    else
+      call UltiSnips#JumpForwards()
+      if g:ulti_jump_forwards_res == 0
+       return "\<TAB>"
+      endif
+    endif
+  endif
+  return ""
+endfunction
+
+au BufEnter * exec "inoremap <silent> " . g:UltiSnipsExpandTrigger . " <C-R>=g:UltiSnips_Complete()<cr>"
+" this maps Enter key to <C-y> to chose the current highlight item
+" and close the selection list, same as other IDEs.
+inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
 " ==============================================================================
-" Supertab
+" YouCompleteMe
 " ==============================================================================
-let g:SuperTabCrMapping = 0
-let g:SuperTabDefaultCompletionType = 'context'
-"let g:SuperTabDefaultCompletionType = '<C-n>'
-let g:SuperTabContextDefaultCompletionType = '<c-x><c-u>'
-autocmd FileType *
-    \ if &omnifunc != '' |
-    \     call SuperTabChain(&omnifunc, '<c-p>') |
-    \ endif
+let g:ycm_goto_buffer_command = 'same-buffer'
+let g:ycm_key_list_select_completion=['<Down>']
+let g:ycm_key_list_previous_completion=['<Up>']
+let g:ycm_key_list_stop_completion = ['<Enter>']
+
+" Jump to the definition under the cursor when available
+noremap <C-]> :YcmCompleter GoTo<cr>
 
 " ==============================================================================
 " Airline
@@ -453,7 +471,7 @@ let g:ale_lint_on_text_changed = 1
 let g:ale_lint_on_enter = 0
 let g:ale_php_phpcs_standard = 'Drupal'
 let g:ale_linters = {
-      \   'php': [],
+      \   'php': ['drupalcs'],
       \   'javascript': [],
       \   'jsx': ['stylelint', 'eslint'],
       \}

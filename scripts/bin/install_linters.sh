@@ -2,8 +2,11 @@
 
 sudo -v
 
-# Drupal / DrupalPractice
-# ----------------------------------------
+# ------------------------------------------------------------------------------
+#
+# Drupal & DrupalPractive
+#
+# ------------------------------------------------------------------------------
 composer global require drupal/coder
 sudo ln -s ~/.composer/vendor/bin/phpcs /usr/local/bin
 sudo ln -s ~/.composer/vendor/bin/phpcbf /usr/local/bin

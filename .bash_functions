@@ -49,10 +49,6 @@ function prefix-css {
   fi
 }
 
-function set-docker-permissions {
-  docker-compose exec bg-sync chown -R 82:82 /var/www/html/
-}
-
 function cut-mp3 {
   ffmpeg -i "$1" -ss "$3" -to "$4" -c copy "${2:-$1}"
 }
