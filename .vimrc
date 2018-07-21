@@ -24,11 +24,15 @@ set lazyredraw                 " Will buffer screen updates instead of updating 
 set clipboard=unnamed          " Enable clipboard
 set autoread                   " Set to auto read when a file is changed from the outside
 set nospell                    " Disable spellcheck on default
+set colorcolumn=81             " Highlight the 80th column
 set so=7                       " Minimal number of screen lines to keep above and below the cursor when scrolling
-set colorcolumn=80             " Highlight the 80th column
 set tw=80                      " Set a max text width
 set nocompatible               " Use vim defaults instead of vi
 set backspace=indent,eol,start " Set priorities for the backspace key
+
+" Make certain chars visible
+exec "set listchars=tab:>>,trail:\uB7"
+set list
 
 " Search
 set ignorecase                 " Case insensitive
