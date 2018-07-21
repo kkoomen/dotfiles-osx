@@ -24,7 +24,7 @@ set lazyredraw                 " Will buffer screen updates instead of updating 
 set clipboard=unnamed          " Enable clipboard
 set autoread                   " Set to auto read when a file is changed from the outside
 set nospell                    " Disable spellcheck on default
-set colorcolumn=81             " Highlight the 80th column
+set colorcolumn=81             " Highlight the 81th column
 set so=7                       " Minimal number of screen lines to keep above and below the cursor when scrolling
 set tw=80                      " Set a max text width
 set nocompatible               " Use vim defaults instead of vi
@@ -283,6 +283,15 @@ noremap <Leader>m :%s/\r//g<cr>
 " ==============================================================================
 noremap ; :
 
+" ==============================================================================
+" Map ; to :B in combination with the vis.vim plugin.
+" ==============================================================================
+"
+" The vis.vim plugin allows us to apply a command in visual-block mode only to
+" the selected block instead of the whole line. To do so, every command has to
+" be prefixed with 'B' which ends up in: '<, '>B [command]
+" ------------------------------------------------------------------------------
+vnoremap ; :B<space>
 
 " ==============================================================================
 " Selection
@@ -399,7 +408,7 @@ let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclu
 let g:gitgutter_map_keys = 0
 let g:gitgutter_override_sign_column_highlight = 0
 let g:gitgutter_sign_added = '+'
-let g:gitgutter_sign_modified = '~'
+let g:gitgutter_sign_modified = 'M'
 let g:gitgutter_sign_removed = '-'
 let g:gitgutter_sign_removed_first_line = '^'
 let g:gitgutter_sign_modified_removed = 'M-'
@@ -407,6 +416,7 @@ let g:gitgutter_sign_modified_removed = 'M-'
 " If you experience a lag, you can trade speed for accuracy
 "let g:gitgutter_realtime = 0
 "let g:gitgutter_eager = 0
+
 
 " ==============================================================================
 " Supertab
