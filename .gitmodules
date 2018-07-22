@@ -50,5 +50,5 @@
   path = .vim/bundle/vim-prettier
   url = https://github.com/prettier/vim-prettier
 [submodule ".vim/bundle/YouCompleteMe"]
-	path = .vim/bundle/YouCompleteMe
-	url = https://github.com/Valloric/YouCompleteMe
+  path = .vim/bundle/YouCompleteMe
+  url = https://github.com/Valloric/YouCompleteMe

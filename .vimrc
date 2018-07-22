@@ -114,6 +114,7 @@ autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType php setlocal omnifunc=phpcomplete#CompletePHP
+set tags=./tags;/
 
 " ==============================================================================
 " UTF8 encoding
@@ -417,26 +418,6 @@ let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 let g:UltiSnipsSnippetsDir="~/.vim/UltiSnips"
 let g:UltiSnipsListSnippets="<c-e>"
 
-function! g:UltiSnips_Complete()
-  call UltiSnips#ExpandSnippet()
-  if g:ulti_expand_res == 0
-    if pumvisible()
-      return "\<C-n>"
-    else
-      call UltiSnips#JumpForwards()
-      if g:ulti_jump_forwards_res == 0
-       return "\<TAB>"
-      endif
-    endif
-  endif
-  return ""
-endfunction
-
-au BufEnter * exec "inoremap <silent> " . g:UltiSnipsExpandTrigger . " <C-R>=g:UltiSnips_Complete()<cr>"
-" this maps Enter key to <C-y> to chose the current highlight item
-" and close the selection list, same as other IDEs.
-inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-
 " ==============================================================================
 " YouCompleteMe
 " ==============================================================================
@@ -468,10 +449,11 @@ let g:ale_set_quickfix = 1
 
 let g:ale_lint_on_save = 1
 let g:ale_lint_on_text_changed = 1
-let g:ale_lint_on_enter = 0
+let g:ale_lint_on_enter = 1
 let g:ale_php_phpcs_standard = 'Drupal'
+let g:ale_linters_explicit = 1
 let g:ale_linters = {
-      \   'php': ['drupalcs'],
+      \   'php': ['phpcs', 'php', 'drupalcs'],
       \   'javascript': [],
       \   'jsx': ['stylelint', 'eslint'],
       \}
