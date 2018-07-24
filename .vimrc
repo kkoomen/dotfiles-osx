@@ -448,12 +448,12 @@ let g:ale_set_loclist = 0
 let g:ale_set_quickfix = 1
 
 let g:ale_lint_on_save = 1
-let g:ale_lint_on_text_changed = 1
+let g:ale_lint_on_text_changed = 0
 let g:ale_lint_on_enter = 1
 let g:ale_php_phpcs_standard = 'Drupal'
 let g:ale_linters_explicit = 1
 let g:ale_linters = {
-      \   'php': ['phpcs', 'php', 'drupalcs'],
+      \   'php': ['phpcs'],
       \   'javascript': [],
       \   'jsx': ['stylelint', 'eslint'],
       \}
@@ -463,6 +463,7 @@ let g:ale_linter_aliases = {'jsx': 'css'}
 let g:ale_pattern_options = {
 \ '\.min\.js$': {'ale_linters': [], 'ale_fixers': []},
 \ '\.min\.css$': {'ale_linters': [], 'ale_fixers': []},
+\ '\.tpl\.php$': {'ale_linters': [], 'ale_fixers': []},
 \}
 
 " ==============================================================================
