@@ -453,6 +453,7 @@ let g:ale_lint_on_enter = 1
 let g:ale_php_phpcs_standard = 'Drupal'
 let g:ale_linters_explicit = 1
 let g:ale_linters = {
+      \   'python': ['pycodestyle'],
       \   'php': ['phpcs'],
       \   'javascript': [],
       \   'jsx': ['stylelint', 'eslint'],

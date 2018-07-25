@@ -18,7 +18,7 @@ function editorconfig-init {
         echo "[*.md]" >> .editorconfig
         echo "trim_trailing_whitespace = false" >> .editorconfig
         echo "" >> .editorconfig
-        echo "[{composer,package}.{json,lock}]" >> .editorconfig
+        echo "[*.json]" >> .editorconfig
         echo "indent_size = 4" >> .editorconfig
     fi
 }
