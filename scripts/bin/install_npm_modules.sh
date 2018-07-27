@@ -16,6 +16,7 @@ npm_packages=(
     eslint-plugin-import
     eslint-plugin-jsx-a11y
     eslint-plugin-react
+    stylelint
 
     # CSS prefixing
     autoprefixer-cli

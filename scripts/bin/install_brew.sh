@@ -100,6 +100,7 @@ apps=(
 
   # Compression
   p7zip
+  unrar
 )
 
 brew install "${apps[@]}"
