@@ -483,3 +483,4 @@ map <C-a> <Leader>cs<cr>
 " Gutentags
 " ==============================================================================
 let g:gutentags_cache_dir = '~/.cache/vim/ctags/'
+let g:gutentags_project_root = ['package.json']
