@@ -1,74 +1,62 @@
-" ------------------------------------------------------------------------------
-"
-"   general
-"
-" ------------------------------------------------------------------------------
+" General {{{
 
-" ==============================================================================
 " Syntax
-" ==============================================================================
-syntax on                      " enable syntax highlighting
+" ------------------------------------------------------------------------------
+syntax on                        " enable syntax highlighting
 syntax enable
 
-" ==============================================================================
-" General
-" ==============================================================================
-set hidden                     " Hide when switching buffers, don't unload
-set mouse=a                    " Enable mouse in all modes
-set nowrap                     " No word wrap
-set number                     " Show line numbers
-set nocursorline               " Disable cursor line (makes vim very slow)
-set title                      " Use filename in window title
-set ttyfast                    " Indicates a fast terminal connection
-set lazyredraw                 " Will buffer screen updates instead of updating all the time
-set clipboard=unnamed          " Enable clipboard
-set autoread                   " Set to auto read when a file is changed from the outside
-set nospell                    " Disable spellcheck on default
-set colorcolumn=81             " Highlight the 81th column
-set so=7                       " Minimal number of screen lines to keep above and below the cursor when scrolling
-set tw=80                      " Set a max text width
-set nocompatible               " Use vim defaults instead of vi
-set backspace=indent,eol,start " Set priorities for the backspace key
+set hidden                       " Hide when switching buffers, don't unload
+set mouse=a                      " Enable mouse in all modes
+set nowrap                       " No word wrap
+set number                       " Show line numbers
+set nocursorline                 " Disable cursor line (makes vim very slow)
+set title                        " Use filename in window title
+set ttyfast                      " Indicates a fast terminal connection
+set lazyredraw                   " Will buffer screen updates instead of updating all the time
+set clipboard=unnamed            " Enable clipboard
+set autoread                     " Set to auto read when a file is changed from the outside
+set nospell                      " Disable spellcheck on default
+set colorcolumn=81               " Highlight the 81th column
+set so=7                         " Minimal number of screen lines to keep above and below the cursor when scrolling
+set tw=80                        " Set a max text width
+set nocompatible                 " Use vim defaults instead of vi
+set backspace=indent,eol,start   " Set priorities for the backspace key
+set foldenable foldmethod=marker " Enable folding
 
 " Make certain chars visible
 exec "set listchars=tab:>>,trail:\uB7"
 set list
 
 " Search
-set ignorecase                 " Case insensitive
-set incsearch                  " Show match as search proceeds
-set hlsearch                   " Search highlighting
+set ignorecase                   " Case insensitive
+set incsearch                    " Show match as search proceeds
+set hlsearch                     " Search highlighting
 
 " Tabs
-set autoindent                 " Copy indent from previous line
-set smartindent                " Auto indent when starting a new line
-set expandtab                  " Replace tabs with spaces
-set shiftwidth=2               " Spaces for autoindenting
-set smarttab                   " <BS> removes shiftwidth worth of spaces
-set softtabstop=2              " Spaces for editing, e.g. <Tab> or <BS>
-set tabstop=2                  " Spaces for <Tab>
+set autoindent                   " Copy indent from previous line
+set smartindent                  " Auto indent when starting a new line
+set expandtab                    " Replace tabs with spaces
+set shiftwidth=2                 " Spaces for autoindenting
+set smarttab                     " <BS> removes shiftwidth worth of spaces
+set softtabstop=2                " Spaces for editing, e.g. <Tab> or <BS>
+set tabstop=2                    " Spaces for <Tab>
 
-" ==============================================================================
 " Textwidth
-" ==============================================================================
-"
+" ------------------------------------------------------------------------------
 " Keeps the visual textwidth but doesn't add new line in insert mode when
 " passing the 'tw' value.
 " ------------------------------------------------------------------------------
 autocmd FileType * set formatoptions-=t
 autocmd FileType .* set formatoptions-=t
 
-" ==============================================================================
 " Expand bash aliases
-" ==============================================================================
-"
+" ------------------------------------------------------------------------------
 " Make our custom aliases available within a non-interactive vim.
 " ------------------------------------------------------------------------------
 let $BASH_ENV = "~/.bash_aliases"
 
-" ==============================================================================
 " Wildmenu
-" ==============================================================================
+" ------------------------------------------------------------------------------
 set wildmenu
 set wildmode=list:longest,full
 set wildignore+=.gitkeep
@@ -76,37 +64,31 @@ set wildignore+=.hg,.git,.svn
 set wildignore+=*.exe,*.dll
 set wildignore+=*.zip,*.tar.gz,*.tar.bz2,*.rar,*.tar.xz
 
-" ==============================================================================
 " Enable pathogen
-" ==============================================================================
+" ------------------------------------------------------------------------------
 call pathogen#infect()
 
-" ==============================================================================
 " File detection
-" ==============================================================================
+" ------------------------------------------------------------------------------
 filetype plugin indent on
 
-" ==============================================================================
 " Syntax
-" ==============================================================================
+" ------------------------------------------------------------------------------
 let python_highlight_all = 1
 let python_highlight_space_errors = 0
 
-" ==============================================================================
 " Color scheme
-" ==============================================================================
+" ------------------------------------------------------------------------------
 set background=dark
 let g:gruvbox_bold = 0
 let g:gruvbox_termcolors=16
 let g:gruvbox_invert_selection=0
 colorscheme gruvbox
 
-" ==============================================================================
 " Autocompletion
-" ==============================================================================
-"
-"  - Append extra characters to the 'iskeyword' for autocompletion.
-"  - Enable omni completion.
+" ------------------------------------------------------------------------------
+"  Enable omni completion and enable more characters to be available within
+"  autocomplete by appending to the iskeyword variable.
 " ------------------------------------------------------------------------------
 set iskeyword+=-
 autocmd FileType * setlocal omnifunc=syntaxcomplete#Complete
@@ -116,39 +98,34 @@ autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType php setlocal omnifunc=phpcomplete#CompletePHP
 set tags=./tags;,tags;
 
-" ==============================================================================
 " UTF8 encoding
-" ==============================================================================
+" ------------------------------------------------------------------------------
 set encoding=utf-8
 set termencoding=utf-8
 set fileencoding=utf-8
 
-" ==============================================================================
 " Hooks
-" ==============================================================================
+" ------------------------------------------------------------------------------
 autocmd BufWritePre * :call OnBufWritePre()
 autocmd BufReadPost * :call OnBufReadPost()
 
-" ==============================================================================
 " Undo history
-" ==============================================================================
+" ------------------------------------------------------------------------------
 set undofile                  " Save undo's after file closes
 set undodir=~/.vim/undo,/tmp " where to save undo histories
 set undolevels=1000          " How many undos
 set undoreload=10000         " number of lines to save for undo
 set history=500              " sets how many lines of history VIM has to remember
 
-" ==============================================================================
 " Swap files
-" ==============================================================================
+" ------------------------------------------------------------------------------
 set directory=~/.vim/swap,~/tmp,.
 set backupdir=~/.vim/backup,~/tmp,.
 set noswapfile
 set nobackup
 
-" ==============================================================================
 " Filetypes
-" ==============================================================================
+" ------------------------------------------------------------------------------
 if has("autocmd")
   " Drupal *.module and *.install files.
   augroup module
@@ -171,11 +148,8 @@ if has("autocmd")
   augroup END
 endif
 
-" ------------------------------------------------------------------------------
-"
-"   Functions
-"
-" ------------------------------------------------------------------------------
+" }}}
+" Functions {{{
 
 " Indent if we're at the beginning of a line. Else, do completion.
 function! InsertTabWrapper()
@@ -209,29 +183,21 @@ function! LastWindow()
   exe "split " . g:lastBuffer
 endfunction
 
-" ------------------------------------------------------------------------------
-"
-"   mapping
-"
-" ------------------------------------------------------------------------------
-"  Contains custom mappings.
-" ------------------------------------------------------------------------------
+" }}}
+" Mappings {{{
 
-" ==============================================================================
 " Leader key
-" ==============================================================================
+" ------------------------------------------------------------------------------
 let mapleader = "\<Space>"
 
-" ==============================================================================
 " buffers
-" ==============================================================================
+" ------------------------------------------------------------------------------
 nnoremap Z :bprev<cr>
 nnoremap X :bnext<cr>
 nnoremap Q :bw<cr>
 
-" ==============================================================================
 " Moving lines up or down
-" ==============================================================================
+" ------------------------------------------------------------------------------
 nnoremap <C-Down> :m .+1<CR>==
 nnoremap <C-Up> :m .-2<CR>==
 inoremap <C-Down> <Esc>:m .+1<CR>==gi
@@ -239,72 +205,56 @@ inoremap <C-Up> <Esc>:m .-2<CR>==gi
 vnoremap <C-Down> :m '>+1<CR>gv=gv
 vnoremap <C-Up> :m '<-2<CR>gv=gv
 
-" ==============================================================================
 " Set pastetoggle
-" ==============================================================================
+" ------------------------------------------------------------------------------
 set pastetoggle=<F2>
 
-" ==============================================================================
 " Rot13
-" ==============================================================================
+" ------------------------------------------------------------------------------
 nnoremap <silent> <F6> ggg?G<cr>
 
-" ==============================================================================
 " Space bar un-highligts search
-" ==============================================================================
+" ------------------------------------------------------------------------------
 noremap <silent> <Space> :silent noh<Bar>echo<CR>
 
-" ==============================================================================
-" Saving file as sudo in non-sudo opened file
-" ==============================================================================
-"
 " Allow saving of files as sudo when I forgot to start vim using sudo.
 " ------------------------------------------------------------------------------
 cnoremap w!! w !sudo tee > /dev/null %
 
-" ==============================================================================
 " Spell check
-" ==============================================================================
+" ------------------------------------------------------------------------------
 nnoremap <leader>sc :setlocal spell!<cr>
 
-" ==============================================================================
 " Remove ^M
-" ==============================================================================
+" ------------------------------------------------------------------------------
 noremap <Leader>m :%s/\r//g<cr>
 
-" ==============================================================================
-" Map ; to : for simplicity
-" ==============================================================================
+" Map ; to : for simplicity & efficiency.
+" ------------------------------------------------------------------------------
 noremap ; :
 
-" ==============================================================================
 " Map ; to :B in combination with the vis.vim plugin.
-" ==============================================================================
-"
+" ------------------------------------------------------------------------------
 " The vis.vim plugin allows us to apply a command in visual-block mode only to
 " the selected block instead of the whole line. To do so, every command has to
 " be prefixed with 'B' which ends up in: '<, '>B [command]
 " ------------------------------------------------------------------------------
 vnoremap ; :B<space>
 
-" ==============================================================================
 " Selection
-" ==============================================================================
-"
-" Make selection stay
+" ------------------------------------------------------------------------------
+" Make selection stay after keypress.
 " ------------------------------------------------------------------------------
 noremap > >gv
 noremap < <gv
 
-" ==============================================================================
 " Auto complete
-" ==============================================================================
+" ------------------------------------------------------------------------------
 "inoremap <expr> <tab> InsertTabWrapper()
+" ------------------------------------------------------------------------------
 
-" ==============================================================================
 " Typo's while saving
-" ==============================================================================
-"
+" ------------------------------------------------------------------------------
 " Avoid saving files like ; and w; and other typos
 " ------------------------------------------------------------------------------
 cnoremap w; w
@@ -313,26 +263,17 @@ cnoremap w: w
 cnoremap x; x
 cnoremap x: x
 
-
-" ------------------------------------------------------------------------------
-"
-"   plugins
-"
-" ------------------------------------------------------------------------------
-
-" ==============================================================================
-" HTML Close Tag
-" ==============================================================================
+" }}}
+" Plugins: HTML Close Tag {{{
 let g:closetag_filenames = "*.html,*.xhtml,*.phtml,*.tpl,*.twig,*.htm,*.php,*.pug,*.jsx"
+" }}}
+" Plugins: auto-pairs {{{
 
-" ==============================================================================
-" auto-pairs
-" ==============================================================================
 let g:AutoPairsMultilineClose = 0
 
-" ==============================================================================
-" Templating
-" ==============================================================================
+" }}}
+" Plugins: Templates {{{
+
 let g:username = "Kim Koomen"
 let g:email = 'koomen@protonail.com'
 
@@ -352,27 +293,25 @@ function! GetFileOrDirectory()
   endif
 endfunction
 
-" ==============================================================================
-" vim-jsx
-" ==============================================================================
+" }}}
+" Plugins: JSX {{{
+
 let g:jsx_ext_required = 0
 
-" ==============================================================================
-" Indentline
-" ==============================================================================
+" }}}
+" Plugins: Indent Line {{{
+
 let g:indentLine_char = '|'
 
-" ==============================================================================
-" Emmet
-" ==============================================================================
-"
-"  After the leader key you should always enter a comma to trigger emmet.
-" ------------------------------------------------------------------------------
+" }}}
+" Plugins: Emmet {{{
+
+" After the leader key you should always enter a comma to trigger emmet.
 let g:user_emmet_leader_key='<C-f>'
 
-" ==============================================================================
-" CtrlP
-" ==============================================================================
+" }}}
+" Plugins: CtrlP {{{
+
 let g:ctrlp_use_caching = 0
 let g:ctrlp_custom_ignore = {
   \ 'dir':  '\.git$\|\.hg$\|\.svn$\|data\|log\|tmp$\|node_modules\|bower_components',
@@ -387,9 +326,9 @@ let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
 " since you determine the ignored files with your user command.
 let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 
-" ==============================================================================
-" GitGutter
-" ==============================================================================
+" }}}
+" Plugins: GitGutter {{{
+
 let g:gitgutter_map_keys = 0
 let g:gitgutter_override_sign_column_highlight = 0
 let g:gitgutter_sign_added = '+'
@@ -402,18 +341,18 @@ let g:gitgutter_sign_modified_removed = 'M-'
 "let g:gitgutter_realtime = 0
 "let g:gitgutter_eager = 0
 
-" ==============================================================================
-" Ultisnips
-" ==============================================================================
+" }}}
+" Plugins: UltiSnips {{{
+
 let g:UltiSnipsExpandTrigger = "<tab>"
 let g:UltiSnipsJumpForwardTrigger = "<tab>"
 let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 let g:UltiSnipsSnippetsDir="~/.vim/UltiSnips"
 let g:UltiSnipsListSnippets="<c-e>"
 
-" ==============================================================================
-" YouCompleteMe
-" ==============================================================================
+" }}}
+" Plugins: YouCompleteMe {{{
+
 let g:ycm_goto_buffer_command = 'same-buffer'
 let g:ycm_key_list_select_completion=['<Down>']
 let g:ycm_key_list_previous_completion=['<Up>']
@@ -421,14 +360,9 @@ let g:ycm_key_list_stop_completion = ['<Enter>']
 let g:ycm_max_num_candidates = 10
 let ycm_collect_identifiers_from_tags_files = 1
 
-" ==============================================================================
-" Airline
-" ==============================================================================
-let g:airline_theme='base16_grayscale'
+" }}}
+" Plugins: Ale {{{
 
-" ==============================================================================
-" Ale
-" ==============================================================================
 let g:ale_sign_error = '••'
 let g:ale_sign_warning = '•'
 
@@ -459,28 +393,28 @@ let g:ale_pattern_options = {
 \ '\.tpl\.php$': {'ale_linters': [], 'ale_fixers': []},
 \}
 
-" ==============================================================================
-" Prettier
-" ==============================================================================
+" }}}
+" Plugins: Prettier {{{
+
 let g:prettier#autoformat = 0
 let g:prettier#exec_cmd_async = 1
 noremap <Leader>p :PrettierAsync<cr>
 
-" ==============================================================================
-" MRU
-" ==============================================================================
+" }}}
+" Plugins: MRU {{{
+
 let MRU_Window_Height = 10
 noremap <Leader>r :MRU<cr>
 
-" ==============================================================================
-" NERDCommenter
-" ==============================================================================
+" }}}
+" Plugins: NERDCommenter {{{
 map <C-c> <Leader>cm<cr>
 map <C-x> <Leader>cu<cr>
 map <C-a> <Leader>cs<cr>
+" }}}
+" Plugins: Gutentags {{{
 
-" ==============================================================================
-" Gutentags
-" ==============================================================================
 let g:gutentags_cache_dir = '~/.cache/vim/ctags/'
 let g:gutentags_project_root = ['package.json']
+
+" }}}

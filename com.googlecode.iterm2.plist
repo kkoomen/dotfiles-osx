@@ -537,9 +537,9 @@ Reset</string>
 	<key>NSWindow Frame SessionsPreferences</key>
 	<string>269 126 606 469 0 0 1680 1028 </string>
 	<key>NSWindow Frame SharedPreferences</key>
-	<string>646 326 796 473 0 0 1680 1028 </string>
+	<string>646 370 770 429 0 0 1680 1028 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>0 0 1680 1028 0 0 1680 1028 </string>
+	<string>0 24 1680 1004 0 0 1680 1028 </string>
 	<key>New Bookmarks</key>
 	<array>
 		<dict>
@@ -1349,7 +1349,7 @@ Reset</string>
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2018-07-21T15:08:18Z</date>
+	<date>2018-07-29T07:53:06Z</date>
 	<key>SUSendProfileInfo</key>
 	<false/>
 	<key>ShowBookmarkName</key>
@@ -1365,7 +1365,7 @@ Reset</string>
 	<key>TabStyle</key>
 	<integer>1</integer>
 	<key>TabViewType</key>
-	<integer>2</integer>
+	<integer>1</integer>
 	<key>UseBorder</key>
 	<false/>
 	<key>UseLionStyleFullscreen</key>
