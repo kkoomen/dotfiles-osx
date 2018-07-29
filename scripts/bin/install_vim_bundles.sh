@@ -11,6 +11,7 @@ dotfiles=~/dotfiles
 cp $dotfiles/.tern-project /tech/
 cd $dotfiles/.vim/bundle/YouCompleteMe
 git submodule update --init --recursive
+sudo npm i -g typescript
 ./install.py --js-completer
 
 # ------------------------------------------------------------------------------

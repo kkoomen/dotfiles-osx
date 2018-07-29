@@ -52,3 +52,9 @@
 [submodule ".vim/bundle/YouCompleteMe"]
   path = .vim/bundle/YouCompleteMe
   url = https://github.com/Valloric/YouCompleteMe
+[submodule ".vim/bundle/mru"]
+	path = .vim/bundle/mru
+	url = https://github.com/yegappan/mru
+[submodule ".vim/bundle/vim-gutentags"]
+	path = .vim/bundle/vim-gutentags
+	url = https://github.com/ludovicchabant/vim-gutentags

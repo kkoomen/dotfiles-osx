@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+
+if [[ "$1" == "" ]]; then
+  echo "Usage: ./ctags-generate <type>"
+  exit 1
+fi
+
+filename=.gutctags
+
+case "$1" in
+  drupal)
+    echo "--langmap=php:.engine.inc.module.theme.install.php" > $filename
+    echo "--php-kinds=cdfi" >> $filename
+    echo "--languages=php" >> $filename
+    echo "--recurse" >> $filename
+    echo "--fields=+l" >> $filename
+    echo "[ctags] Successfully generated $1 $filename"
+    ;;
+  *)
+    echo "[ctags] Unknown type $1."
+    exit 1
+esac

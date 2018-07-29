@@ -1,8 +1,8 @@
-" --------------------------------------------
+" ------------------------------------------------------------------------------
 "
 "   general
 "
-" --------------------------------------------
+" ------------------------------------------------------------------------------
 
 " ==============================================================================
 " Syntax
@@ -54,7 +54,7 @@ set tabstop=2                  " Spaces for <Tab>
 "
 " Keeps the visual textwidth but doesn't add new line in insert mode when
 " passing the 'tw' value.
-" -----------------------------------------------------------------------
+" ------------------------------------------------------------------------------
 autocmd FileType * set formatoptions-=t
 autocmd FileType .* set formatoptions-=t
 
@@ -114,7 +114,7 @@ autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType php setlocal omnifunc=phpcomplete#CompletePHP
-set tags=./tags;/
+set tags=./tags;,tags;
 
 " ==============================================================================
 " UTF8 encoding
@@ -189,11 +189,12 @@ endfunction
 
 function! OnBufWritePre()
   " Delete trailing whitespaces at the end of each line.
-  exe "normal mz"
   %s/\s\+$//ge
-  exe "normal `z"
 
-  " Convert remaining tabs to spaces
+  " Delete empty lines at the end of a file.
+  v/\n*./d
+
+  " Convert remaining tabs to spaces.
   %retab
 endfunc
 
@@ -204,12 +205,17 @@ function! OnBufReadPost()
   endif
 endfunction
 
+function! LastWindow()
+  exe "split " . g:lastBuffer
+endfunction
+
 " ------------------------------------------------------------------------------
 "
 "   mapping
 "
 " ------------------------------------------------------------------------------
-
+"  Contains custom mappings.
+" ------------------------------------------------------------------------------
 
 " ==============================================================================
 " Leader key
@@ -237,13 +243,6 @@ vnoremap <C-Up> :m '<-2<CR>gv=gv
 " Set pastetoggle
 " ==============================================================================
 set pastetoggle=<F2>
-
-" ==============================================================================
-" Commenting
-" ==============================================================================
-map <C-c> <Leader>cm<cr>
-map <C-x> <Leader>cu<cr>
-map <C-a> <Leader>cs<cr>
 
 " ==============================================================================
 " Rot13
@@ -419,9 +418,8 @@ let g:ycm_goto_buffer_command = 'same-buffer'
 let g:ycm_key_list_select_completion=['<Down>']
 let g:ycm_key_list_previous_completion=['<Up>']
 let g:ycm_key_list_stop_completion = ['<Enter>']
-
-" Jump to the definition under the cursor when available
-noremap <C-]> :YcmCompleter GoTo<cr>
+let g:ycm_max_num_candidates = 10
+let ycm_collect_identifiers_from_tags_files = 1
 
 " ==============================================================================
 " Airline
@@ -467,3 +465,21 @@ let g:ale_pattern_options = {
 let g:prettier#autoformat = 0
 let g:prettier#exec_cmd_async = 1
 noremap <Leader>p :PrettierAsync<cr>
+
+" ==============================================================================
+" MRU
+" ==============================================================================
+let MRU_Window_Height = 10
+noremap <Leader>r :MRU<cr>
+
+" ==============================================================================
+" NERDCommenter
+" ==============================================================================
+map <C-c> <Leader>cm<cr>
+map <C-x> <Leader>cu<cr>
+map <C-a> <Leader>cs<cr>
+
+" ==============================================================================
+" Gutentags
+" ==============================================================================
+let g:gutentags_cache_dir = '~/.cache/vim/ctags/'
