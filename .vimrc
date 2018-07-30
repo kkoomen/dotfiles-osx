@@ -2,44 +2,41 @@
 
 " Syntax
 " ------------------------------------------------------------------------------
-syntax on                        " enable syntax highlighting
+syntax on                         " enable syntax highlighting
 syntax enable
 
-set hidden                       " Hide when switching buffers, don't unload
-set mouse=a                      " Enable mouse in all modes
-set nowrap                       " No word wrap
-set number                       " Show line numbers
-set nocursorline                 " Disable cursor line (makes vim very slow)
-set title                        " Use filename in window title
-set ttyfast                      " Indicates a fast terminal connection
-set lazyredraw                   " Will buffer screen updates instead of updating all the time
-set clipboard=unnamed            " Enable clipboard
-set autoread                     " Set to auto read when a file is changed from the outside
-set nospell                      " Disable spellcheck on default
-set colorcolumn=81               " Highlight the 81th column
-set so=7                         " Minimal number of screen lines to keep above and below the cursor when scrolling
-set tw=80                        " Set a max text width
-set nocompatible                 " Use vim defaults instead of vi
-set backspace=indent,eol,start   " Set priorities for the backspace key
-set foldenable foldmethod=marker " Enable folding
-
-" Make certain chars visible
-exec "set listchars=tab:>>,trail:\uB7"
-set list
+set hidden                        " Hide when switching buffers, don't unload.
+set mouse=a                       " Enable mouse in all modes.
+set nowrap                        " No word wrap.
+set number                        " Show line numbers.
+set nocursorline                  " Disable cursor line (makes vim very slow).
+set title                         " Use filename in window title.
+set ttyfast                       " Indicates a fast terminal connection.
+set lazyredraw                    " Will buffer screen updates instead of updating all the time.
+set clipboard=unnamed             " Enable clipboard.
+set autoread                      " Set to auto read when a file is changed from the outside.
+set nospell                       " Disable spellcheck on default.
+set colorcolumn=81                " Highlight the 81th column.
+set so=7                          " Minimal number of screen lines to keep above and below the cursor when scrolling.
+set tw=80                         " Set a max text width.
+set nocompatible                  " Use vim defaults instead of vi.
+set backspace=indent,eol,start    " Set priorities for the backspace key.
+set foldenable foldmethod=marker  " Enable folding.
+set list listchars=tab:>>,trail:• " Make additional characters visible.
 
 " Search
-set ignorecase                   " Case insensitive
-set incsearch                    " Show match as search proceeds
-set hlsearch                     " Search highlighting
+set ignorecase                    " Case insensitive.
+set incsearch                     " Show match as search proceeds.
+set hlsearch                      " Search highlighting.
 
 " Tabs
-set autoindent                   " Copy indent from previous line
-set smartindent                  " Auto indent when starting a new line
-set expandtab                    " Replace tabs with spaces
-set shiftwidth=2                 " Spaces for autoindenting
-set smarttab                     " <BS> removes shiftwidth worth of spaces
-set softtabstop=2                " Spaces for editing, e.g. <Tab> or <BS>
-set tabstop=2                    " Spaces for <Tab>
+set autoindent                    " Copy indent from previous line.
+set smartindent                   " Auto indent when starting a new line.
+set expandtab                     " Replace tabs with spaces.
+set shiftwidth=2                  " Spaces for autoindenting.
+set smarttab                      " <BS> removes shiftwidth worth of spaces.
+set softtabstop=2                 " Spaces for editing, e.g. <Tab> or <BS>.
+set tabstop=2                     " Spaces for <Tab>.
 
 " Textwidth
 " ------------------------------------------------------------------------------
@@ -111,11 +108,11 @@ autocmd BufReadPost * :call OnBufReadPost()
 
 " Undo history
 " ------------------------------------------------------------------------------
-set undofile                  " Save undo's after file closes
-set undodir=~/.vim/undo,/tmp " where to save undo histories
-set undolevels=1000          " How many undos
-set undoreload=10000         " number of lines to save for undo
-set history=500              " sets how many lines of history VIM has to remember
+set undofile                 " Save undo's after file closes.
+set undodir=~/.vim/undo,/tmp " Where to save undo histories.
+set undolevels=1000          " How many undos.
+set undoreload=10000         " Number of lines to save for undo.
+set history=500              " Sets how many lines of history vim has to remember.
 
 " Swap files
 " ------------------------------------------------------------------------------
@@ -172,7 +169,7 @@ function! OnBufWritePre()
   %retab
 endfunc
 
-" Set the last edit position
+" Set the last edit position.
 function! OnBufReadPost()
   if line("'\"") > 0 && line("'\"") <= line("$") |
     exe "normal! g`\"" |
@@ -217,7 +214,7 @@ nnoremap <silent> <F6> ggg?G<cr>
 " ------------------------------------------------------------------------------
 noremap <silent> <Space> :silent noh<Bar>echo<CR>
 
-" Allow saving of files as sudo when I forgot to start vim using sudo.
+" Allow saving of files as sudo when I forgot to start vim using sudo
 " ------------------------------------------------------------------------------
 cnoremap w!! w !sudo tee > /dev/null %
 
@@ -229,15 +226,15 @@ nnoremap <leader>sc :setlocal spell!<cr>
 " ------------------------------------------------------------------------------
 noremap <Leader>m :%s/\r//g<cr>
 
-" Map ; to : for simplicity & efficiency.
+" Map ; to : for simplicity & efficiency
 " ------------------------------------------------------------------------------
 noremap ; :
 
-" Map ; to :B in combination with the vis.vim plugin.
+" Map ; to :B in combination with the vis.vim plugin
 " ------------------------------------------------------------------------------
 " The vis.vim plugin allows us to apply a command in visual-block mode only to
 " the selected block instead of the whole line. To do so, every command has to
-" be prefixed with 'B' which ends up in: '<, '>B [command]
+" be prefixed with 'B' which ends up in: '<, '>B [command].
 " ------------------------------------------------------------------------------
 vnoremap ; :B<space>
 
@@ -251,7 +248,6 @@ noremap < <gv
 " Auto complete
 " ------------------------------------------------------------------------------
 "inoremap <expr> <tab> InsertTabWrapper()
-" ------------------------------------------------------------------------------
 
 " Typo's while saving
 " ------------------------------------------------------------------------------
@@ -265,7 +261,9 @@ cnoremap x: x
 
 " }}}
 " Plugins: HTML Close Tag {{{
+
 let g:closetag_filenames = "*.html,*.xhtml,*.phtml,*.tpl,*.twig,*.htm,*.php,*.pug,*.jsx"
+
 " }}}
 " Plugins: auto-pairs {{{
 
@@ -337,7 +335,7 @@ let g:gitgutter_sign_removed = '-'
 let g:gitgutter_sign_removed_first_line = '^'
 let g:gitgutter_sign_modified_removed = 'M-'
 
-" If you experience a lag, you can trade speed for accuracy
+" If you experience a lag, you can trade speed for accuracy.
 "let g:gitgutter_realtime = 0
 "let g:gitgutter_eager = 0
 
@@ -366,10 +364,10 @@ let ycm_collect_identifiers_from_tags_files = 1
 let g:ale_sign_error = '••'
 let g:ale_sign_warning = '•'
 
-" Open list of errors when new buffer opens
+" Open list of errors when new buffer opens.
 let g:ale_open_list = 0
 
-" Unset loclist and enable quickfix list
+" Unset loclist and enable quickfix list.
 let g:ale_set_loclist = 0
 let g:ale_set_quickfix = 1
 
@@ -408,9 +406,11 @@ noremap <Leader>r :MRU<cr>
 
 " }}}
 " Plugins: NERDCommenter {{{
+
 map <C-c> <Leader>cm<cr>
 map <C-x> <Leader>cu<cr>
 map <C-a> <Leader>cs<cr>
+
 " }}}
 " Plugins: Gutentags {{{
 
