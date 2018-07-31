@@ -19,6 +19,7 @@ FILES=(
   .weechat/weechat.conf
   .weechat/buffers.conf
   .gitconfig
+  .completions
 
   # Directories to symlink.
   .vim/

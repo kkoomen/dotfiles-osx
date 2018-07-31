@@ -35,10 +35,15 @@ shopt -s checkwinsize
 [[ -f ~/.bash_aliases ]] && . ~/.bash_aliases
 [[ -f ~/.bash_functions ]] && . ~/.bash_functions
 [[ -f ~/.bash_private ]] && . ~/.bash_private
-[[ -f ~/.git_completion ]] && . ~/.git_completion
+
+# Completions
+[[ -d ~/.completions ]] && . ~/.completions/* > /dev/null 2>&1
+[[ -f /usr/local/etc/bash_completion ]] && . /usr/local/etc/bash_completion > /dev/null 2>&1
 
 # Autocorrect typos in path names when using "cd".
 shopt -s cdspell
 
-# set PS1 format.
-export PS1="————— \w\[$(tput setaf 3)\]\$(git_branch)\[$(tput sgr0)\] \\$ \[$(tput sgr0)\]"
+# Set PS1 format.
+PS1_NORMAL="\[$(tput setaf 4)\]┌─ $(tput setaf 4)\w\[$(tput setaf 1)\]\[$(tput setaf 3)\]\$(git_branch)\[$(tput setaf 7)\]\n\[$(tput setaf 4)\]└──── ➜  \[$(tput setaf 7)\]"
+PS1_ERROR="\[$(tput setaf 1)\]┌─ $(tput setaf 4)\w\[$(tput setaf 1)\]\[$(tput setaf 3)\]\$(git_branch)\[$(tput setaf 7)\]\n\[$(tput setaf 1)\]└──── ➜  \[$(tput setaf 7)\]"
+export PS1="\$(if [[ \$? == 0 ]]; then echo \"$PS1_NORMAL\"; else echo \"$PS1_ERROR\"; fi)"
