@@ -2,6 +2,9 @@
 
 dotfiles=~/dotfiles
 
+cd $dotfiles
+git submodule update --init --recursive
+
 # ------------------------------------------------------------------------------
 #
 # YouCompleteMe
@@ -10,9 +13,8 @@ dotfiles=~/dotfiles
 
 cp $dotfiles/.tern-project /tech/
 cd $dotfiles/.vim/bundle/YouCompleteMe
-git submodule update --init --recursive
 sudo npm i -g typescript
-./install.py --js-completer
+python3 install.py --js-completer --tern-completer
 
 # ------------------------------------------------------------------------------
 #
@@ -24,4 +26,3 @@ for f in $dotfiles/.vim/snippets/*.snippets; do
   echo "removing '$dotfiles/.vim/bundle/vim-snippets/snippets/$(basename \"$f\")'"
   rm $dotfiles/.vim/bundle/vim-snippets/snippets/$(basename "$f") > /dev/null 2>&1
 done
-

@@ -1,10 +1,6 @@
 " General {{{
 
-" Syntax
-" ------------------------------------------------------------------------------
-syntax on                         " enable syntax highlighting
-syntax enable
-
+syntax on                         " Enable syntax highlighting.
 set hidden                        " Hide when switching buffers, don't unload.
 set mouse=a                       " Enable mouse in all modes.
 set nowrap                        " No word wrap.
@@ -23,6 +19,7 @@ set nocompatible                  " Use vim defaults instead of vi.
 set backspace=indent,eol,start    " Set priorities for the backspace key.
 set foldenable foldmethod=marker  " Enable folding.
 set list listchars=tab:>>,trail:• " Make additional characters visible.
+set completeopt-=preview          " Don't show autocomplete scratch preview window to show the docs
 
 " Search
 set ignorecase                    " Case insensitive.
@@ -60,10 +57,10 @@ set wildignore+=.gitkeep
 set wildignore+=.hg,.git,.svn
 set wildignore+=*.exe,*.dll
 set wildignore+=*.zip,*.tar.gz,*.tar.bz2,*.rar,*.tar.xz
-
 " Enable pathogen
 " ------------------------------------------------------------------------------
 call pathogen#infect()
+
 
 " File detection
 " ------------------------------------------------------------------------------
@@ -93,7 +90,6 @@ autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType php setlocal omnifunc=phpcomplete#CompletePHP
-set tags=./tags;,tags;
 
 " UTF8 encoding
 " ------------------------------------------------------------------------------
@@ -141,6 +137,7 @@ if has("autocmd")
     autocmd BufNewFile,BufRead *.bash_* set ft=sh
     autocmd BufNewFile,BufRead *.sh set ft=sh
     autocmd BufRead,BufNewFile *.js set filetype=javascript
+    "autocmd BufRead,BufNewFile *.jsx set filetype=javascript.jsx
     autocmd BufRead,BufNewFile *.json set filetype=javascript
   augroup END
 endif
@@ -292,9 +289,9 @@ function! GetFileOrDirectory()
 endfunction
 
 " }}}
-" Plugins: JSX {{{
+" Plugins: Polyglot {{{
 
-let g:jsx_ext_required = 0
+"let g:polyglot_disabled = ['jsx']
 
 " }}}
 " Plugins: Indent Line {{{
@@ -305,7 +302,13 @@ let g:indentLine_char = '|'
 " Plugins: Emmet {{{
 
 " After the leader key you should always enter a comma to trigger emmet.
-let g:user_emmet_leader_key='<C-f>'
+let g:user_emmet_leader_key='<Tab>'
+let g:user_emmet_settings = {
+  \  'javascript.jsx' : {
+  \    'extends': 'jsx',
+  \  },
+  \}
+
 
 " }}}
 " Plugins: CtrlP {{{
@@ -356,7 +359,11 @@ let g:ycm_key_list_select_completion=['<Down>']
 let g:ycm_key_list_previous_completion=['<Up>']
 let g:ycm_key_list_stop_completion = ['<Enter>']
 let g:ycm_max_num_candidates = 10
-let ycm_collect_identifiers_from_tags_files = 1
+let g:ycm_collect_identifiers_from_tags_files = 1
+let g:ycm_collect_identifiers_from_comments_and_strings = 1
+let g:ycm_seed_identifiers_with_syntax = 1
+let g:ycm_add_preview_to_completeopt = 0
+let g:ycm_server_python_interpreter = 'python3'
 
 " }}}
 " Plugins: Ale {{{
@@ -380,9 +387,9 @@ let g:ale_linters = {
   \  'python': ['pycodestyle'],
   \  'php': ['phpcs'],
   \  'javascript': [],
-  \  'jsx': ['stylelint', 'eslint'],
+  \  'javascript.jsx': ['stylelint', 'eslint'],
   \}
-let g:ale_linter_aliases = {'jsx': 'css'}
+let g:ale_linter_aliases = {'javascript.jsx': 'css'}
 
 " Do not lint or fix minified files.
 let g:ale_pattern_options = {
