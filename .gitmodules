@@ -10,9 +10,6 @@
 [submodule ".vim/bundle/tabular"]
   path = .vim/bundle/tabular
   url = https://github.com/godlygeek/tabular
-[submodule ".vim/bundle/vim-jsx"]
-  path = .vim/bundle/vim-jsx
-  url = https://github.com/mxw/vim-jsx
 [submodule ".vim/bundle/vim-javascript"]
   path = .vim/bundle/vim-javascript
   url = https://github.com/pangloss/vim-javascript
@@ -59,5 +56,5 @@
   path = .vim/bundle/vim-gutentags
   url = https://github.com/ludovicchabant/vim-gutentags
 [submodule ".vim/bundle/vim-polyglot"]
-	path = .vim/bundle/vim-polyglot
-	url = https://github.com/sheerun/vim-polyglot
+  path = .vim/bundle/vim-polyglot
+  url = https://github.com/sheerun/vim-polyglot

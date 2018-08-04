@@ -289,11 +289,6 @@ function! GetFileOrDirectory()
 endfunction
 
 " }}}
-" Plugins: Polyglot {{{
-
-"let g:polyglot_disabled = ['jsx']
-
-" }}}
 " Plugins: Indent Line {{{
 
 let g:indentLine_char = '|'
