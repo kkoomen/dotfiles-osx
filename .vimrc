@@ -1,6 +1,7 @@
-" General {{{
+" General: Basic setup {{{
 
 syntax on                         " Enable syntax highlighting.
+filetype plugin indent on         " Enable file detection.
 set hidden                        " Hide when switching buffers, don't unload.
 set mouse=a                       " Enable mouse in all modes.
 set nowrap                        " No word wrap.
@@ -19,131 +20,132 @@ set nocompatible                  " Use vim defaults instead of vi.
 set backspace=indent,eol,start    " Set priorities for the backspace key.
 set foldenable foldmethod=marker  " Enable folding.
 set list listchars=tab:>>,trail:• " Make additional characters visible.
-set completeopt-=preview          " Don't show autocomplete scratch preview window to show the docs
+set completeopt-=preview          " Disable scratch preview window.
 
-" Search
-set ignorecase                    " Case insensitive.
-set incsearch                     " Show match as search proceeds.
-set hlsearch                      " Search highlighting.
-
-" Tabs
-set autoindent                    " Copy indent from previous line.
-set smartindent                   " Auto indent when starting a new line.
-set expandtab                     " Replace tabs with spaces.
-set shiftwidth=2                  " Spaces for autoindenting.
-set smarttab                      " <BS> removes shiftwidth worth of spaces.
-set softtabstop=2                 " Spaces for editing, e.g. <Tab> or <BS>.
-set tabstop=2                     " Spaces for <Tab>.
-
-" Textwidth
-" ------------------------------------------------------------------------------
-" Keeps the visual textwidth but doesn't add new line in insert mode when
-" passing the 'tw' value.
-" ------------------------------------------------------------------------------
-autocmd FileType * set formatoptions-=t
-autocmd FileType .* set formatoptions-=t
-
-" Expand bash aliases
-" ------------------------------------------------------------------------------
 " Make our custom aliases available within a non-interactive vim.
 " ------------------------------------------------------------------------------
 let $BASH_ENV = "~/.bash_aliases"
 
-" Wildmenu
+" Enable Pathogen
 " ------------------------------------------------------------------------------
+call pathogen#infect()
+
+" }}}
+" General: Search {{{
+
+set ignorecase " Case insensitive.
+set incsearch  " Show match as search proceeds.
+set hlsearch   " Search highlighting.
+
+" }}}
+" General: Indentation {{{
+
+set autoindent    " Copy indent from previous line.
+set smartindent   " Auto indent when starting a new line.
+set expandtab     " Replace tabs with spaces.
+set shiftwidth=2  " Spaces for autoindenting.
+set smarttab      " <BS> removes shiftwidth worth of spaces.
+set softtabstop=2 " Spaces for editing, e.g. <Tab> or <BS>.
+set tabstop=2     " Spaces for <Tab>.
+
+" }}}
+" General: Encoding {{{
+
+set encoding=utf-8
+set termencoding=utf-8
+set fileencoding=utf-8
+
+" }}}
+" General: Wildmenu {{{
+
 set wildmenu
+set wildignorecase
 set wildmode=list:longest,full
 set wildignore+=.gitkeep
 set wildignore+=.hg,.git,.svn
 set wildignore+=*.exe,*.dll
-set wildignore+=*.zip,*.tar.gz,*.tar.bz2,*.rar,*.tar.xz
-" Enable pathogen
-" ------------------------------------------------------------------------------
-call pathogen#infect()
+set wildignore+=*.swp,*.tmp
+set wildignore+=*.mp3,*.mp4,*.mkv
+set wildignore+=*.bmp,*.gif,*.ico,*.jpg,*.png
+set wildignore+=*.rar,*.zip,*.tar,*.tar.gz,*.tar.xz,*.tar.bz2
+set wildignore+=*.pdf,*.doc,*.docx,*.ppt,*.pptx
 
+" }}}
+" General: Color scheme {{{
 
-" File detection
-" ------------------------------------------------------------------------------
-filetype plugin indent on
-
-" Syntax
-" ------------------------------------------------------------------------------
-let python_highlight_all = 1
-let python_highlight_space_errors = 0
-
-" Color scheme
-" ------------------------------------------------------------------------------
 set background=dark
 let g:gruvbox_bold = 0
 let g:gruvbox_termcolors=16
 let g:gruvbox_invert_selection=0
 colorscheme gruvbox
 
-" Autocompletion
-" ------------------------------------------------------------------------------
+" }}}
+" General: Omni completion {{{
+
 "  Enable omni completion and enable more characters to be available within
-"  autocomplete by appending to the iskeyword variable.
-" ------------------------------------------------------------------------------
+"  autocomplete by appending to the 'iskeyword' variable.
+
 set iskeyword+=-
 autocmd FileType * setlocal omnifunc=syntaxcomplete#Complete
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType javascript,javascript.jsx,jsx setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType php setlocal omnifunc=phpcomplete#CompletePHP
 
-" UTF8 encoding
-" ------------------------------------------------------------------------------
-set encoding=utf-8
-set termencoding=utf-8
-set fileencoding=utf-8
+" }}}
+" General: Hooks {{{
 
-" Hooks
-" ------------------------------------------------------------------------------
 autocmd BufWritePre * :call OnBufWritePre()
 autocmd BufReadPost * :call OnBufReadPost()
 
-" Undo history
-" ------------------------------------------------------------------------------
+" }}}
+" General: Undo history {{{
+
 set undofile                 " Save undo's after file closes.
 set undodir=~/.vim/undo,/tmp " Where to save undo histories.
 set undolevels=1000          " How many undos.
 set undoreload=10000         " Number of lines to save for undo.
-set history=500              " Sets how many lines of history vim has to remember.
+set history=1000             " Sets how many lines of history vim has to remember.
 
-" Swap files
-" ------------------------------------------------------------------------------
+" }}}
+" General: Swap files {{{
+
 set directory=~/.vim/swap,~/tmp,.
 set backupdir=~/.vim/backup,~/tmp,.
 set noswapfile
 set nobackup
 
-" Filetypes
-" ------------------------------------------------------------------------------
-if has("autocmd")
-  " Drupal *.module and *.install files.
-  augroup module
-    autocmd BufRead,BufNewFile *.blade.php set filetype=php
-    autocmd BufRead,BufNewFile *.theme set filetype=php
-    autocmd BufRead,BufNewFile *.module set filetype=php
-    autocmd BufRead,BufNewFile *.install set filetype=php
-    autocmd BufRead,BufNewFile *.test set filetype=php
-    autocmd BufRead,BufNewFile *.inc set filetype=php
-    autocmd BufRead,BufNewFile *.profile set filetype=php
-    autocmd BufRead,BufNewFile *.view set filetype=php
-  augroup END
+" }}}
+" General: Filetypes {{{
 
-  " General
-  augroup general
-    autocmd BufNewFile,BufRead *.bash_* set ft=sh
-    autocmd BufNewFile,BufRead *.sh set ft=sh
-    autocmd BufRead,BufNewFile *.js set filetype=javascript
-    "autocmd BufRead,BufNewFile *.jsx set filetype=javascript.jsx
-    autocmd BufRead,BufNewFile *.json set filetype=javascript
-  augroup END
-endif
+" Drupal *.module and *.install files.
+augroup module
+  autocmd!
+  autocmd BufRead,BufNewFile *.blade.php set filetype=php
+  autocmd BufRead,BufNewFile *.theme set filetype=php
+  autocmd BufRead,BufNewFile *.module set filetype=php
+  autocmd BufRead,BufNewFile *.install set filetype=php
+  autocmd BufRead,BufNewFile *.test set filetype=php
+  autocmd BufRead,BufNewFile *.inc set filetype=php
+  autocmd BufRead,BufNewFile *.profile set filetype=php
+  autocmd BufRead,BufNewFile *.view set filetype=php
+augroup END
+
+augroup bash
+  autocmd!
+  autocmd BufNewFile,BufRead *.bash_* set ft=sh
+  autocmd BufNewFile,BufRead *.sh set ft=sh
+augroup END
+
+augroup javascript
+  autocmd!
+  autocmd BufRead,BufNewFile *.js set filetype=javascript
+  autocmd BufRead,BufNewFile *.jsx set filetype=javascript.jsx
+  autocmd BufRead,BufNewFile *.json set filetype=javascript
+augroup END
 
 " }}}
-" Functions {{{
+" General: Functions {{{
 
 " Indent if we're at the beginning of a line. Else, do completion.
 function! InsertTabWrapper()
@@ -178,7 +180,7 @@ function! LastWindow()
 endfunction
 
 " }}}
-" Mappings {{{
+" General: Mappings {{{
 
 " Leader key
 " ------------------------------------------------------------------------------
@@ -268,9 +270,6 @@ let g:AutoPairsMultilineClose = 0
 
 " }}}
 " Plugins: Templates {{{
-
-let g:username = "Kim Koomen"
-let g:email = 'koomen@protonail.com'
 
 let g:templates_user_variables = [
   \   ['FILE_OR_DIRECTORY', 'GetFileOrDirectory'],
