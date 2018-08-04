@@ -365,6 +365,10 @@ let g:ycm_collect_identifiers_from_comments_and_strings = 1
 let g:ycm_seed_identifiers_with_syntax = 1
 let g:ycm_add_preview_to_completeopt = 0
 let g:ycm_server_python_interpreter = 'python3'
+let g:ycm_filepath_blacklist = {
+  \ 'html' : 1,
+  \ 'xml' : 1,
+  \}
 
 " }}}
 " Plugins: Ale {{{
