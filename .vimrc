@@ -13,7 +13,6 @@ set lazyredraw                    " Will buffer screen updates instead of updati
 set clipboard=unnamed             " Enable clipboard.
 set autoread                      " Set to auto read when a file is changed from the outside.
 set nospell                       " Disable spellcheck on default.
-set colorcolumn=81                " Highlight the 81th column.
 set so=7                          " Minimal number of screen lines to keep above and below the cursor when scrolling.
 set tw=80                         " Set a max text width.
 set nocompatible                  " Use vim defaults instead of vi.
@@ -78,6 +77,14 @@ let g:gruvbox_bold = 0
 let g:gruvbox_termcolors=16
 let g:gruvbox_invert_selection=0
 colorscheme gruvbox
+
+" }}}
+" General: ColorColumn {{{
+
+" Only highlight the color column when the line is expanding the 80th column.
+
+highlight ColorColumn ctermbg=red ctermfg=white
+call matchadd('ColorColumn', '\%81v', 100)
 
 " }}}
 " General: Omni completion {{{
