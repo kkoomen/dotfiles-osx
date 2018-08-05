@@ -100,12 +100,6 @@ autocmd FileType javascript,javascript.jsx,jsx setlocal omnifunc=javascriptcompl
 autocmd FileType php setlocal omnifunc=phpcomplete#CompletePHP
 
 " }}}
-" General: Hooks {{{
-
-autocmd BufWritePre * :call OnBufWritePre()
-autocmd BufReadPost * :call OnBufReadPost()
-
-" }}}
 " General: Undo history {{{
 
 set undofile                 " Save undo's after file closes.
@@ -154,16 +148,6 @@ augroup END
 " }}}
 " General: Functions {{{
 
-" Indent if we're at the beginning of a line. Else, do completion.
-function! InsertTabWrapper()
-  let col = col('.') - 1
-  if !col || getline('.')[col - 1] !~ '\k'
-    return "\<tab>"
-  else
-    return "\<c-p>"
-  endif
-endfunction
-
 function! OnBufWritePre()
   " Delete trailing whitespaces at the end of each line.
   %s/\s\+$//ge
@@ -182,9 +166,11 @@ function! OnBufReadPost()
   endif
 endfunction
 
-function! LastWindow()
-  exe "split " . g:lastBuffer
-endfunction
+" }}}
+" General: Hooks {{{
+
+autocmd BufWritePre * :call OnBufWritePre()
+autocmd BufReadPost * :call OnBufReadPost()
 
 " }}}
 " General: Mappings {{{
@@ -314,10 +300,10 @@ let g:indentLine_char = '|'
 " After the leader key you should always enter a comma to trigger emmet.
 let g:user_emmet_leader_key='<Tab>'
 let g:user_emmet_settings = {
-  \  'javascript.jsx' : {
-  \    'extends': 'jsx',
-  \  },
-  \}
+      \   'javascript.jsx' : {
+      \     'extends': 'jsx',
+      \   },
+      \ }
 
 
 " }}}
@@ -335,7 +321,10 @@ let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
 " Use git and use the .gitignore to also exclude those files.
 " NOTE: If you use the g:ctrlp_user_command you can't use g:ctrlp_custom_ignore,
 " since you determine the ignored files with your user command.
-let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
+let g:ctrlp_user_command = [
+      \ '.git/',
+      \ 'git --git-dir=%s/.git ls-files -oc --exclude-standard'
+      \ ]
 
 " }}}
 " Plugins: GitGutter {{{
@@ -375,9 +364,9 @@ let g:ycm_seed_identifiers_with_syntax = 1
 let g:ycm_add_preview_to_completeopt = 0
 let g:ycm_server_python_interpreter = 'python3'
 let g:ycm_filepath_blacklist = {
-  \ 'html' : 1,
-  \ 'xml' : 1,
-  \}
+      \ 'html' : 1,
+      \ 'xml' : 1,
+      \ }
 
 " }}}
 " Plugins: Ale {{{
@@ -398,19 +387,20 @@ let g:ale_lint_on_enter = 1
 let g:ale_php_phpcs_standard = 'Drupal'
 let g:ale_linters_explicit = 1
 let g:ale_linters = {
-  \  'python': ['pycodestyle'],
-  \  'php': ['phpcs'],
-  \  'javascript': [],
-  \  'javascript.jsx': ['stylelint', 'eslint'],
-  \}
+      \ 'python': ['pycodestyle'],
+      \ 'php': ['phpcs'],
+      \ 'javascript': [],
+      \ 'javascript.jsx': ['stylelint', 'eslint'],
+      \ }
+
 let g:ale_linter_aliases = {'javascript.jsx': 'css'}
 
 " Do not lint or fix minified files.
 let g:ale_pattern_options = {
-\ '\.min\.js$': {'ale_linters': [], 'ale_fixers': []},
-\ '\.min\.css$': {'ale_linters': [], 'ale_fixers': []},
-\ '\.tpl\.php$': {'ale_linters': [], 'ale_fixers': []},
-\}
+      \ '\.min\.js$': {'ale_linters': [], 'ale_fixers': []},
+      \ '\.min\.css$': {'ale_linters': [], 'ale_fixers': []},
+      \ '\.tpl\.php$': {'ale_linters': [], 'ale_fixers': []},
+      \ }
 
 " }}}
 " Plugins: Prettier {{{
@@ -444,8 +434,23 @@ let g:gutentags_project_root = ['package.json']
 let g:polyglot_disabled = ['markdown']
 
 " }}}
+" Plugins: Surround {{{
 
-set laststatus=2
-let g:lightline = {
-  \ 'colorscheme': 'wombat',
-  \ }
+" To emulate a modern editor at its best, we want to remap x to Sx for
+" efficiency and simplicity. The vim-surround plugin is mapping almost every
+" single character because it prefixes it with 'S', but we only specify will
+" specify the ones we might need, because we do not want to remap default
+" built-in vim mappings.
+
+let g:visual_surround_characters = [
+      \ '{', '}',
+      \ '[', ']',
+      \ '(', ')',
+      \ '"', "`",
+      \ '%', '|'
+      \ ]
+for char in g:visual_surround_characters
+  exe 'vmap ' . char . ' S' . char
+endfor
+
+" }}}
