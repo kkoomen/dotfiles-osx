@@ -47,3 +47,5 @@ shopt -s cdspell
 PS1_NORMAL="\[$(tput setaf 4)\]┌─ $(tput setaf 4)\w\[$(tput setaf 1)\]\[$(tput setaf 3)\]\$(git-branch)\[$(tput setaf 7)\]\n\[$(tput setaf 4)\]└──── ➜  \[$(tput setaf 7)\]"
 PS1_ERROR="\[$(tput setaf 1)\]┌─ $(tput setaf 4)\w\[$(tput setaf 1)\]\[$(tput setaf 3)\]\$(git-branch)\[$(tput setaf 7)\]\n\[$(tput setaf 1)\]└──── ➜  \[$(tput setaf 7)\]"
 export PS1="\$(if [[ \$? == 0 ]]; then echo \"$PS1_NORMAL\"; else echo \"$PS1_ERROR\"; fi)"
+
+export PATH="$PATH:$HOME/Library/Python/3.6/bin"

@@ -444,3 +444,8 @@ let g:gutentags_project_root = ['package.json']
 let g:polyglot_disabled = ['markdown']
 
 " }}}
+
+set laststatus=2
+let g:lightline = {
+  \ 'colorscheme': 'wombat',
+  \ }
