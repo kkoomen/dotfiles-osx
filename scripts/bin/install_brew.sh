@@ -96,6 +96,9 @@ apps=(
   acrogenesis/macchanger/macchanger
   --HEAD universal-ctags/universal-ctags/universal-ctags
 
+  # Omnitagger
+  chromaprint
+
   # IRC
   weechat
 

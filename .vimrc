@@ -266,6 +266,11 @@ cnoremap x; x
 cnoremap x: x
 
 " }}}
+" General: Format options {{{
+
+au FileType * set fo-=o
+
+" }}}
 " Plugins: HTML Close Tag {{{
 
 let g:closetag_filenames = "*.html,*.xhtml,*.phtml,*.tpl,*.twig,*.htm,*.php,*.pug,*.jsx"
@@ -277,6 +282,10 @@ let g:AutoPairsMultilineClose = 0
 
 " }}}
 " Plugins: Templates {{{
+
+let g:username = 'Kim Koomen'
+let g:email = 'koomen@protonail.com'
+let g:license = 'MIT'
 
 let g:templates_user_variables = [
   \   ['FILE_OR_DIRECTORY', 'GetFileOrDirectory'],
@@ -428,5 +437,10 @@ map <C-a> <Leader>cs<cr>
 
 let g:gutentags_cache_dir = '~/.cache/vim/ctags/'
 let g:gutentags_project_root = ['package.json']
+
+" }}}
+" Plugins: Polyglot {{{
+
+let g:polyglot_disabled = ['markdown']
 
 " }}}
