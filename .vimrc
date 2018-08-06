@@ -298,7 +298,7 @@ let g:indentLine_char = '|'
 " Plugins: Emmet {{{
 
 " After the leader key you should always enter a comma to trigger emmet.
-let g:user_emmet_leader_key='<Tab>'
+let g:user_emmet_leader_key='<C-f>'
 let g:user_emmet_settings = {
       \   'javascript.jsx' : {
       \     'extends': 'jsx',
