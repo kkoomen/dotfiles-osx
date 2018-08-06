@@ -247,9 +247,12 @@ noremap < <gv
 " ------------------------------------------------------------------------------
 cnoremap w; w
 cnoremap w: w
-
-cnoremap x; x
-cnoremap x: x
+cnoremap W; w
+cnoremap W: w
+cnoremap ww w
+cnoremap Ww w
+cnoremap wW w
+cnoremap WW w
 
 " }}}
 " General: Format options {{{
