@@ -33,6 +33,3 @@ alias dsh="docker-compose exec php sh"
 alias drupalcs="phpcs --standard=Drupal --extensions='php,module,inc,install,test,profile,theme,css,info,txt,md' --ignore=node_modules,bower_components,vendor,profiles/*.info.yml"
 alias drupalcsp="phpcs --standard=DrupalPractice --extensions='php,module,inc,install,test,profile,theme,css,info,txt,md' --ignore=node_modules,bower_components,vendor,profiles/*.info.yml"
 alias drupalcbf="phpcbf --standard=Drupal --extensions='php,module,inc,install,test,profile,theme,css,info,txt,md' --ignore=node_modules,bower_components,vendor,profiles/*.info.yml"
-
-# TAGS
-alias ctags="ctags --recurse=yes --tag-relative=yes --fields=+ailmnS --sort=yes --verbose=no --exclude=.git --exclude=node_modules --exclude=build --exclude=*/cache --exclude=*/compiled"

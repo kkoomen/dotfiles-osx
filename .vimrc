@@ -427,6 +427,17 @@ map <C-a> <Leader>cs<cr>
 
 let g:gutentags_cache_dir = '~/.cache/vim/ctags/'
 let g:gutentags_project_root = ['package.json']
+let g:gutentags_ctags_exclude = [
+      \ '*.min.js',
+      \ '*.min.css',
+      \ '.git',
+      \ 'build',
+      \ 'node_modules',
+      \ 'bower_components',
+      \ 'package.json',
+      \ 'package-lock.json',
+      \ '*eslint*',
+      \ ]
 
 " }}}
 " Plugins: Polyglot {{{
