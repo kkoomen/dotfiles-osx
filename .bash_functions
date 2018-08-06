@@ -52,3 +52,8 @@ function prefix-css {
 function cut-mp3 {
   ffmpeg -i "$1" -ss "$3" -to "$4" -c copy "${2:-$1}"
 }
+
+function weather {
+  langcode=$(curl -s ipinfo.io/country)
+  curl wttr.in/~$langcode
+}
