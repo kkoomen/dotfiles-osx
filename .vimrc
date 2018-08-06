@@ -444,6 +444,12 @@ let g:gutentags_ctags_exclude = [
 
 let g:polyglot_disabled = ['markdown']
 
+" JSX
+" ------------------------------------------------------------------------------
+" Allow JSX syntax highlighting in .js files
+" ------------------------------------------------------------------------------
+let g:jsx_ext_required = 0
+
 " }}}
 " Plugins: Surround {{{
 
