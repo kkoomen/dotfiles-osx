@@ -3,6 +3,7 @@
 dotfiles=~/dotfiles
 
 cd $dotfiles
+git submodule deinit -f .
 git submodule update --init --recursive
 
 # ------------------------------------------------------------------------------
