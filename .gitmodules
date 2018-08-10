@@ -67,3 +67,6 @@
 [submodule ".vim/bundle/vim-pasta"]
 	path = .vim/bundle/vim-pasta
 	url = https://github.com/sickill/vim-pasta
+[submodule ".vim/bundle/vim-lightline"]
+	path = .vim/bundle/vim-lightline
+	url = https://github.com/itchyny/lightline.vim

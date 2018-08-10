@@ -20,6 +20,8 @@ set backspace=indent,eol,start    " Set priorities for the backspace key.
 set foldenable foldmethod=marker  " Enable folding.
 set list listchars=tab:>>,trail:• " Make additional characters visible.
 set completeopt-=preview          " Disable scratch preview window.
+set infercase                     " Enable ignorecase for keyword completion.
+set diffopt=filler,iwhite         " Ignore whitespace as well when diffing.
 
 " Make our custom aliases available within a non-interactive vim.
 " ------------------------------------------------------------------------------
@@ -46,6 +48,7 @@ set shiftwidth=2  " Spaces for autoindenting.
 set smarttab      " <BS> removes shiftwidth worth of spaces.
 set softtabstop=2 " Spaces for editing, e.g. <Tab> or <BS>.
 set tabstop=2     " Spaces for <Tab>.
+set shiftround    " Round indent to multiple of 'shiftwidth'.
 
 " }}}
 " Encoding {{{
@@ -83,7 +86,7 @@ colorscheme gruvbox
 
 " Only highlight the color column when the line is expanding the 80th column.
 highlight ColorColumn ctermbg=red ctermfg=white
-call matchadd('ColorColumn', '\%81v', 100)
+call matchadd('ColorColumn', '\%81v.', 100)
 
 " }}}
 " Omni completion {{{
@@ -506,5 +509,55 @@ let g:visual_surround_characters = [
 for char in g:visual_surround_characters
   exe 'vmap ' . char . ' S' . char
 endfor
+
+" }}}
+" Plugins: Lightline {{{
+
+let s:base03 = [ '#151513', 233 ]
+let s:base02 = [ '#30302c ', 236 ]
+let s:base01 = [ '#4e4e43', 239 ]
+let s:base00 = [ '#666656', 242  ]
+let s:base0 = [ '#808070', 244 ]
+let s:base1 = [ '#949484', 246 ]
+let s:base2 = [ '#a8a897', 248 ]
+let s:base3 = [ '#e8e8d3', 253 ]
+let s:yellow = [ '#fbb829', 3 ]
+let s:orange = [ '#d75f00', 166 ]
+let s:red = [ '#ff3128', 1 ]
+let s:magenta = [ '#e02c6d', 5 ]
+let s:blue = [ '#5573a3', 4 ]
+let s:cyan = [ '#0aaeb3', 6 ]
+let s:green = [ '#519f50', 2 ]
+let s:white = [ '#fce8c3', 15 ]
+
+let s:p = {'normal': {}, 'inactive': {}, 'insert': {}, 'replace': {}, 'visual': {}, 'tabline': {}}
+let s:p.normal.left = [ [ s:base02, s:white ], [ s:base3, s:base01 ] ]
+let s:p.normal.right = [ [ s:base02, s:base1 ], [ s:base2, s:base01 ] ]
+let s:p.inactive.right = [ [ s:base02, s:base00 ], [ s:base0, s:base02 ] ]
+let s:p.inactive.left =  [ [ s:base0, s:base02 ], [ s:base00, s:base02 ] ]
+let s:p.insert.left = [ [ s:base02, s:green ], [ s:base3, s:base01 ] ]
+let s:p.replace.left = [ [ s:base3, s:red ], [ s:base3, s:base01 ] ]
+let s:p.visual.left = [ [ s:base3, s:yellow ], [ s:base3, s:base01 ] ]
+let s:p.normal.middle = [ [ s:base0, s:base02 ] ]
+let s:p.inactive.middle = [ [ s:base00, s:base02 ] ]
+let s:p.tabline.left = [ [ s:base3, s:base00 ] ]
+let s:p.tabline.tabsel = [ [ s:base3, s:base02 ] ]
+let s:p.tabline.middle = [ [ s:base01, s:base1 ] ]
+let s:p.tabline.right = copy(s:p.normal.right)
+let s:p.normal.error = [ [ s:red, s:base02 ] ]
+let s:p.normal.warning = [ [ s:yellow, s:base01 ] ]
+
+let g:lightline#colorscheme#mystery#palette = lightline#colorscheme#flatten(s:p)
+
+" Always show the statusline.
+set laststatus=2
+
+" Hide the '-- INSERT --' mode that vim shows.
+set noshowmode
+
+" Apply our colorscheme
+let g:lightline = {
+      \ 'colorscheme': 'mystery',
+      \ }
 
 " }}}
