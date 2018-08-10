@@ -1,4 +1,4 @@
-" General: Basic setup {{{
+" Basic setup {{{
 
 syntax on                         " Enable syntax highlighting.
 filetype plugin indent on         " Enable file detection.
@@ -30,14 +30,14 @@ let $BASH_ENV = "~/.bash_aliases"
 call pathogen#infect()
 
 " }}}
-" General: Search {{{
+" Search {{{
 
 set ignorecase " Case insensitive.
 set incsearch  " Show match as search proceeds.
 set hlsearch   " Search highlighting.
 
 " }}}
-" General: Indentation {{{
+" Indentation {{{
 
 set autoindent    " Copy indent from previous line.
 set smartindent   " Auto indent when starting a new line.
@@ -48,14 +48,14 @@ set softtabstop=2 " Spaces for editing, e.g. <Tab> or <BS>.
 set tabstop=2     " Spaces for <Tab>.
 
 " }}}
-" General: Encoding {{{
+" Encoding {{{
 
 set encoding=utf-8
 set termencoding=utf-8
 set fileencoding=utf-8
 
 " }}}
-" General: Wildmenu {{{
+" Wildmenu {{{
 
 set wildmenu
 set wildignorecase
@@ -70,7 +70,7 @@ set wildignore+=*.rar,*.zip,*.tar,*.tar.gz,*.tar.xz,*.tar.bz2
 set wildignore+=*.pdf,*.doc,*.docx,*.ppt,*.pptx
 
 " }}}
-" General: Color scheme {{{
+" Color scheme {{{
 
 set background=dark
 let g:gruvbox_bold = 0
@@ -79,15 +79,14 @@ let g:gruvbox_invert_selection=0
 colorscheme gruvbox
 
 " }}}
-" General: ColorColumn {{{
+" ColorColumn {{{
 
 " Only highlight the color column when the line is expanding the 80th column.
-
 highlight ColorColumn ctermbg=red ctermfg=white
 call matchadd('ColorColumn', '\%81v', 100)
 
 " }}}
-" General: Omni completion {{{
+" Omni completion {{{
 
 "  Enable omni completion and enable more characters to be available within
 "  autocomplete by appending to the 'iskeyword' variable.
@@ -100,7 +99,7 @@ autocmd FileType javascript,javascript.jsx,jsx setlocal omnifunc=javascriptcompl
 autocmd FileType php setlocal omnifunc=phpcomplete#CompletePHP
 
 " }}}
-" General: Undo history {{{
+" Undo history {{{
 
 set undofile                 " Save undo's after file closes.
 set undodir=~/.vim/undo,/tmp " Where to save undo histories.
@@ -109,7 +108,7 @@ set undoreload=10000         " Number of lines to save for undo.
 set history=1000             " Sets how many lines of history vim has to remember.
 
 " }}}
-" General: Swap files {{{
+" Swap files {{{
 
 set directory=~/.vim/swap,~/tmp,.
 set backupdir=~/.vim/backup,~/tmp,.
@@ -117,10 +116,10 @@ set noswapfile
 set nobackup
 
 " }}}
-" General: Filetypes {{{
+" Filetypes {{{
 
 " Drupal *.module and *.install files.
-augroup module
+augroup drupal
   autocmd!
   autocmd BufRead,BufNewFile *.blade.php set filetype=php
   autocmd BufRead,BufNewFile *.theme set filetype=php
@@ -146,9 +145,9 @@ augroup javascript
 augroup END
 
 " }}}
-" General: Functions {{{
+" Functions {{{
 
-function! OnBufWritePre()
+function OnBufWritePre()
   " Delete trailing whitespaces at the end of each line.
   %s/\s\+$//ge
 
@@ -160,20 +159,20 @@ function! OnBufWritePre()
 endfunc
 
 " Set the last edit position.
-function! OnBufReadPost()
+function OnBufReadPost()
   if line("'\"") > 0 && line("'\"") <= line("$") |
     exe "normal! g`\"" |
   endif
 endfunction
 
 " }}}
-" General: Hooks {{{
+" Hooks {{{
 
 autocmd BufWritePre * :call OnBufWritePre()
 autocmd BufReadPost * :call OnBufReadPost()
 
 " }}}
-" General: Mappings {{{
+" Mappings {{{
 
 " Leader key
 " ------------------------------------------------------------------------------
@@ -255,7 +254,7 @@ cnoremap wW w
 cnoremap WW w
 
 " }}}
-" General: Format options {{{
+" Format options {{{
 
 au FileType * set fo-=o
 
@@ -356,20 +355,17 @@ let g:UltiSnipsListSnippets="<c-e>"
 " }}}
 " Plugins: YouCompleteMe {{{
 
-let g:ycm_goto_buffer_command = 'same-buffer'
 let g:ycm_key_list_select_completion=['<Down>']
 let g:ycm_key_list_previous_completion=['<Up>']
 let g:ycm_key_list_stop_completion = ['<Enter>']
-let g:ycm_max_num_candidates = 10
-let g:ycm_collect_identifiers_from_tags_files = 1
-let g:ycm_collect_identifiers_from_comments_and_strings = 1
-let g:ycm_seed_identifiers_with_syntax = 1
+let g:ycm_max_num_candidates = 6
+let g:ycm_max_num_identifier_candidates = 6
+let g:ycm_collect_identifiers_from_tags_files = 0
+let g:ycm_collect_identifiers_from_comments_and_strings = 0
+let g:ycm_seed_identifiers_with_syntax = 0
 let g:ycm_add_preview_to_completeopt = 0
 let g:ycm_server_python_interpreter = 'python3'
-let g:ycm_filepath_blacklist = {
-      \ 'html' : 1,
-      \ 'xml' : 1,
-      \ }
+let g:ycm_filepath_blacklist = { }
 
 " }}}
 " Plugins: Ale {{{
@@ -388,7 +384,7 @@ let g:ale_set_quickfix = 1
 let g:ale_lint_on_enter = 0
 
 let g:ale_lint_on_save = 1
-let g:ale_lint_on_text_changed = 0
+let g:ale_lint_on_text_changed = 1
 let g:ale_php_phpcs_standard = 'Drupal'
 let g:ale_linters_explicit = 1
 let g:ale_linters = {
@@ -430,8 +426,42 @@ map <C-a> <Leader>cs<cr>
 " }}}
 " Plugins: Gutentags {{{
 
-let g:gutentags_cache_dir = '~/.cache/vim/ctags/'
-let g:gutentags_project_root = ['package.json']
+" Setup the directory to store all the tags.lock / tags.temp files.
+let g:gutentags_cache_dir = expand('~/.cache/vim/ctags/')
+
+" Add a custom command for clearing all the cached tags.
+command! GutentagsClearCache :call system('rm ' . g:gutentags_cache_dir . '/*')
+
+" Disable the default project root markers and add our own.
+let g:gutentags_project_root = ['package.json', '.git']
+let g:gutentags_add_default_project_roots = 0
+
+" If set to 1, Gutentags will start generating the tag file when a new project
+" is open. A new project is considered open when a buffer is created for a file
+" whose corresponding tag file has not been 'seen' yet in the current Vim
+" session -- which pretty much means when you open the first file in a given
+" source control repository.
+let g:gutentags_generate_on_new = 1
+
+" If set to 1, Gutentags will start generating an initial tag file if a file is
+" open in a project where no tags file is found.
+let g:gutentags_generate_on_missing = 1
+
+" If set to 1, Gutentags will update the current project's tag file when a file
+" inside that project is saved
+let g:gutentags_generate_on_write = 1
+
+" If set to 1, Gutentags will start generating the tag file even if there's no
+" buffer currently open, as long as the current working directory (as returned
+" by |:cd|) is inside a known project.  This is useful if you want Gutentags to
+" generate the tag file right after opening Vim.
+let g:gutentags_generate_on_empty_buffer = 0
+
+let g:gutentags_ctags_extra_args = [
+      \ '--tag-relative=yes',
+      \ '--fields=+ailmnS',
+      \ ]
+
 let g:gutentags_ctags_exclude = [
       \ '*.min.js',
       \ '*.min.css',
@@ -441,7 +471,9 @@ let g:gutentags_ctags_exclude = [
       \ 'bower_components',
       \ 'package.json',
       \ 'package-lock.json',
-      \ '*eslint*',
+      \ '*eslintrc*',
+      \ 'cache',
+      \ 'compiled',
       \ ]
 
 " }}}
@@ -468,7 +500,7 @@ let g:visual_surround_characters = [
       \ '{', '}',
       \ '[', ']',
       \ '(', ')',
-      \ '"', "`",
+      \ '"', "`", "'",
       \ '%',
       \ ]
 for char in g:visual_surround_characters

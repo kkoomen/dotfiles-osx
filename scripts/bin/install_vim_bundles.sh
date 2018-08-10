@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+sudo true
+
 dotfiles=~/dotfiles
 
 cd $dotfiles
@@ -24,6 +26,6 @@ python3 install.py --js-completer --tern-completer
 # ------------------------------------------------------------------------------
 
 for f in $dotfiles/.vim/snippets/*.snippets; do
-  echo "removing '$dotfiles/.vim/bundle/vim-snippets/snippets/$(basename \"$f\")'"
+  echo "removing $dotfiles/.vim/bundle/vim-snippets/snippets/$(basename \"$f\")"
   rm $dotfiles/.vim/bundle/vim-snippets/snippets/$(basename "$f") > /dev/null 2>&1
 done

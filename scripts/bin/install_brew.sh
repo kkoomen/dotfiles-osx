@@ -76,6 +76,7 @@ apps=(
 
   # Developement
   node
+  yarn
   php71
   python
   python3

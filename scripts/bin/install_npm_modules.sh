@@ -5,6 +5,7 @@ npm_packages=(
     gulp
     nodemon
     http-server
+    cra-gen
 
     # For security check npm packages
     nsp
