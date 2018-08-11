@@ -70,3 +70,6 @@
 [submodule ".vim/bundle/vim-lightline"]
 	path = .vim/bundle/vim-lightline
 	url = https://github.com/itchyny/lightline.vim
+[submodule ".vim/bundle/vim-fugitive"]
+	path = .vim/bundle/vim-fugitive
+	url = https://github.com/tpope/vim-fugitive
