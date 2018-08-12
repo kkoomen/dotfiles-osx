@@ -4,19 +4,27 @@
 " License: MIT
 " ==============================================================================
 
+if exists("g:loaded_statusline") || &cp || v:version < 700
+  finish
+endif
+let g:loaded_statusline = 1
+
 let g:statusline_separator = '|'
 
 " We define the functions here that will be shown conditionally and will be
 " joined together using the g:statusline_separator. These also do not have a
 " background color highlighting defined, that's why it work with the separator.
+"
+" Every key is another list structured like [ fn, args ]
 let s:statusline = {
       \   'left': [
-      \     'statusline#currentfileinfo',
-      \     'statusline#pastemode',
+      \     [ 'statusline#currentfileinfo', [] ],
+      \     [ 'statusline#pastemode', [] ],
       \   ],
       \   'right': [
-      \     'statusline#spellmode',
-      \     'statusline#filetypeinfo',
+      \     [ 'gutentags#statusline', ['[', ':running]'] ],
+      \     [ 'statusline#spellmode', [] ],
+      \     [ 'statusline#filetypeinfo', [] ],
       \   ]
       \ }
 
