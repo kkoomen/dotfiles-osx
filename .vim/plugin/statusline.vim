@@ -41,25 +41,22 @@ function! SL()
 endfunction
 
 " Setup all the statusline highlighting.
-highlight! StatusLine ctermbg=white ctermfg=black
-highlight! SLModeNormal ctermbg=white ctermfg=black
-highlight! SLModeInsert ctermbg=green ctermfg=black
-highlight! SLModeVisual ctermbg=yellow ctermfg=black
-highlight! SLModeReplace ctermbg=red ctermfg=black
-highlight! SLModeSelect ctermbg=blue ctermfg=black
-highlight! SLModeTerminal ctermfg=black ctermfg=green
-highlight! SLBufferInfo ctermbg=white ctermfg=black
+highlight! StatusLine        ctermbg=white  ctermfg=black
+highlight! SLModeNormal      ctermbg=white  ctermfg=black
+highlight! SLModeInsert      ctermbg=green  ctermfg=black
+highlight! SLModeVisual      ctermbg=yellow ctermfg=black
+highlight! SLModeReplace     ctermbg=red    ctermfg=black
+highlight! SLModeSelect      ctermbg=blue   ctermfg=black
+highlight! SLModeTerminal    ctermfg=black  ctermfg=green
+highlight! SLBufferInfo      ctermbg=white  ctermfg=black
 
-highlight! errormsg ctermbg=black ctermfg=red
-highlight! warningmsg ctermbg=black ctermfg=yellow
+highlight! errormsg          ctermbg=black  ctermfg=red
+highlight! warningmsg        ctermbg=black  ctermfg=yellow
 
-highlight! SLGitBranch ctermbg=black ctermfg=yellow
-highlight! SLGitBranchMaster ctermbg=red ctermfg=white
+highlight! SLGitBranch       ctermbg=black  ctermfg=yellow
+highlight! SLGitBranchMaster ctermbg=red    ctermfg=white
 
-" Hide the '-- [MODE] --' mode that vim shows.
-set noshowmode
-
-" Always show the statusline.
-set laststatus=2
+set noshowmode   " Do not show vim's default mode.
+set laststatus=2 " Always show the statusline.
 
 autocmd WinEnter,BufEnter * setlocal statusline=%!SL()
