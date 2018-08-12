@@ -121,18 +121,22 @@ endfunction
 "   a part of the commit hash.
 function! statusline#gitbranch() abort
   let l:statusline = ''
-  let l:branch = fugitive#head(7)
 
-  if l:branch == "master"
-    let l:statusline .= '%#SLGitBranchMaster#'
-    let l:statusline .= ' ' . l:branch . ' '
-    let l:statusline .= '%*'
-  elseif l:branch != ""
-    let l:statusline .= '%#SLGitBranch#'
-    let l:statusline .= ' ' . l:branch . ' '
-    let l:statusline .= '%*'
-    let l:statusline .= g:statusline_separator
+  if exists("g:loaded_fugitive")
+    let l:branch = fugitive#head(7)
+
+    if l:branch == "master"
+      let l:statusline .= '%#SLGitBranchMaster#'
+      let l:statusline .= ' ' . l:branch . ' '
+      let l:statusline .= '%*'
+    elseif l:branch != ""
+      let l:statusline .= '%#SLGitBranch#'
+      let l:statusline .= ' ' . l:branch . ' '
+      let l:statusline .= '%*'
+      let l:statusline .= g:statusline_separator
+    endif
   endif
+
   return l:statusline
 endfunction
 
