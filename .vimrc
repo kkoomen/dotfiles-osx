@@ -143,7 +143,7 @@ augroup END
 augroup javascript
   autocmd!
   autocmd BufRead,BufNewFile *.js set filetype=javascript
-  autocmd BufRead,BufNewFile *.jsx set filetype=javascript.jsx
+  autocmd BufRead,BufNewFile *.js,*.jsx set filetype=javascript.jsx
   autocmd BufRead,BufNewFile *.json set filetype=javascript
 augroup END
 
@@ -159,7 +159,7 @@ function OnBufWritePre()
 
   " Convert remaining tabs to spaces.
   %retab
-endfunc
+endfunction
 
 " Set the last edit position.
 function OnBufReadPost()
@@ -264,7 +264,7 @@ au FileType * set fo-=o
 " }}}
 " Plugins: HTML Close Tag {{{
 
-let g:closetag_filenames = "*.html,*.xhtml,*.phtml,*.tpl,*.twig,*.htm,*.php,*.pug,*.jsx"
+let g:closetag_filenames = "*.html,*.xhtml,*.phtml,*.tpl,*.twig,*.htm,*.php,*.pug,*.jsx,*.js"
 
 " }}}
 " Plugins: auto-pairs {{{
@@ -470,6 +470,7 @@ let g:gutentags_ctags_exclude = [
       \ '*.min.css',
       \ '.git',
       \ 'build',
+      \ 'dist',
       \ 'node_modules',
       \ 'bower_components',
       \ 'package.json',
