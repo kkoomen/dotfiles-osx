@@ -38,6 +38,16 @@ function git-branch {
   printf "$git_branch"
 }
 
+function get-virtualenv {
+  local venv
+  if [[ ! -z "$VIRTUAL_ENV" ]]; then
+    venv="($(basename "$VIRTUAL_ENV")) "
+  else
+    venv=""
+  fi
+  printf "$venv"
+}
+
 function prefix-css {
   if [[ -x /usr/local/bin/autoprefixer-cli ]]; then
     echo "Running autoprefixer on $1."
