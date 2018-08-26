@@ -14,7 +14,7 @@ set clipboard=unnamed             " Enable clipboard.
 set autoread                      " Set to auto read when a file is changed from the outside.
 set nospell                       " Disable spellcheck on default.
 set so=7                          " Minimal number of screen lines to keep above and below the cursor when scrolling.
-set tw=80                         " Set a max text width.
+set tw=79                         " Set a max text width.
 set nocompatible                  " Use vim defaults instead of vi.
 set backspace=indent,eol,start    " Set priorities for the backspace key.
 set foldenable foldmethod=marker  " Enable folding.
@@ -86,7 +86,7 @@ colorscheme gruvbox
 
 " Only highlight the color column when the line is expanding the 80th column.
 highlight ColorColumn ctermbg=red ctermfg=white
-call matchadd('ColorColumn', '\%81v.', 100)
+call matchadd('ColorColumn', '\%80v.', 100)
 
 " }}}
 " Omni completion {{{
