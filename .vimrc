@@ -142,8 +142,8 @@ augroup END
 
 augroup javascript
   autocmd!
-  autocmd BufRead,BufNewFile *.js set filetype=javascript
-  autocmd BufRead,BufNewFile *.js,*.jsx set filetype=javascript.jsx
+  "autocmd BufRead,BufNewFile *.js set filetype=javascript
+  autocmd BufRead,BufNewFile *.mdx,*.js,*.jsx set filetype=javascript.jsx
   autocmd BufRead,BufNewFile *.json set filetype=javascript
 augroup END
 
@@ -264,7 +264,7 @@ au FileType * set fo-=o
 " }}}
 " Plugins: HTML Close Tag {{{
 
-let g:closetag_filenames = "*.html,*.xhtml,*.phtml,*.tpl,*.twig,*.htm,*.php,*.pug,*.jsx,*.js"
+let g:closetag_filenames = "*.html,*.xhtml,*.phtml,*.tpl,*.twig,*.htm,*.php,*.pug,*.jsx,*.js,*.mdx"
 
 " }}}
 " Plugins: auto-pairs {{{
