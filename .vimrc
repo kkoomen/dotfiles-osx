@@ -24,11 +24,11 @@ set infercase                     " Enable ignorecase for keyword completion.
 set diffopt=filler,iwhite         " Ignore whitespace as well when diffing.
 
 " Make our custom aliases available within a non-interactive vim.
-" ------------------------------------------------------------------------------
+" -----------------------------------------------------------------------------
 let $BASH_ENV = "~/.bash_aliases"
 
 " Enable Pathogen
-" ------------------------------------------------------------------------------
+" -----------------------------------------------------------------------------
 call pathogen#infect()
 
 " }}}
