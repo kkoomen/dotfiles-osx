@@ -4,9 +4,6 @@
 [submodule ".vim/bundle/indentLine"]
   path = .vim/bundle/indentLine
   url = https://github.com/Yggdroot/indentLine
-[submodule ".vim/bundle/vim-buftabline"]
-  path = .vim/bundle/vim-buftabline
-  url = https://github.com/ap/vim-buftabline
 [submodule ".vim/bundle/tabular"]
   path = .vim/bundle/tabular
   url = https://github.com/godlygeek/tabular
@@ -68,5 +65,5 @@
   path = .vim/bundle/vim-fugitive
   url = https://github.com/tpope/vim-fugitive
 [submodule ".vim/bundle/vim-pasta"]
-	path = .vim/bundle/vim-pasta
-	url = https://github.com/sickill/vim-pasta
+  path = .vim/bundle/vim-pasta
+  url = https://github.com/sickill/vim-pasta
