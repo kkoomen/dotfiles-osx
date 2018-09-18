@@ -68,7 +68,7 @@ function! buftabline#render()
     if currentbuf == bufnum | let [centerbuf, s:centerbuf] = [bufnum, bufnum] | endif
     let bufpath = bufname(bufnum)
     if strlen(bufpath)
-      let tab.path = fnamemodify(bufpath, ':p:~:.:h:t')
+      let tab.path = fnamemodify(bufpath, ':p:~:h:t')
       let tab.sep = strridx(tab.path, s:dirsep, strlen(tab.path) - 2) " keep trailing dirsep
       let tab.label = fnamemodify(bufpath, ':p:~:h:t') . '/' . fnamemodify(bufpath, ':t')
       let pre = ( show_mod && getbufvar(bufnum, '&mod') ? '+' : '' ) . screen_num
