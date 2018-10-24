@@ -393,7 +393,7 @@ let g:ale_linters_explicit = 1
 let g:ale_linters = {
       \ 'python': ['pycodestyle'],
       \ 'php': ['phpcs'],
-      \ 'javascript': [],
+      \ 'javascript': ['stylelint', 'eslint'],
       \ 'javascript.jsx': ['stylelint', 'eslint'],
       \ }
 
@@ -422,9 +422,19 @@ noremap <Leader>r :MRU<cr>
 " }}}
 " Plugins: NERDCommenter {{{
 
-map <C-c> <Leader>cm<cr>
+let g:NERDSpaceDelims = 1
+
+" map <C-c> in all modes as a default mapping for comments.
+" This will add a '//' for a single line comment.
+"
+" When in visual mode and doing the same keypress the whole block will be
+" commented using a '/* */' syntax.
+map <C-c> <Leader>cc<cr>
+vmap <C-c> <Leader>cm<cr>
+
 map <C-x> <Leader>cu<cr>
 map <C-a> <Leader>cs<cr>
+
 
 " }}}
 " Plugins: Gutentags {{{

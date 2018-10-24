@@ -52,3 +52,7 @@ PS1_ERROR="\[$(tput setaf 1)\]┌─ $(tput setaf 4)\w\[$(tput setaf 1)\]\[$(tpu
 export PS1="\$(if [[ \$? == 0 ]]; then echo \"$PS1_NORMAL\"; else echo \"$PS1_ERROR\"; fi)"
 
 export PATH="$PATH:$HOME/Library/Python/3.6/bin"
+export KEYCLOAK_PUBLIC_KEY=_QQnjzmt98olxRkdCl69P7WKieVFoEdIb1DmMhLjo_8
+export ECEDO_USER_PWD=BFpApRWwKhbFNLURHBqXP6UQX4uBfR
+export SALESFORCE_PWD=windmolen2016eNyrryLmeyr97LAtiI5lau2QD
+export SALESFORCE_CLIENT_SECRET=7957290719406784448
