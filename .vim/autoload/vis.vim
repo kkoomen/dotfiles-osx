@@ -1,7 +1,7 @@
 " vis.vim:
 " Function:	Perform an Ex command on a visual highlighted block (CTRL-V).
-" Version:	21f	 ASTRO-ONLY
-" Date:		Sep 08, 2016
+" Version:	20
+" Date:		Mar 29, 2013
 " GetLatestVimScripts: 1066 1 cecutil.vim
 " GetLatestVimScripts: 1195 1 :AutoInstall: vis.vim
 " Verse: For am I now seeking the favor of men, or of God? Or am I striving
@@ -19,9 +19,8 @@ if &cp || exists("g:loaded_vis")
   finish
 endif
 let s:keepcpo    = &cpo
-let g:loaded_vis = "v21f"
+let g:loaded_vis = "v20"
 set cpo&vim
-"DechoTabOn
 
 " ---------------------------------------------------------------------
 "  Support Functions: {{{1
@@ -39,13 +38,11 @@ fun! vis#VisBlockCmd(cmd) range
   call s:SaveUserSettings()
 
   if vmode == 'V'
-"   call Decho("handling V mode")
 "   call Decho("cmd<".a:cmd.">")
    exe "keepj '<,'>".a:cmd
 
   else " handle v and ctrl-v
-"   call Decho("handling v or ctrl-v mode")
-   " Initialize so (begcol < endcol) for non-v modes
+   " Initialize so begcol<endcol for non-v modes
    let begcol   = s:VirtcolM1("<")
    let endcol   = s:VirtcolM1(">")
    if vmode != 'v'
@@ -68,69 +65,47 @@ fun! vis#VisBlockCmd(cmd) range
    " Modify Selected Region:
    " =======================
    " 1. delete selected region into register "a
-"   call Decho("1. delete selected region into register a")
+"   call Decho("delete selected region into register a")
    sil! keepj norm! gv"ad
-"   call Decho("1. reg-A<".@a.">")
-"   call Recho("Step#1: deleted selected region into register")|redraw!|sleep 3	" Decho
 
    " 2. put cut-out text at end-of-file
-"   call Decho("2. put cut-out text at end-of-file")
+"   call Decho("put cut-out text at end-of-file")
    keepj $
    keepj pu_
    let lastline= line("$")
-   sil! keepj norm! "aP
-"   call Decho("2. reg-A<".@a.">")
-"   call Recho("Step#2: put text at end-of-file")|redraw!|sleep 3	" Decho
+   sil! keepj norm! "ap
+"   call Decho("reg-A<".@a.">")
 
    " 3. apply command to those lines
    let curline = line(".")
    ka
    keepj $
-"   call Decho("3. apply command<".a:cmd."> to those lines (curline=".line(".").")")
+"   call Decho("apply command<".a:cmd."> to those lines (curline=".line(".").")")
    exe "keepj ". curline.',$'.a:cmd
-"   call Recho("Step#3: apply command")|redraw!|sleep 3	" Decho
 
-   " 4. Prepend the "empty_chr" since "ad on empty lines inserts blanks
-   if exists("g:vis_empty_character")
-	let empty_chr= g:vis_empty_character
+   " 4. visual-block select the modified text in those lines
+"   call Decho("visual-block select modified text at end-of-file")
+   exe "keepj ".lastline
+   exe "keepj norm! 0".vmode."G$\"ad"
+
+   " 5. delete excess lines
+"   call Decho("delete excess lines")
+   exe "sil! keepj ".lastline.',$d'
+
+   " 6. put modified text back into file
+"   call Decho("put modifed text back into file (beginning=".begline.".".begcol.")")
+   exe "keepj ".begline
+   if begcol > 1
+	exe 'sil! keepj norm! '.begcol."\<bar>\"ap"
+   elseif begcol == 1
+	norm! 0"ap
    else
-    let empty_chr= (&enc == "euc-jp")? "\<Char-0x01>" : "\<Char-0xff>"
-   endif
-   " if the command removes the text, then don't do anything with the
-   " non-existent text (for example, :B !true  under unix)
-   if curline <= line("$")
-	exe "keepj sil! ". curline.',$s/^/'.empty_chr.'/'
-"	call Recho("Step#3a: prepend empty-character")|redraw!|sleep 3	" Decho
-
-	" 5. visual-block select the modified text in those lines
-"	call Decho("5. visual-block select modified text at end-of-file")
-	exe "keepj ".lastline
-	exe "keepj norm! 0".vmode."G$\"ad"
-"	call Decho("5. reg-A<".@a.">")
-"	call Recho("Step#5: select modified text")|redraw!|sleep 3	" Decho
-
-	" 6. delete excess lines
-"	call Decho("6. delete excess lines")
-	exe "sil! keepj ".lastline.',$d'
-"	call Recho("Step#6: delete excess lines")|redraw!|sleep 3	" Decho
-
-	" 7. put modified text back into file
-"	call Decho("7. put modifed text back into file (beginning=".begline.".".begcol.")")
-	exe "keepj ".begline
-	if begcol > 1
-	 exe 'sil! keepj norm! '.begcol."\<bar>\"ap"
-	elseif begcol == 1
-	 norm! 0"ap
-	else
-	 norm! 0"aP
-	endif
-"	call Recho("Step#7: put modified text back")|redraw!|sleep 3	" Decho
+	norm! 0"aP
    endif
 
-   " 8. attempt to restore gv -- this is limited, it will
-   "    select the same size region in the same place as before,
-   "    not necessarily the changed region
-"   call Decho("8. restore gv")
+   " 7. attempt to restore gv -- this is limited, it will
+   " select the same size region in the same place as before,
+   " not necessarily the changed region
    let begcol= begcol+1
    let endcol= endcol+1
    exe "sil keepj ".begline
@@ -139,15 +114,8 @@ fun! vis#VisBlockCmd(cmd) range
    exe 'sil keepj norm! '.endcol."\<bar>\<esc>"
    exe "sil keepj ".begline
    exe 'sil keepj norm! '.begcol."\<bar>"
-"   call Recho("Step#8: restore gv")|redraw!|sleep 3	" Decho
-
-   " 9. Remove empty-character from text
-"   call Decho("9. remove empty-character from lines ".begline." to ".endline)
-   exe "sil! keepj ".begline.','.endline.'s/'.empty_chr.'//e'
-"   call Recho("Step#9: remove empty-character")|redraw!|sleep 3	" Decho
   endif
 
-  " restore a-priori condition
   call s:RestoreUserSettings()
   call RestoreWinPosn(curposn)
 
@@ -286,29 +254,7 @@ fun! s:SaveUserSettings()
   let s:keep_ve    = &ve
   let s:keep_ww    = &ww
   let s:keep_cedit = &cedit
-  set lz magic nofen noic nosol ww= fo=nroql2 cedit&
-  " determine whether or not "ragged right" is in effect for the selected region
-  let raggedright= 0
-  norm! `>
-  let rrcol = col(".")
-  while line(".") >= line("'<")
-"   call Decho(".line#".line(".").": col(.)=".col('.')." rrcol=".rrcol)
-   if col(".") != rrcol
-    let raggedright = 1
-	break
-   endif
-   if line(".") == 1
-	break
-   endif
-   norm! k
-  endwhile
-  if raggedright
-"   call Decho("ragged right: set ve=all")
-   set ve=all
-  else
-"   call Decho("smooth right: set ve=")
-   set ve=
-  endif
+  set lz magic nofen noic nosol ve=all ww= fo=nroql2 cedit&
 
   " Save any contents in register a
   let s:rega= @a
