@@ -1,7 +1,6 @@
 shopt -s expand_aliases
 
 # GENERAL
-alias dsize="du -hs"
 alias mkdir="mkdir -pv"
 alias vi="vim"
 alias ls="ls -lhG"
