@@ -89,7 +89,7 @@ apps=(
   typescript
 
   # Terminal
-  vim
+  vim --with-override-system-vi
   wget
   curl
   tree
