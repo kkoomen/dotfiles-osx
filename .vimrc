@@ -181,10 +181,6 @@ autocmd BufReadPost * :call OnBufReadPost()
 " -----------------------------------------------------------------------------
 let mapleader = "\<Space>"
 
-" Remap the paste key to also indent the code when pasting.
-" -----------------------------------------------------------------------------
-nnoremap p p`[v`]=
-
 " buffers
 " -----------------------------------------------------------------------------
 nnoremap Z :bprev<cr>
