@@ -183,9 +183,9 @@ let mapleader = "\<Space>"
 
 " buffers
 " -----------------------------------------------------------------------------
-nnoremap Z :bprev<cr>
-nnoremap X :bnext<cr>
-nnoremap Q :bw<cr>
+nnoremap Z :bprev<CR>
+nnoremap X :bnext<CR>
+nnoremap Q :bw<CR>
 
 " Moving lines up or down
 " -----------------------------------------------------------------------------
@@ -202,7 +202,7 @@ set pastetoggle=<F2>
 
 " Rot13
 " -----------------------------------------------------------------------------
-nnoremap <silent> <F6> ggg?G<cr>
+nnoremap <silent> <F6> ggg?G<CR>
 
 " Space bar un-highligts search
 " -----------------------------------------------------------------------------
@@ -214,11 +214,11 @@ cnoremap w!! w !sudo tee > /dev/null %
 
 " Spell check
 " -----------------------------------------------------------------------------
-nnoremap <leader>sc :setlocal spell!<cr>
+nnoremap <leader>sc :setlocal spell!<CR>
 
 " Remove ^M
 " -----------------------------------------------------------------------------
-noremap <Leader>m :%s/\r//g<cr>
+noremap <Leader>m :%s/\r//g<CR>
 
 " Map ; to : for simplicity & efficiency
 " -----------------------------------------------------------------------------
@@ -312,26 +312,6 @@ let g:user_emmet_settings = {
 
 
 " }}}
-" Plugins: CtrlP {{{
-
-let g:ctrlp_use_caching = 0
-let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\.git$\|\.hg$\|\.svn$\|data\|log\|tmp$\|node_modules\|bower_components',
-  \ 'file': '\.exe$\|\.swp$\|\.swo$\|\.jpg$\|\.bmp$\|\.gif$\|\.png$\|\.jpeg$\|\.dll$\|\.exe$\|\.zip$\|\.tar\.gz$\|\.tar\.bz2$\|\.rar$\|\.tar\.xz$'
-  \ }
-
-" https://github.com/FelikZ/ctrlp-py-matcher
-let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
-
-" Use git and use the .gitignore to also exclude those files.
-" NOTE: If you use the g:ctrlp_user_command you can't use g:ctrlp_custom_ignore,
-" since you determine the ignored files with your user command.
-let g:ctrlp_user_command = [
-      \ '.git/',
-      \ 'git --git-dir=%s/.git ls-files -oc --exclude-standard'
-      \ ]
-
-" }}}
 " Plugins: GitGutter {{{
 
 let g:gitgutter_map_keys = 0
@@ -411,13 +391,13 @@ let g:ale_pattern_options = {
 
 let g:prettier#autoformat = 0
 let g:prettier#exec_cmd_async = 1
-noremap <Leader>p :PrettierAsync<cr>
+noremap <Leader>p :PrettierAsync<CR>
 
 " }}}
 " Plugins: MRU {{{
 
 let MRU_Window_Height = 10
-noremap <Leader>r :MRU<cr>
+noremap <Leader>r :MRU<CR>
 
 " }}}
 " Plugins: NERDCommenter {{{
@@ -429,11 +409,11 @@ let g:NERDSpaceDelims = 1
 "
 " When in visual mode and doing the same keypress the whole block will be
 " commented using a '/* */' syntax.
-map <C-c> <Leader>cc<cr>
-vmap <C-c> <Leader>cm<cr>
+map <C-c> <Leader>cc<CR>
+vmap <C-c> <Leader>cm<CR>
 
-map <C-x> <Leader>cu<cr>
-map <C-a> <Leader>cs<cr>
+map <C-x> <Leader>cu<CR>
+map <C-a> <Leader>cs<CR>
 
 
 " }}}
@@ -520,5 +500,37 @@ let g:visual_surround_characters = [
 for char in g:visual_surround_characters
   exe 'vmap ' . char . ' S' . char
 endfor
+
+" }}}
+" Plugins: Ack {{{
+
+let g:ackprg = 'ag --nogroup --nocolor --column'
+
+" }}}
+" Plugins: FZF {{{
+
+" Set runtime path containing useful key bindings and fuzzy completions.
+set rtp+=/usr/local/opt/fzf
+
+" Set a mapping to toggle FZF
+nnoremap <C-p> :FZF<CR>
+
+" let g:fzf_layout = { 'window': 'enew' }
+let g:fzf_layout = {'down': '30%'}
+let g:fzf_tags_command = 'ctags --extra=+f -R'
+let g:fzf_colors =
+\ { 'fg':      ['fg', 'Comment'],
+  \ 'bg':      ['bg', 'Normal'],
+  \ 'hl':      ['fg', 'Comment'],
+  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+  \ 'hl+':     ['fg', 'Type'],
+  \ 'info':    ['fg', 'PreProc'],
+  \ 'border':  ['fg', 'Ignore'],
+  \ 'prompt':  ['fg', 'Normal'],
+  \ 'pointer': ['fg', 'Type'],
+  \ 'marker':  ['fg', 'Keyword'],
+  \ 'spinner': ['fg', 'Type'],
+  \ 'header':  ['fg', 'Comment'] }
 
 " }}}

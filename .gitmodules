@@ -10,9 +10,6 @@
 [submodule ".vim/bundle/vim-javascript"]
   path = .vim/bundle/vim-javascript
   url = https://github.com/pangloss/vim-javascript
-[submodule ".vim/bundle/ctrlp-py-matcher"]
-  path = .vim/bundle/ctrlp-py-matcher
-  url = https://github.com/FelikZ/ctrlp-py-matcher
 [submodule ".vim/bundle/vim-snippets"]
   path = .vim/bundle/vim-snippets
   url = https://github.com/honza/vim-snippets
@@ -22,9 +19,6 @@
 [submodule ".vim/bundle/emmet-vim"]
   path = .vim/bundle/emmet-vim
   url = https://github.com/mattn/emmet-vim
-[submodule ".vim/bundle/ctrlp.vim"]
-  path = .vim/bundle/ctrlp.vim
-  url = https://github.com/kien/ctrlp.vim
 [submodule ".vim/bundle/vim-closetag"]
   path = .vim/bundle/vim-closetag
   url = https://github.com/alvan/vim-closetag
@@ -65,5 +59,8 @@
   path = .vim/bundle/vim-fugitive
   url = https://github.com/tpope/vim-fugitive
 [submodule ".vim/bundle/vim-pasta"]
-	path = .vim/bundle/vim-pasta
-	url = https://github.com/sickill/vim-pasta
+  path = .vim/bundle/vim-pasta
+  url = https://github.com/sickill/vim-pasta
+[submodule ".vim/bundle/ack.vim"]
+  path = .vim/bundle/ack.vim
+  url = https://github.com/mileszs/ack.vim
