@@ -558,7 +558,7 @@ Reset</string>
 	<key>NSWindow Frame SessionsPreferences</key>
 	<string>882 711 606 469 0 0 2560 1418 </string>
 	<key>NSWindow Frame SharedPreferences</key>
-	<string>691 518 796 486 0 0 1680 1027 </string>
+	<string>691 492 796 486 0 0 1680 1027 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
 	<string>0 0 1680 1027 0 0 1680 1027 </string>
 	<key>New Bookmarks</key>
@@ -587,13 +587,13 @@ Reset</string>
 				<key>Alpha Component</key>
 				<real>1</real>
 				<key>Blue Component</key>
-				<real>0.12549019607843137</real>
+				<real>0.380279541015625</real>
 				<key>Color Space</key>
 				<string>sRGB</string>
 				<key>Green Component</key>
-				<real>0.12549019607843137</real>
+				<real>0.380279541015625</real>
 				<key>Red Component</key>
-				<real>0.12549019607843137</real>
+				<real>0.380279541015625</real>
 			</dict>
 			<key>Ansi 1 Color</key>
 			<dict>
@@ -769,13 +769,13 @@ Reset</string>
 				<key>Alpha Component</key>
 				<real>1</real>
 				<key>Blue Component</key>
-				<real>0.26666666666666666</real>
+				<real>0.37647058823529411</real>
 				<key>Color Space</key>
 				<string>sRGB</string>
 				<key>Green Component</key>
-				<real>0.26666666666666666</real>
+				<real>0.37647058823529411</real>
 				<key>Red Component</key>
-				<real>0.26666666666666666</real>
+				<real>0.37647058823529411</real>
 			</dict>
 			<key>Ansi 9 Color</key>
 			<dict>
