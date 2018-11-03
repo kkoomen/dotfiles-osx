@@ -133,7 +133,6 @@ function! statusline#gitbranch() abort
       let l:statusline .= '%#SLGitBranch#'
       let l:statusline .= ' ' . l:branch . ' '
       let l:statusline .= '%*'
-      let l:statusline .= g:statusline_separator
     endif
   endif
 

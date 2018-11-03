@@ -1,8 +1,8 @@
-" ==============================================================================
+" =============================================================================
 " Filename: statusline.vim
 " Maintainer: Kim Koomen <koomen@protonail.com>
 " License: MIT
-" ==============================================================================
+" =============================================================================
 
 if exists("g:loaded_statusline") || &cp || v:version < 700
   finish
@@ -41,20 +41,20 @@ function! SL()
 endfunction
 
 " Setup all the statusline highlighting.
-highlight! StatusLine        ctermbg=white  ctermfg=black
-highlight! SLModeNormal      ctermbg=white  ctermfg=black
-highlight! SLModeInsert      ctermbg=green  ctermfg=black
-highlight! SLModeVisual      ctermbg=yellow ctermfg=black
-highlight! SLModeReplace     ctermbg=red    ctermfg=black
-highlight! SLModeSelect      ctermbg=blue   ctermfg=black
-highlight! SLModeTerminal    ctermfg=black  ctermfg=green
-highlight! SLBufferInfo      ctermbg=white  ctermfg=black
+highlight! StatusLine        ctermbg=white  ctermfg=black  guibg=#383838 guifg=#888888
+highlight! SLModeNormal      ctermbg=white  ctermfg=black  guibg=#888888 guifg=#262626
+highlight! SLModeInsert      ctermbg=green  ctermfg=black  guibg=#98C379 guifg=#262626
+highlight! SLModeVisual      ctermbg=yellow ctermfg=black  guibg=#E5C07B guifg=#262626
+highlight! SLModeReplace     ctermbg=red    ctermfg=black  guibg=#C678DD guifg=#262626
+highlight! SLModeSelect      ctermbg=blue   ctermfg=black  guibg=#61AFEF guifg=#262626
+highlight! SLModeTerminal    ctermfg=black  ctermfg=green  guibg=#262626 guifg=#98C379
+highlight! SLBufferInfo      ctermbg=white  ctermfg=black  guibg=#888888 guifg=#262626
 
-highlight! errormsg          ctermbg=black  ctermfg=red
-highlight! warningmsg        ctermbg=black  ctermfg=yellow
+highlight! errormsg          ctermbg=black  ctermfg=red    guifg=#BE5046
+highlight! warningmsg        ctermbg=black  ctermfg=yellow guifg=#E5C07B
 
-highlight! SLGitBranch       ctermbg=black  ctermfg=yellow
-highlight! SLGitBranchMaster ctermbg=red    ctermfg=white
+highlight! SLGitBranch       ctermbg=black  ctermfg=yellow guibg=#303030 guifg=#61AFEF
+highlight! SLGitBranchMaster ctermbg=red    ctermfg=white  guibg=#BE5046 guifg=#ffffff
 
 set noshowmode   " Do not show vim's default mode.
 set laststatus=2 " Always show the statusline.

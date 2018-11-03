@@ -76,10 +76,8 @@ set wildignore+=*.pdf,*.doc,*.docx,*.ppt,*.pptx
 " Color scheme {{{
 
 set background=dark
-let g:gruvbox_bold = 0
-let g:gruvbox_termcolors=16
-let g:gruvbox_invert_selection=0
-colorscheme gruvbox
+set termguicolors
+colorscheme monokai
 
 " }}}
 " ColorColumn {{{
