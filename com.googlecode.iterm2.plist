@@ -1259,13 +1259,13 @@ Reset</string>
 				<key>Alpha Component</key>
 				<real>1</real>
 				<key>Blue Component</key>
-				<real>0.26666666666666666</real>
+				<real>0.40000000000000002</real>
 				<key>Color Space</key>
 				<string>sRGB</string>
 				<key>Green Component</key>
-				<real>0.26666666666666666</real>
+				<real>0.60392156862745094</real>
 				<key>Red Component</key>
-				<real>0.33333333333333331</real>
+				<real>0.81960784313725488</real>
 			</dict>
 			<key>Selection Color</key>
 			<dict>
