@@ -372,6 +372,13 @@ let g:ycm_filepath_blacklist = { }
 " }}}
 " Plugins: Ale {{{
 
+let g:ale_set_highlights = 0
+highlight! ALEWarning ctermfg=none ctermbg=none guibg=NONE guifg=NONE
+highlight! ALEError  ctermfg=none ctermbg=none guibg=NONE guifg=NONE
+
+highlight! ALEWarningSign guibg=NONE guifg=white
+highlight! ALEErrorSign guibg=NONE guifg=#BE5046
+
 let g:ale_sign_error = '••'
 let g:ale_sign_warning = '•'
 
