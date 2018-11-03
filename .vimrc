@@ -6,8 +6,7 @@ set hidden                        " Hide when switching buffers, don't unload.
 set mouse=a                       " Enable mouse in all modes.
 set nowrap                        " No word wrap.
 set number                        " Show line numbers.
-"set nocursorline                  " Disable cursor line (makes vim very slow).
-set cursorline                    " Enable cursor line
+set nocursorline                  " Disable cursor line (makes vim very slow).
 set title                         " Use filename in window title.
 set ttyfast                       " Indicates a fast terminal connection.
 set lazyredraw                    " Will buffer screen updates instead of updating all the time.
@@ -107,10 +106,6 @@ colorscheme onedark
 " Only highlight the color column when the line is expanding the 80th column.
 highlight! ColorColumn ctermbg=red ctermfg=white guibg=#BE5046 guifg=#151515
 call matchadd('ColorColumn', '\%80v.', 100)
-
-" In general the cursorline makes vim super slow, but with my current
-" colorscheme it only highlights the line number, so enabling is okay.
-highlight! CursorLine ctermbg=none ctermfg=none guibg=NONE guifg=NONE
 
 " }}}
 " Omni completion {{{
