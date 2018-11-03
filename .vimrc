@@ -543,7 +543,7 @@ nnoremap <C-p> :FZF<CR>
 let g:fzf_layout = {'down': '30%'}
 let g:fzf_tags_command = 'ctags --extra=+f -R'
 let g:fzf_colors =
-\ { 'fg':      ['fg', 'Comment'],
+\ { 'fg':      ['fg', 'Normal'],
   \ 'bg':      ['bg', 'Normal'],
   \ 'hl':      ['fg', 'Comment'],
   \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
