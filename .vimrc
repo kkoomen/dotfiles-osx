@@ -379,8 +379,8 @@ highlight! ALEError  ctermfg=none ctermbg=none guibg=NONE guifg=NONE
 highlight! ALEWarningSign guibg=NONE guifg=white
 highlight! ALEErrorSign guibg=NONE guifg=#BE5046
 
-let g:ale_sign_error = '••'
-let g:ale_sign_warning = '•'
+let g:ale_sign_error = '➜'
+let g:ale_sign_warning = '➜'
 
 " Open list of errors when new buffer opens.
 let g:ale_open_list = 0
