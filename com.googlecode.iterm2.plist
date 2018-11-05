@@ -587,13 +587,13 @@ Reset</string>
 				<key>Alpha Component</key>
 				<real>1</real>
 				<key>Blue Component</key>
-				<real>0.220458984375</real>
+				<real>0.26010188832879066</real>
 				<key>Color Space</key>
 				<string>sRGB</string>
 				<key>Green Component</key>
-				<real>0.220458984375</real>
+				<real>0.26010188832879066</real>
 				<key>Red Component</key>
-				<real>0.220458984375</real>
+				<real>0.268310546875</real>
 			</dict>
 			<key>Ansi 1 Color</key>
 			<dict>
