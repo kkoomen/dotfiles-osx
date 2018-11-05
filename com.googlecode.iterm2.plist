@@ -16,6 +16,8 @@
 	<string>manual</string>
 	<key>AutoHideTmuxClientSession</key>
 	<false/>
+	<key>CGFontRenderingFontSmoothingDisabled</key>
+	<false/>
 	<key>CommandSelection</key>
 	<true/>
 	<key>CopyLastNewline</key>
@@ -548,7 +550,7 @@ Reset</string>
 		<integer>1</integer>
 	</dict>
 	<key>NSWindow Frame NSFontPanel</key>
-	<string>75 595 860 261 0 0 1680 1027 </string>
+	<string>418 492 860 261 0 0 1680 1027 </string>
 	<key>NSWindow Frame ProfilesPanel</key>
 	<string>531 956 735 382 0 0 2560 1417 </string>
 	<key>NSWindow Frame SUUpdateAlert</key>
@@ -1235,7 +1237,7 @@ Reset</string>
 			<key>Non-ASCII Anti Aliased</key>
 			<true/>
 			<key>Normal Font</key>
-			<string>DroidSansMonoSlashed 11</string>
+			<string>DroidSansMonoSlashed 12</string>
 			<key>Only The Default BG Color Uses Transparency</key>
 			<false/>
 			<key>Open Toolbelt</key>
