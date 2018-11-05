@@ -92,7 +92,7 @@ let g:onedark_color_overrides = {
       \ "cursor_grey": { "gui": "#383838", "cterm": "236", "cterm16": "8" },
       \ "visual_grey": { "gui": "#202020", "cterm": "237", "cterm16": "15" },
       \ "menu_grey": { "gui": "#404040", "cterm": "237", "cterm16": "8" },
-      \ "special_grey": { "gui": "#ff0000", "cterm": "238", "cterm16": "15" },
+      \ "special_grey": { "gui": "#555555", "cterm": "238", "cterm16": "15" },
       \ "vertsplit": { "gui": "#181A1F", "cterm": "59", "cterm16": "15" },
 \}
 
@@ -106,6 +106,9 @@ colorscheme onedark
 " Only highlight the color column when the line is expanding the 80th column.
 highlight! ColorColumn ctermbg=red ctermfg=white guibg=#BE5046 guifg=#151515
 call matchadd('ColorColumn', '\%80v.', 100)
+
+highlight! Tabline    guibg=#444444 guifg=#888888
+highlight! TablineSel guibg=#ABB2BF guifg=#444444
 
 " }}}
 " Omni completion {{{
@@ -164,6 +167,12 @@ augroup javascript
   "autocmd BufRead,BufNewFile *.js set filetype=javascript
   autocmd BufRead,BufNewFile *.mdx,*.js,*.jsx set filetype=javascript.jsx
   autocmd BufRead,BufNewFile *.json set filetype=javascript
+augroup END
+
+augroup rc
+  autocmd!
+  "autocmd BufRead,BufNewFile *.js set filetype=javascript
+  autocmd BufRead,BufNewFile .babelrc set filetype=json
 augroup END
 
 " }}}
