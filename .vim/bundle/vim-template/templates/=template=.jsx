@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 class %FILE_OR_DIRECTORY% extends Component {
-  constructor(props: any) {
+  constructor(props) {
     super(props);
   }
 

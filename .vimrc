@@ -165,7 +165,7 @@ augroup END
 augroup javascript
   autocmd!
   "autocmd BufRead,BufNewFile *.js set filetype=javascript
-  autocmd BufRead,BufNewFile *.mdx,*.js,*.jsx set filetype=javascript.jsx
+  autocmd BufRead,BufNewFile *.mdx,*.js,*.jsx,*.plop set filetype=javascript.jsx
   autocmd BufRead,BufNewFile *.json set filetype=javascript
 augroup END
 
@@ -567,5 +567,10 @@ let g:fzf_colors =
   \ 'marker':  ['fg', 'Keyword'],
   \ 'spinner': ['fg', 'Type'],
   \ 'header':  ['fg', 'Comment'] }
+
+" }}}
+" Plugins: EditorConfig {{{
+
+let g:EditorConfig_disable_rules = ['max_line_length']
 
 " }}}
