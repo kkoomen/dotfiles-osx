@@ -109,6 +109,7 @@ call matchadd('ColorColumn', '\%80v.', 100)
 
 highlight! Tabline    guibg=#444444 guifg=#888888
 highlight! TablineSel guibg=#ABB2BF guifg=#444444
+highlight! MatchParen guibg=#606060 guifg=#abb2bf
 
 " }}}
 " Omni completion {{{
