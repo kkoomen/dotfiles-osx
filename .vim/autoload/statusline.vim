@@ -59,10 +59,7 @@ function! statusline#filetypeinfo() abort
     call add(l:statusline, '%#warningmsg#fileformat:%{&fileformat}%*')
   endif
 
-  if &ft
-    call add(l:statusline, '&ft')
-  endif
-
+  call add(l:statusline, '%y')
   return join(l:statusline, ' ' . g:statusline_separator . ' ')
 endfunction
 

@@ -43,9 +43,6 @@ cask_apps=(
   # Video
   kap
 
-  # Screenshot
-  skitch
-
   # Requirements for curlftpfs
   xquartz
   osxfuse

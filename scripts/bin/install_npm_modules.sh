@@ -1,26 +1,29 @@
 #!/usr/bin/env bash
 
 npm_packages=(
-    # Development
-    gulp
-    nodemon
-    http-server
-    cra-gen
+  # Package managers
+  yarn
 
-    # For security check npm packages
-    nsp
+  # Development
+  gulp
+  nodemon
+  http-server
+  cra-gen
 
-    # Linting
-    eslint
-    eslint-config-airbnb
-    eslint-plugin-html
-    eslint-plugin-import
-    eslint-plugin-jsx-a11y
-    eslint-plugin-react
-    stylelint
+  # For security check npm packages
+  nsp
 
-    # CSS prefixing
-    autoprefixer-cli
+  # Linting
+  eslint
+  eslint-config-airbnb
+  eslint-plugin-html
+  eslint-plugin-import
+  eslint-plugin-jsx-a11y
+  eslint-plugin-react
+  stylelint
+
+  # CSS prefixing
+  autoprefixer-cli
 )
 
 npm install -g "${npm_packages[@]}"
