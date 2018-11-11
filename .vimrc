@@ -167,12 +167,12 @@ augroup javascript
   autocmd!
   "autocmd BufRead,BufNewFile *.js set filetype=javascript
   autocmd BufRead,BufNewFile *.mdx,*.js,*.jsx,*.plop set filetype=javascript.jsx
+  autocmd BufRead,BufNewFile *.tsx set filetype=typescript.jsx
   autocmd BufRead,BufNewFile *.json set filetype=javascript
 augroup END
 
 augroup rc
   autocmd!
-  "autocmd BufRead,BufNewFile *.js set filetype=javascript
   autocmd BufRead,BufNewFile .babelrc set filetype=json
 augroup END
 
@@ -293,7 +293,7 @@ au FileType * set fo-=o
 " }}}
 " Plugins: HTML Close Tag {{{
 
-let g:closetag_filenames = "*.html,*.xhtml,*.phtml,*.tpl,*.twig,*.htm,*.php,*.pug,*.jsx,*.js,*.mdx"
+let g:closetag_filenames = "*.html,*.xhtml,*.phtml,*.tpl,*.twig,*.htm,*.php,*.pug,*.jsx,*.js,*.mdx,*.plop,*.tsx,*.ts"
 
 " }}}
 " Plugins: auto-pairs {{{
