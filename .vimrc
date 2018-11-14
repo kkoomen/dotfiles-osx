@@ -205,7 +205,7 @@ function! BufferPathCommands()
   " Set the path of the current buffer relative to its git diretory to the
   " system clipboard. 'GBP' refers for 'Git Buffer Path'.
   if exists('g:loaded_fugitive')
-    command! GBP :let @+=substitute(expand('%:p'), substitute(FugitiveExtractGitDir('%:p'), '\/\.git\/modules', '', 'g'), '', 'g') | echo @*
+    command! GBP :let @+=substitute(expand('%:p'), substitute(FugitiveExtractGitDir(expand('%:p')), '\/\.git\/modules', '', 'g'), '', 'g') | echo @*
   endif
 endfunction
 
