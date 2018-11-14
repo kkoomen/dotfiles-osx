@@ -197,11 +197,24 @@ function OnBufReadPost()
   endif
 endfunction
 
+function! BufferPathCommands()
+  " Set the absolute path of the current buffer to the system clipboard.
+  " 'BP' refers to 'Buffer Path'.
+  command! BP :let @+=expand('%:p') | echo @*
+
+  " Set the path of the current buffer relative to its git diretory to the
+  " system clipboard. 'GBP' refers for 'Git Buffer Path'.
+  if exists('g:loaded_fugitive')
+    command! GBP :let @+=substitute(expand('%:p'), substitute(FugitiveExtractGitDir('%:p'), '\/\.git\/modules', '', 'g'), '', 'g') | echo @*
+  endif
+endfunction
+
 " }}}
 " Hooks {{{
 
-autocmd BufWritePre * :call OnBufWritePre()
-autocmd BufReadPost * :call OnBufReadPost()
+autocmd BufWritePre *        :call OnBufWritePre()
+autocmd BufReadPost *        :call OnBufReadPost()
+autocmd BufRead,BufNewFile * :call BufferPathCommands()
 
 " }}}
 " Mappings {{{
@@ -460,6 +473,7 @@ let g:gutentags_cache_dir = expand('~/.cache/vim/ctags/')
 
 " Add a custom command for clearing all the cached tags.
 command! GutentagsClearCache :call system('rm ' . g:gutentags_cache_dir . '/*')
+
 
 " Disable the default project root markers and add our own.
 let g:gutentags_project_root = ['package.json', '.git']
