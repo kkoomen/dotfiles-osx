@@ -22,6 +22,10 @@ defaults write com.apple.dock wvous-br-corner -int 5
 defaults write com.apple.dock wvous-br-modifier -int 0
 # echo "[Setting] Run the screensaver if we're in the bottom-right hot corner."
 
+# The notification 'Your disk is almost full' should only warn us when we're
+# below a certain threshold of GiB.
+defaults write com.apple.diskspaced minFreeSpace 5
+
 # Disable inline attachments in Mail.app (just show the icons)
 defaults write com.apple.mail DisableInlineAttachmentViewing -bool true
 defaults write com.apple.mail-shared DisableURLLoading -bool true
@@ -257,7 +261,6 @@ defaults write NSGlobalDomain NSDocumentSaveNewDocumentsToCloud -bool false
 
 # Disable Bonjour multicast advertisements.
 sudo defaults write /Library/Preferences/com.apple.mDNSResponder.plist NoMulticastAdvertisements -bool YES
-
 defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
 
 # Disable siri.
@@ -286,7 +289,7 @@ function reboot() {
 }
 
 # Call on the function.
-if [[ "Yes" == $(reboot) ]]
+if [[ $(reboot) == "Yes" ]]
 then
   echo "Rebooting."
   sudo reboot
