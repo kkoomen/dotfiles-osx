@@ -155,6 +155,7 @@ augroup drupal
   autocmd BufRead,BufNewFile *.inc set filetype=php
   autocmd BufRead,BufNewFile *.profile set filetype=php
   autocmd BufRead,BufNewFile *.view set filetype=php
+  autocmd BufRead,BufNewFile *.drush set filetype=php
 augroup END
 
 augroup bash
