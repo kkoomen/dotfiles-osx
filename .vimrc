@@ -14,7 +14,7 @@ set clipboard=unnamed             " Enable clipboard.
 set autoread                      " Set to auto read when a file is changed from the outside.
 set nospell                       " Disable spellcheck on default.
 set so=7                          " Minimal number of screen lines to keep above and below the cursor when scrolling.
-set tw=79                         " Set a max text width.
+set tw=80                         " Set a max text width.
 set nocompatible                  " Use vim defaults instead of vi.
 set backspace=indent,eol,start    " Set priorities for the backspace key.
 set foldenable foldmethod=marker  " Enable folding.
@@ -24,11 +24,11 @@ set infercase                     " Enable ignorecase for keyword completion.
 set diffopt=filler,iwhite         " Ignore whitespace as well when diffing.
 
 " Make our custom aliases available within a non-interactive vim.
-" -----------------------------------------------------------------------------
+" ----------------------------------------------------------------------------
 let $BASH_ENV = "~/.bash_aliases"
 
 " Enable Pathogen
-" -----------------------------------------------------------------------------
+" ------------------------------------------------------------------------------
 call pathogen#infect()
 
 " }}}
@@ -105,7 +105,7 @@ colorscheme onedark
 
 " Only highlight the color column when the line is expanding the 80th column.
 highlight! ColorColumn ctermbg=red ctermfg=white guibg=#BE5046 guifg=#151515
-call matchadd('ColorColumn', '\%80v.', 100)
+call matchadd('ColorColumn', '\%81v.', 100)
 
 highlight! Tabline    guibg=#444444 guifg=#888888
 highlight! TablineSel guibg=#ABB2BF guifg=#444444
@@ -221,17 +221,17 @@ autocmd BufRead,BufNewFile * :call BufferPathCommands()
 " Mappings {{{
 
 " Leader key
-" -----------------------------------------------------------------------------
+" ------------------------------------------------------------------------------
 let mapleader = "\<Space>"
 
 " buffers
-" -----------------------------------------------------------------------------
+" ------------------------------------------------------------------------------
 nnoremap Z :bprev<CR>
 nnoremap X :bnext<CR>
 nnoremap Q :bw<CR>
 
 " Moving lines up or down
-" -----------------------------------------------------------------------------
+" ------------------------------------------------------------------------------
 nnoremap <C-Down> :m .+1<CR>==
 nnoremap <C-Up> :m .-2<CR>==
 inoremap <C-Down> <Esc>:m .+1<CR>==gi
@@ -240,56 +240,56 @@ vnoremap <C-Down> :m '>+1<CR>gv=gv
 vnoremap <C-Up> :m '<-2<CR>gv=gv
 
 " Set pastetoggle
-" -----------------------------------------------------------------------------
+" ------------------------------------------------------------------------------
 set pastetoggle=<F2>
 
 " Rot13
-" -----------------------------------------------------------------------------
+" ------------------------------------------------------------------------------
 nnoremap <silent> <F6> ggg?G<CR>
 
 " Space bar un-highligts search
-" -----------------------------------------------------------------------------
+" ------------------------------------------------------------------------------
 noremap <silent> <Space> :silent noh<Bar>echo<CR>
 
 " Allow saving of files as sudo when I forgot to start vim using sudo
-" -----------------------------------------------------------------------------
+" ------------------------------------------------------------------------------
 cnoremap w!! w !sudo tee > /dev/null %
 
 " Spell check
-" -----------------------------------------------------------------------------
+" ------------------------------------------------------------------------------
 nnoremap <leader>sc :setlocal spell!<CR>
 
 " Remove ^M
-" -----------------------------------------------------------------------------
+" ------------------------------------------------------------------------------
 noremap <Leader>m :%s/\r//g<CR>
 
 " Map ; to : for simplicity & efficiency
-" -----------------------------------------------------------------------------
+" ------------------------------------------------------------------------------
 noremap ; :
 
 " Map ; to :B in combination with the vis.vim plugin
-" -----------------------------------------------------------------------------
+" ------------------------------------------------------------------------------
 " The vis.vim plugin allows us to apply a command in visual-block mode only to
 " the selected block instead of the whole line. To do so, every command has to
 " be prefixed with 'B' which ends up in: '<, '>B [command].
-" -----------------------------------------------------------------------------
+" ------------------------------------------------------------------------------
 vnoremap ; :B<space>
 
 " Selection
-" -----------------------------------------------------------------------------
+" ------------------------------------------------------------------------------
 " Make selection stay after keypress.
-" -----------------------------------------------------------------------------
+" ------------------------------------------------------------------------------
 noremap > >gv
 noremap < <gv
 
 " Auto complete
-" -----------------------------------------------------------------------------
+" ------------------------------------------------------------------------------
 "inoremap <expr> <tab> InsertTabWrapper()
 
 " Typo's while saving
-" -----------------------------------------------------------------------------
+" ------------------------------------------------------------------------------
 " Avoid saving files like ; and w; and other typos
-" -----------------------------------------------------------------------------
+" ------------------------------------------------------------------------------
 cnoremap w; w
 cnoremap w: w
 cnoremap W; w
@@ -414,7 +414,7 @@ let g:ale_set_loclist = 0
 let g:ale_set_quickfix = 1
 
 " This means when entering a file, not when pressing <ENTER>.
-let g:ale_lint_on_enter = 0
+let g:ale_lint_on_enter = 1
 
 let g:ale_lint_on_save = 1
 let g:ale_lint_on_text_changed = 1
@@ -425,6 +425,8 @@ let g:ale_linters = {
       \ 'php': ['phpcs'],
       \ 'javascript': ['stylelint', 'eslint'],
       \ 'javascript.jsx': ['stylelint', 'eslint'],
+      \ 'typescript': ['tslint'],
+      \ 'typescript.jsx': ['tslint'],
       \ }
 
 let g:ale_linter_aliases = {'javascript.jsx': 'css'}
