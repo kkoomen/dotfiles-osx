@@ -4,6 +4,7 @@ syntax on                         " Enable syntax highlighting.
 filetype plugin indent on         " Enable file detection.
 set hidden                        " Hide when switching buffers, don't unload.
 set mouse=a                       " Enable mouse in all modes.
+set synmaxcol=300                 " Amount of cols to enable syntax highlighting for.
 set nowrap                        " No word wrap.
 set number                        " Show line numbers.
 set nocursorline                  " Disable cursor line (makes vim very slow).
@@ -166,7 +167,6 @@ augroup END
 
 augroup javascript
   autocmd!
-  "autocmd BufRead,BufNewFile *.js set filetype=javascript
   autocmd BufRead,BufNewFile *.mdx,*.js,*.jsx,*.plop set filetype=javascript.jsx
   autocmd BufRead,BufNewFile *.tsx set filetype=typescript.jsx
   autocmd BufRead,BufNewFile *.json set filetype=javascript
@@ -175,6 +175,11 @@ augroup END
 augroup rc
   autocmd!
   autocmd BufRead,BufNewFile .babelrc set filetype=json
+augroup END
+
+augroup minified
+  autocmd!
+  autocmd BufRead,BufNewFile *.min.* set syntax=off
 augroup END
 
 " }}}

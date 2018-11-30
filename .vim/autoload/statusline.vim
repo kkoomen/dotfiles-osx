@@ -50,13 +50,13 @@ endfunction
 function! statusline#filetypeinfo() abort
   let l:statusline = []
   if &fileencoding != "utf-8"
-    call add(l:statusline, '%#warningmsg#fileencoding:%{&fileencoding}%*')
+    call add(l:statusline, '%#SLWarningMsg#fileencoding:%{&fileencoding}%*')
   elseif &encoding != "utf-8"
-    call add(l:statusline, '%#warningmsg#encoding:%{&encoding}%*')
+    call add(l:statusline, '%#SLWarningMsg#encoding:%{&encoding}%*')
   endif
 
   if &fileformat != "unix"
-    call add(l:statusline, '%#warningmsg#fileformat:%{&fileformat}%*')
+    call add(l:statusline, '%#SLWarningMsg#fileformat:%{&fileformat}%*')
   endif
 
   call add(l:statusline, '%y')
