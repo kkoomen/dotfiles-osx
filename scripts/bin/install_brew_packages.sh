@@ -47,6 +47,9 @@ cask_apps=(
   xquartz
   osxfuse
 
+  # Development
+  postman
+
   # Quicklook
   qlcolorcode
   qlstephen
