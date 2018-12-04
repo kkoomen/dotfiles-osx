@@ -68,7 +68,7 @@ function! buftabline#render()
     if currentbuf == bufnum | let [centerbuf, s:centerbuf] = [bufnum, bufnum] | endif
     let bufpath = bufname(bufnum)
     if strlen(bufpath)
-      let tab.path = fnamemodify(bufpath, ':p:~:h:t')
+      let tab.path = fnamemodify(bufpath, ':p:~:.')
       let tab.sep = strridx(tab.path, s:dirsep, strlen(tab.path) - 2) " keep trailing dirsep
       let tab.label = fnamemodify(bufpath, ':p:~:h:t') . '/' . fnamemodify(bufpath, ':t')
       let pre = ( show_mod && getbufvar(bufnum, '&mod') ? '+' : '' ) . screen_num
@@ -83,18 +83,6 @@ function! buftabline#render()
     endif
     let tabs += [tab]
   endfor
-
-  " disambiguate same-basename files by adding trailing path segments
-  while len(filter(tabs_per_tail, 'v:val > 1'))
-    let [ambiguous, tabs_per_tail] = [tabs_per_tail, {}]
-    for tab in path_tabs
-      if -1 < tab.sep && has_key(ambiguous, tab.label)
-        let tab.sep = strridx(tab.path, s:dirsep, tab.sep - 1)
-        let tab.label = tab.path[tab.sep + 1:]
-      endif
-      let tabs_per_tail[tab.label] = get(tabs_per_tail, tab.label, 0) + 1
-    endfor
-  endwhile
 
   " now keep the current buffer center-screen as much as possible:
 
