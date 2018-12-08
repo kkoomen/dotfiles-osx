@@ -117,13 +117,18 @@ highlight! MatchParen guibg=#606060 guifg=#abb2bf
 
 "  Enable omni completion and enable more characters to be available within
 "  autocomplete by appending to the 'iskeyword' variable.
-
 set iskeyword+=-
+
+" Set all the autocompleters.
 autocmd FileType * setlocal omnifunc=syntaxcomplete#Complete
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType javascript,javascript.jsx,jsx setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType php setlocal omnifunc=phpcomplete#CompletePHP
+autocmd FileType javascript,javascript.jsx,jsx,typescript,typescript.jsx setlocal omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType php setlocal omnifunc=phpactor#Complete
+
+" Unset some complete options for optimised completion performance.
+" i   Scan the current and included files.
+set complete-=i
 
 " }}}
 " Undo history {{{
@@ -307,7 +312,11 @@ cnoremap WW w
 " }}}
 " Format options {{{
 
-au FileType * set fo-=o
+" Format options have impact when formatting code with the 'gq' binding.
+" Default: crqlo
+"   o       Automatically insert the current comment leader after hitting 'o' or
+"           'O' in Normal mode.
+autocmd FileType * set fo-=o
 
 " }}}
 " Plugins: HTML Close Tag {{{
@@ -345,7 +354,7 @@ endfunction
 " }}}
 " Plugins: Indent Line {{{
 
-let g:indentLine_char = '|'
+let g:indentLine_char = '│'
 
 " }}}
 " Plugins: Emmet {{{
@@ -353,6 +362,9 @@ let g:indentLine_char = '|'
 " After the leader key you should always enter a comma to trigger emmet.
 let g:user_emmet_leader_key='<C-f>'
 let g:user_emmet_settings = {
+      \   'typescript.jsx' : {
+      \     'extends': 'jsx',
+      \   },
       \   'javascript.jsx' : {
       \     'extends': 'jsx',
       \   },
@@ -389,24 +401,29 @@ let g:UltiSnipsListSnippets="<c-e>"
 let g:ycm_key_list_select_completion=['<Down>']
 let g:ycm_key_list_previous_completion=['<Up>']
 let g:ycm_key_list_stop_completion = ['<Enter>']
-let g:ycm_max_num_candidates = 6
 let g:ycm_max_num_identifier_candidates = 6
-let g:ycm_collect_identifiers_from_tags_files = 0
-let g:ycm_collect_identifiers_from_comments_and_strings = 0
-let g:ycm_seed_identifiers_with_syntax = 0
+let g:ycm_collect_identifiers_from_tags_files = 1
+let g:ycm_collect_identifiers_from_comments_and_strings = 1
+let g:ycm_seed_identifiers_with_syntax = 1
 let g:ycm_add_preview_to_completeopt = 0
+let g:ycm_complete_in_comments = 1
+
 let g:ycm_server_python_interpreter = 'python3'
-let g:ycm_filepath_blacklist = { }
+let g:ycm_filepath_blacklist = {}
+
+" Disable diagnostics, those are provided by ALE.
+let g:ycm_always_populate_location_list = 0
+let g:ycm_show_diagnostics_ui = 0
 
 " }}}
 " Plugins: Ale {{{
 
 let g:ale_set_highlights = 0
 highlight! ALEWarning ctermfg=none ctermbg=none guibg=NONE guifg=NONE
-highlight! ALEError  ctermfg=none ctermbg=none guibg=NONE guifg=NONE
+highlight! ALEError   ctermfg=none ctermbg=none guibg=NONE guifg=NONE
 
 highlight! ALEWarningSign guibg=NONE guifg=white
-highlight! ALEErrorSign guibg=NONE guifg=#BE5046
+highlight! ALEErrorSign   guibg=NONE guifg=#BE5046
 
 let g:ale_sign_error = '➜'
 let g:ale_sign_warning = '➜'
@@ -482,7 +499,6 @@ let g:gutentags_cache_dir = expand('~/.cache/vim/ctags/')
 " Add a custom command for clearing all the cached tags.
 command! GutentagsClearCache :call system('rm ' . g:gutentags_cache_dir . '/*')
 
-
 " Disable the default project root markers and add our own.
 let g:gutentags_project_root = ['package.json', '.git']
 let g:gutentags_add_default_project_roots = 0
@@ -514,18 +530,43 @@ let g:gutentags_ctags_extra_args = [
       \ ]
 
 let g:gutentags_ctags_exclude = [
-      \ '*.min.js',
-      \ '*.min.css',
       \ '.git',
+      \ '.svn',
+      \ '.hg',
+      \ '*/tests/*',
       \ 'build',
       \ 'dist',
+      \ '*sites/*/files/*',
+      \ 'bin',
       \ 'node_modules',
       \ 'bower_components',
+      \ 'yarn.lock',
       \ 'package.json',
       \ 'package-lock.json',
-      \ '*eslintrc*',
+      \ '.eslintrc*',
       \ 'cache',
       \ 'compiled',
+      \ 'bundle',
+      \ 'min',
+      \ 'vendor',
+      \ '*.min.*',
+      \ '*.map',
+      \ '*.swp',
+      \ '*.swo',
+      \ '*.bak',
+      \ '*.zip',
+      \ '*.pyc',
+      \ '*.class',
+      \ '*.sln',
+      \ '*.Master',
+      \ '*.csproj',
+      \ '*.csproj.user',
+      \ '*.cache',
+      \ '*.dll',
+      \ '*.pdb',
+      \ 'tags*',
+      \ 'cscope.*',
+      \ '*.tar.*',
       \ ]
 
 " }}}
