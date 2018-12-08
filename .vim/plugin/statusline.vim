@@ -36,6 +36,7 @@ function! SL()
   let l:statusline .= '%='
   let l:statusline .= statusline#render(s:statusline.right)
   let l:statusline .= statusline#bufferinfo()
+  let l:statusline .= statusline#bufferfilesize()
 
   return l:statusline
 endfunction
@@ -50,9 +51,9 @@ highlight! SLModeSelect      ctermbg=blue   ctermfg=black  guibg=#61AFEF guifg=#
 highlight! SLModeTerminal    ctermfg=black  ctermfg=green  guibg=#262626 guifg=#98C379
 highlight! SLBufferInfo      ctermbg=white  ctermfg=black  guibg=#888888 guifg=#262626
 
-highlight! SLErrorMsg          ctermbg=none  ctermfg=red    guifg=#BE5046 guibg=#262626
-highlight! SLWarningMsg        ctermbg=none  ctermfg=yellow guifg=#E5C07B guibg=#262626
-highlight! SLNormalMsg         ctermbg=none  ctermfg=none  guifg=#61AFEF guibg=NONE
+highlight! SLErrorMsg        ctermbg=none  ctermfg=red    guifg=#BE5046 guibg=#262626
+highlight! SLWarningMsg      ctermbg=none  ctermfg=yellow guifg=#E5C07B guibg=#262626
+highlight! SLNormalMsg       ctermbg=none  ctermfg=none  guifg=#61AFEF guibg=NONE
 
 highlight! SLGitBranch       ctermbg=black  ctermfg=yellow guibg=#303030 guifg=#61AFEF
 highlight! SLGitBranchMaster ctermbg=red    ctermfg=white  guibg=#BE5046 guifg=#ffffff

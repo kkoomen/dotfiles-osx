@@ -6,5 +6,5 @@ pip_packages=(
 )
 
 pip3 install "${pip_packages[@]}"
-echo "Installed PIP modules."
+echo "Installed pip3 modules."
 exit 0

@@ -65,11 +65,8 @@
   path = .vim/bundle/ack.vim
   url = https://github.com/mileszs/ack.vim
 [submodule ".vim/bundle/onedark"]
-	path = .vim/bundle/onedark
-	url = https://github.com/joshdick/onedark.vim
-[submodule ".vim/bundle/vim-buftabline"]
-	path = .vim/bundle/vim-buftabline
-	url = https://github.com/ap/vim-buftabline
+  path = .vim/bundle/onedark
+  url = https://github.com/joshdick/onedark.vim
 [submodule ".vim/bundle/phpactor"]
-	path = .vim/bundle/phpactor
-	url = https://github.com/phpactor/phpactor
+  path = .vim/bundle/phpactor
+  url = https://github.com/phpactor/phpactor

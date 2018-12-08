@@ -109,6 +109,17 @@ function! statusline#currentfileinfo() abort
   return l:statusline
 endfunction
 
+function! statusline#bufferfilesize() abort
+  let l:bytes = line2byte('$') + len(getline('$'))
+  let l:sizes = ['B', 'KiB', 'MiB', 'GiB']
+  let l:i = 0
+  while l:bytes >= 1024
+      let l:bytes = l:bytes / 1024.0
+      let l:i += 1
+  endwhile
+  return ' ' . printf('%.1f%s', l:bytes, l:sizes[l:i]) . ' '
+endfunction
+
 " statusline#gitbranch
 "
 " @description
