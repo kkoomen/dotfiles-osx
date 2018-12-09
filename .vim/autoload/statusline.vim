@@ -49,6 +49,11 @@ endfunction
 " @return list
 function! statusline#filetypeinfo() abort
   let l:statusline = []
+
+  if get(g:, 'statusline_show_syntax_disabled', 0)
+    call add(l:statusline, '%#SLErrorMsg#syntax off%*')
+  endif
+
   if &fileencoding != "utf-8"
     call add(l:statusline, '%#SLWarningMsg#fileencoding:%{&fileencoding}%*')
   elseif &encoding != "utf-8"
@@ -109,8 +114,14 @@ function! statusline#currentfileinfo() abort
   return l:statusline
 endfunction
 
+" statusline#bufferfilesize
+"
+" @description
+"   Retrieves the current buffer file size in human readable format.
+" @return string
+"   A formatted version of the current buffer its filesize.
 function! statusline#bufferfilesize() abort
-  let l:bytes = line2byte('$') + len(getline('$'))
+  let l:bytes = getfsize(expand(@%))
   let l:sizes = ['B', 'KiB', 'MiB', 'GiB']
   let l:i = 0
   while l:bytes >= 1024

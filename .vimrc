@@ -201,10 +201,17 @@ function OnBufWritePre()
   %retab
 endfunction
 
-" Set the last edit position.
 function OnBufReadPost()
+  " Set the last edit position.
   if line("'\"") > 0 && line("'\"") <= line("$") |
     exe "normal! g`\"" |
+  endif
+
+  " Disable syntax highlighting for files larger than 1MB.
+  let l:bytes = getfsize(expand(@%))
+  if l:bytes > 1024 * 1024
+    set syntax=off
+    let g:statusline_show_syntax_disabled = 1
   endif
 endfunction
 
