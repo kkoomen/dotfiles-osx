@@ -20,6 +20,7 @@ FILES=(
   .weechat/buffers.conf
   .gitconfig
   .completions
+  Library/KeyBindings/DefaultKeyBinding.dict
 
   # Directories to symlink.
   .vim/
