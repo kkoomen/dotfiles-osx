@@ -260,8 +260,8 @@ sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.captive.c
 defaults write NSGlobalDomain NSDocumentSaveNewDocumentsToCloud -bool false
 
 # Disable Bonjour multicast advertisements.
-sudo defaults write /Library/Preferences/com.apple.mDNSResponder.plist NoMulticastAdvertisements -bool YES
-defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
+sudo defaults write /Library/Preferences/com.apple.mDNSResponder.plist NoMulticastAdvertisements -bool NO
+defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool false
 
 # Disable siri.
 sudo launchctl unload -w /System/Library/LaunchAgents/com.apple.Siri.agent.plist
