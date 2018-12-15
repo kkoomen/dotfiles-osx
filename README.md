@@ -29,82 +29,81 @@ symlinks from the repository.
 
 # Vim bundles
 
-- `YouCompleteMe`<br />
+### `YouCompleteMe`
 Wicked fast autocompletion engine.
 
-- `ale`<br />
+### `ale`
 A modern async linting engine with great configuration possibilities.
 
-- `auto-pairs`<br />
+### `auto-pairs`
 Insert or delete brackets, parenthesis and quotes in pairs.
 
-- `editorconfig-vim`<br />
+### `editorconfig-vim`
 Vim will adjust itself based on `.editorconfig` files.<br/>
 When opening a new buffer it will look in parent directories for a
 `.editorconfig` file and apply them to the local buffer as settings.
 
-- `emmet-vim`<br />
+### `emmet-vim`
 Use CSS selectors in HTML to easily create divs or quickly wrap selected text in
 tags.
 
-- `indentLine`<br />
+### `indentLine`
 Adds an indicator to display the indention levels.
 
-- `mru`<br />
+### `mru`
 An abbreviation of _Most Recently Used_ which opens a new window with buffers
 you have opened recently.
 
-- `nerdcommenter`<br />
+### `nerdcommenter`
 Adds shortcuts to comment within buffers easily.
 
-- `onedark`<br />
+### `onedark`
 A beautiful colorscheme.
 
-- `phpactor`<br />
+### `phpactor`
 A wicked fast, performant and improved alternative `omnifunc` completion for PHP.<br/>
-<br/>
+<br />
 Vim will freeze for roughly 5 seconds with the default omnifunc
 (`omnifunc=phpcomplete#CompletePHP`) when it has to read out a `tags` file that
 contains 10K or maybe even 100k+ lines of tags and provide some suggestions for
 the user. Fortunately PHPActor handles this very well and quickly.
 
-- `tabular`<br />
+### `tabular`
 Align text easily.
 
-- `ultisnips`<br />
-- `vim-snippets` <br />
+### `ultisnips` && `vim-snippets`
 These two will provide a lot of useful snippets and it allows custom
 user-defined snippets as well.
 
 
-- `vim-closetag`<br />
+### `vim-closetag`
 Close HTML tags automatically.
 
-- `vim-fugitive`<br />
+### `vim-fugitive`
 A git wrapper within Vim.
 
-- `vim-gitgutter`<br />
+### `vim-gitgutter`
 Shows a git diff in the gutter (sign column) and stages/undoes hunks.
 
-- `vim-gutentags`<br />
+### `vim-gutentags`
 Automatic and efficient tag generating made super easy.
 
-- `vim-multiple-cursors`<br />
+### `vim-multiple-cursors`
 Easily modify text using multiple cursors.
 
-- `vim-pasta`<br />
+### `vim-pasta`
 Re-indent code automatically when pasting.
 
-- `vim-polyglot`<br />
+### `vim-polyglot`
 A solid syntax language pack.
 
-- `vim-prettier`<br />
+### `vim-prettier`
 A vim wrapper for the command-line tool `prettier`.
 
-- `vim-surround`<br />
+### `vim-surround`
 Easily surround text or change surrounding around text.
 
-- `vim-template`<br />
+### `vim-template`
 Create templates for certain filetypes that will be set once you open a new
 buffer of that filetype.
 
