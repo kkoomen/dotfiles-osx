@@ -61,8 +61,8 @@ Adds shortcuts to comment within buffers easily.
 A beautiful colorscheme.
 
 - `phpactor`<br />
-A wicked fast, performant and improved alternative `omnifunc` completion for PHP.
-
+A wicked fast, performant and improved alternative `omnifunc` completion for PHP.<br/>
+<br/>
 Vim will freeze for roughly 5 seconds with the default omnifunc
 (`omnifunc=phpcomplete#CompletePHP`) when it has to read out a `tags` file that
 contains 10K or maybe even 100k+ lines of tags and provide some suggestions for
