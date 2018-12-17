@@ -50,3 +50,11 @@ git config --global color.diff.commit     "yellow"
 git config --global color.diff.old        "red"
 git config --global color.diff.new        "green"
 git config --global color.diff.whitespace "red reverse"
+
+# -----------------------------------------------------------------------------
+#
+# PHPActor
+#
+# -----------------------------------------------------------------------------
+cd $dotfiles/.vim/bundle/phpactor
+composer install
