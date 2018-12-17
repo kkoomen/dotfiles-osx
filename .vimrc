@@ -601,7 +601,7 @@ let g:visual_surround_characters = [
       \ '[', ']',
       \ '(', ')',
       \ '"', "`", "'",
-      \ '%',
+      \ '%', '-', '_', '*'
       \ ]
 for char in g:visual_surround_characters
   exe 'vmap ' . char . ' S' . char

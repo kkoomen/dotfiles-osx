@@ -34,6 +34,7 @@ TOUCH_FILES=(
 TOUCH_DIRS=(
   .ssh/
   .weechat/
+  Library/KeyBindings/
 )
 
 # :: SETUP PROCESS
