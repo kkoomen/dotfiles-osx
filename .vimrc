@@ -174,7 +174,6 @@ augroup javascript
   autocmd!
   autocmd BufRead,BufNewFile *.mdx,*.js,*.jsx,*.plop set filetype=javascript.jsx
   autocmd BufRead,BufNewFile *.tsx set filetype=typescript.jsx
-  autocmd BufRead,BufNewFile *.json set filetype=javascript
 augroup END
 
 augroup rc
@@ -186,6 +185,13 @@ augroup minified
   autocmd!
   autocmd BufRead,BufNewFile *.min.* set syntax=off
 augroup END
+
+augroup styles
+  autocmd!
+  autocmd BufRead,BufNewFile *.min.* set syntax=off
+  autocmd FileType python,json set tabstop=4 shiftwidth=4 softtabstop=4
+augroup END
+
 
 " }}}
 " Functions {{{

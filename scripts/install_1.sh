@@ -14,6 +14,7 @@ sudo -v
 # General settings                                                            #
 ###############################################################################
 
+# Set cursor speed.
 defaults write NSGlobalDomain KeyRepeat -int 1
 defaults write NSGlobalDomain InitialKeyRepeat -int 10
 echo "[Setting] A really fast keyrepeat is set."
