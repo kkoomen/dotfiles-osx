@@ -25,7 +25,7 @@ set infercase                     " Enable ignorecase for keyword completion.
 set diffopt=filler,iwhite         " Ignore whitespace as well when diffing.
 
 " Make our custom aliases available within a non-interactive vim.
-" ----------------------------------------------------------------------------
+" -----------------------------------------------------------------------------
 let $BASH_ENV = "~/.bash_aliases"
 
 " Enable Pathogen
@@ -649,5 +649,14 @@ let g:fzf_colors =
 " Plugins: EditorConfig {{{
 
 let g:EditorConfig_disable_rules = ['max_line_length']
+
+" }}}
+" Plugins: Readdir {{{
+
+" Disable netrw because we use https://github.com/ap/vim-readdir
+let loaded_netrwPlugin = 1
+
+" Show hidden files as well.
+let g:readdir_hidden = 2
 
 " }}}
