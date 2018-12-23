@@ -1,0 +1,259 @@
+" This file is an exact copy of my main .vimrc file and contains only native vim
+" stuff without all the plugins I normally use. This vimrc will be used on
+" servers where it is unneeded to use all the plugins, but having a basic setup
+" with correct indentation etc. is a must.
+
+" Basic setup {{{
+
+syntax on                         " Enable syntax highlighting.
+filetype plugin indent on         " Enable file detection.
+set hidden                        " Hide when switching buffers, don't unload.
+set mouse=a                       " Enable mouse in all modes.
+set synmaxcol=300                 " Amount of cols to enable syntax highlighting for.
+set nowrap                        " No word wrap.
+set number                        " Show line numbers.
+set nocursorline                  " Disable cursor line (makes vim very slow).
+set title                         " Use filename in window title.
+set ttyfast                       " Indicates a fast terminal connection.
+set lazyredraw                    " Will buffer screen updates instead of updating all the time.
+set clipboard=unnamed             " Enable clipboard.
+set autoread                      " Set to auto read when a file is changed from the outside.
+set nospell                       " Disable spellcheck on default.
+set so=7                          " Minimal number of screen lines to keep above and below the cursor when scrolling.
+set tw=80                         " Set a max text width.
+set nocompatible                  " Use vim defaults instead of vi.
+set backspace=indent,eol,start    " Set priorities for the backspace key.
+set foldenable foldmethod=marker  " Enable folding.
+set list listchars=tab:>>,trail:• " Make additional characters visible.
+set completeopt-=preview          " Disable scratch preview window.
+set infercase                     " Enable ignorecase for keyword completion.
+set diffopt=filler,iwhite         " Ignore whitespace as well when diffing.
+
+" }}}
+" Search {{{
+
+set ignorecase " Case insensitive.
+set incsearch  " Show match as search proceeds.
+set hlsearch   " Search highlighting.
+
+" }}}
+" Indentation {{{
+
+set autoindent    " Copy indent from previous line.
+set smartindent   " Auto indent when starting a new line.
+set expandtab     " Replace tabs with spaces.
+set shiftwidth=2  " Spaces for autoindenting.
+set smarttab      " <BS> removes shiftwidth worth of spaces.
+set softtabstop=2 " Spaces for editing, e.g. <Tab> or <BS>.
+set tabstop=2     " Spaces for <Tab>.
+set shiftround    " Round indent to multiple of 'shiftwidth'.
+
+" }}}
+" Encoding {{{
+
+set encoding=utf-8
+set termencoding=utf-8
+set fileencoding=utf-8
+
+" }}}
+" Wildmenu {{{
+
+set wildmenu
+set wildignorecase
+set wildmode=list:longest,full
+set wildignore+=.gitkeep
+set wildignore+=.hg,.git,.svn
+set wildignore+=*.exe,*.dll
+set wildignore+=*.swp,*.tmp
+set wildignore+=*.mp3,*.mp4,*.mkv
+set wildignore+=*.bmp,*.gif,*.ico,*.jpg,*.png
+set wildignore+=*.rar,*.zip,*.tar,*.tar.gz,*.tar.xz,*.tar.bz2
+set wildignore+=*.pdf,*.doc,*.docx,*.ppt,*.pptx
+
+" }}}
+" Custom Highlighting {{{
+
+" Only highlight the color column when the line is expanding the 80th column.
+highlight! ColorColumn ctermbg=red ctermfg=white guibg=#BE5046 guifg=#151515
+call matchadd('ColorColumn', '\%81v.', 100)
+
+highlight! Folded ctermfg=7 ctermbg=0
+
+" }}}
+" Omni completion {{{
+
+" Enable omni completion and enable more characters to be available within
+" autocomplete by appending to the 'iskeyword' variable.
+set iskeyword+=-
+
+" Set all the autocompleters.
+autocmd FileType * setlocal omnifunc=syntaxcomplete#Complete
+autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd FileType javascript,javascript.jsx,jsx,typescript,typescript.jsx setlocal omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType php setlocal omnifunc=phpcomplete#CompletePHP
+
+" Unset some complete options for optimised completion performance.
+" i   Scan the current and included files.
+set complete-=i
+
+" }}}
+" Undo history {{{
+
+set undofile                 " Save undo's after file closes.
+set undodir=~/.vim/undo,/tmp " Where to save undo histories.
+set undolevels=1000          " How many undos.
+set undoreload=10000         " Number of lines to save for undo.
+set history=1000             " Sets how many lines of history vim has to remember.
+
+" }}}
+" Swap files {{{
+
+set directory=~/.vim/swap,~/tmp,.
+set backupdir=~/.vim/backup,~/tmp,.
+set noswapfile
+set nobackup
+
+" }}}
+" Filetypes {{{
+
+augroup drupal
+  autocmd!
+  autocmd BufRead,BufNewFile *.blade.php set filetype=php
+  autocmd BufRead,BufNewFile *.theme set filetype=php
+  autocmd BufRead,BufNewFile *.module set filetype=php
+  autocmd BufRead,BufNewFile *.install set filetype=php
+  autocmd BufRead,BufNewFile *.test set filetype=php
+  autocmd BufRead,BufNewFile *.inc set filetype=php
+  autocmd BufRead,BufNewFile *.profile set filetype=php
+  autocmd BufRead,BufNewFile *.view set filetype=php
+  autocmd BufRead,BufNewFile *.drush set filetype=php
+augroup END
+
+augroup bash
+  autocmd!
+  autocmd BufNewFile,BufRead *.bash_* set ft=sh
+  autocmd BufNewFile,BufRead *.sh set ft=sh
+augroup END
+
+augroup rc
+  autocmd!
+  autocmd BufRead,BufNewFile .babelrc set filetype=json
+augroup END
+
+augroup minified
+  autocmd!
+  autocmd BufRead,BufNewFile *.min.* set syntax=off
+augroup END
+
+augroup styles
+  autocmd!
+  autocmd BufRead,BufNewFile *.min.* set syntax=off
+  autocmd FileType python,json set tabstop=4 shiftwidth=4 softtabstop=4
+augroup END
+
+
+" }}}
+" Functions {{{
+
+function OnBufWritePre()
+  " Delete trailing whitespaces at the end of each line.
+  %s/\s\+$//ge
+
+  " Delete empty lines at the end of a file.
+  v/\n*./d
+
+  " Convert remaining tabs to spaces.
+  %retab
+endfunction
+
+function OnBufReadPost()
+  " Set the last edit position.
+  if line("'\"") > 0 && line("'\"") <= line("$") |
+    exe "normal! g`\"" |
+  endif
+
+  " Disable syntax highlighting for files larger than 1MB.
+  let l:bytes = getfsize(expand(@%))
+  if l:bytes > 1024 * 1024
+    set syntax=off
+  endif
+endfunction
+
+" }}}
+" Hooks {{{
+
+autocmd BufWritePre * :call OnBufWritePre()
+autocmd BufReadPost * :call OnBufReadPost()
+
+" }}}
+" Mappings {{{
+
+" Leader key
+" ------------------------------------------------------------------------------
+let mapleader = "\<Space>"
+
+" buffers
+" ------------------------------------------------------------------------------
+nnoremap Z :bprev<CR>
+nnoremap X :bnext<CR>
+nnoremap Q :bw<CR>
+
+" Set pastetoggle
+" ------------------------------------------------------------------------------
+set pastetoggle=<F2>
+
+" Rot13
+" ------------------------------------------------------------------------------
+nnoremap <silent> <F6> ggg?G<CR>
+
+" Space bar un-highlights search
+" ------------------------------------------------------------------------------
+noremap <silent> <Space> :silent noh<Bar>echo<CR>
+
+" Allow saving of files as sudo when I forgot to start vim using sudo
+" ------------------------------------------------------------------------------
+cnoremap w!! w !sudo tee > /dev/null %
+
+" Spell check
+" ------------------------------------------------------------------------------
+nnoremap <leader>sc :setlocal spell!<CR>
+
+" Remove ^M
+" ------------------------------------------------------------------------------
+noremap <Leader>m :%s/\r//g<CR>
+
+" Map ; to : for simplicity & efficiency
+" ------------------------------------------------------------------------------
+noremap ; :
+
+" Selection
+" ------------------------------------------------------------------------------
+" Make selection stay after keypress.
+" ------------------------------------------------------------------------------
+noremap > >gv
+noremap < <gv
+
+" Typo's while saving
+" ------------------------------------------------------------------------------
+" Avoid saving files like ; and w; and other typos
+" ------------------------------------------------------------------------------
+cnoremap w; w
+cnoremap w: w
+cnoremap W; w
+cnoremap W: w
+cnoremap ww w
+cnoremap Ww w
+cnoremap wW w
+cnoremap WW w
+
+" }}}
+" Format options {{{
+
+" Format options have impact when formatting code with the 'gq' binding.
+" Default: crqlo
+"   o       Automatically insert the current comment leader after hitting 'o' or
+"           'O' in Normal mode.
+autocmd FileType * set fo-=crql
+
+" }}}
