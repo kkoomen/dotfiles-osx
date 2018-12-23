@@ -112,11 +112,13 @@ highlight! Tabline    guibg=#444444 guifg=#888888
 highlight! TablineSel guibg=#ABB2BF guifg=#444444
 highlight! MatchParen guibg=#606060 guifg=#abb2bf
 
+highlight! Folded ctermfg=8 ctermbg=0 guifg=#666666 guibg=#323232
+
 " }}}
 " Omni completion {{{
 
-"  Enable omni completion and enable more characters to be available within
-"  autocomplete by appending to the 'iskeyword' variable.
+" Enable omni completion and enable more characters to be available within
+" autocomplete by appending to the 'iskeyword' variable.
 set iskeyword+=-
 
 " Set all the autocompleters.
@@ -124,7 +126,7 @@ autocmd FileType * setlocal omnifunc=syntaxcomplete#Complete
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType javascript,javascript.jsx,jsx,typescript,typescript.jsx setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType php setlocal omnifunc=phpactor#Complete
+autocmd FileType php setlocal omnifunc=phpcomplete#CompletePHP
 
 " Unset some complete options for optimised completion performance.
 " i   Scan the current and included files.
@@ -150,7 +152,6 @@ set nobackup
 " }}}
 " Filetypes {{{
 
-" Drupal *.module and *.install files.
 augroup drupal
   autocmd!
   autocmd BufRead,BufNewFile *.blade.php set filetype=php
@@ -270,7 +271,7 @@ set pastetoggle=<F2>
 " ------------------------------------------------------------------------------
 nnoremap <silent> <F6> ggg?G<CR>
 
-" Space bar un-highligts search
+" Space bar un-highligths search
 " ------------------------------------------------------------------------------
 noremap <silent> <Space> :silent noh<Bar>echo<CR>
 

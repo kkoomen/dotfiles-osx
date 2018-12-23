@@ -10,8 +10,8 @@ esac
 
 # Base variable exporting.
 export EDITOR=vim
-export NODE_ENV="development"
-export BROWSER="firefox"
+export NODE_ENV=development
+export BROWSER=firefox
 
 # virtualenv
 export VIRTUAL_ENV_DISABLE_PROMPT=true
