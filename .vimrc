@@ -322,7 +322,7 @@ cnoremap WW w
 " Default: crqlo
 "   o       Automatically insert the current comment leader after hitting 'o' or
 "           'O' in Normal mode.
-autocmd FileType * set fo-=crql
+autocmd FileType * set fo=crql
 
 " }}}
 " Plugins: HTML Close Tag {{{
