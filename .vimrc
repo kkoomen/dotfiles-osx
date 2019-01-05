@@ -64,14 +64,6 @@ set fileencoding=utf-8
 set wildmenu
 set wildignorecase
 set wildmode=list:longest,full
-set wildignore+=.gitkeep
-set wildignore+=.hg,.git,.svn
-set wildignore+=*.exe,*.dll
-set wildignore+=*.swp,*.tmp
-set wildignore+=*.mp3,*.mp4,*.mkv
-set wildignore+=*.bmp,*.gif,*.ico,*.jpg,*.png
-set wildignore+=*.rar,*.zip,*.tar,*.tar.gz,*.tar.xz,*.tar.bz2
-set wildignore+=*.pdf,*.doc,*.docx,*.ppt,*.pptx
 
 " }}}
 " Color scheme {{{
@@ -330,7 +322,7 @@ cnoremap WW w
 " Default: crqlo
 "   o       Automatically insert the current comment leader after hitting 'o' or
 "           'O' in Normal mode.
-autocmd FileType * set fo-=crql
+autocmd FileType * set fo=crql
 
 " }}}
 " Plugins: HTML Close Tag {{{
@@ -565,8 +557,6 @@ let g:gutentags_ctags_exclude = [
       \ 'vendor',
       \ '*.min.*',
       \ '*.map',
-      \ '*.swp',
-      \ '*.swo',
       \ '*.bak',
       \ '*.zip',
       \ '*.pyc',
@@ -580,7 +570,13 @@ let g:gutentags_ctags_exclude = [
       \ '*.pdb',
       \ 'tags*',
       \ 'cscope.*',
-      \ '*.tar.*',
+      \ '*.{exe,dll}',
+      \ '*.{mp3,ogg,flac}',
+      \ '*.{swp,swo}',
+      \ '*.{bmp,gif,ico,jpg,png}',
+      \ '*.{bmp,gif,ico,jpg,png}',
+      \ '*.{rar,zip,tar,tar.gz,tar.xz,tar.bz2}',
+      \ '*.{pdf,doc,docx,ppt,pptx}',
       \ ]
 
 " }}}
