@@ -10,7 +10,7 @@ alias calc="bc -l"
 alias cb="pbcopy"
 alias yt-dl='youtube-dl --extract-audio --audio-format mp3 -o "%(title)s.%(ext)s"'
 alias make-tar="tar -czvf"
-alias rsync="rsync -azh -P --stats --timeout=120 --update"
+alias rsync="rsync -azh -P --stats --timeout=120"
 
 # NETWORK
 alias xip="curl icanhazip.com"

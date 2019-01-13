@@ -4,7 +4,7 @@ syntax on                         " Enable syntax highlighting.
 filetype plugin indent on         " Enable file detection.
 set hidden                        " Hide when switching buffers, don't unload.
 set mouse=a                       " Enable mouse in all modes.
-set synmaxcol=300                 " Amount of cols to enable syntax highlighting for.
+set synmaxcol=9999                " Amount of cols to enable syntax highlighting for.
 set nowrap                        " No word wrap.
 set number                        " Show line numbers.
 set nocursorline                  " Disable cursor line (makes vim very slow).
