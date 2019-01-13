@@ -37,6 +37,9 @@ brew analytics off
 export PATH="/usr/local/bin:$PATH"
 
 cask_apps=(
+  # Documents
+  libreoffice
+
   # Terminals
   iterm2
 

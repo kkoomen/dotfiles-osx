@@ -165,7 +165,7 @@ augroup END
 
 augroup javascript
   autocmd!
-  autocmd BufRead,BufNewFile *.mdx,*.js,*.jsx,*.plop set filetype=javascript.jsx
+  autocmd BufRead,BufNewFile *.mdx,*.plop set filetype=javascript
   autocmd BufRead,BufNewFile *.tsx set filetype=typescript.jsx
 augroup END
 
