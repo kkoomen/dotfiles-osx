@@ -624,6 +624,10 @@ set rtp+=/usr/local/opt/fzf
 " Set a mapping to toggle FZF
 nnoremap <C-p> :FZF<CR>
 
+" fzf.vim plugin mappings
+noremap <leader>b :BCommits<CR>
+noremap <leader>c :Commits<CR>
+
 " let g:fzf_layout = { 'window': 'enew' }
 let g:fzf_layout = {'down': '30%'}
 let g:fzf_tags_command = 'ctags --extra=+f -R'
