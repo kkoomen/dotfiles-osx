@@ -182,7 +182,7 @@ augroup END
 augroup styles
   autocmd!
   autocmd BufRead,BufNewFile *.min.* set syntax=off
-  autocmd FileType python,json set tabstop=4 shiftwidth=4 softtabstop=4
+  autocmd FileType python set tabstop=4 shiftwidth=4 softtabstop=4
 augroup END
 
 
