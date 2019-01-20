@@ -1,7 +1,3 @@
-# ~/.bashrc: executed by bash(1) for non-login shells.
-# See /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
-# for examples.
-
 # If not running interactively, don't do anything.
 case $- in
     *i*) ;;
@@ -18,7 +14,7 @@ export VIRTUAL_ENV_DISABLE_PROMPT=true
 
 # FZF
 export FZF_DEFAULT_OPTS="--exact"
-export FZF_DEFAULT_COMMAND='(git ls-tree -r --name-only HEAD || ag -g "") 2> /dev/null'
+export FZF_DEFAULT_COMMAND='ag -g ""'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 
