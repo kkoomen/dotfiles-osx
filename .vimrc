@@ -451,8 +451,8 @@ let g:ale_linters_explicit = 1
 let g:ale_linters = {
       \ 'python': ['pycodestyle'],
       \ 'php': ['phpcs'],
-      \ 'javascript': ['stylelint', 'eslint'],
-      \ 'javascript.jsx': ['stylelint', 'eslint'],
+      \ 'javascript': ['eslint', 'stylelint'],
+      \ 'javascript.jsx': ['eslint', 'stylelint'],
       \ 'typescript': ['tslint'],
       \ 'typescript.jsx': ['tslint'],
       \ }

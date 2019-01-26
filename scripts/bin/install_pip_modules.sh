@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 pip_packages=(
+  subliminal
   omnitagger
   youtube-dl
 )
