@@ -452,6 +452,7 @@ let g:ale_linters_explicit = 1
 let g:ale_linters = {
       \ 'python': ['pycodestyle'],
       \ 'php': ['phpcs'],
+      \ 'go': ['gometalinter', 'gofmt', 'goimports'],
       \ 'javascript': ['stylelint', 'eslint'],
       \ 'javascript.jsx': ['stylelint', 'eslint'],
       \ 'typescript': ['tslint'],
@@ -668,5 +669,6 @@ let g:go_template_autocreate = 0
 let g:go_fmt_autosave = 0
 let g:go_mod_fmt_autosave = 0
 let g:go_asmfmt_autosave = 0
+let g:go_metalinter_autosave = 0
 
 " }}}
