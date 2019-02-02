@@ -114,7 +114,7 @@ highlight! Folded ctermfg=8 ctermbg=0 guifg=#666666 guibg=#323232
 set iskeyword+=-
 
 " Set all the autocompleters.
-autocmd FileType * setlocal omnifunc=syntaxcomplete#Complete
+" autocmd FileType * setlocal omnifunc=syntaxcomplete#Complete
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType javascript,javascript.jsx,jsx,typescript,typescript.jsx setlocal omnifunc=javascriptcomplete#CompleteJS
@@ -182,7 +182,8 @@ augroup END
 augroup styles
   autocmd!
   autocmd BufRead,BufNewFile *.min.* set syntax=off
-  autocmd FileType python,json set tabstop=4 shiftwidth=4 softtabstop=4
+  autocmd FileType python set tabstop=4 shiftwidth=4 softtabstop=4
+  autocmd FileType go set tabstop=2 shiftwidth=2 softtabstop=2 expandtab
 augroup END
 
 
@@ -659,5 +660,13 @@ let loaded_netrwPlugin = 1
 
 " Show hidden files as well.
 let g:readdir_hidden = 2
+
+" }}}
+" Plugins: Vim-GO {{{
+
+let g:go_template_autocreate = 0
+let g:go_fmt_autosave = 0
+let g:go_mod_fmt_autosave = 0
+let g:go_asmfmt_autosave = 0
 
 " }}}

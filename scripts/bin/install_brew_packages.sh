@@ -5,6 +5,11 @@
 # This installs some of the common dependencies needed (or at least desired)
 # using Homebrew.
 
+
+# Setup GOLANG paths
+test -d "${GOPATH}" || mkdir "${GOPATH}"
+test -d "${GOPATH}/src/github.com" || mkdir -p "${GOPATH}/src/github.com"
+
 # Check for Homebrew
 if test ! $(which brew)
 then
@@ -89,6 +94,7 @@ apps=(
   openssl
   composer
   curlftpfs
+  go
   typescript
 
   # Terminal

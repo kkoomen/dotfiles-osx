@@ -54,4 +54,9 @@ PS1_NORMAL="┌─ \w\[$(tput setaf 1)\]\[$(tput setaf 3)\]\$(git-branch)\[$(tpu
 PS1_ERROR="$(tput setaf 1)┌─ $(tput setaf 7)\w\[$(tput setaf 1)\]\[$(tput setaf 3)\]\$(git-branch)\[$(tput setaf 7)\]\$(get-virtualenv)\n\[$(tput setaf 1)\]└──── ➜  \[$(tput setaf 7)\]"
 export PS1="\$(if [[ \$? == 0 ]]; then echo \"$PS1_NORMAL\"; else echo \"$PS1_ERROR\"; fi)"
 
-export PATH="$PATH:$HOME/Library/Python/3.6/bin"
+# GOLANG
+export GOPATH="/tech/go"
+export GOROOT="$(brew --prefix golang)/libexec"
+
+# PATH
+export PATH="$PATH:${GOPATH}/bin:${GOROOT}/bin"

@@ -76,3 +76,6 @@
 [submodule ".vim/bundle/fzf.vim"]
   path = .vim/bundle/fzf.vim
   url = https://github.com/junegunn/fzf.vim
+[submodule ".vim/bundle/vim-go"]
+	path = .vim/bundle/vim-go
+	url = https://github.com/fatih/vim-go
