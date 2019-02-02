@@ -183,7 +183,6 @@ augroup styles
   autocmd!
   autocmd BufRead,BufNewFile *.min.* set syntax=off
   autocmd FileType python set tabstop=4 shiftwidth=4 softtabstop=4
-  autocmd FileType go set tabstop=2 shiftwidth=2 softtabstop=2 expandtab
 augroup END
 
 
@@ -453,8 +452,8 @@ let g:ale_linters = {
       \ 'python': ['pycodestyle'],
       \ 'php': ['phpcs'],
       \ 'go': ['gometalinter', 'gofmt', 'goimports'],
-      \ 'javascript': ['stylelint', 'eslint'],
-      \ 'javascript.jsx': ['stylelint', 'eslint'],
+      \ 'javascript': ['eslint', 'stylelint'],
+      \ 'javascript.jsx': ['eslint', 'stylelint'],
       \ 'typescript': ['tslint'],
       \ 'typescript.jsx': ['tslint'],
       \ }
