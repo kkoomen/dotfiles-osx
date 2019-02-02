@@ -183,6 +183,7 @@ augroup styles
   autocmd!
   autocmd BufRead,BufNewFile *.min.* set syntax=off
   autocmd FileType python set tabstop=4 shiftwidth=4 softtabstop=4
+  autocmd FileType go set tabstop=2 shiftwidth=2 softtabstop=2 expandtab
 augroup END
 
 
