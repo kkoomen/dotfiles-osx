@@ -76,9 +76,6 @@
 [submodule ".vim/bundle/vim-go"]
   path = .vim/bundle/vim-go
   url = https://github.com/fatih/vim-go
-[submodule ".vim/bundle/vim-endwise"]
-  path = .vim/bundle/vim-endwise
-  url = https://github.com/tpope/vim-endwise.git
 [submodule ".vim/bundle/delimitMate"]
   path = .vim/bundle/delimitMate
   url = https://github.com/Raimondi/delimitMate
