@@ -76,3 +76,6 @@
 [submodule ".vim/bundle/delimitMate"]
   path = .vim/bundle/delimitMate
   url = https://github.com/Raimondi/delimitMate
+[submodule ".vim/bundle/vim-readdir"]
+	path = .vim/bundle/vim-readdir
+	url = https://github.com/kkoomen/vim-readdir.git
