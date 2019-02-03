@@ -183,7 +183,7 @@ augroup styles
   autocmd!
   autocmd BufRead,BufNewFile *.min.* set syntax=off
   autocmd FileType python set tabstop=4 shiftwidth=4 softtabstop=4
-  autocmd FileType go set tabstop=2 shiftwidth=2 softtabstop=2 expandtab
+  autocmd FileType go set tabstop=2 shiftwidth=2 softtabstop=2 expandtab formatoptions+=t
 augroup END
 
 
@@ -331,9 +331,15 @@ autocmd FileType * set fo=crql
 let g:closetag_filenames = "*.html,*.xhtml,*.phtml,*.tpl,*.twig,*.htm,*.php,*.pug,*.jsx,*.js,*.mdx,*.plop,*.tsx,*.ts"
 
 " }}}
-" Plugins: auto-pairs {{{
+" Plugins: delimitMate {{{
 
-let g:AutoPairsMultilineClose = 0
+let delimitMate_nesting_quotes = ['"','`', "'"]
+let delimitMate_balance_matchpairs = 1
+let delimitMate_excluded_regions = ""
+let delimitMate_expand_cr = 1
+let delimitMate_expand_space = 1
+let delimitMate_expand_inside_quotes = 1
+let delimitMate_jump_expansion = 1
 
 " }}}
 " Plugins: Templates {{{
@@ -407,7 +413,6 @@ let g:UltiSnipsListSnippets="<c-e>"
 
 let g:ycm_key_list_select_completion=['<Down>']
 let g:ycm_key_list_previous_completion=['<Up>']
-let g:ycm_key_list_stop_completion = ['<Enter>']
 let g:ycm_max_num_identifier_candidates = 6
 let g:ycm_collect_identifiers_from_tags_files = 1
 let g:ycm_collect_identifiers_from_comments_and_strings = 1
