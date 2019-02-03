@@ -67,9 +67,6 @@
 [submodule ".vim/bundle/phpactor"]
   path = .vim/bundle/phpactor
   url = https://github.com/phpactor/phpactor
-[submodule ".vim/bundle/vim-readdir"]
-  path = .vim/bundle/vim-readdir
-  url = https://github.com/ap/vim-readdir
 [submodule ".vim/bundle/fzf.vim"]
   path = .vim/bundle/fzf.vim
   url = https://github.com/junegunn/fzf.vim

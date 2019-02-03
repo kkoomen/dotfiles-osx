@@ -215,7 +215,7 @@ function OnBufReadPost()
   endif
 endfunction
 
-function! BufferPathCommands()
+function! OnBufRead()
   " Set the absolute path of the current buffer to the system clipboard.
   " 'BP' refers to 'Buffer Path'.
   command! BP :let @+=expand('%:p') | echo @*
@@ -230,9 +230,9 @@ endfunction
 " }}}
 " Hooks {{{
 
-autocmd BufWritePre *        :call OnBufWritePre()
-autocmd BufReadPost *        :call OnBufReadPost()
-autocmd BufRead,BufNewFile * :call BufferPathCommands()
+" autocmd BufWritePre *        :call OnBufWritePre()
+" autocmd BufReadPost *        :call OnBufReadPost()
+autocmd BufRead,BufNewFile * :call OnBufRead()
 
 " }}}
 " Mappings {{{
