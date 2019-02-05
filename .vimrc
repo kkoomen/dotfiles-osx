@@ -241,6 +241,17 @@ autocmd BufRead,BufNewFile * :call OnBufRead()
 " ------------------------------------------------------------------------------
 let mapleader = "\<Space>"
 
+" delimitMate and YouCompleteMe both bind a function to <BS> and thus conflict
+" with each other. Since YouCompleteMe is using `nore` to map its function,
+" delimitMate is not able to re-map. To fix this we have to remap <BS> to <C-H>,
+" which outputs ^H, being the actual backspace-character. This does work,
+" because YouCompleteMe is using <C-h>, while iTerm required <C-H>.
+"
+" see: https://github.com/Raimondi/delimitMate/issues/42#issuecomment-523077
+" ------------------------------------------------------------------------------
+" map <BS> <C-H>
+" fixdel
+
 " buffers
 " ------------------------------------------------------------------------------
 nnoremap Z :bprev<CR>
