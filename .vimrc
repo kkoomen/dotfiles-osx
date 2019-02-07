@@ -19,7 +19,7 @@ set tw=80                         " Set a max text width.
 set nocompatible                  " Use vim defaults instead of vi.
 set backspace=indent,eol,start    " Set priorities for the backspace key.
 set foldenable foldmethod=marker  " Enable folding.
-set list listchars=tab:>>,trail:• " Make additional characters visible.
+set list listchars=tab:~~,trail:• " Make additional characters visible.
 set completeopt-=preview          " Disable scratch preview window.
 set infercase                     " Enable ignorecase for keyword completion.
 set diffopt=filler,iwhite         " Ignore whitespace as well when diffing.
@@ -48,7 +48,7 @@ set expandtab     " Replace tabs with spaces.
 set shiftwidth=2  " Spaces for autoindenting.
 set smarttab      " <BS> removes shiftwidth worth of spaces.
 set softtabstop=2 " Spaces for editing, e.g. <Tab> or <BS>.
-set tabstop=2     " Spaces for <Tab>.
+set tabstop=2     " Amount of spaces for <Tab>.
 set shiftround    " Round indent to multiple of 'shiftwidth'.
 
 " }}}
@@ -183,7 +183,7 @@ augroup styles
   autocmd!
   autocmd BufRead,BufNewFile *.min.* set syntax=off
   autocmd FileType python set tabstop=4 shiftwidth=4 softtabstop=4
-  autocmd FileType go set tabstop=2 shiftwidth=2 softtabstop=2 expandtab formatoptions+=t
+  autocmd FileType go set formatoptions+=t
 augroup END
 
 
@@ -671,9 +671,9 @@ let g:readdir_hidden = 2
 " Plugins: Vim-GO {{{
 
 let g:go_template_autocreate = 0
-let g:go_fmt_autosave = 0
-let g:go_mod_fmt_autosave = 0
-let g:go_asmfmt_autosave = 0
-let g:go_metalinter_autosave = 0
+" let g:go_fmt_autosave = 0
+" let g:go_mod_fmt_autosave = 0
+" let g:go_asmfmt_autosave = 0
+" let g:go_metalinter_autosave = 0
 
 " }}}
