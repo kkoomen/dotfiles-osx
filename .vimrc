@@ -331,15 +331,27 @@ autocmd FileType * set fo=crql
 let g:closetag_filenames = "*.html,*.xhtml,*.phtml,*.tpl,*.twig,*.htm,*.php,*.pug,*.jsx,*.js,*.mdx,*.plop,*.tsx,*.ts"
 
 " }}}
-" Plugins: delimitMate {{{
+" Plugins: Pear Tree {{{
 
-let delimitMate_nesting_quotes = ['"','`', "'"]
-let delimitMate_balance_matchpairs = 1
-let delimitMate_excluded_regions = ""
-let delimitMate_expand_cr = 1
-let delimitMate_expand_space = 1
-let delimitMate_expand_inside_quotes = 1
-let delimitMate_jump_expansion = 1
+" Set pairs to be closed automatically.
+let g:pear_tree_pairs = {
+      \ '(': {'closer': ')'},
+      \ '[': {'closer': ']'},
+      \ '{': {'closer': '}'},
+      \ "'": {'closer': "'"},
+      \ '"': {'closer': '"'},
+      \ '`': {'closer': '`'},
+      \ '"""': {'closer': '"""'},
+      \ "'''": {'closer': "'''"}
+      \ }
+
+" Enable smart pairing.
+let g:pear_tree_smart_openers = 1
+let g:pear_tree_smart_closers = 1
+let g:pear_tree_smart_backspace = 1
+
+" Disable dot-repeatable functionality.
+let g:pear_tree_repeatable_expand = 0
 
 " }}}
 " Plugins: Templates {{{
