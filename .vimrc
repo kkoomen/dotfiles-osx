@@ -19,7 +19,7 @@ set tw=80                         " Set a max text width.
 set nocompatible                  " Use vim defaults instead of vi.
 set backspace=indent,eol,start    " Set priorities for the backspace key.
 set foldenable foldmethod=marker  " Enable folding.
-set list listchars=tab:~~,trail:• " Make additional characters visible.
+set list listchars=tab:>>,trail:• " Make additional characters visible.
 set completeopt-=preview          " Disable scratch preview window.
 set infercase                     " Enable ignorecase for keyword completion.
 set diffopt=filler,iwhite         " Ignore whitespace as well when diffing.
@@ -183,7 +183,7 @@ augroup styles
   autocmd!
   autocmd BufRead,BufNewFile *.min.* set syntax=off
   autocmd FileType python set tabstop=4 shiftwidth=4 softtabstop=4
-  autocmd FileType go set formatoptions+=t
+  autocmd FileType go set nolist
 augroup END
 
 
@@ -230,8 +230,8 @@ endfunction
 " }}}
 " Hooks {{{
 
-" autocmd BufWritePre *        :call OnBufWritePre()
-" autocmd BufReadPost *        :call OnBufReadPost()
+autocmd BufWritePre *        :call OnBufWritePre()
+autocmd BufReadPost *        :call OnBufReadPost()
 autocmd BufRead,BufNewFile * :call OnBufRead()
 
 " }}}
