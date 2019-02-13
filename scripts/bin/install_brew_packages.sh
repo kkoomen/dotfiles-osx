@@ -83,6 +83,7 @@ apps=(
   jpeg
 
   # Developement
+  nvm
   node
   yarn
   php71

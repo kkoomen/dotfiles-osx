@@ -41,10 +41,12 @@ shopt -s checkwinsize
 [[ -f ~/.bash_functions ]] && . ~/.bash_functions
 [[ -f ~/.bash_private ]] && . ~/.bash_private
 [[ -f ~/.fzf.bash ]] && . ~/.fzf.bash
+[[ -s /usr/local/opt/nvm/nvm.sh ]] && . $(brew --prefix nvm)/nvm.sh
 
 # Completions
 [[ -d ~/.completions ]] && . ~/.completions/* > /dev/null 2>&1
 [[ -f /usr/local/etc/bash_completion ]] && . /usr/local/etc/bash_completion > /dev/null 2>&1
+[[ -s /usr/local/opt/nvm/etc/bash_completion ]] && . /usr/local/opt/nvm/etc/bash_completion 
 
 # Autocorrect typos in path names when using "cd".
 shopt -s cdspell
@@ -58,5 +60,8 @@ export PS1="\$(if [[ \$? == 0 ]]; then echo \"$PS1_NORMAL\"; else echo \"$PS1_ER
 export GOPATH="/tech/go"
 export GOROOT="$(brew --prefix golang)/libexec"
 
-# PATH
+# NVM
+export NVM_DIR="$HOME/.nvm"
+
+# PATH 
 export PATH="$PATH:${GOPATH}/bin:${GOROOT}/bin"
