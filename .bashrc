@@ -59,4 +59,4 @@ export GOPATH="/tech/go"
 export GOROOT="$(brew --prefix golang)/libexec"
 
 # PATH
-export PATH="$PATH:${GOPATH}/bin:${GOROOT}/bin"
+export PATH="$PATH:$GOPATH/bin:$GOROOT/bin"
