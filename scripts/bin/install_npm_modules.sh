@@ -26,6 +26,9 @@ npm_packages=(
   autoprefixer-cli
 )
 
+# Setup NVM
+[[ ! -d ~/.nvm ]] && mkdir ~/.nvm
+
 npm install -g "${npm_packages[@]}"
 echo "Installed NPM modules."
 exit 0

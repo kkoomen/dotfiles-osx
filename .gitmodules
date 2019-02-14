@@ -74,8 +74,8 @@
   path = .vim/bundle/vim-go
   url = https://github.com/fatih/vim-go
 [submodule ".vim/bundle/vim-readdir"]
-	path = .vim/bundle/vim-readdir
-	url = https://github.com/kkoomen/vim-readdir.git
-[submodule ".vim/bundle/pear-tree"]
-	path = .vim/bundle/pear-tree
-	url = https://github.com/tmsvg/pear-tree
+  path = .vim/bundle/vim-readdir
+  url = https://github.com/kkoomen/vim-readdir.git
+[submodule ".vim/bundle/auto-pairs-gentle"]
+	path = .vim/bundle/auto-pairs-gentle
+	url = https://github.com/vim-scripts/auto-pairs-gentle
