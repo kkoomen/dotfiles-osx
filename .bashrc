@@ -8,6 +8,7 @@ esac
 export EDITOR=vim
 export NODE_ENV=development
 export BROWSER=firefox
+export BREW_PREFIX=$(brew --prefix)
 
 # virtualenv
 export VIRTUAL_ENV_DISABLE_PROMPT=true
@@ -16,7 +17,6 @@ export VIRTUAL_ENV_DISABLE_PROMPT=true
 export FZF_DEFAULT_OPTS="--exact"
 export FZF_DEFAULT_COMMAND='ag -g ""'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-
 
 # Don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
@@ -41,12 +41,11 @@ shopt -s checkwinsize
 [[ -f ~/.bash_functions ]] && . ~/.bash_functions
 [[ -f ~/.bash_private ]] && . ~/.bash_private
 [[ -f ~/.fzf.bash ]] && . ~/.fzf.bash
-[[ -s /usr/local/opt/nvm/nvm.sh ]] && . $(brew --prefix nvm)/nvm.sh
+[[ -s /usr/local/opt/nvm/nvm.sh ]] && . $BREW_PREFIX/opt/nvm/nvm.sh
 
 # Completions
 [[ -d ~/.completions ]] && . ~/.completions/* > /dev/null 2>&1
 [[ -f /usr/local/etc/bash_completion ]] && . /usr/local/etc/bash_completion > /dev/null 2>&1
-[[ -s /usr/local/opt/nvm/etc/bash_completion ]] && . /usr/local/opt/nvm/etc/bash_completion 
 
 # Autocorrect typos in path names when using "cd".
 shopt -s cdspell
@@ -58,10 +57,10 @@ export PS1="\$(if [[ \$? == 0 ]]; then echo \"$PS1_NORMAL\"; else echo \"$PS1_ER
 
 # GOLANG
 export GOPATH="/tech/go"
-export GOROOT="$(brew --prefix golang)/libexec"
+export GOROOT="$BREW_PREFIX/opt/go/libexec"
 
 # NVM
 export NVM_DIR="$HOME/.nvm"
 
-# PATH 
-export PATH="$PATH:${GOPATH}/bin:${GOROOT}/bin"
+# PATH
+export PATH="/usr/local/sbin:$PATH:$GOPATH/bin:$GOROOT/bin"
