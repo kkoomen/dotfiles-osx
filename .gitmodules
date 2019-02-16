@@ -76,6 +76,9 @@
 [submodule ".vim/bundle/vim-readdir"]
   path = .vim/bundle/vim-readdir
   url = https://github.com/kkoomen/vim-readdir.git
-[submodule ".vim/bundle/auto-pairs"]
-	path = .vim/bundle/auto-pairs
-	url = https://github.com/jiangmiao/auto-pairs
+[submodule ".vim/bundle/vim-endwise"]
+	path = .vim/bundle/vim-endwise
+	url = https://github.com/tpope/vim-endwise
+[submodule ".vim/bundle/lexima"]
+	path = .vim/bundle/lexima
+	url = https://github.com/cohama/lexima.vim
