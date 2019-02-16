@@ -76,6 +76,6 @@
 [submodule ".vim/bundle/vim-readdir"]
   path = .vim/bundle/vim-readdir
   url = https://github.com/kkoomen/vim-readdir.git
-[submodule ".vim/bundle/auto-pairs-gentle"]
-	path = .vim/bundle/auto-pairs-gentle
-	url = https://github.com/vim-scripts/auto-pairs-gentle
+[submodule ".vim/bundle/auto-pairs"]
+	path = .vim/bundle/auto-pairs
+	url = https://github.com/jiangmiao/auto-pairs
