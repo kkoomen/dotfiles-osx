@@ -74,6 +74,3 @@
   path = .vim/bundle/auto-pairs
   url = https://github.com/kkoomen/auto-pairs.git
   branch = feature/equal-pair-detection
-[submodule ".vim/bundle/vim-illuminate"]
-	path = .vim/bundle/vim-illuminate
-	url = https://github.com/RRethy/vim-illuminate

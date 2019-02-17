@@ -192,19 +192,19 @@ augroup END
 
 function OnBufWritePre()
   " Delete trailing whitespaces at the end of each line.
-  %s/\s\+$//ge
+  execute('%s/\s\+$//ge')
 
   " Delete empty lines at the end of a file.
-  v/\n*./d
+  execute('v/\n*./d')
 
   " Convert remaining tabs to spaces.
-  %retab
+  execute('%retab')
 endfunction
 
 function OnBufReadPost()
   " Set the last edit position.
   if line("'\"") > 0 && line("'\"") <= line("$") |
-    exe "normal! g`\"" |
+    execute("normal! g`\"") |
   endif
 
   " Disable syntax highlighting for files larger than 1MB.
@@ -216,6 +216,9 @@ function OnBufReadPost()
 endfunction
 
 function! OnBufRead()
+  " Disable syntax highlighting for matching parenthesis.
+  execute('NoMatchParen')
+
   " Set the absolute path of the current buffer to the system clipboard.
   " 'BP' refers to 'Buffer Path'.
   command! BP :let @+=expand('%:p') | echo @*
@@ -225,6 +228,20 @@ function! OnBufRead()
   if exists('g:loaded_fugitive')
     command! GBP :let @+=substitute(expand('%:p'), substitute(FugitiveExtractGitDir(expand('%:p')), '\/\.git\/modules', '', 'g'), '', 'g') | echo @*
   endif
+endfunction
+
+function! Count(word)
+  " Because of the substitution the cursor is moved when there are matches and
+  " thus we have to preserve the cursor position.
+  let cpos = [line('.'), col('.')]
+  try
+    let result = execute('%s/\V' . a:word . '//gn')
+    call cursor(cpos)
+    let occurences = trim(strpart(result, 0, stridx(result, " ")))
+    return occurences
+  catch
+    return 0
+  endtry
 endfunction
 
 " }}}
@@ -603,7 +620,7 @@ let g:visual_surround_characters = [
       \ '%', '-', '_', '*'
       \ ]
 for char in g:visual_surround_characters
-  exe 'vmap ' . char . ' S' . char
+  execute('vmap ' . char . ' S' . char)
 endfor
 
 " }}}
