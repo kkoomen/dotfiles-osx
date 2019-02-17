@@ -216,9 +216,6 @@ function OnBufReadPost()
 endfunction
 
 function! OnBufRead()
-  " Disable syntax highlighting for matching parenthesis.
-  execute('NoMatchParen')
-
   " Set the absolute path of the current buffer to the system clipboard.
   " 'BP' refers to 'Buffer Path'.
   command! BP :let @+=expand('%:p') | echo @*
@@ -244,12 +241,18 @@ function! Count(word)
   endtry
 endfunction
 
+function! OnVimEnter()
+  " Disable syntax highlighting for matching parenthesis.
+  execute('NoMatchParen')
+endfunction
+
 " }}}
 " Hooks {{{
 
 autocmd BufWritePre *        :call OnBufWritePre()
 autocmd BufReadPost *        :call OnBufReadPost()
 autocmd BufRead,BufNewFile * :call OnBufRead()
+autocmd VimEnter *           :call OnVimEnter()
 
 " }}}
 " Mappings {{{
