@@ -7,9 +7,6 @@
 [submodule ".vim/bundle/tabular"]
   path = .vim/bundle/tabular
   url = https://github.com/godlygeek/tabular
-[submodule ".vim/bundle/vim-javascript"]
-  path = .vim/bundle/vim-javascript
-  url = https://github.com/pangloss/vim-javascript
 [submodule ".vim/bundle/vim-snippets"]
   path = .vim/bundle/vim-snippets
   url = https://github.com/honza/vim-snippets
@@ -31,9 +28,6 @@
 [submodule ".vim/bundle/ale"]
   path = .vim/bundle/ale
   url = https://github.com/w0rp/ale
-[submodule ".vim/bundle/vim-prettier"]
-  path = .vim/bundle/vim-prettier
-  url = https://github.com/prettier/vim-prettier
 [submodule ".vim/bundle/YouCompleteMe"]
   path = .vim/bundle/YouCompleteMe
   url = https://github.com/Valloric/YouCompleteMe
@@ -46,9 +40,6 @@
 [submodule ".vim/bundle/vim-polyglot"]
   path = .vim/bundle/vim-polyglot
   url = https://github.com/sheerun/vim-polyglot
-[submodule ".vim/bundle/vim-multiple-cursors"]
-  path = .vim/bundle/vim-multiple-cursors
-  url = https://github.com/terryma/vim-multiple-cursors
 [submodule ".vim/bundle/vim-surround"]
   path = .vim/bundle/vim-surround
   url = git@github.com:tpope/vim-surround
@@ -75,10 +66,11 @@
   url = https://github.com/fatih/vim-go
 [submodule ".vim/bundle/vim-readdir"]
   path = .vim/bundle/vim-readdir
-  url = https://github.com/kkoomen/vim-readdir.git
+  url = https://github.com/kkoomen/vim-readdir
 [submodule ".vim/bundle/vim-endwise"]
-	path = .vim/bundle/vim-endwise
-	url = https://github.com/tpope/vim-endwise
-[submodule ".vim/bundle/lexima"]
-	path = .vim/bundle/lexima
-	url = https://github.com/cohama/lexima.vim
+  path = .vim/bundle/vim-endwise
+  url = https://github.com/tpope/vim-endwise
+[submodule ".vim/bundle/auto-pairs"]
+  path = .vim/bundle/auto-pairs
+  url = git@github.com/kkoomen/auto-pairs.git
+  branch = feature/equal-pair-detection
