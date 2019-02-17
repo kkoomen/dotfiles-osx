@@ -111,7 +111,7 @@ highlight! Folded ctermfg=8 ctermbg=0 guifg=#666666 guibg=#323232
 
 " Enable omni completion and enable more characters to be available within
 " autocomplete by appending to the 'iskeyword' variable.
-set iskeyword+=-
+set iskeyword+=-,:
 
 " Set all the autocompleters.
 " autocmd FileType * setlocal omnifunc=syntaxcomplete#Complete
@@ -329,10 +329,6 @@ autocmd FileType * set fo=crql
 " Plugins: HTML Close Tag {{{
 
 let g:closetag_filenames = "*.html,*.xhtml,*.phtml,*.tpl,*.twig,*.htm,*.php,*.pug,*.jsx,*.js,*.mdx,*.plop,*.tsx,*.ts"
-
-" }}}
-" Plugins: Auto pairs gentle {{{
-
 
 " }}}
 " Plugins: Templates {{{
