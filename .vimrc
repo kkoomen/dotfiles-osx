@@ -372,6 +372,53 @@ endfunction
 " Plugins: Indent Line {{{
 
 let g:indentLine_char = '│'
+let g:indentLine_faster = 1
+
+" }}}
+" Plugins: Ale {{{
+
+let g:ale_set_highlights = 0
+highlight! ALEWarning ctermfg=none ctermbg=none guibg=NONE guifg=NONE
+highlight! ALEError   ctermfg=none ctermbg=none guibg=NONE guifg=NONE
+
+highlight! ALEWarningSign guibg=NONE guifg=white
+highlight! ALEErrorSign   guibg=NONE guifg=#BE5046
+
+let g:ale_sign_error = '➜'
+let g:ale_sign_warning = '➜'
+
+" Open list of errors when new buffer opens.
+let g:ale_open_list = 0
+
+" Unset loclist and enable quickfix list.
+let g:ale_set_loclist = 0
+let g:ale_set_quickfix = 1
+
+" This means when entering a file, not when pressing <ENTER>.
+let g:ale_lint_on_enter = 1
+
+let g:ale_lint_on_save = 1
+let g:ale_lint_on_text_changed = 1
+let g:ale_php_phpcs_standard = 'Drupal'
+let g:ale_linters_explicit = 1
+let g:ale_linters = {
+      \ 'python': ['pycodestyle'],
+      \ 'php': ['phpcs'],
+      \ 'go': ['gometalinter', 'gofmt', 'goimports'],
+      \ 'javascript': ['eslint', 'stylelint'],
+      \ 'javascript.jsx': ['eslint', 'stylelint'],
+      \ 'typescript': ['tslint'],
+      \ 'typescript.jsx': ['tslint'],
+      \ }
+
+let g:ale_linter_aliases = {'javascript.jsx': 'css'}
+
+" Do not lint or fix minified files.
+let g:ale_pattern_options = {
+      \ '\.min\.js$': {'ale_linters': [], 'ale_fixers': []},
+      \ '\.min\.css$': {'ale_linters': [], 'ale_fixers': []},
+      \ '\.tpl\.php$': {'ale_linters': [], 'ale_fixers': []},
+      \ }
 
 " }}}
 " Plugins: Emmet {{{
