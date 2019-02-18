@@ -70,7 +70,3 @@
 [submodule ".vim/bundle/vim-endwise"]
   path = .vim/bundle/vim-endwise
   url = https://github.com/tpope/vim-endwise
-[submodule ".vim/bundle/auto-pairs"]
-  path = .vim/bundle/auto-pairs
-  url = https://github.com/kkoomen/auto-pairs.git
-  branch = feature/equal-pair-detection
