@@ -111,7 +111,7 @@ highlight! Folded ctermfg=8 ctermbg=0 guifg=#666666 guibg=#323232
 
 " Enable omni completion and enable more characters to be available within
 " autocomplete by appending to the 'iskeyword' variable.
-set iskeyword+=-,:
+set iskeyword+=-
 
 " Set all the autocompleters.
 " autocmd FileType * setlocal omnifunc=syntaxcomplete#Complete
@@ -184,6 +184,7 @@ augroup styles
   autocmd BufRead,BufNewFile *.min.* set syntax=off
   autocmd FileType python set tabstop=4 shiftwidth=4 softtabstop=4
   autocmd FileType go set nolist
+  autocmd FileType vim set set iskeyword+=:
 augroup END
 
 
