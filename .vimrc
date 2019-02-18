@@ -242,18 +242,12 @@ function! Count(word)
   endtry
 endfunction
 
-function! OnVimEnter()
-  " Disable syntax highlighting for matching parenthesis.
-  execute('NoMatchParen')
-endfunction
-
 " }}}
 " Hooks {{{
 
 autocmd BufWritePre *        :call OnBufWritePre()
 autocmd BufReadPost *        :call OnBufReadPost()
 autocmd BufRead,BufNewFile * :call OnBufRead()
-autocmd VimEnter *           :call OnVimEnter()
 
 " }}}
 " Mappings {{{
