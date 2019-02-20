@@ -48,9 +48,6 @@ cask_apps=(
   # Terminals
   iterm2
 
-  # Video
-  kap
-
   # Requirements for curlftpfs
   xquartz
   osxfuse
