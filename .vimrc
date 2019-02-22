@@ -405,8 +405,8 @@ let g:ale_linters = {
       \ 'python': ['pycodestyle'],
       \ 'php': ['phpcs'],
       \ 'go': ['gometalinter', 'gofmt', 'goimports'],
-      \ 'javascript': ['eslint', 'stylelint'],
-      \ 'javascript.jsx': ['eslint', 'stylelint'],
+      \ 'javascript': ['eslint'],
+      \ 'javascript.jsx': ['eslint'],
       \ 'typescript': ['tslint'],
       \ 'typescript.jsx': ['tslint'],
       \ }
