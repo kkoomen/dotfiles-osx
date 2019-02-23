@@ -346,6 +346,11 @@ autocmd FileType * set fo=crql
 let g:closetag_filenames = "*.html,*.xhtml,*.phtml,*.tpl,*.twig,*.htm,*.php,*.pug,*.jsx,*.js,*.mdx,*.plop,*.tsx,*.ts"
 
 " }}}
+" Plugins: auto-pairs {{{
+
+let g:AutoPairsWildClosedPair = ""
+
+" }}}
 " Plugins: Templates {{{
 
 let g:username = 'Kim Koomen'
