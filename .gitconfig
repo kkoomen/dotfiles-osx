@@ -7,8 +7,9 @@
   pum = pull origin master
   pod = push origin develop
   pud = pull origin develop
+  ds = diff --staged
   d = diff
-  ds = diff --stat=160,120
+  dst = diff --stat=160,120
   aa = add --all
   st = status
   b = branch
@@ -18,18 +19,18 @@
 [push]
   default = current
 [core]
-	pager = diff-so-fancy | less --tabs=4 -RFX
+  pager = diff-so-fancy | less --tabs=4 -RFX
 [color]
-	ui = true
+  ui = true
 [color "diff-highlight"]
-	oldNormal = red
-	oldHighlight = red 52
-	newNormal = green
-	newHighlight = green 22
+  oldNormal = red
+  oldHighlight = red 52
+  newNormal = green
+  newHighlight = green 22
 [color "diff"]
-	meta = yellow
-	frag = magenta
-	commit = yellow
-	old = red
-	new = green
-	whitespace = red reverse
+  meta = yellow
+  frag = magenta
+  commit = yellow
+  old = red
+  new = green
+  whitespace = red reverse
