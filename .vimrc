@@ -183,7 +183,7 @@ augroup styles
   autocmd!
   autocmd BufRead,BufNewFile *.min.* set syntax=off
   autocmd FileType python set tabstop=4 shiftwidth=4 softtabstop=4
-  autocmd FileType go set nolist
+  autocmd FileType go set nolist tabstop=4 shiftwidth=4 softtabstop=4
   autocmd FileType vim set iskeyword+=:
 augroup END
 
