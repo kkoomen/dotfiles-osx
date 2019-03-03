@@ -70,6 +70,6 @@
 [submodule ".vim/bundle/vim-endwise"]
   path = .vim/bundle/vim-endwise
   url = https://github.com/tpope/vim-endwise
-[submodule ".vim/bundle/auto-pairs"]
-  path = .vim/bundle/auto-pairs
-  url = https://github.com/jiangmiao/auto-pairs
+[submodule ".vim/bundle/pear-tree"]
+	path = .vim/bundle/pear-tree
+	url = https://github.com/tmsvg/pear-tree
