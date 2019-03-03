@@ -183,7 +183,7 @@ augroup styles
   autocmd!
   autocmd BufRead,BufNewFile *.min.* set syntax=off
   autocmd FileType python set tabstop=4 shiftwidth=4 softtabstop=4
-  autocmd FileType go set nolist
+  autocmd FileType go set nolist tabstop=4 shiftwidth=4 softtabstop=4
   autocmd FileType vim set iskeyword+=:
 augroup END
 
@@ -346,9 +346,28 @@ autocmd FileType * set fo=crql
 let g:closetag_filenames = "*.html,*.xhtml,*.phtml,*.tpl,*.twig,*.htm,*.php,*.pug,*.jsx,*.js,*.mdx,*.plop,*.tsx,*.ts"
 
 " }}}
-" Plugins: auto-pairs {{{
+" Plugins: Pear Tree {{{
 
-let g:AutoPairsWildClosedPair = ""
+" Set pairs to be closed automatically.
+let g:pear_tree_pairs = {
+      \ '(': {'closer': ')'},
+      \ '[': {'closer': ']'},
+      \ '{': {'closer': '}'},
+      \ "'": {'closer': "'"},
+      \ '"': {'closer': '"'},
+      \ '`': {'closer': '`'},
+      \ '"""': {'closer': '"""'},
+      \ "'''": {'closer': "'''"},
+      \ '<!--': {'closer': '-->'},
+      \ }
+
+" Enable smart pairing.
+let g:pear_tree_smart_openers = 1
+let g:pear_tree_smart_closers = 1
+let g:pear_tree_smart_backspace = 1
+
+" Disable dot-repeatable functionality.
+let g:pear_tree_repeatable_expand = 0
 
 " }}}
 " Plugins: Templates {{{
