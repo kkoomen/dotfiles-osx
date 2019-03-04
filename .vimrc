@@ -102,7 +102,7 @@ call matchadd('ColorColumn', '\%81v.', 100)
 
 highlight! Tabline    guibg=#444444 guifg=#888888
 highlight! TablineSel guibg=#ABB2BF guifg=#444444
-highlight! MatchParen guibg=#606060 guifg=#abb2bf
+highlight! MatchParen guibg=#606060 guifg=#E5C07B
 
 highlight! Folded ctermfg=8 ctermbg=0 guifg=#666666 guibg=#323232
 
