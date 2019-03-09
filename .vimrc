@@ -692,7 +692,7 @@ let g:fzf_colors =
 " --follow: Follow symlinks
 " --glob: Additional conditions for search
 " --color: Search color options
-command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --follow --glob "!.git/*" --color "always" ' . shellescape(<q-args>), 1, <bang>0)
+command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --follow --hidden --glob "!.git/*" --color "always" ' . shellescape(<q-args>), 1, <bang>0)
 
 " }}}
 " Plugins: EditorConfig {{{
