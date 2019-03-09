@@ -79,6 +79,9 @@ apps=(
   imagemagick --with-webp --with-librsvg
   jpeg
 
+  # Searching
+  ripgrep
+
   # Developement
   nvm
   node

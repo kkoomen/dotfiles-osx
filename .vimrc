@@ -662,7 +662,7 @@ noremap <leader>b :BCommits<CR>
 noremap <leader>c :Commits<CR>
 
 " let g:fzf_layout = { 'window': 'enew' }
-let g:fzf_layout = {'down': '30%'}
+let g:fzf_layout = {'down': '35%'}
 let g:fzf_tags_command = 'ctags --extra=+f -R'
 let g:fzf_colors =
 \ { 'fg':      ['fg', 'Normal'],
@@ -678,6 +678,21 @@ let g:fzf_colors =
   \ 'marker':  ['fg', 'Keyword'],
   \ 'spinner': ['fg', 'Type'],
   \ 'header':  ['fg', 'Comment'] }
+
+" Use ripgrep with FZF
+" Example usage -> :Find <query>
+"
+" Options
+" --column: Show column number
+" --line-number: Show line number
+" --no-heading: Do not show file headings in results
+" --fixed-strings: Search term as a literal string
+" --ignore-case: Case insensitive search
+" --hidden: Search hidden files and folders
+" --follow: Follow symlinks
+" --glob: Additional conditions for search
+" --color: Search color options
+command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --follow --glob "!.git/*" --color "always" ' . shellescape(<q-args>), 1, <bang>0)
 
 " }}}
 " Plugins: EditorConfig {{{

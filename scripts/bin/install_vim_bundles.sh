@@ -32,10 +32,10 @@ done
 
 # -----------------------------------------------------------------------------
 #
-# FZF + Silver Searcher
+# FZF + ripgrep
 #
 # -----------------------------------------------------------------------------
-brew install fzf diff-so-fancy the_silver_searcher
+brew install fzf diff-so-fancy ripgrep
 git config --global core.pager "diff-so-fancy | less --tabs=4 -RFX"
 git config --global color.ui true
 

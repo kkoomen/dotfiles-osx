@@ -14,8 +14,8 @@ export BREW_PREFIX=$(brew --prefix)
 export VIRTUAL_ENV_DISABLE_PROMPT=true
 
 # FZF
-export FZF_DEFAULT_OPTS='--exact'
-export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
+export FZF_DEFAULT_OPTS=''
+export FZF_DEFAULT_COMMAND='rg --files --follow --glob "!.git/*"'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 # Don't put duplicate lines or lines starting with space in the history.
