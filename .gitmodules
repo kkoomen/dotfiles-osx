@@ -73,3 +73,6 @@
 [submodule ".vim/bundle/pear-tree"]
 	path = .vim/bundle/pear-tree
 	url = https://github.com/tmsvg/pear-tree
+[submodule ".vim/bundle/splitjoin"]
+	path = .vim/bundle/splitjoin
+	url = https://github.com/AndrewRadev/splitjoin.vim
