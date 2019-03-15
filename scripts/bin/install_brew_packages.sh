@@ -64,6 +64,9 @@ cask_apps=(
   suspicious-package
   quicklookase
   qlvideo
+
+  # Tools
+  keycastr
 )
 
 brew cask install "${cask_apps[@]}"
