@@ -509,24 +509,13 @@ let MRU_Window_Height = 10
 noremap <Leader>r :MRU<CR>
 
 " }}}
-" Plugins: NERDCommenter {{{
+" Plugins: tComment {{{
 
-let g:NERDSpaceDelims = 1
+map <C-c> g>c<CR>
+vmap <C-c> g>b<CR>
 
-" map <C-c> in all modes as a default mapping for comments.
-" This will add a '//' for a single line comment.
-let g:NERDCustomDelimiters={
-      \ 'javascript': { 'left': '//', 'right': '', 'leftAlt': '{/*', 'rightAlt': '*/}' },
-      \}
-
-
-" When in visual mode and doing the same keypress the whole block will be
-" commented using a '/* */' syntax.
-map <C-c> <Leader>cc<CR>
-vmap <C-c> <Leader>cm<CR>
-
-map <C-x> <Leader>cu<CR>
-map <C-a> <Leader>cm<CR>
+map <C-x> g<c<CR>
+vmap <C-x> g<b<CR>
 
 
 " }}}

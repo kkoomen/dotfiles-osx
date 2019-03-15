@@ -19,9 +19,6 @@
 [submodule ".vim/bundle/vim-closetag"]
   path = .vim/bundle/vim-closetag
   url = https://github.com/alvan/vim-closetag
-[submodule ".vim/bundle/nerdcommenter"]
-  path = .vim/bundle/nerdcommenter
-  url = https://github.com/scrooloose/nerdcommenter
 [submodule ".vim/bundle/vim-gitgutter"]
   path = .vim/bundle/vim-gitgutter
   url = https://github.com/airblade/vim-gitgutter
@@ -76,3 +73,6 @@
 [submodule ".vim/bundle/splitjoin"]
 	path = .vim/bundle/splitjoin
 	url = https://github.com/AndrewRadev/splitjoin.vim
+[submodule ".vim/bundle/tcomment"]
+	path = .vim/bundle/tcomment
+	url = https://github.com/tomtom/tcomment_vim
