@@ -78,14 +78,14 @@ let g:onedark_color_overrides = {
       \ "purple": { "gui": "#C678DD", "cterm": "170", "cterm16": "5" },
       \ "cyan": { "gui": "#56B6C2", "cterm": "38", "cterm16": "6" },
       \ "white": { "gui": "#ABB2BF", "cterm": "145", "cterm16": "7" },
-      \ "black": { "gui": "#282828", "cterm": "235", "cterm16": "0" },
+      \ "black": { "gui": "#2E2E2E", "cterm": "235", "cterm16": "0" },
       \ "visual_black": { "gui": "#202020", "cterm": "NONE", "cterm16": "0" },
-      \ "comment_grey": { "gui": "#555555", "cterm": "59", "cterm16": "15" },
-      \ "gutter_fg_grey": { "gui": "#555555", "cterm": "235", "cterm16": "15" },
+      \ "comment_grey": { "gui": "#666666", "cterm": "59", "cterm16": "15" },
+      \ "gutter_fg_grey": { "gui": "#666666", "cterm": "235", "cterm16": "15" },
       \ "cursor_grey": { "gui": "#383838", "cterm": "236", "cterm16": "8" },
       \ "visual_grey": { "gui": "#D19A66", "cterm": "237", "cterm16": "15" },
       \ "menu_grey": { "gui": "#404040", "cterm": "237", "cterm16": "8" },
-      \ "special_grey": { "gui": "#555555", "cterm": "238", "cterm16": "15" },
+      \ "special_grey": { "gui": "#666666", "cterm": "238", "cterm16": "15" },
       \ "vertsplit": { "gui": "#181A1F", "cterm": "59", "cterm16": "15" },
 \}
 
@@ -701,9 +701,5 @@ let g:readdir_hidden = 2
 " Plugins: Vim-GO {{{
 
 let g:go_template_autocreate = 0
-" let g:go_fmt_autosave = 0
-" let g:go_mod_fmt_autosave = 0
-" let g:go_asmfmt_autosave = 0
-" let g:go_metalinter_autosave = 0
 
 " }}}
