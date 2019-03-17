@@ -26,7 +26,7 @@ python3 install.py --js-completer --tern-completer
 # -----------------------------------------------------------------------------
 
 for f in $dotfiles/.vim/snippets/*.snippets; do
-  echo "Removing $dotfiles/.vim/bundle/vim-snippets/UltiSnips$(basename \"$f\")"
+  echo "Removing $dotfiles/.vim/bundle/vim-snippets/UltiSnips/$(basename \"$f\")"
   rm $dotfiles/.vim/bundle/vim-snippets/UltiSnips/$(basename "$f") > /dev/null 2>&1
 
   echo "Removing $dotfiles/.vim/bundle/vim-snippets/snippets/$(basename \"$f\")"
