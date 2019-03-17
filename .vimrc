@@ -69,21 +69,26 @@ set wildmode=list:longest,full
 " Color scheme {{{
 
 let g:onedark_color_overrides = {
-      \ "red": { "gui": "#E06C75", "cterm": "204", "cterm16": "1" },
-      \ "dark_red": { "gui": "#BE5046", "cterm": "196", "cterm16": "9" },
-      \ "green": { "gui": "#98C379", "cterm": "114", "cterm16": "2" },
-      \ "yellow": { "gui": "#E5C07B", "cterm": "180", "cterm16": "3" },
-      \ "dark_yellow": { "gui": "#D19A66", "cterm": "173", "cterm16": "11" },
-      \ "blue": { "gui": "#61AFEF", "cterm": "39", "cterm16": "4" },
-      \ "purple": { "gui": "#C678DD", "cterm": "170", "cterm16": "5" },
-      \ "cyan": { "gui": "#56B6C2", "cterm": "38", "cterm16": "6" },
-      \ "white": { "gui": "#ABB2BF", "cterm": "145", "cterm16": "7" },
-      \ "black": { "gui": "#2E2E2E", "cterm": "235", "cterm16": "0" },
-      \ "visual_black": { "gui": "#202020", "cterm": "NONE", "cterm16": "0" },
+      \ "dark_red": { "gui": "#df9a98", "cterm": "204", "cterm16": "1" },
+      \ "red": { "gui": "#e07798", "cterm": "196", "cterm16": "9" },
+      \ "dark_green": { "gui": "#719672", "cterm": "114", "cterm16": "2" },
+      \ "green": { "gui": "#97bb98", "cterm": "114", "cterm16": "10" },
+      \ "dark_yellow": { "gui": "#e0bb71", "cterm": "180", "cterm16": "3" },
+      \ "yellow": { "gui": "#ffdd98", "cterm": "173", "cterm16": "11" },
+      \ "dark_blue": { "gui": "#96bbdc", "cterm": "39", "cterm16": "4" },
+      \ "blue": { "gui": "#9fcef9", "cterm": "39", "cterm16": "12" },
+      \ "dark_purple": { "gui": "#dfbdbc", "cterm": "170", "cterm16": "5" },
+      \ "purple": { "gui": "#ffbebc", "cterm": "170", "cterm16": "13" },
+      \ "dark_cyan": { "gui": "#97bcbc", "cterm": "38", "cterm16": "6" },
+      \ "cyan": { "gui": "#96ddde", "cterm": "38", "cterm16": "14" },
+      \ "dark_white": { "gui": "#d8d8d8", "cterm": "145", "cterm16": "7" },
+      \ "white": { "gui": "#e9e9e9", "cterm": "145", "cterm16": "15" },
+      \ "black": { "gui": "#333233", "cterm": "235", "cterm16": "0" },
+      \ "visual_black": { "gui": "#ffffff", "cterm": "NONE", "cterm16": "0" },
       \ "comment_grey": { "gui": "#666666", "cterm": "59", "cterm16": "15" },
       \ "gutter_fg_grey": { "gui": "#666666", "cterm": "235", "cterm16": "15" },
       \ "cursor_grey": { "gui": "#383838", "cterm": "236", "cterm16": "8" },
-      \ "visual_grey": { "gui": "#D19A66", "cterm": "237", "cterm16": "15" },
+      \ "visual_grey": { "gui": "#007172", "cterm": "237", "cterm16": "15" },
       \ "menu_grey": { "gui": "#404040", "cterm": "237", "cterm16": "8" },
       \ "special_grey": { "gui": "#666666", "cterm": "238", "cterm16": "15" },
       \ "vertsplit": { "gui": "#181A1F", "cterm": "59", "cterm16": "15" },
@@ -406,7 +411,7 @@ highlight! ALEWarning ctermfg=none ctermbg=none guibg=NONE guifg=NONE
 highlight! ALEError   ctermfg=none ctermbg=none guibg=NONE guifg=NONE
 
 highlight! ALEWarningSign guibg=NONE guifg=white
-highlight! ALEErrorSign   guibg=NONE guifg=#BE5046
+highlight! ALEErrorSign   guibg=NONE guifg=#e07798
 
 let g:ale_sign_error = '➜'
 let g:ale_sign_warning = '➜'
