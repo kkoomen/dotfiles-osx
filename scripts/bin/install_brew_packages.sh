@@ -72,6 +72,9 @@ cask_apps=(
 brew cask install "${cask_apps[@]}"
 
 apps=(
+  # Base
+  coreutils
+
   # Compiling
   cmake
 

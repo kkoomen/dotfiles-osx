@@ -519,8 +519,8 @@ noremap <Leader>r :MRU<CR>
 map <C-c> g>c<CR>
 vmap <C-c> g>b<CR>
 
-map <C-x> g<c<CR>
 vmap <C-x> g<b<CR>
+map <C-x> g<c<CR>
 
 
 " }}}
@@ -659,7 +659,7 @@ noremap <leader>c :Commits<CR>
 let g:fzf_layout = {'down': '35%'}
 let g:fzf_tags_command = 'ctags --extra=+f -R'
 let g:fzf_colors =
-\ { 'fg':      ['fg', 'Normal'],
+  \ { 'fg':    ['fg', 'Normal'],
   \ 'bg':      ['bg', 'Normal'],
   \ 'hl':      ['fg', 'Comment'],
   \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
@@ -696,7 +696,7 @@ let g:EditorConfig_disable_rules = ['max_line_length']
 " }}}
 " Plugins: Readdir {{{
 
-" Disable netrw because we use https://github.com/ap/vim-readdir
+" Disable netrw because we use https://github.com/kkoomen/vim-readdir
 let loaded_netrwPlugin = 1
 
 " Show hidden files as well.
