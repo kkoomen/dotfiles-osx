@@ -47,6 +47,9 @@ When opening a new buffer it will look in parent directories for a
 Use CSS selectors in HTML to easily create divs or quickly wrap selected text in
 tags.
 
+### `fzf.vim`
+A wicked fast fuzzy finder for vim as an improved alternative for CtrlP.
+
 ### `indentLine`
 Adds an indicator to display the indention levels.
 
@@ -60,6 +63,9 @@ Adds shortcuts to comment within buffers easily.
 ### `onedark`
 A beautiful colorscheme.
 
+### `pear-tree`
+Auto-closing brackets, quotes etc.
+
 ### `phpactor`
 A wicked fast, performant and improved alternative `omnifunc` completion for PHP.<br/>
 <br />
@@ -68,13 +74,18 @@ Vim will freeze for roughly 5 seconds with the default omnifunc
 contains 10K or maybe even 100k+ lines of tags and provide some suggestions for
 the user. Fortunately PHPActor handles this very well and quickly.
 
+### `splitjoin`
+Simplifies the transition between multiline and single-line code.
+
 ### `tabular`
 Align text easily.
+
+### `tcomment`
+Provides easy to use, file-type sensible comments for Vim.
 
 ### `ultisnips` && `vim-snippets`
 These two will provide a lot of useful snippets and it allows custom
 user-defined snippets as well.
-
 
 ### `vim-closetag`
 Close HTML tags automatically.
@@ -88,8 +99,8 @@ Shows a git diff in the gutter (sign column) and stages/undoes hunks.
 ### `vim-gutentags`
 Automatic and efficient tag generating made super easy.
 
-### `vim-multiple-cursors`
-Easily modify text using multiple cursors.
+### `vim-go`
+Go development plugin for Vim.
 
 ### `vim-pasta`
 Re-indent code automatically when pasting.
@@ -97,8 +108,8 @@ Re-indent code automatically when pasting.
 ### `vim-polyglot`
 A solid syntax language pack.
 
-### `vim-prettier`
-A vim wrapper for the command-line tool `prettier`.
+### `vim-readdir`
+A replacement for netrw that works with tabs.
 
 ### `vim-surround`
 Easily surround text or change surrounding around text.
