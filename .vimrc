@@ -519,8 +519,8 @@ noremap <Leader>r :MRU<CR>
 map <C-c> g>c<CR>
 vmap <C-c> g>b<CR>
 
-vmap <C-x> g<b<CR>
 map <C-x> g<c<CR>
+vmap <C-x> g<b<CR>
 
 
 " }}}
