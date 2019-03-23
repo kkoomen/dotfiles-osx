@@ -1117,7 +1117,7 @@ Reset</string>
 	<key>NSWindow Frame SessionsPreferences</key>
 	<string>269 126 606 469 0 0 1680 1027 </string>
 	<key>NSWindow Frame SharedPreferences</key>
-	<string>379 482 770 429 0 0 1680 1027 </string>
+	<string>379 425 796 486 0 0 1680 1027 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
 	<string>0 0 1680 1027 0 0 1680 1027 </string>
 	<key>New Bookmarks</key>
@@ -1356,13 +1356,13 @@ Reset</string>
 				<key>Alpha Component</key>
 				<real>1</real>
 				<key>Blue Component</key>
-				<real>0.19607843137254902</real>
+				<real>0.18823529411764706</real>
 				<key>Color Space</key>
 				<string>sRGB</string>
 				<key>Green Component</key>
-				<real>0.19607843137254902</real>
+				<real>0.18823529411764706</real>
 				<key>Red Component</key>
-				<real>0.19607843137254902</real>
+				<real>0.18823529411764706</real>
 			</dict>
 			<key>Background Image Is Tiled</key>
 			<false/>

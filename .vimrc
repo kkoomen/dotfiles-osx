@@ -83,7 +83,7 @@ let g:onedark_color_overrides = {
       \ "cyan": { "gui": "#68c5cd", "cterm": "38", "cterm16": "14" },
       \ "dark_white": { "gui": "#bbbebf", "cterm": "145", "cterm16": "7" },
       \ "white": { "gui": "#d0d2d2", "cterm": "145", "cterm16": "15" },
-      \ "black": { "gui": "#333233", "cterm": "235", "cterm16": "0" },
+      \ "black": { "gui": "#303030", "cterm": "235", "cterm16": "0" },
       \ "visual_black": { "gui": "#b7bdc0", "cterm": "NONE", "cterm16": "0" },
       \ "comment_grey": { "gui": "#666666", "cterm": "59", "cterm16": "15" },
       \ "gutter_fg_grey": { "gui": "#666666", "cterm": "235", "cterm16": "15" },
@@ -106,11 +106,11 @@ highlight! ColorColumn ctermbg=red ctermfg=white guibg=#BE5046 guifg=#151515
 call matchadd('ColorColumn', '\%81v.', 100)
 
 highlight! Tabline     guibg=#444444 guifg=#888888
-highlight! TablineFill guibg=#323232 guifg=#888888
+highlight! TablineFill guibg=#303030 guifg=#888888
 highlight! TablineSel  guibg=#ABB2BF guifg=#444444
 highlight! MatchParen  guibg=#606060 guifg=#E5C07B
 
-highlight! Folded ctermfg=8 ctermbg=0 guifg=#666666 guibg=#323232
+highlight! Folded ctermfg=8 ctermbg=0 guifg=#666666 guibg=#303030
 
 " }}}
 " Omni completion {{{
