@@ -93,9 +93,6 @@ Close HTML tags automatically.
 ### `vim-fugitive`
 A git wrapper within Vim.
 
-### `vim-gitgutter`
-Shows a git diff in the gutter (sign column) and stages/undoes hunks.
-
 ### `vim-gutentags`
 Automatic and efficient tag generating made super easy.
 
@@ -110,6 +107,9 @@ A solid syntax language pack.
 
 ### `vim-readdir`
 A replacement for netrw that works with tabs.
+
+### `vim-signify`
+Shows a git diff in the gutter (sign column).
 
 ### `vim-surround`
 Easily surround text or change surrounding around text.
