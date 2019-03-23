@@ -19,9 +19,6 @@
 [submodule ".vim/bundle/vim-closetag"]
   path = .vim/bundle/vim-closetag
   url = https://github.com/alvan/vim-closetag
-[submodule ".vim/bundle/vim-gitgutter"]
-  path = .vim/bundle/vim-gitgutter
-  url = https://github.com/airblade/vim-gitgutter
 [submodule ".vim/bundle/ale"]
   path = .vim/bundle/ale
   url = https://github.com/w0rp/ale
@@ -68,11 +65,14 @@
   path = .vim/bundle/vim-endwise
   url = https://github.com/tpope/vim-endwise
 [submodule ".vim/bundle/pear-tree"]
-	path = .vim/bundle/pear-tree
-	url = https://github.com/tmsvg/pear-tree
+  path = .vim/bundle/pear-tree
+  url = https://github.com/tmsvg/pear-tree
 [submodule ".vim/bundle/splitjoin"]
-	path = .vim/bundle/splitjoin
-	url = https://github.com/AndrewRadev/splitjoin.vim
+  path = .vim/bundle/splitjoin
+  url = https://github.com/AndrewRadev/splitjoin.vim
 [submodule ".vim/bundle/tcomment"]
-	path = .vim/bundle/tcomment
-	url = https://github.com/tomtom/tcomment_vim
+  path = .vim/bundle/tcomment
+  url = https://github.com/tomtom/tcomment_vim
+[submodule ".vim/bundle/vim-signify"]
+	path = .vim/bundle/vim-signify
+	url = https://github.com/mhinz/vim-signify

@@ -69,26 +69,26 @@ set wildmode=list:longest,full
 " Color scheme {{{
 
 let g:onedark_color_overrides = {
-      \ "dark_red": { "gui": "#df9a98", "cterm": "204", "cterm16": "1" },
-      \ "red": { "gui": "#e07798", "cterm": "196", "cterm16": "9" },
-      \ "dark_green": { "gui": "#719672", "cterm": "114", "cterm16": "2" },
-      \ "green": { "gui": "#97bb98", "cterm": "114", "cterm16": "10" },
-      \ "dark_yellow": { "gui": "#e0bb71", "cterm": "180", "cterm16": "3" },
-      \ "yellow": { "gui": "#ffdd98", "cterm": "173", "cterm16": "11" },
-      \ "dark_blue": { "gui": "#96bbdc", "cterm": "39", "cterm16": "4" },
-      \ "blue": { "gui": "#9fcef9", "cterm": "39", "cterm16": "12" },
-      \ "dark_purple": { "gui": "#dfbdbc", "cterm": "170", "cterm16": "5" },
-      \ "purple": { "gui": "#ffbebc", "cterm": "170", "cterm16": "13" },
-      \ "dark_cyan": { "gui": "#97bcbc", "cterm": "38", "cterm16": "6" },
-      \ "cyan": { "gui": "#96ddde", "cterm": "38", "cterm16": "14" },
-      \ "dark_white": { "gui": "#afacac", "cterm": "145", "cterm16": "7" },
-      \ "white": { "gui": "#cfcfcf", "cterm": "145", "cterm16": "15" },
+      \ "dark_red": { "gui": "#d97084", "cterm": "204", "cterm16": "1" },
+      \ "red": { "gui": "#ed8499", "cterm": "196", "cterm16": "9" },
+      \ "dark_green": { "gui": "#87bb7c", "cterm": "114", "cterm16": "2" },
+      \ "green": { "gui": "#97d589", "cterm": "114", "cterm16": "10" },
+      \ "dark_yellow": { "gui": "#d5b874", "cterm": "180", "cterm16": "3" },
+      \ "yellow": { "gui": "#e9cb87", "cterm": "173", "cterm16": "11" },
+      \ "dark_blue": { "gui": "#6face4", "cterm": "39", "cterm16": "4" },
+      \ "blue": { "gui": "#87bff5", "cterm": "39", "cterm16": "12" },
+      \ "dark_purple": { "gui": "#a389dd", "cterm": "170", "cterm16": "5" },
+      \ "purple": { "gui": "#b9a0ee", "cterm": "170", "cterm16": "13" },
+      \ "dark_cyan": { "gui": "#68c5cd", "cterm": "38", "cterm16": "6" },
+      \ "cyan": { "gui": "#68c5cd", "cterm": "38", "cterm16": "14" },
+      \ "dark_white": { "gui": "#bbbebf", "cterm": "145", "cterm16": "7" },
+      \ "white": { "gui": "#d0d2d2", "cterm": "145", "cterm16": "15" },
       \ "black": { "gui": "#333233", "cterm": "235", "cterm16": "0" },
-      \ "visual_black": { "gui": "#ffffff", "cterm": "NONE", "cterm16": "0" },
+      \ "visual_black": { "gui": "#b7bdc0", "cterm": "NONE", "cterm16": "0" },
       \ "comment_grey": { "gui": "#666666", "cterm": "59", "cterm16": "15" },
       \ "gutter_fg_grey": { "gui": "#666666", "cterm": "235", "cterm16": "15" },
       \ "cursor_grey": { "gui": "#383838", "cterm": "236", "cterm16": "8" },
-      \ "visual_grey": { "gui": "#007172", "cterm": "237", "cterm16": "15" },
+      \ "visual_grey": { "gui": "#474646", "cterm": "237", "cterm16": "15" },
       \ "menu_grey": { "gui": "#404040", "cterm": "237", "cterm16": "8" },
       \ "special_grey": { "gui": "#666666", "cterm": "238", "cterm16": "15" },
       \ "vertsplit": { "gui": "#181A1F", "cterm": "59", "cterm16": "15" },
@@ -105,9 +105,10 @@ colorscheme onedark
 highlight! ColorColumn ctermbg=red ctermfg=white guibg=#BE5046 guifg=#151515
 call matchadd('ColorColumn', '\%81v.', 100)
 
-highlight! Tabline    guibg=#444444 guifg=#888888
-highlight! TablineSel guibg=#ABB2BF guifg=#444444
-highlight! MatchParen guibg=#606060 guifg=#E5C07B
+highlight! Tabline     guibg=#444444 guifg=#888888
+highlight! TablineFill guibg=#323232 guifg=#888888
+highlight! TablineSel  guibg=#ABB2BF guifg=#444444
+highlight! MatchParen  guibg=#606060 guifg=#E5C07B
 
 highlight! Folded ctermfg=8 ctermbg=0 guifg=#666666 guibg=#323232
 
@@ -188,7 +189,7 @@ augroup styles
   autocmd!
   autocmd BufRead,BufNewFile *.min.* set syntax=off
   autocmd FileType python set tabstop=4 shiftwidth=4 softtabstop=4
-  autocmd FileType go set nolist tabstop=4 shiftwidth=4 softtabstop=4
+  autocmd FileType go set list lcs=tab:\│\  tabstop=4 shiftwidth=4 softtabstop=4
   autocmd FileType vim set iskeyword+=:
 augroup END
 
@@ -343,7 +344,7 @@ cnoremap WW w
 " Default: crqlo
 "   o       Automatically insert the current comment leader after hitting 'o' or
 "           'O' in Normal mode.
-autocmd FileType * set fo=crql
+  autocmd FileType * set fo=crql
 
 " }}}
 " Plugins: HTML Close Tag {{{
@@ -465,19 +466,13 @@ let g:user_emmet_settings = {
 
 
 " }}}
-" Plugins: GitGutter {{{
+" Plugins: Signify {{{
 
-let g:gitgutter_map_keys = 0
-let g:gitgutter_override_sign_column_highlight = 0
-let g:gitgutter_sign_added = '+'
-let g:gitgutter_sign_modified = 'M'
-let g:gitgutter_sign_removed = '-'
-let g:gitgutter_sign_removed_first_line = '^'
-let g:gitgutter_sign_modified_removed = 'M-'
-
-" If you experience a lag, you can trade speed for accuracy.
-"let g:gitgutter_realtime = 0
-"let g:gitgutter_eager = 0
+let g:signify_sign_add               = '+'
+let g:signify_sign_delete            = '-'
+let g:signify_sign_delete_first_line = '^'
+let g:signify_sign_change            = 'M'
+let g:signify_sign_changedelete      = 'M-'
 
 " }}}
 " Plugins: UltiSnips {{{
