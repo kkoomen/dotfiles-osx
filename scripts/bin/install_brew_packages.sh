@@ -45,6 +45,9 @@ cask_apps=(
   # Documents
   libreoffice
 
+  # Editors
+  macvim
+
   # Terminals
   iterm2
 
