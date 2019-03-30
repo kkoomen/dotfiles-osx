@@ -3,11 +3,16 @@
 sudo true
 
 dotfiles=~/dotfiles
+ACTION=$1
 
 cd $dotfiles
-git submodule deinit -f .
-# git submodule update --init --remote --merge --recursive .
-git submodule update --init .
+git submodule deinit -f --all
+if [[ $ACTION == "update" ]]; then
+  git submodule update --init --remote --merge
+  git submodule foreach "git checkout master && git pull origin master && git submodule update --init --recursive"
+else
+  git submodule update --init --recursive
+fi
 
 # -----------------------------------------------------------------------------
 #
@@ -18,7 +23,7 @@ git submodule update --init .
 cp $dotfiles/.tern-project /tech/
 cd $dotfiles/.vim/bundle/YouCompleteMe
 sudo npm i -g typescript
-python3 install.py --js-completer --tern-completer
+python3 install.py --ts-completer
 
 # -----------------------------------------------------------------------------
 #
