@@ -1,3 +1,11 @@
+" Encoding {{{
+
+scriptencoding utf-8
+set encoding=utf-8
+set termencoding=utf-8
+set fileencoding=utf-8
+
+" }}}
 " Basic setup {{{
 
 syntax on                         " Enable syntax highlighting.
@@ -50,13 +58,6 @@ set smarttab      " <BS> removes shiftwidth worth of spaces.
 set softtabstop=2 " Spaces for editing, e.g. <Tab> or <BS>.
 set tabstop=2     " Amount of spaces for <Tab>.
 set shiftround    " Round indent to multiple of 'shiftwidth'.
-
-" }}}
-" Encoding {{{
-
-set encoding=utf-8
-set termencoding=utf-8
-set fileencoding=utf-8
 
 " }}}
 " Wildmenu {{{
