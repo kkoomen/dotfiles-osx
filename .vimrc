@@ -229,9 +229,7 @@ function! OnBufRead()
 
   " Set the path of the current buffer relative to its git diretory to the
   " system clipboard. 'GBP' refers for 'Git Buffer Path'.
-  if exists('g:loaded_fugitive')
-    command! GBP :let @+=substitute(expand('%:p'), substitute(FugitiveExtractGitDir(expand('%:p')), '\/\.git\/modules', '', 'g'), '', 'g') | echo @*
-  endif
+  command! GBP :let @+=substitute(expand('%:p'), trim(system('git rev-parse --show-toplevel')), '', 'g') | echo @*
 endfunction
 
 function! Count(word)
