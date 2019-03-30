@@ -27,7 +27,7 @@ Simply run the `update.sh` in the root of the repository to recreate the
 symlinks from the repository.
 
 
-# Vim bundles
+# Vim packs
 
 ### `YouCompleteMe`
 Wicked fast autocompletion engine.

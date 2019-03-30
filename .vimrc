@@ -36,10 +36,6 @@ set diffopt=filler,iwhite         " Ignore whitespace as well when diffing.
 " -----------------------------------------------------------------------------
 let $BASH_ENV = "~/.bash_aliases"
 
-" Enable Pathogen
-" ------------------------------------------------------------------------------
-call pathogen#infect()
-
 " }}}
 " Search {{{
 
@@ -68,6 +64,8 @@ set wildmode=list:longest,full
 
 " }}}
 " Color scheme {{{
+
+packadd! onedark
 
 let g:onedark_color_overrides = {
       \ "dark_red": { "gui": "#d97084", "cterm": "204", "cterm16": "1" },

@@ -1,78 +1,78 @@
-[submodule ".vim/bundle/editorconfig-vim"]
-  path = .vim/bundle/editorconfig-vim
+[submodule ".vim/pack/vendor/start/editorconfig-vim"]
+  path = .vim/pack/vendor/start/editorconfig-vim
   url = https://github.com/editorconfig/editorconfig-vim
-[submodule ".vim/bundle/indentLine"]
-  path = .vim/bundle/indentLine
+[submodule ".vim/pack/vendor/start/indentLine"]
+  path = .vim/pack/vendor/start/indentLine
   url = https://github.com/Yggdroot/indentLine
-[submodule ".vim/bundle/tabular"]
-  path = .vim/bundle/tabular
+[submodule ".vim/pack/vendor/start/tabular"]
+  path = .vim/pack/vendor/start/tabular
   url = https://github.com/godlygeek/tabular
-[submodule ".vim/bundle/vim-snippets"]
-  path = .vim/bundle/vim-snippets
+[submodule ".vim/pack/vendor/start/vim-snippets"]
+  path = .vim/pack/vendor/start/vim-snippets
   url = https://github.com/honza/vim-snippets
-[submodule ".vim/bundle/ultisnips"]
-  path = .vim/bundle/ultisnips
+[submodule ".vim/pack/vendor/start/ultisnips"]
+  path = .vim/pack/vendor/start/ultisnips
   url = https://github.com/SirVer/ultisnips
-[submodule ".vim/bundle/emmet-vim"]
-  path = .vim/bundle/emmet-vim
+[submodule ".vim/pack/vendor/start/emmet-vim"]
+  path = .vim/pack/vendor/start/emmet-vim
   url = https://github.com/mattn/emmet-vim
-[submodule ".vim/bundle/vim-closetag"]
-  path = .vim/bundle/vim-closetag
+[submodule ".vim/pack/vendor/start/vim-closetag"]
+  path = .vim/pack/vendor/start/vim-closetag
   url = https://github.com/alvan/vim-closetag
-[submodule ".vim/bundle/ale"]
-  path = .vim/bundle/ale
+[submodule ".vim/pack/vendor/start/ale"]
+  path = .vim/pack/vendor/start/ale
   url = https://github.com/w0rp/ale
-[submodule ".vim/bundle/YouCompleteMe"]
-  path = .vim/bundle/YouCompleteMe
+[submodule ".vim/pack/vendor/start/YouCompleteMe"]
+  path = .vim/pack/vendor/start/YouCompleteMe
   url = https://github.com/Valloric/YouCompleteMe
-[submodule ".vim/bundle/mru"]
-  path = .vim/bundle/mru
+[submodule ".vim/pack/vendor/start/mru"]
+  path = .vim/pack/vendor/start/mru
   url = https://github.com/yegappan/mru
-[submodule ".vim/bundle/vim-gutentags"]
-  path = .vim/bundle/vim-gutentags
+[submodule ".vim/pack/vendor/start/vim-gutentags"]
+  path = .vim/pack/vendor/start/vim-gutentags
   url = https://github.com/ludovicchabant/vim-gutentags
-[submodule ".vim/bundle/vim-polyglot"]
-  path = .vim/bundle/vim-polyglot
+[submodule ".vim/pack/vendor/start/vim-polyglot"]
+  path = .vim/pack/vendor/start/vim-polyglot
   url = https://github.com/sheerun/vim-polyglot
-[submodule ".vim/bundle/vim-surround"]
-  path = .vim/bundle/vim-surround
+[submodule ".vim/pack/vendor/start/vim-surround"]
+  path = .vim/pack/vendor/start/vim-surround
   url = git@github.com:tpope/vim-surround
-[submodule ".vim/bundle/vim-fugitive"]
-  path = .vim/bundle/vim-fugitive
+[submodule ".vim/pack/vendor/start/vim-fugitive"]
+  path = .vim/pack/vendor/start/vim-fugitive
   url = https://github.com/tpope/vim-fugitive
-[submodule ".vim/bundle/vim-pasta"]
-  path = .vim/bundle/vim-pasta
+[submodule ".vim/pack/vendor/start/vim-pasta"]
+  path = .vim/pack/vendor/start/vim-pasta
   url = https://github.com/sickill/vim-pasta
-[submodule ".vim/bundle/ack.vim"]
-  path = .vim/bundle/ack.vim
+[submodule ".vim/pack/vendor/start/ack.vim"]
+  path = .vim/pack/vendor/start/ack.vim
   url = https://github.com/mileszs/ack.vim
-[submodule ".vim/bundle/onedark"]
-  path = .vim/bundle/onedark
+[submodule ".vim/pack/vendor/start/onedark"]
+  path = .vim/pack/vendor/opt/onedark
   url = https://github.com/joshdick/onedark.vim
-[submodule ".vim/bundle/phpactor"]
-  path = .vim/bundle/phpactor
+[submodule ".vim/pack/vendor/start/phpactor"]
+  path = .vim/pack/vendor/start/phpactor
   url = https://github.com/phpactor/phpactor
-[submodule ".vim/bundle/fzf.vim"]
-  path = .vim/bundle/fzf.vim
+[submodule ".vim/pack/vendor/start/fzf.vim"]
+  path = .vim/pack/vendor/start/fzf.vim
   url = https://github.com/junegunn/fzf.vim
-[submodule ".vim/bundle/vim-go"]
-  path = .vim/bundle/vim-go
+[submodule ".vim/pack/vendor/start/vim-go"]
+  path = .vim/pack/vendor/start/vim-go
   url = https://github.com/fatih/vim-go
-[submodule ".vim/bundle/vim-readdir"]
-  path = .vim/bundle/vim-readdir
+[submodule ".vim/pack/vendor/start/vim-readdir"]
+  path = .vim/pack/vendor/start/vim-readdir
   url = https://github.com/kkoomen/vim-readdir
-[submodule ".vim/bundle/vim-endwise"]
-  path = .vim/bundle/vim-endwise
+[submodule ".vim/pack/vendor/start/vim-endwise"]
+  path = .vim/pack/vendor/start/vim-endwise
   url = https://github.com/tpope/vim-endwise
-[submodule ".vim/bundle/pear-tree"]
-  path = .vim/bundle/pear-tree
+[submodule ".vim/pack/vendor/start/pear-tree"]
+  path = .vim/pack/vendor/start/pear-tree
   url = https://github.com/tmsvg/pear-tree
-[submodule ".vim/bundle/splitjoin"]
-  path = .vim/bundle/splitjoin
+[submodule ".vim/pack/vendor/start/splitjoin"]
+  path = .vim/pack/vendor/start/splitjoin
   url = https://github.com/AndrewRadev/splitjoin.vim
-[submodule ".vim/bundle/tcomment"]
-  path = .vim/bundle/tcomment
+[submodule ".vim/pack/vendor/start/tcomment"]
+  path = .vim/pack/vendor/start/tcomment
   url = https://github.com/tomtom/tcomment_vim
-[submodule ".vim/bundle/vim-signify"]
-	path = .vim/bundle/vim-signify
-	url = https://github.com/mhinz/vim-signify
+[submodule ".vim/pack/vendor/start/vim-signify"]
+  path = .vim/pack/vendor/start/vim-signify
+  url = https://github.com/mhinz/vim-signify
