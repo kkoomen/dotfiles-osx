@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-sudo true
+sudo true || exit 1
 
 DOTFILES=~/dotfiles
 VIM_VENDOR_PACK_DIR=$DOTFILES/.vim/pack/vendor/start
