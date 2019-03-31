@@ -190,6 +190,7 @@ augroup styles
   autocmd FileType python set tabstop=4 shiftwidth=4 softtabstop=4
   autocmd FileType go set list lcs=tab:\│\  tabstop=4 shiftwidth=4 softtabstop=4
   autocmd FileType vim set iskeyword+=:
+  autocmd FileType gitconfig set noexpandtab
 augroup END
 
 
