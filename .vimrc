@@ -228,7 +228,7 @@ function! OnBufRead()
 
   " Set the path of the current buffer relative to its git diretory to the
   " system clipboard. 'GBP' refers for 'Git Buffer Path'.
-  command! GBP :let @+=substitute(expand('%:p'), trim(system('git rev-parse --show-toplevel')), '', 'g') | echo @*
+  command! GBP :let @+=substitute(expand('%:p'), trim(system('git -C ' . expand('%:p:h') . ' rev-parse --show-toplevel')), '', 'g') | echo @*
 endfunction
 
 function! Count(word)
