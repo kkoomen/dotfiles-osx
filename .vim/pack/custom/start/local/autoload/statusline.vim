@@ -177,13 +177,15 @@ function! statusline#render(items) abort
   let l:statusline = []
 
   for [fn, args] in a:items
-    let result = call(fn, args)
-    if type(result) == type([]) && len(result) > 0
-      " If the return value is a list, join them together with spaces.
-      call add(l:statusline, join(result, ' '))
-    elseif type(result) == type("") && result != ""
-      " If the return value is a string, just append it.
-      call add(l:statusline, result)
+    if exists("*" . fn)
+      let result = call(fn, args)
+      if type(result) == type([]) && len(result) > 0
+        " If the return value is a list, join them together with spaces.
+        call add(l:statusline, join(result, ' '))
+      elseif type(result) == type("") && result != ""
+        " If the return value is a string, just append it.
+        call add(l:statusline, result)
+      endif
     endif
   endfor
 
