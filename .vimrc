@@ -433,13 +433,16 @@ let g:ale_linters = {
       \ 'python': ['pycodestyle'],
       \ 'php': ['phpcs'],
       \ 'go': ['gometalinter', 'gofmt', 'goimports'],
+      \ 'html': ['htmlhint'],
+      \ 'smarty': ['htmlhint'],
+      \ 'css': ['stylelint'],
+      \ 'scss': ['stylelint'],
+      \ 'less': ['stylelint'],
       \ 'javascript': ['eslint'],
       \ 'javascript.jsx': ['eslint'],
       \ 'typescript': ['tslint'],
       \ 'typescript.jsx': ['tslint'],
       \ }
-
-let g:ale_linter_aliases = {'javascript.jsx': 'css'}
 
 " Do not lint or fix minified files.
 let g:ale_pattern_options = {
@@ -629,11 +632,6 @@ let g:visual_surround_characters = [
 for char in g:visual_surround_characters
   execute('vmap ' . char . ' S' . char)
 endfor
-
-" }}}
-" Plugins: Ack {{{
-
-let g:ackprg = 'ag --nogroup --nocolor --column'
 
 " }}}
 " Plugins: FZF {{{
