@@ -176,7 +176,7 @@ augroup END
 
 augroup rc
   autocmd!
-  autocmd BufRead,BufNewFile .babelrc set filetype=json
+  autocmd BufRead,BufNewFile .babelrc,.stylelintrc,.prettierrc,.htmlhintrc set filetype=json
 augroup END
 
 augroup minified
