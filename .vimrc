@@ -429,6 +429,7 @@ let g:ale_lint_on_save = 1
 let g:ale_lint_on_text_changed = 1
 let g:ale_php_phpcs_standard = 'Drupal'
 let g:ale_linters_explicit = 1
+
 let g:ale_linters = {
       \ 'python': ['pycodestyle'],
       \ 'php': ['phpcs'],
@@ -442,6 +443,10 @@ let g:ale_linters = {
       \ 'javascript.jsx': ['eslint'],
       \ 'typescript': ['tslint'],
       \ 'typescript.jsx': ['tslint'],
+      \ }
+
+let g:ale_linter_aliases = {
+      \ 'smarty': ['html']
       \ }
 
 " Do not lint or fix minified files.
