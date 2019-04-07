@@ -51,9 +51,11 @@ shopt -s checkwinsize
 shopt -s cdspell
 
 # Set PS1 format.
-PS1_NORMAL="$(tput setaf 15)┌─ \w\[$(tput setaf 1)\]\[$(tput setaf 3)\]\$(git-branch)\[$(tput setaf 15)\]\$(get-virtualenv)\n└──── ➜  "
-PS1_ERROR="$(tput setaf 1)┌─ $(tput setaf 15)\w\[$(tput setaf 1)\]\[$(tput setaf 3)\]\$(git-branch)\[$(tput setaf 15)\]\$(get-virtualenv)\n\[$(tput setaf 1)\]└──── ➜  \[$(tput setaf 15)\]"
-export PS1="\$(if [[ \$? == 0 ]]; then echo \"$PS1_NORMAL\"; else echo \"$PS1_ERROR\"; fi)"
+
+[[ -n $(git status --porcelain) ]] && GIT_BRANCH_COLOR=1 || GIT_BRANCH_COLOR=3
+PS1_NORMAL="$(tput setaf 15)┌─ \w\[$(tput setaf 1)\]\$(git-branch)\$(get-virtualenv)\n└──── ➜  "
+PS1_ERROR="$(tput setaf 1)┌─ $(tput setaf 15)\w\[$(tput setaf 1)\]\$(git-branch)\$(get-virtualenv)\n\[$(tput setaf 1)\]└──── ➜  \[$(tput setaf 15)\]"
+export PS1="\$([[ \$? == 0 ]] && echo \"$PS1_NORMAL\" || echo \"$PS1_ERROR\")"
 
 # GOLANG
 export GOPATH="/tech/go"
