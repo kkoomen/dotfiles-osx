@@ -21,7 +21,7 @@ function editorconfig-init {
 }
 
 function git-branch {
-  if [[ -n $(git status --porcelain 2> /dev/null) ]]; then
+  if [[ -n $(git status --porcelain --ignore-submodules 2> /dev/null) ]]; then
     GIT_UNCOMMITTED_CHANGES_COLOR=1
   else
     GIT_UNCOMMITTED_CHANGES_COLOR=3
