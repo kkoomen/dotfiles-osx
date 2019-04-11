@@ -21,12 +21,6 @@ function editorconfig-init {
 }
 
 function git-branch {
-  if [[ -n $(git status --porcelain --ignore-submodules 2> /dev/null) ]]; then
-    GIT_UNCOMMITTED_CHANGES_COLOR=1
-  else
-    GIT_UNCOMMITTED_CHANGES_COLOR=3
-  fi
-
   # Based on: http://stackoverflow.com/a/13003854/170413
   local branch
   if branch=$(git rev-parse --abbrev-ref HEAD 2> /dev/null); then
@@ -38,7 +32,13 @@ function git-branch {
     git_branch=""
   fi
 
-  printf "$(tput setaf $GIT_UNCOMMITTED_CHANGES_COLOR)$git_branch$(tput setaf 15)"
+  # Check if the current git directory has uncommitted changes.
+  if [[ -n $(git status --porcelain --ignore-submodules 2> /dev/null) ]]; then
+    printf "$git_branch $(tput setaf 1)[+]$(tput setaf 15)"
+  else
+    printf "$git_branch"
+  fi
+
 }
 
 function get-virtualenv {
