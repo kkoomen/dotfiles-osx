@@ -189,7 +189,7 @@ augroup styles
   autocmd BufRead,BufNewFile *.min.* set syntax=off
   autocmd FileType python set tabstop=4 shiftwidth=4 softtabstop=4
   autocmd FileType go set list lcs=tab:\│\  tabstop=4 shiftwidth=4 softtabstop=4
-  autocmd FileType vim set iskeyword+=:
+  autocmd FileType css,less,scss set iskeyword+=.
   autocmd FileType gitconfig set noexpandtab
 augroup END
 
@@ -218,7 +218,7 @@ function OnBufReadPost()
   let l:bytes = getfsize(expand(@%))
   if l:bytes > 1024 * 1024
     set syntax=off
-    let g:statusline_show_syntax_disabled = 1
+    let b:statusline_show_syntax_disabled = 1
   endif
 endfunction
 
@@ -564,9 +564,7 @@ let g:gutentags_ctags_extra_args = [
       \ ]
 
 let g:gutentags_ctags_exclude = [
-      \ '.git',
-      \ '.svn',
-      \ '.hg',
+      \ '*.git', '*.svg', '*.hg',
       \ '*/tests/*',
       \ 'build',
       \ 'dist',
@@ -574,15 +572,19 @@ let g:gutentags_ctags_exclude = [
       \ 'bin',
       \ 'node_modules',
       \ 'bower_components',
-      \ 'yarn.lock',
-      \ 'package.json',
-      \ 'package-lock.json',
-      \ '.eslintrc*',
       \ 'cache',
       \ 'compiled',
+      \ 'docs',
+      \ 'example',
       \ 'bundle',
-      \ 'min',
       \ 'vendor',
+      \ '*.md',
+      \ '*-lock.json',
+      \ '*.lock',
+      \ '*bundle*.js',
+      \ '*build*.js',
+      \ '.*rc*',
+      \ '*.json',
       \ '*.min.*',
       \ '*.map',
       \ '*.bak',
@@ -592,19 +594,21 @@ let g:gutentags_ctags_exclude = [
       \ '*.sln',
       \ '*.Master',
       \ '*.csproj',
+      \ '*.tmp',
       \ '*.csproj.user',
       \ '*.cache',
-      \ '*.dll',
       \ '*.pdb',
       \ 'tags*',
       \ 'cscope.*',
-      \ '*.{exe,dll}',
-      \ '*.{mp3,ogg,flac}',
-      \ '*.{swp,swo}',
-      \ '*.{bmp,gif,ico,jpg,png}',
-      \ '*.{bmp,gif,ico,jpg,png}',
-      \ '*.{rar,zip,tar,tar.gz,tar.xz,tar.bz2}',
-      \ '*.{pdf,doc,docx,ppt,pptx}',
+      \ '*.css',
+      \ '*.less',
+      \ '*.scss',
+      \ '*.exe', '*.dll',
+      \ '*.mp3', '*.ogg', '*.flac',
+      \ '*.swp', '*.swo',
+      \ '*.bmp', '*.gif', '*.ico', '*.jpg', '*.png',
+      \ '*.rar', '*.zip', '*.tar', '*.tar.gz', '*.tar.xz', '*.tar.bz2',
+      \ '*.pdf', '*.doc', '*.docx', '*.ppt', '*.pptx',
       \ ]
 
 " }}}

@@ -50,7 +50,7 @@ endfunction
 function! statusline#filetypeinfo() abort
   let l:statusline = []
 
-  if get(g:, 'statusline_show_syntax_disabled', 0)
+  if get(b:, 'statusline_show_syntax_disabled', 0)
     call add(l:statusline, '%#SLErrorMsg#syntax off%*')
   endif
 
