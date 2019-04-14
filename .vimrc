@@ -151,46 +151,46 @@ set nobackup
 
 augroup drupal
   autocmd!
-  autocmd BufRead,BufNewFile *.blade.php set filetype=php
-  autocmd BufRead,BufNewFile *.theme set filetype=php
-  autocmd BufRead,BufNewFile *.module set filetype=php
-  autocmd BufRead,BufNewFile *.install set filetype=php
-  autocmd BufRead,BufNewFile *.test set filetype=php
-  autocmd BufRead,BufNewFile *.inc set filetype=php
-  autocmd BufRead,BufNewFile *.profile set filetype=php
-  autocmd BufRead,BufNewFile *.view set filetype=php
-  autocmd BufRead,BufNewFile *.drush set filetype=php
+  autocmd BufRead,BufNewFile *.blade.php setlocal filetype=php
+  autocmd BufRead,BufNewFile *.theme setlocal filetype=php
+  autocmd BufRead,BufNewFile *.module setlocal filetype=php
+  autocmd BufRead,BufNewFile *.install setlocal filetype=php
+  autocmd BufRead,BufNewFile *.test setlocal filetype=php
+  autocmd BufRead,BufNewFile *.inc setlocal filetype=php
+  autocmd BufRead,BufNewFile *.profile setlocal filetype=php
+  autocmd BufRead,BufNewFile *.view setlocal filetype=php
+  autocmd BufRead,BufNewFile *.drush setlocal filetype=php
 augroup END
 
 augroup bash
   autocmd!
-  autocmd BufNewFile,BufRead *.bash_* set ft=sh
-  autocmd BufNewFile,BufRead *.sh set ft=sh
+  autocmd BufNewFile,BufRead *.bash_* setlocal ft=sh
+  autocmd BufNewFile,BufRead *.sh setlocal ft=sh
 augroup END
 
 augroup javascript
   autocmd!
-  autocmd BufRead,BufNewFile *.mdx,*.plop set filetype=javascript
-  autocmd BufRead,BufNewFile *.tsx set filetype=typescript.jsx
+  autocmd BufRead,BufNewFile *.mdx,*.plop setlocal filetype=javascript
+  autocmd BufRead,BufNewFile *.tsx setlocal filetype=typescript.jsx
 augroup END
 
 augroup rc
   autocmd!
-  autocmd BufRead,BufNewFile .babelrc,.stylelintrc,.prettierrc,.htmlhintrc set filetype=json
+  autocmd BufRead,BufNewFile .babelrc,.stylelintrc,.prettierrc,.htmlhintrc setlocal filetype=json
 augroup END
 
 augroup minified
   autocmd!
-  autocmd BufRead,BufNewFile *.min.* set syntax=off
+  autocmd BufRead,BufNewFile *.min.* setlocal syntax=off
 augroup END
 
 augroup styles
   autocmd!
-  autocmd BufRead,BufNewFile *.min.* set syntax=off
-  autocmd FileType python set tabstop=4 shiftwidth=4 softtabstop=4
-  autocmd FileType go set list lcs=tab:\│\  tabstop=4 shiftwidth=4 softtabstop=4
-  autocmd FileType css,less,scss set iskeyword+=.
-  autocmd FileType gitconfig set noexpandtab
+  autocmd BufRead,BufNewFile *.min.* setlocal syntax=off
+  autocmd FileType python setlocal tabstop=4 shiftwidth=4 softtabstop=4
+  autocmd FileType go setlocal list lcs=tab:\│\  tabstop=4 shiftwidth=4 softtabstop=4
+  autocmd FileType css,less,scss setlocal iskeyword+=.
+  autocmd FileType gitconfig setlocal noexpandtab
 augroup END
 
 
