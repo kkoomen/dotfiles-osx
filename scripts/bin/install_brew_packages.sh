@@ -78,6 +78,9 @@ apps=(
   # Base
   coreutils
 
+  # Encryption
+  gpg
+
   # Compiling
   cmake
 
