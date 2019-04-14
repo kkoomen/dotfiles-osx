@@ -50,8 +50,10 @@ shopt -s checkwinsize
 # Autocorrect typos in path names when using "cd".
 shopt -s cdspell
 
-# Set PS1 format.
+# GPG
+export GPG_TTY=$(tty)
 
+# Set PS1 format.
 PS1_NORMAL="$(tput setaf 15)┌─ \w\[$(tput setaf 3)\]\$(git-branch)\[$(tput setaf 15)\]\$(get-virtualenv)\n└──── ➜  "
 PS1_ERROR="$(tput setaf 1)┌─ $(tput setaf 15)\w\[$(tput setaf 3)\]\$(git-branch)\[$(tput setaf 15)\]\$(get-virtualenv)\n\[$(tput setaf 1)\]└──── ➜  \[$(tput setaf 15)\]"
 export PS1="\$([[ \$? == 0 ]] && echo \"$PS1_NORMAL\" || echo \"$PS1_ERROR\")"

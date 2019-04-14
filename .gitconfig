@@ -1,6 +1,7 @@
 [user]
 	email = koomen@protonmail.com
 	name = Kim K
+	signingkey = 75DE3816E5C80849
 [alias]
 	cleanup = "!git branch --merged | grep -v '\\*\\|master\\|develop\\|development\\|origin' | xargs -n 1 git branch -D"
 	pom = push origin master
@@ -14,7 +15,7 @@
 	st = status
 	b = branch
 	c = checkout
-	l = log --graph --pretty=format:'%Cred%h%Creset %Cblue<%ae>%C(yellow)%d%Creset %s %Cgreen(%cr | %ci)%Creset' --abbrev-commit --date=relative
+	l = log --graph --pretty=format:'%Cred%h%Creset %Cblue<%ae> %C(green)%GK%Creset%C(yellow)%d%Creset %s %Cgreen(%cr | %ci)%Creset' --abbrev-commit --date=relative
 	root = rev-parse --show-toplevel
 [push]
 	default = current
@@ -36,3 +37,5 @@
 	whitespace = red reverse
 [commit]
 	gpgsign = true
+[gpg]
+	program = gpg
