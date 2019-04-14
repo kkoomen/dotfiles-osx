@@ -88,7 +88,7 @@ gc() {
 }
 
 # fshow_preview - git commit browser with previews
-alias glNoGraph='git log --color=always --format="%C(auto)%h%d %s %C(magenta)%cr %C(white)➜  %C(blue)%an <%ae>" "$@"'
+alias glNoGraph='git log --color=always --format="%C(auto)%h%d %s %C(magenta)%cr %C(white)➜  %C(blue)%an <%ae> %C(green)%GK%C(auto)" "$@"'
 gl() {
   local _gitLogLineToHash="echo {} | grep -o '[a-f0-9]\{7\}' | head -1"
   local _viewGitLogLine="$_gitLogLineToHash | xargs -I % sh -c 'git show --color=always % | diff-so-fancy'"
