@@ -34,3 +34,5 @@
 	old = red
 	new = green
 	whitespace = red reverse
+[commit]
+	gpgsign = true
