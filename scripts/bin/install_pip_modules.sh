@@ -4,6 +4,7 @@ pip_packages=(
   subliminal
   omnitagger
   youtube-dl
+  vim-vint
 )
 
 pip3 install "${pip_packages[@]}"

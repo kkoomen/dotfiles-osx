@@ -1,9 +1,9 @@
 " Encoding {{{
 
-scriptencoding utf-8
 set encoding=utf-8
 set termencoding=utf-8
 set fileencoding=utf-8
+scriptencoding utf-8
 
 " }}}
 " Basic setup {{{
@@ -429,6 +429,7 @@ let g:ale_linters = {
       \ 'python': ['pycodestyle'],
       \ 'php': ['phpcs'],
       \ 'go': ['gometalinter', 'gofmt', 'goimports'],
+      \ 'vim': ['vint'],
       \ 'html': ['htmlhint'],
       \ 'smarty': ['htmlhint'],
       \ 'css': ['stylelint'],
