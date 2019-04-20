@@ -222,6 +222,15 @@ function OnBufReadPost()
   endif
 endfunction
 
+function! GetRelativeBufferPathInGitDirectory(...)
+  return substitute(
+        \ expand('%:p' . a:1),
+        \ trim(system('git -C ' . expand('%:p:h') . ' rev-parse --show-toplevel')),
+        \ '',
+        \ 'g'
+        \ )
+endfunction
+
 function! OnBufRead()
   " Set the absolute path of the current buffer to the system clipboard.
   " 'BP' refers to 'Buffer Path'.
@@ -229,21 +238,7 @@ function! OnBufRead()
 
   " Set the path of the current buffer relative to its git diretory to the
   " system clipboard. 'GBP' refers for 'Git Buffer Path'.
-  command! GBP :let @+=substitute(expand('%:p'), trim(system('git -C ' . expand('%:p:h') . ' rev-parse --show-toplevel')), '', 'g') | echo @*
-endfunction
-
-function! Count(word)
-  " Because of the substitution the cursor is moved when there are matches and
-  " thus we have to preserve the cursor position.
-  let cpos = [line('.'), col('.')]
-  try
-    let result = execute('%s/\V' . a:word . '//gn')
-    call cursor(cpos)
-    let occurences = trim(strpart(result, 0, stridx(result, " ")))
-    return occurences
-  catch
-    return 0
-  endtry
+  command! GBP :let @+=GetRelativeBufferPathInGitDirectory() | echo @*
 endfunction
 
 " }}}
