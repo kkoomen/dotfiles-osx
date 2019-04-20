@@ -61,9 +61,6 @@
 [submodule ".vim/pack/vendor/start/vim-readdir"]
 	path = .vim/pack/vendor/start/vim-readdir
 	url = https://github.com/kkoomen/vim-readdir
-[submodule ".vim/pack/vendor/start/vim-endwise"]
-	path = .vim/pack/vendor/start/vim-endwise
-	url = https://github.com/tpope/vim-endwise
 [submodule ".vim/pack/vendor/start/pear-tree"]
 	path = .vim/pack/vendor/start/pear-tree
 	url = https://github.com/tmsvg/pear-tree
