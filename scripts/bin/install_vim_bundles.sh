@@ -14,7 +14,6 @@ if [[ $ACTION == "update" ]]; then
 else
   git submodule foreach "git checkout master"
   git submodule update --init --recursive
-  git submodule foreach "git checkout master"
 fi
 
 # -----------------------------------------------------------------------------
