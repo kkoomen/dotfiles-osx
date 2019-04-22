@@ -73,6 +73,6 @@
 [submodule ".vim/pack/vendor/start/vim-signify"]
 	path = .vim/pack/vendor/start/vim-signify
 	url = https://github.com/mhinz/vim-signify
-[submodule ".vim/pack/vendor/start/go"]
+[submodule ".vim/pack/vendor/start/gfi"]
 	path = .vim/pack/vendor/start/gfi
-	url = git@github.com:kkoomen/gf.vim
+	url = git@github.com:kkoomen/gfi.vim

@@ -10,9 +10,8 @@ cd $DOTFILES
 git submodule deinit -f --all
 if [[ $ACTION == "update" ]]; then
   git submodule update --init --remote --merge
-  git submodule foreach "git checkout master && git pull origin master && git submodule update --init --recursive && git checkout master "
+  git submodule foreach "git checkout master && git pull origin master && git submodule update --init --recursive"
 else
-  git submodule foreach "git checkout master"
   git submodule update --init --recursive
 fi
 
