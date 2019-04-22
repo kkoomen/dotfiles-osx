@@ -60,7 +60,7 @@
 	url = https://github.com/fatih/vim-go
 [submodule ".vim/pack/vendor/start/vim-readdir"]
 	path = .vim/pack/vendor/start/vim-readdir
-	url = https://github.com/kkoomen/vim-readdir
+	url = git@github.com:kkoomen/vim-readdir
 [submodule ".vim/pack/vendor/start/pear-tree"]
 	path = .vim/pack/vendor/start/pear-tree
 	url = https://github.com/tmsvg/pear-tree
@@ -73,3 +73,6 @@
 [submodule ".vim/pack/vendor/start/vim-signify"]
 	path = .vim/pack/vendor/start/vim-signify
 	url = https://github.com/mhinz/vim-signify
+[submodule ".vim/pack/vendor/start/go"]
+	path = .vim/pack/vendor/start/gf
+	url = git@github.com:kkoomen/gf.vim

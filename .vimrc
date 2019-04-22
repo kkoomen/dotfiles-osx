@@ -91,7 +91,7 @@ let g:onedark_color_overrides = {
       \ "menu_grey": { "gui": "#404040", "cterm": "237", "cterm16": "8" },
       \ "special_grey": { "gui": "#666666", "cterm": "238", "cterm16": "15" },
       \ "vertsplit": { "gui": "#181A1F", "cterm": "59", "cterm16": "15" },
-\}
+      \}
 
 set background=dark
 set termguicolors
@@ -241,6 +241,17 @@ function! OnBufRead()
   command! GBP :let @+=GetRelativeBufferPathInGitDirectory() | echo @*
 endfunction
 
+function! IndentCode()
+  " Save the cursor position.
+  let l:cursor_pos = getpos('.')
+
+  " Indent code.
+  execute('normal! gg=G')
+
+  " Set the cursor position back at where we started.
+  call setpos('.', l:cursor_pos)
+endfunction
+
 " }}}
 " Hooks {{{
 
@@ -281,6 +292,9 @@ nnoremap <silent> <F6> ggg?G<CR>
 " Space bar un-highligths search
 " ------------------------------------------------------------------------------
 noremap <silent> <Space> :silent noh<Bar>echo<CR>
+
+" Re-indent code.
+noremap <Leader>i :call IndentCode()<CR>
 
 " Allow saving of files as sudo when I forgot to start vim using sudo
 " ------------------------------------------------------------------------------
@@ -337,7 +351,7 @@ cnoremap WW w
 " Default: crqlo
 "   o       Automatically insert the current comment leader after hitting 'o' or
 "           'O' in Normal mode.
-  autocmd FileType * set fo=crql
+autocmd FileType * set fo=crql
 
 " }}}
 " Plugins: HTML Close Tag {{{
@@ -376,8 +390,8 @@ let g:email = 'koomen@protonail.com'
 let g:license = 'MIT'
 
 let g:templates_user_variables = [
-  \   ['FILE_OR_DIRECTORY', 'GetFileOrDirectory'],
-  \ ]
+      \   ['FILE_OR_DIRECTORY', 'GetFileOrDirectory'],
+      \ ]
 
 function! GetFileOrDirectory()
   " A structure we have with React apps is: dir/index.jsx
@@ -655,19 +669,19 @@ noremap <leader>c :Commits<CR>
 let g:fzf_layout = {'down': '35%'}
 let g:fzf_tags_command = 'ctags --extra=+f -R'
 let g:fzf_colors =
-  \ { 'fg':    ['fg', 'Normal'],
-  \ 'bg':      ['bg', 'Normal'],
-  \ 'hl':      ['fg', 'Comment'],
-  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
-  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
-  \ 'hl+':     ['fg', 'Type'],
-  \ 'info':    ['fg', 'PreProc'],
-  \ 'border':  ['fg', 'Ignore'],
-  \ 'prompt':  ['fg', 'Normal'],
-  \ 'pointer': ['fg', 'Type'],
-  \ 'marker':  ['fg', 'Keyword'],
-  \ 'spinner': ['fg', 'Type'],
-  \ 'header':  ['fg', 'Comment'] }
+      \ { 'fg':    ['fg', 'Normal'],
+      \ 'bg':      ['bg', 'Normal'],
+      \ 'hl':      ['fg', 'Comment'],
+      \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+      \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+      \ 'hl+':     ['fg', 'Type'],
+      \ 'info':    ['fg', 'PreProc'],
+      \ 'border':  ['fg', 'Ignore'],
+      \ 'prompt':  ['fg', 'Normal'],
+      \ 'pointer': ['fg', 'Type'],
+      \ 'marker':  ['fg', 'Keyword'],
+      \ 'spinner': ['fg', 'Type'],
+      \ 'header':  ['fg', 'Comment'] }
 
 " Use ripgrep with FZF
 " Example usage -> :Find <query>
