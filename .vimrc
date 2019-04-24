@@ -222,9 +222,9 @@ function OnBufReadPost()
   endif
 endfunction
 
-function! GetRelativeBufferPathInGitDirectory(...)
+function! GetRelativeBufferPathInGitDirectory()
   return substitute(
-        \ expand('%:p' . a:1),
+        \ expand('%:p'),
         \ trim(system('git -C ' . expand('%:p:h') . ' rev-parse --show-toplevel')),
         \ '',
         \ 'g'
