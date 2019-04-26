@@ -14,7 +14,7 @@ export BREW_PREFIX=$(brew --prefix)
 export VIRTUAL_ENV_DISABLE_PROMPT=true
 
 # FZF
-export FZF_DEFAULT_OPTS=''
+export FZF_DEFAULT_OPTS='--exact'
 export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --glob "!.git/*"'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
