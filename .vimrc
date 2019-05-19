@@ -191,6 +191,7 @@ augroup styles
   autocmd FileType go setlocal list lcs=tab:\│\  tabstop=4 shiftwidth=4 softtabstop=4
   autocmd FileType php setlocal iskeyword-=-
   autocmd FileType css,less,scss setlocal iskeyword+=.
+  autocmd FileType vim setlocal iskeyword+=:
   autocmd FileType gitconfig setlocal noexpandtab
 augroup END
 
