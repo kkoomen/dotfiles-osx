@@ -11,6 +11,7 @@ alias cb="pbcopy"
 alias yt-dl='youtube-dl --extract-audio --audio-format mp3 -o "%(title)s.%(ext)s"'
 alias make-tar="tar -czvf"
 alias rsync="rsync -azh -P --stats --timeout=120"
+alias gr='rg --column --line-number --no-heading --fixed-strings --ignore-case --follow --hidden --glob "!.git/*" --color "always"'
 
 # NETWORK
 alias xip="curl icanhazip.com"
