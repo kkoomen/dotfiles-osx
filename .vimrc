@@ -189,6 +189,7 @@ augroup styles
   autocmd BufRead,BufNewFile *.min.* setlocal syntax=off
   autocmd FileType python setlocal tabstop=4 shiftwidth=4 softtabstop=4
   autocmd FileType go setlocal list lcs=tab:\│\  tabstop=4 shiftwidth=4 softtabstop=4
+  autocmd FileType php setlocal iskeyword-=-
   autocmd FileType css,less,scss setlocal iskeyword+=.
   autocmd FileType gitconfig setlocal noexpandtab
 augroup END
@@ -266,7 +267,7 @@ autocmd BufRead,BufNewFile * :call OnBufRead()
 " ------------------------------------------------------------------------------
 let mapleader = "\<Space>"
 
-" buffers
+" Buffers
 " ------------------------------------------------------------------------------
 nnoremap Z :bprev<CR>
 nnoremap X :bnext<CR>
