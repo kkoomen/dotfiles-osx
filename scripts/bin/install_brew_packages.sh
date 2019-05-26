@@ -111,7 +111,7 @@ apps=(
   typescript
 
   # Terminal
-  vim --with-override-system-vi
+  vim
   wget
   curl
   tree
