@@ -66,4 +66,4 @@ export GOROOT="$BREW_PREFIX/opt/go/libexec"
 export NVM_DIR="$HOME/.nvm"
 
 # PATH
-export PATH="/usr/local/sbin:$PATH:$GOPATH/bin:$GOROOT/bin"
+export PATH="/usr/local/opt/ruby/bin:/usr/local/sbin:$PATH:$GOPATH/bin:$GOROOT/bin"
