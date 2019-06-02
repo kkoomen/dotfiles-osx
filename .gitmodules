@@ -79,3 +79,6 @@
 [submodule ".vim/pack/vendor/start/doge"]
 	path = .vim/pack/vendor/start/doge
 	url = git@github.com:kkoomen/doge.git
+[submodule ".vim/pack/vendor/start/vader"]
+	path = .vim/pack/vendor/start/vader
+	url = https://github.com/junegunn/vader.vim
