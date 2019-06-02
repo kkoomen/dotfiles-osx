@@ -123,7 +123,7 @@ set iskeyword+=-
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType javascript,javascript.jsx,jsx,typescript,typescript.jsx setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType php setlocal omnifunc=phpcomplete#CompletePHP
+autocmd FileType php setlocal omnifunc=phpactor#Complete
 
 " Unset some complete options for optimised completion performance.
 " i   Scan the current and included files.
@@ -191,7 +191,6 @@ augroup styles
   autocmd FileType go setlocal list lcs=tab:\│\  tabstop=4 shiftwidth=4 softtabstop=4
   autocmd FileType php setlocal iskeyword-=-
   autocmd FileType css,less,scss setlocal iskeyword+=.
-  autocmd FileType vim setlocal iskeyword+=:
   autocmd FileType gitconfig setlocal noexpandtab
 augroup END
 
@@ -720,3 +719,5 @@ let g:readdir_hidden = 2
 let g:go_template_autocreate = 0
 
 " }}}
+
+let g:phpcomplete_index_composer_command = 'composer'
