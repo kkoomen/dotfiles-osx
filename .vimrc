@@ -719,5 +719,3 @@ let g:readdir_hidden = 2
 let g:go_template_autocreate = 0
 
 " }}}
-
-let g:phpcomplete_index_composer_command = 'composer'
