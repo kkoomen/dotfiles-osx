@@ -4,8 +4,8 @@
 " License: MIT
 " ==============================================================================
 
-let s:save_cpo = &cpo
-set cpo&vim
+let s:save_cpo = &cpoptions
+set cpoptions&vim
 
 let s:modes = {
       \ 'n'      : ['%#SLModeNormal#'   , 'NORMAL'   ],
@@ -54,17 +54,20 @@ function! statusline#filetypeinfo() abort
     call add(l:statusline, '%#SLErrorMsg#syntax off%*')
   endif
 
-  if &fileencoding != "utf-8"
+  if &fileencoding !=# 'utf-8'
     call add(l:statusline, '%#SLWarningMsg#fileencoding:%{&fileencoding}%*')
-  elseif &encoding != "utf-8"
+  elseif &encoding !=# 'utf-8'
     call add(l:statusline, '%#SLWarningMsg#encoding:%{&encoding}%*')
   endif
 
-  if &fileformat != "unix"
+  if &fileformat !=# 'unix'
     call add(l:statusline, '%#SLWarningMsg#fileformat:%{&fileformat}%*')
   endif
 
-  call add(l:statusline, '%y')
+  if &filetype
+    call add(l:statusline, '%y')
+  endif
+
   return join(l:statusline, ' ' . g:statusline_separator . ' ')
 endfunction
 
@@ -76,7 +79,24 @@ endfunction
 "   The language that the spellchecker is set to.
 function! statusline#spellmode() abort
   let l:statusline = []
-  if &spell | call add(l:statusline, '[spellcheck: ' . &spelllang . ']') | endif
+  if &spell
+    call add(l:statusline, '[spellcheck: ' . &spelllang . ']')
+  endif
+  return l:statusline
+endfunction
+
+" statusline#pastemode
+"
+" @description
+"   Retrieves wether the user is in 'paste' mode or not.
+" @return list
+function! statusline#tabspace() abort
+  let l:statusline = []
+  if &expandtab
+    call add(l:statusline, '[spaces]')
+  else
+    call add(l:statusline, '[tabs]')
+  endif
   return l:statusline
 endfunction
 
@@ -87,7 +107,9 @@ endfunction
 " @return list
 function! statusline#pastemode() abort
   let l:statusline = []
-  if &paste | call add(l:statusline, 'PASTE') | endif
+  if &paste
+    call add(l:statusline, 'PASTE')
+  endif
   return l:statusline
 endfunction
 
@@ -176,15 +198,15 @@ endfunction
 function! statusline#render(items) abort
   let l:statusline = []
 
-  for [fn, args] in a:items
-    if exists('*' . fn)
-      let result = call(fn, args)
-      if type(result) == type([]) && len(result) > 0
+  for [l:fn, l:args] in a:items
+    if exists('*' . l:fn)
+      let l:result = call(l:fn, l:args)
+      if type(l:result) == type([]) && len(l:result) > 0
         " If the return value is a list, join them together with spaces.
-        call add(l:statusline, join(result, ' '))
-      elseif type(result) == type('') && result != ''
+        call add(l:statusline, join(l:result, ' '))
+      elseif type(l:result) == type('') && l:result !=# ''
         " If the return value is a string, just append it.
-        call add(l:statusline, result)
+        call add(l:statusline, l:result)
       endif
     endif
   endfor
@@ -194,5 +216,5 @@ function! statusline#render(items) abort
         \ : ''
 endfunction
 
-let &cpo = s:save_cpo
+let &cpoptions = s:save_cpo
 unlet s:save_cpo

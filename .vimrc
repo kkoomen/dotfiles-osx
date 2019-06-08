@@ -6,6 +6,76 @@ set fileencoding=utf-8
 scriptencoding utf-8
 
 " }}}
+" Functions {{{
+
+function! Count(pattern)
+  let l:occurences = trim(execute('%s/' . a:pattern . '//gn', 'silent!'))
+  let l:matches = matchlist(l:occurences, '\m\([[:digit:]]\+\) match\%(es\)\? on [[:digit:]]\+ lines\?')
+  if len(l:matches) >= 2
+    return get(l:matches, 1)
+  endif
+  return 0
+endfunction
+
+function OnBufWritePre()
+  " Delete trailing whitespaces for each line (only for non-test files).
+  let l:test_file_regex = '\m\(test\|.\+\.vader\)'
+  if expand('%:t') !~# l:test_file_regex
+    execute('%s/\s\+$//ge')
+  endif
+
+  " Delete empty lines at the end of the buffer.
+  execute('v/\n*./d')
+
+  " Retab the file to ensure no mixed usage of tabs and spaces.
+  execute('%retab')
+endfunction
+
+function OnBufReadPost()
+  " Set the last edit position.
+  if line("'\"") > 0 && line("'\"") <= line("$") |
+    execute("normal! g`\"") |
+  endif
+
+  " Disable syntax highlighting for files larger than 1MB.
+  let l:bytes = getfsize(expand(@%))
+  if l:bytes > 1024 * 1024
+    set syntax=off
+    let b:statusline_show_syntax_disabled = 1
+  endif
+endfunction
+
+function! GetRelativeBufferPathInGitDirectory()
+  return substitute(
+        \ expand('%:p'),
+        \ trim(system('git -C ' . shellescape(expand('%:p:h')) . ' rev-parse --show-toplevel')),
+        \ '',
+        \ 'g'
+        \ )
+endfunction
+
+function! OnBufRead()
+  " Set the absolute path of the current buffer to the system clipboard.
+  " 'BP' refers to 'Buffer Path'.
+  command! BP :let @+=expand('%:p') | echo @*
+
+  " Set the path of the current buffer relative to its git diretory to the
+  " system clipboard. 'GBP' refers for 'Git Buffer Path'.
+  command! GBP :let @+=GetRelativeBufferPathInGitDirectory() | echo @*
+endfunction
+
+function! IndentCode()
+  " Save the cursor position.
+  let l:cursor_pos = getpos('.')
+
+  " Indent code.
+  execute('normal! gg=G')
+
+  " Set the cursor position back at where we started.
+  call setpos('.', l:cursor_pos)
+endfunction
+
+" }}}
 " Basic setup {{{
 
 syntax on                         " Enable syntax highlighting.
@@ -22,8 +92,8 @@ set lazyredraw                    " Will buffer screen updates instead of updati
 set clipboard=unnamed             " Enable clipboard.
 set autoread                      " Set to auto read when a file is changed from the outside.
 set nospell                       " Disable spellcheck on default.
-set so=7                          " Minimal number of screen lines to keep above and below the cursor when scrolling.
-set tw=80                         " Set a max text width.
+set scrolloff=7                   " Minimal number of screen lines to keep above and below the cursor when scrolling.
+set textwidth=80                  " Set a max text width.
 set nocompatible                  " Use vim defaults instead of vi.
 set backspace=indent,eol,start    " Set priorities for the backspace key.
 set foldenable foldmethod=marker  " Enable folding.
@@ -34,7 +104,7 @@ set diffopt=filler,iwhite         " Ignore whitespace as well when diffing.
 
 " Make our custom aliases available within a non-interactive vim.
 " -----------------------------------------------------------------------------
-let $BASH_ENV = "~/.bash_aliases"
+let $BASH_ENV = '~/.bash_aliases'
 
 " }}}
 " Search {{{
@@ -48,12 +118,17 @@ set hlsearch   " Search highlighting.
 
 set autoindent    " Copy indent from previous line.
 set smartindent   " Auto indent when starting a new line.
-set expandtab     " Replace tabs with spaces.
 set shiftwidth=2  " Spaces for autoindenting.
 set smarttab      " <BS> removes shiftwidth worth of spaces.
 set softtabstop=2 " Spaces for editing, e.g. <Tab> or <BS>.
 set tabstop=2     " Amount of spaces for <Tab>.
 set shiftround    " Round indent to multiple of 'shiftwidth'.
+
+if Count('^\t\+') > Count('^ \+')
+  set noexpandtab
+else
+  set expandtab
+endif
 
 " }}}
 " Wildmenu {{{
@@ -68,29 +143,29 @@ set wildmode=list:longest,full
 packadd! onedark
 
 let g:onedark_color_overrides = {
-      \ "dark_red": { "gui": "#d97084", "cterm": "204", "cterm16": "1" },
-      \ "red": { "gui": "#ed8499", "cterm": "196", "cterm16": "9" },
-      \ "dark_green": { "gui": "#87bb7c", "cterm": "114", "cterm16": "2" },
-      \ "green": { "gui": "#97d589", "cterm": "114", "cterm16": "10" },
-      \ "dark_yellow": { "gui": "#d5b874", "cterm": "180", "cterm16": "3" },
-      \ "yellow": { "gui": "#e9cb87", "cterm": "173", "cterm16": "11" },
-      \ "dark_blue": { "gui": "#6face4", "cterm": "39", "cterm16": "4" },
-      \ "blue": { "gui": "#87bff5", "cterm": "39", "cterm16": "12" },
-      \ "dark_purple": { "gui": "#a389dd", "cterm": "170", "cterm16": "5" },
-      \ "purple": { "gui": "#b9a0ee", "cterm": "170", "cterm16": "13" },
-      \ "dark_cyan": { "gui": "#68c5cd", "cterm": "38", "cterm16": "6" },
-      \ "cyan": { "gui": "#68c5cd", "cterm": "38", "cterm16": "14" },
-      \ "dark_white": { "gui": "#bbbebf", "cterm": "145", "cterm16": "7" },
-      \ "white": { "gui": "#d0d2d2", "cterm": "145", "cterm16": "15" },
-      \ "black": { "gui": "#303030", "cterm": "235", "cterm16": "0" },
-      \ "visual_black": { "gui": "#b7bdc0", "cterm": "NONE", "cterm16": "0" },
-      \ "comment_grey": { "gui": "#666666", "cterm": "59", "cterm16": "15" },
-      \ "gutter_fg_grey": { "gui": "#666666", "cterm": "235", "cterm16": "15" },
-      \ "cursor_grey": { "gui": "#383838", "cterm": "236", "cterm16": "8" },
-      \ "visual_grey": { "gui": "#474646", "cterm": "237", "cterm16": "15" },
-      \ "menu_grey": { "gui": "#404040", "cterm": "237", "cterm16": "8" },
-      \ "special_grey": { "gui": "#666666", "cterm": "238", "cterm16": "15" },
-      \ "vertsplit": { "gui": "#181A1F", "cterm": "59", "cterm16": "15" },
+      \ 'dark_red': { 'gui': '#d97084', 'cterm': '204', 'cterm16': '1' },
+      \ 'red': { 'gui': '#ed8499', 'cterm': '196', 'cterm16': '9' },
+      \ 'dark_green': { 'gui': '#87bb7c', 'cterm': '114', 'cterm16': '2' },
+      \ 'green': { 'gui': '#97d589', 'cterm': '114', 'cterm16': '10' },
+      \ 'dark_yellow': { 'gui': '#d5b874', 'cterm': '180', 'cterm16': '3' },
+      \ 'yellow': { 'gui': '#e9cb87', 'cterm': '173', 'cterm16': '11' },
+      \ 'dark_blue': { 'gui': '#6face4', 'cterm': '39', 'cterm16': '4' },
+      \ 'blue': { 'gui': '#87bff5', 'cterm': '39', 'cterm16': '12' },
+      \ 'dark_purple': { 'gui': '#a389dd', 'cterm': '170', 'cterm16': '5' },
+      \ 'purple': { 'gui': '#b9a0ee', 'cterm': '170', 'cterm16': '13' },
+      \ 'dark_cyan': { 'gui': '#68c5cd', 'cterm': '38', 'cterm16': '6' },
+      \ 'cyan': { 'gui': '#68c5cd', 'cterm': '38', 'cterm16': '14' },
+      \ 'dark_white': { 'gui': '#bbbebf', 'cterm': '145', 'cterm16': '7' },
+      \ 'white': { 'gui': '#d0d2d2', 'cterm': '145', 'cterm16': '15' },
+      \ 'black': { 'gui': '#303030', 'cterm': '235', 'cterm16': '0' },
+      \ 'visual_black': { 'gui': '#b7bdc0', 'cterm': 'NONE', 'cterm16': '0' },
+      \ 'comment_grey': { 'gui': '#666666', 'cterm': '59', 'cterm16': '15' },
+      \ 'gutter_fg_grey': { 'gui': '#666666', 'cterm': '235', 'cterm16': '15' },
+      \ 'cursor_grey': { 'gui': '#383838', 'cterm': '236', 'cterm16': '8' },
+      \ 'visual_grey': { 'gui': '#474646', 'cterm': '237', 'cterm16': '15' },
+      \ 'menu_grey': { 'gui': '#404040', 'cterm': '237', 'cterm16': '8' },
+      \ 'special_grey': { 'gui': '#666666', 'cterm': '238', 'cterm16': '15' },
+      \ 'vertsplit': { 'gui': '#181A1F', 'cterm': '59', 'cterm16': '15' },
       \}
 
 set background=dark
@@ -192,66 +267,14 @@ augroup styles
   autocmd FileType php setlocal iskeyword-=-
   autocmd FileType css,less,scss setlocal iskeyword+=.
   autocmd FileType gitconfig setlocal noexpandtab
+
+  " Format options have impact when formatting code with the 'gq' binding.
+  " Default: crqlo
+  "   o       Automatically insert the current comment leader after hitting 'o' or
+  "           'O' in Normal mode.
+  autocmd FileType * set fo=crql
 augroup END
 
-
-" }}}
-" Functions {{{
-
-function OnBufWritePre()
-  " Delete trailing whitespaces at the end of each line.
-  execute('%s/\s\+$//ge')
-
-  " Delete empty lines at the end of a file.
-  execute('v/\n*./d')
-
-  " Convert remaining tabs to spaces.
-  execute('%retab')
-endfunction
-
-function OnBufReadPost()
-  " Set the last edit position.
-  if line("'\"") > 0 && line("'\"") <= line("$") |
-    execute("normal! g`\"") |
-  endif
-
-  " Disable syntax highlighting for files larger than 1MB.
-  let l:bytes = getfsize(expand(@%))
-  if l:bytes > 1024 * 1024
-    set syntax=off
-    let b:statusline_show_syntax_disabled = 1
-  endif
-endfunction
-
-function! GetRelativeBufferPathInGitDirectory()
-  return substitute(
-        \ expand('%:p'),
-        \ trim(system('git -C ' . expand('%:p:h') . ' rev-parse --show-toplevel')),
-        \ '',
-        \ 'g'
-        \ )
-endfunction
-
-function! OnBufRead()
-  " Set the absolute path of the current buffer to the system clipboard.
-  " 'BP' refers to 'Buffer Path'.
-  command! BP :let @+=expand('%:p') | echo @*
-
-  " Set the path of the current buffer relative to its git diretory to the
-  " system clipboard. 'GBP' refers for 'Git Buffer Path'.
-  command! GBP :let @+=GetRelativeBufferPathInGitDirectory() | echo @*
-endfunction
-
-function! IndentCode()
-  " Save the cursor position.
-  let l:cursor_pos = getpos('.')
-
-  " Indent code.
-  execute('normal! gg=G')
-
-  " Set the cursor position back at where we started.
-  call setpos('.', l:cursor_pos)
-endfunction
 
 " }}}
 " Hooks {{{
@@ -265,7 +288,7 @@ autocmd BufRead,BufNewFile * :call OnBufRead()
 
 " Leader key
 " ------------------------------------------------------------------------------
-let mapleader = "\<Space>"
+let g:mapleader = "\<Space>"
 
 " Buffers
 " ------------------------------------------------------------------------------
@@ -344,15 +367,6 @@ cnoremap ww w
 cnoremap Ww w
 cnoremap wW w
 cnoremap WW w
-
-" }}}
-" Format options {{{
-
-" Format options have impact when formatting code with the 'gq' binding.
-" Default: crqlo
-"   o       Automatically insert the current comment leader after hitting 'o' or
-"           'O' in Normal mode.
-autocmd FileType * set fo=crql
 
 " }}}
 " Plugins: HTML Close Tag {{{
@@ -719,5 +733,3 @@ let g:readdir_hidden = 2
 let g:go_template_autocreate = 0
 
 " }}}
-
-let g:phpcomplete_index_composer_command = 'composer'

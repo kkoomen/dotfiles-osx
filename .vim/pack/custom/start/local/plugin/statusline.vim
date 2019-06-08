@@ -23,6 +23,7 @@ let s:statusline = {
       \   ],
       \   'right': [
       \     [ 'gutentags#statusline', ['', ':running'] ],
+      \     [ 'statusline#tabspace', [] ],
       \     [ 'statusline#spellmode', [] ],
       \     [ 'statusline#filetypeinfo', [] ],
       \   ]
