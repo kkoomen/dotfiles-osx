@@ -141,14 +141,14 @@ endfunction
 function! statusline#gitbranch() abort
   let l:statusline = ''
 
-  if exists("g:loaded_fugitive")
+  if exists('g:loaded_fugitive')
     let l:branch = fugitive#head(7)
 
-    if l:branch == "master"
+    if l:branch ==# 'master'
       let l:statusline .= '%#SLGitBranchMaster#'
       let l:statusline .= ' ' . l:branch . ' '
       let l:statusline .= '%*'
-    elseif l:branch != ""
+    elseif l:branch !=# ''
       let l:statusline .= '%#SLGitBranch#'
       let l:statusline .= ' ' . l:branch . ' '
       let l:statusline .= '%*'
