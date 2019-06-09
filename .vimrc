@@ -6,76 +6,6 @@ set fileencoding=utf-8
 scriptencoding utf-8
 
 " }}}
-" Functions {{{
-
-function! Count(pattern)
-  let l:occurences = trim(execute('%s/' . a:pattern . '//gn', 'silent!'))
-  let l:matches = matchlist(l:occurences, '\m\([[:digit:]]\+\) match\%(es\)\? on [[:digit:]]\+ lines\?')
-  if len(l:matches) >= 2
-    return get(l:matches, 1)
-  endif
-  return 0
-endfunction
-
-function OnBufWritePre()
-  " Delete trailing whitespaces for each line (only for non-test files).
-  let l:test_file_regex = '\m\(test\|.\+\.vader\)'
-  if expand('%:t') !~# l:test_file_regex
-    execute('%s/\s\+$//ge')
-  endif
-
-  " Delete empty lines at the end of the buffer.
-  execute('v/\n*./d')
-
-  " Retab the file to ensure no mixed usage of tabs and spaces.
-  execute('%retab')
-endfunction
-
-function OnBufReadPost()
-  " Set the last edit position.
-  if line("'\"") > 0 && line("'\"") <= line("$") |
-    execute("normal! g`\"") |
-  endif
-
-  " Disable syntax highlighting for files larger than 1MB.
-  let l:bytes = getfsize(expand(@%))
-  if l:bytes > 1024 * 1024
-    set syntax=off
-    let b:statusline_show_syntax_disabled = 1
-  endif
-endfunction
-
-function! GetRelativeBufferPathInGitDirectory()
-  return substitute(
-        \ expand('%:p'),
-        \ trim(system('git -C ' . shellescape(expand('%:p:h')) . ' rev-parse --show-toplevel')),
-        \ '',
-        \ 'g'
-        \ )
-endfunction
-
-function! OnBufRead()
-  " Set the absolute path of the current buffer to the system clipboard.
-  " 'BP' refers to 'Buffer Path'.
-  command! BP :let @+=expand('%:p') | echo @*
-
-  " Set the path of the current buffer relative to its git diretory to the
-  " system clipboard. 'GBP' refers for 'Git Buffer Path'.
-  command! GBP :let @+=GetRelativeBufferPathInGitDirectory() | echo @*
-endfunction
-
-function! IndentCode()
-  " Save the cursor position.
-  let l:cursor_pos = getpos('.')
-
-  " Indent code.
-  execute('normal! gg=G')
-
-  " Set the cursor position back at where we started.
-  call setpos('.', l:cursor_pos)
-endfunction
-
-" }}}
 " Basic setup {{{
 
 syntax on                         " Enable syntax highlighting.
@@ -123,12 +53,6 @@ set smarttab      " <BS> removes shiftwidth worth of spaces.
 set softtabstop=2 " Spaces for editing, e.g. <Tab> or <BS>.
 set tabstop=2     " Amount of spaces for <Tab>.
 set shiftround    " Round indent to multiple of 'shiftwidth'.
-
-if Count('^\t\+') > Count('^ \+')
-  set noexpandtab
-else
-  set expandtab
-endif
 
 " }}}
 " Wildmenu {{{
@@ -266,7 +190,7 @@ augroup styles
   autocmd FileType go setlocal list lcs=tab:\│\  tabstop=4 shiftwidth=4 softtabstop=4
   autocmd FileType php setlocal iskeyword-=-
   autocmd FileType css,less,scss setlocal iskeyword+=.
-  autocmd FileType gitconfig setlocal noexpandtab
+  " autocmd FileType gitconfig setlocal noexpandtab
 
   " Format options have impact when formatting code with the 'gq' binding.
   " Default: crqlo
@@ -275,6 +199,83 @@ augroup styles
   autocmd FileType * set fo=crql
 augroup END
 
+
+" }}}
+" Functions {{{
+
+function! Count(pattern)
+  let l:occurences = trim(execute('%s/' . a:pattern . '//gn', 'silent!'))
+  let l:matches = matchlist(l:occurences, '\m\([[:digit:]]\+\) match\%(es\)\? on [[:digit:]]\+ lines\?')
+  if len(l:matches) >= 2
+    return get(l:matches, 1)
+  endif
+  return 0
+endfunction
+
+function OnBufWritePre()
+  " Delete trailing whitespaces for each line (only for non-test files).
+  let l:test_file_regex = '\m\(test\|.\+\.vader\)'
+  if expand('%:t') !~# l:test_file_regex
+    execute('%s/\s\+$//ge')
+  endif
+
+  " Delete empty lines at the end of the buffer.
+  execute('v/\n*./d')
+
+  " Retab the file to ensure no mixed usage of tabs and spaces.
+  execute('%retab')
+endfunction
+
+function OnBufReadPost()
+  " Set the last edit position.
+  if line("'\"") > 0 && line("'\"") <= line("$") |
+    execute("normal! g`\"") |
+  endif
+
+  " Disable syntax highlighting for files larger than 1MB.
+  let l:bytes = getfsize(expand(@%))
+  if l:bytes > 1024 * 1024
+    set syntax=off
+    let b:statusline_show_syntax_disabled = 1
+  endif
+endfunction
+
+function! GetRelativeBufferPathInGitDirectory()
+  return substitute(
+        \ expand('%:p'),
+        \ trim(system('git -C ' . shellescape(expand('%:p:h')) . ' rev-parse --show-toplevel')),
+        \ '',
+        \ 'g'
+        \ )
+endfunction
+
+function! OnBufRead()
+  " Set the absolute path of the current buffer to the system clipboard.
+  " 'BP' refers to 'Buffer Path'.
+  command! BP :let @+=expand('%:p') | echo @*
+
+  " Set the path of the current buffer relative to its git diretory to the
+  " system clipboard. 'GBP' refers for 'Git Buffer Path'.
+  command! GBP :let @+=GetRelativeBufferPathInGitDirectory() | echo @*
+
+  " Use tabs if there are more tabs in the file.
+  if Count('^\t\+') > Count('^ \+')
+    setlocal noexpandtab
+  else
+    setlocal expandtab
+  endif
+endfunction
+
+function! IndentCode()
+  " Save the cursor position.
+  let l:cursor_pos = getpos('.')
+
+  " Indent code.
+  execute('normal! gg=G')
+
+  " Set the cursor position back at where we started.
+  call setpos('.', l:cursor_pos)
+endfunction
 
 " }}}
 " Hooks {{{

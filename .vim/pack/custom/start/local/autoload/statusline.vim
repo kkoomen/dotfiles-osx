@@ -64,8 +64,8 @@ function! statusline#filetypeinfo() abort
     call add(l:statusline, '%#SLWarningMsg#fileformat:%{&fileformat}%*')
   endif
 
-  if &filetype
-    call add(l:statusline, '%y')
+  if &filetype !=# ''
+    call add(l:statusline, '[' . &filetype . ']')
   endif
 
   return join(l:statusline, ' ' . g:statusline_separator . ' ')
