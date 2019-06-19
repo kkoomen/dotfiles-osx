@@ -18,6 +18,7 @@ FILES=(
   .inputrc
   .weechat/weechat.conf
   .weechat/buffers.conf
+  .weechat/python/autoload/terminal_notifier.py
   .gitconfig
   .completions
   Library/KeyBindings/DefaultKeyBinding.dict
@@ -34,6 +35,7 @@ TOUCH_FILES=(
 TOUCH_DIRS=(
   .ssh/
   .weechat/
+  .weechat/python/autoload/
   Library/KeyBindings/
 )
 
