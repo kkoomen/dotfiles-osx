@@ -17,7 +17,7 @@ FILES=(
   .vimrc
   .inputrc
   .weechat/weechat.conf
-  .weechat/buffers.conf
+  .weechat/buflist.conf
   .weechat/python/autoload/terminal_notifier.py
   .gitconfig
   .completions

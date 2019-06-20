@@ -212,17 +212,19 @@ function! Count(pattern)
 endfunction
 
 function OnBufWritePre()
-  " Delete trailing whitespaces for each line (only for non-test files).
-  let l:test_file_regex = '\m\(test\|.\+\.vader\)'
-  if expand('%:t') !~# l:test_file_regex
-    execute('%s/\s\+$//ge')
-  endif
-
   " Delete empty lines at the end of the buffer.
   execute('v/\n*./d')
 
-  " Retab the file to ensure no mixed usage of tabs and spaces.
-  execute('%retab')
+  " Execute commands only for non-test files.
+  let l:test_file_regex = '\m\(test\|spec\|.\+\.vader$\)'
+  if expand('%:t') !~# l:test_file_regex
+
+    " Delete trailing whitespaces for each line.
+    execute('%s/\s\+$//ge')
+
+    " Retab the file to ensure no mixed usage of tabs and spaces.
+    execute('%retab!')
+  endif
 endfunction
 
 function OnBufReadPost()
@@ -315,7 +317,7 @@ nnoremap <silent> <F6> ggg?G<CR>
 
 " Space bar un-highligths search
 " ------------------------------------------------------------------------------
-noremap <silent> <Space> :silent noh<Bar>echo<CR>
+noremap <silent> <Space> :silent! noh<CR>
 
 " Re-indent code.
 noremap <Leader>i :call IndentCode()<CR>
@@ -326,7 +328,7 @@ cnoremap w!! w !sudo tee > /dev/null %
 
 " Spell check
 " ------------------------------------------------------------------------------
-nnoremap <leader>sc :setlocal spell!<CR>
+nnoremap <Leader>sc :setlocal spell!<CR>
 
 " Remove ^M
 " ------------------------------------------------------------------------------
@@ -677,8 +679,8 @@ set rtp+=/usr/local/opt/fzf
 nnoremap <C-p> :FZF<CR>
 
 " fzf.vim plugin mappings
-noremap <leader>b :BCommits<CR>
-noremap <leader>c :Commits<CR>
+noremap <Leader>b :BCommits<CR>
+noremap <Leader>c :Commits<CR>
 
 " let g:fzf_layout = { 'window': 'enew' }
 let g:fzf_layout = {'down': '35%'}
