@@ -48,6 +48,9 @@ cask_apps=(
   # Editors
   macvim
 
+  # Media players
+  vlc
+
   # Terminals
   iterm2
 
