@@ -24,7 +24,7 @@
 	url = https://github.com/w0rp/ale
 [submodule ".vim/pack/vendor/start/YouCompleteMe"]
 	path = .vim/pack/vendor/start/YouCompleteMe
-	url = https://github.com/Valloric/YouCompleteMe
+	url = https://github.com/ycm-core/YouCompleteMe
 [submodule ".vim/pack/vendor/start/mru"]
 	path = .vim/pack/vendor/start/mru
 	url = https://github.com/yegappan/mru
