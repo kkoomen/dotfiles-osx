@@ -109,6 +109,7 @@ apps=(
   curlftpfs
   go
   typescript
+  git
 
   # Terminal
   vim
