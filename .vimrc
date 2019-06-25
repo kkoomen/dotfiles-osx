@@ -190,11 +190,10 @@ augroup styles
   autocmd FileType go setlocal list lcs=tab:\│\  tabstop=4 shiftwidth=4 softtabstop=4
   autocmd FileType php setlocal iskeyword-=-
   autocmd FileType css,less,scss setlocal iskeyword+=.
+  autocmd FileType markdown setlocal spell
 
   " Format options have impact when formatting code with the 'gq' binding.
-  " Default: crqlo
-  "   o       Automatically insert the current comment leader after hitting 'o' or
-  "           'O' in Normal mode.
+  " Default: crqlo (see ':h fo-table' for more info)
   autocmd FileType * set fo=crql
 augroup END
 
