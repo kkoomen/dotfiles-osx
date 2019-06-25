@@ -15,8 +15,9 @@
 	st = status
 	b = branch
 	c = checkout
-	l = log --graph --pretty=format:'%C(auto)%h%d %s %C(magenta)%cr %C(white)➜  %C(blue)%an <%ae> %C(green)%GK%C(auto)' --abbrev-commit --date=relative
+	l = log --graph --pretty=format:'%C(auto)%h%d %s %C(magenta)%cr %C(white)➜	%C(blue)%an <%ae> %C(green)%GK%C(auto)' --abbrev-commit --date=relative
 	root = rev-parse --show-toplevel
+	first = "!git log --pretty=format:'%h%d ➜  %s (%cr) ➜  %an <%ae>' --reverse --abbrev-commit --date=relative | head -1"
 [push]
 	default = current
 [core]
