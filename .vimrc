@@ -25,6 +25,7 @@ set nospell                       " Disable spellcheck on default.
 set scrolloff=7                   " Minimal number of screen lines to keep above and below the cursor when scrolling.
 set textwidth=80                  " Set a max text width.
 set nocompatible                  " Use vim defaults instead of vi.
+set updatetime=300                " The time in ms to redraw
 set backspace=indent,eol,start    " Set priorities for the backspace key.
 set foldenable foldmethod=marker  " Enable folding.
 set list listchars=tab:>>,trail:• " Make additional characters visible.
