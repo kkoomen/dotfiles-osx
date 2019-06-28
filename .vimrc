@@ -191,6 +191,7 @@ augroup styles
   autocmd FileType go setlocal list lcs=tab:\│\  tabstop=4 shiftwidth=4 softtabstop=4
   autocmd FileType php setlocal iskeyword-=-
   autocmd FileType css,less,scss setlocal iskeyword+=.
+  autocmd FileType vim setlocal iskeyword+=:
   autocmd FileType markdown setlocal spell
 
   " Format options have impact when formatting code with the 'gq' binding.
