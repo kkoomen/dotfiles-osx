@@ -48,6 +48,7 @@ shopt -s checkwinsize
 # Completions
 [[ -d ~/.completions ]] && . ~/.completions/* > /dev/null 2>&1
 [[ -f /usr/local/etc/bash_completion ]] && . /usr/local/etc/bash_completion > /dev/null 2>&1
+[[ -d /usr/local/etc/bash_completion.d ]] && . /usr/local/etc/bash_completion.d/* > /dev/null 2>&1
 
 # Autocorrect typos in path names when using "cd".
 shopt -s cdspell
@@ -69,3 +70,13 @@ export NVM_DIR="$HOME/.nvm"
 
 # PATH
 export PATH="/usr/local/opt/ruby/bin:/usr/local/sbin:$PATH:$GOPATH/bin:$GOROOT/bin"
+
+# LANG
+export LANG="C"
+export LC_COLLATE="C"
+export LC_CTYPE="C"
+export LC_MESSAGES="C"
+export LC_MONETARY="C"
+export LC_NUMERIC="C"
+export LC_TIME="C"
+export LC_ALL="C"
