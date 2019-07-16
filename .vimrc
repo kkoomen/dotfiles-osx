@@ -493,15 +493,6 @@ let g:signify_sign_change						 = 'M'
 let g:signify_sign_changedelete			 = 'M-'
 
 " }}}
-" Plugins: UltiSnips {{{
-
-let g:UltiSnipsExpandTrigger = "<tab>"
-let g:UltiSnipsJumpForwardTrigger = "<tab>"
-let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
-let g:UltiSnipsSnippetsDir="~/.vim/UltiSnips"
-let g:UltiSnipsListSnippets="<c-e>"
-
-" }}}
 " Plugins: YouCompleteMe {{{
 
 let g:ycm_key_list_select_completion=['<Down>']

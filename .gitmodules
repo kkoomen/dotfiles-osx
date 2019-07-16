@@ -10,14 +10,6 @@
 	path = .vim/pack/vendor/start/tabular
 	url = https://github.com/godlygeek/tabular
 	branch = master
-[submodule ".vim/pack/vendor/start/vim-snippets"]
-	path = .vim/pack/vendor/start/vim-snippets
-	url = https://github.com/honza/vim-snippets
-	branch = master
-[submodule ".vim/pack/vendor/start/ultisnips"]
-	path = .vim/pack/vendor/start/ultisnips
-	url = https://github.com/SirVer/ultisnips
-	branch = master
 [submodule ".vim/pack/vendor/start/emmet-vim"]
 	path = .vim/pack/vendor/start/emmet-vim
 	url = https://github.com/mattn/emmet-vim
