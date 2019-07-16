@@ -1,84 +1,111 @@
 [submodule ".vim/pack/vendor/start/editorconfig-vim"]
 	path = .vim/pack/vendor/start/editorconfig-vim
 	url = https://github.com/editorconfig/editorconfig-vim
+	branch = master
 [submodule ".vim/pack/vendor/start/indentLine"]
 	path = .vim/pack/vendor/start/indentLine
 	url = https://github.com/Yggdroot/indentLine
+	branch = master
 [submodule ".vim/pack/vendor/start/tabular"]
 	path = .vim/pack/vendor/start/tabular
 	url = https://github.com/godlygeek/tabular
+	branch = master
 [submodule ".vim/pack/vendor/start/vim-snippets"]
 	path = .vim/pack/vendor/start/vim-snippets
 	url = https://github.com/honza/vim-snippets
+	branch = master
 [submodule ".vim/pack/vendor/start/ultisnips"]
 	path = .vim/pack/vendor/start/ultisnips
 	url = https://github.com/SirVer/ultisnips
+	branch = master
 [submodule ".vim/pack/vendor/start/emmet-vim"]
 	path = .vim/pack/vendor/start/emmet-vim
 	url = https://github.com/mattn/emmet-vim
+	branch = master
 [submodule ".vim/pack/vendor/start/vim-closetag"]
 	path = .vim/pack/vendor/start/vim-closetag
 	url = https://github.com/alvan/vim-closetag
+	branch = master
 [submodule ".vim/pack/vendor/start/ale"]
 	path = .vim/pack/vendor/start/ale
 	url = https://github.com/w0rp/ale
+	branch = master
 [submodule ".vim/pack/vendor/start/YouCompleteMe"]
 	path = .vim/pack/vendor/start/YouCompleteMe
 	url = https://github.com/ycm-core/YouCompleteMe
+	branch = master
 [submodule ".vim/pack/vendor/start/mru"]
 	path = .vim/pack/vendor/start/mru
 	url = https://github.com/yegappan/mru
+	branch = master
 [submodule ".vim/pack/vendor/start/vim-gutentags"]
 	path = .vim/pack/vendor/start/vim-gutentags
 	url = https://github.com/ludovicchabant/vim-gutentags
+	branch = master
 [submodule ".vim/pack/vendor/start/vim-polyglot"]
 	path = .vim/pack/vendor/start/vim-polyglot
 	url = https://github.com/sheerun/vim-polyglot
+	branch = master
 [submodule ".vim/pack/vendor/start/vim-surround"]
 	path = .vim/pack/vendor/start/vim-surround
 	url = git@github.com:tpope/vim-surround
+	branch = master
 [submodule ".vim/pack/vendor/start/vim-fugitive"]
 	path = .vim/pack/vendor/start/vim-fugitive
 	url = https://github.com/tpope/vim-fugitive
+	branch = master
 [submodule ".vim/pack/vendor/start/vim-pasta"]
 	path = .vim/pack/vendor/start/vim-pasta
 	url = https://github.com/sickill/vim-pasta
+	branch = master
 [submodule ".vim/pack/vendor/start/ack.vim"]
 	path = .vim/pack/vendor/start/ack.vim
 	url = https://github.com/mileszs/ack.vim
+	branch = master
 [submodule ".vim/pack/vendor/start/onedark"]
 	path = .vim/pack/vendor/opt/onedark
 	url = https://github.com/joshdick/onedark.vim
+	branch = master
 [submodule ".vim/pack/vendor/start/phpactor"]
 	path = .vim/pack/vendor/start/phpactor
 	url = https://github.com/phpactor/phpactor
+	branch = master
 [submodule ".vim/pack/vendor/start/fzf.vim"]
 	path = .vim/pack/vendor/start/fzf.vim
 	url = https://github.com/junegunn/fzf.vim
-[submodule ".vim/pack/vendor/start/vim-go"]
-	path = .vim/pack/vendor/start/vim-go
-	url = https://github.com/fatih/vim-go
+<<<<<<< Updated upstream
+=======
+	branch = master
+>>>>>>> Stashed changes
 [submodule ".vim/pack/vendor/start/vim-readdir"]
 	path = .vim/pack/vendor/start/vim-readdir
 	url = git@github.com:kkoomen/vim-readdir
+	branch = master
 [submodule ".vim/pack/vendor/start/pear-tree"]
 	path = .vim/pack/vendor/start/pear-tree
 	url = https://github.com/tmsvg/pear-tree
+	branch = master
 [submodule ".vim/pack/vendor/start/splitjoin"]
 	path = .vim/pack/vendor/start/splitjoin
 	url = https://github.com/AndrewRadev/splitjoin.vim
+	branch = master
 [submodule ".vim/pack/vendor/start/tcomment"]
 	path = .vim/pack/vendor/start/tcomment
 	url = https://github.com/tomtom/tcomment_vim
+	branch = master
 [submodule ".vim/pack/vendor/start/vim-signify"]
 	path = .vim/pack/vendor/start/vim-signify
 	url = https://github.com/mhinz/vim-signify
+	branch = master
 [submodule ".vim/pack/vendor/start/gfi"]
 	path = .vim/pack/vendor/start/gfi
 	url = git@github.com:kkoomen/gfi.vim
+	branch = master
 [submodule ".vim/pack/vendor/start/vim-doge"]
 	path = .vim/pack/vendor/start/vim-doge
 	url = git@github.com:kkoomen/vim-doge.git
+	branch = master
 [submodule ".vim/pack/vendor/start/vader"]
 	path = .vim/pack/vendor/start/vader
 	url = https://github.com/junegunn/vader.vim
+	branch = master
