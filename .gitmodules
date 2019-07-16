@@ -73,10 +73,7 @@
 [submodule ".vim/pack/vendor/start/fzf.vim"]
 	path = .vim/pack/vendor/start/fzf.vim
 	url = https://github.com/junegunn/fzf.vim
-<<<<<<< Updated upstream
-=======
 	branch = master
->>>>>>> Stashed changes
 [submodule ".vim/pack/vendor/start/vim-readdir"]
 	path = .vim/pack/vendor/start/vim-readdir
 	url = git@github.com:kkoomen/vim-readdir
