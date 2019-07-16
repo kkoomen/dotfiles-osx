@@ -8,30 +8,30 @@ scriptencoding utf-8
 " }}}
 " Basic setup {{{
 
-syntax on                         " Enable syntax highlighting.
-filetype plugin indent on         " Enable file detection.
-set hidden                        " Hide when switching buffers, don't unload.
-set mouse=                        " Disable mouse in all modes.
-set synmaxcol=9999                " Amount of cols to enable syntax highlighting for.
-set nowrap                        " No word wrap.
-set number                        " Show line numbers.
-set nocursorline                  " Disable cursor line (makes vim very slow).
-set title                         " Use filename in window title.
-set ttyfast                       " Indicates a fast terminal connection.
-set lazyredraw                    " Will buffer screen updates instead of updating all the time.
-set clipboard=unnamed             " Enable clipboard.
-set autoread                      " Set to auto read when a file is changed from the outside.
-set nospell                       " Disable spellcheck on default.
-set scrolloff=7                   " Minimal number of screen lines to keep above and below the cursor when scrolling.
-set textwidth=80                  " Set a max text width.
-set nocompatible                  " Use vim defaults instead of vi.
-set updatetime=300                " The time in ms to redraw
-set backspace=indent,eol,start    " Set priorities for the backspace key.
-set foldenable foldmethod=marker  " Enable folding.
-set list listchars=tab:>>,trail:• " Make additional characters visible.
-set completeopt-=preview          " Disable scratch preview window.
-set infercase                     " Enable ignorecase for keyword completion.
-set diffopt=filler,iwhite         " Ignore whitespace as well when diffing.
+syntax on                           " Enable syntax highlighting.
+filetype plugin indent on           " Enable file detection.
+set hidden                          " Hide when switching buffers, don't unload.
+set mouse=                          " Disable mouse in all modes.
+set synmaxcol=9999                  " Amount of cols to enable syntax highlighting for.
+set nowrap                          " No word wrap.
+set number                          " Show line numbers.
+set nocursorline                    " Disable cursor line (makes vim very slow).
+set title                           " Use filename in window title.
+set ttyfast                         " Indicates a fast terminal connection.
+set lazyredraw                      " Will buffer screen updates instead of updating all the time.
+set clipboard=unnamed               " Enable clipboard.
+set autoread                        " Set to auto read when a file is changed from the outside.
+set nospell                         " Disable spellcheck on default.
+set scrolloff=7                     " Minimal number of screen lines to keep above and below the cursor when scrolling.
+set textwidth=80                    " Set a max text width.
+set nocompatible                    " Use vim defaults instead of vi.
+set updatetime=300                  " The time in ms to redraw
+set backspace=indent,eol,start      " Set priorities for the backspace key.
+set foldenable foldmethod=marker    " Enable folding.
+set list listchars=tab:\│\ ,trail:• " Make additional characters visible.
+set completeopt-=preview            " Disable scratch preview window.
+set infercase                       " Enable ignorecase for keyword completion.
+set diffopt=filler,iwhite           " Ignore whitespace as well when diffing.
 
 " Make our custom aliases available within a non-interactive vim.
 " -----------------------------------------------------------------------------
@@ -188,7 +188,7 @@ augroup styles
   autocmd!
   autocmd BufRead,BufNewFile *.min.* setlocal syntax=off
   autocmd FileType python setlocal tabstop=4 shiftwidth=4 softtabstop=4
-  autocmd FileType go setlocal list lcs=tab:\│\  tabstop=4 shiftwidth=4 softtabstop=4
+  autocmd FileType go setlocal tabstop=4 shiftwidth=4 softtabstop=4
   autocmd FileType php setlocal iskeyword-=-
   autocmd FileType css,less,scss setlocal iskeyword+=.
   autocmd FileType vim setlocal iskeyword+=:
@@ -202,15 +202,6 @@ augroup END
 
 " }}}
 " Functions {{{
-
-function! Count(pattern)
-  let l:occurences = trim(execute('%s/' . a:pattern . '//gn', 'silent!'))
-  let l:matches = matchlist(l:occurences, '\m\([[:digit:]]\+\) match\%(es\)\? on [[:digit:]]\+ lines\?')
-  if len(l:matches) >= 2
-    return get(l:matches, 1)
-  endif
-  return 0
-endfunction
 
 function OnBufWritePre()
   " Delete empty lines at the end of the buffer.
@@ -259,13 +250,6 @@ function! OnBufRead()
   " Set the path of the current buffer relative to its git diretory to the
   " system clipboard. 'GBP' refers for 'Git Buffer Path'.
   command! GBP :let @+=GetRelativeBufferPathInGitDirectory() | echo @*
-
-  " Use tabs if there are more tabs in the file.
-  if Count('^\t\+') > Count('^ \+')
-    setlocal noexpandtab
-  else
-    setlocal expandtab
-  endif
 endfunction
 
 function! IndentCode()

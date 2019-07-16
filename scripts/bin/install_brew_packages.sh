@@ -60,6 +60,7 @@ cask_apps=(
 
   # Development
   postman
+  sequel-pro
 
   # Quicklook
   qlcolorcode
