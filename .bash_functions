@@ -71,6 +71,21 @@ function weather {
   curl wttr.in/~$langcode
 }
 
+function vim-format {
+  # Example:
+  # find . -name "*.js" -not -path "*/node_modules/*" -exec sh -c "echo {}; vim '+normal! gg=G' '+wq' {} > /dev/null 2>&1" \;
+  if [[ "$1" == "" ]]; then
+    echo "Usage: vim-format <file>"
+  else
+    # +normal! gg=G
+    #   This command will indent all the code (hopefully in a proper way).
+    # +wq
+    #   Save and quit.
+    echo "Formatting $1..."
+    vim '+normal! gg=G' '+wq' "$1" > /dev/null 2>&1
+  fi
+}
+
 
 # -----------------------------------------------------------------------------
 #
