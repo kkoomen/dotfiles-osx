@@ -70,10 +70,6 @@
 	path = .vim/pack/vendor/start/vim-readdir
 	url = git@github.com:kkoomen/vim-readdir
 	branch = master
-[submodule ".vim/pack/vendor/start/pear-tree"]
-	path = .vim/pack/vendor/start/pear-tree
-	url = https://github.com/tmsvg/pear-tree
-	branch = master
 [submodule ".vim/pack/vendor/start/splitjoin"]
 	path = .vim/pack/vendor/start/splitjoin
 	url = https://github.com/AndrewRadev/splitjoin.vim
@@ -98,3 +94,6 @@
 	path = .vim/pack/vendor/start/vader
 	url = https://github.com/junegunn/vader.vim
 	branch = master
+[submodule ".vim/pack/vendor/start/auto-pairs"]
+	path = .vim/pack/vendor/start/auto-pairs
+	url = https://github.com/jiangmiao/auto-pairs
