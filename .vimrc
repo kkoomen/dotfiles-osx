@@ -206,17 +206,17 @@ augroup END
 
 function OnBufWritePre()
   " Delete empty lines at the end of the buffer.
-  execute('v/\n*./d')
+  call execute('v/\n*./d')
 
   " Execute commands only for non-test files.
   let l:test_file_regex = '\m\(test\|spec\|.\+\.vader$\)'
   if expand('%:t') !~# l:test_file_regex
 
     " Delete trailing whitespaces for each line.
-    execute('%s/\s\+$//ge')
+    call execute('%s/\s\+$//ge')
 
     " Retab the file to ensure no mixed usage of tabs and spaces.
-    execute('%retab!')
+    call execute('%retab!')
   endif
 endfunction
 
@@ -670,7 +670,7 @@ command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-h
 " }}}
 " Plugins: EditorConfig {{{
 
-let g:EditorConfig_disable_rules = ['max_line_length']
+let g:EditorConfig_disable_rules = ['max_line_length', 'indent_size', 'tab_width']
 
 " }}}
 " Plugins: Readdir {{{
