@@ -10,3 +10,6 @@ tags.temp
 # Vim swap files
 *.swp
 *.swo
+
+# Vim Plug
+.vim/plugged

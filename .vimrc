@@ -25,6 +25,7 @@ set nospell                         " Disable spellcheck on default.
 set scrolloff=7                     " Minimal number of screen lines to keep above and below the cursor when scrolling.
 set textwidth=80                    " Set a max text width.
 set nocompatible                    " Use vim defaults instead of vi.
+set signcolumn=yes                  " Always show signcolumn
 set updatetime=300                  " The time in ms to redraw
 set backspace=indent,eol,start      " Set priorities for the backspace key.
 set foldenable foldmethod=marker    " Enable folding.
@@ -194,6 +195,7 @@ augroup styles
   autocmd FileType css,less,scss setlocal iskeyword+=.
   autocmd FileType vim setlocal iskeyword+=:
   autocmd FileType markdown setlocal spell
+  autocmd FileType json syntax match Comment +\/\/.\+$+
 
   " Format options have impact when formatting code with the 'gq' binding.
   " Default: crqlo (see ':h fo-table' for more info)
@@ -357,6 +359,35 @@ cnoremap wW w
 cnoremap WW w
 
 " }}}
+" Plugins: Vim-Plug {{{
+
+call plug#begin('~/.vim/plugged')
+Plug 'AndrewRadev/splitjoin.vim'
+Plug 'Yggdroot/indentLine'
+Plug 'alvan/vim-closetag'
+Plug 'editorconfig/editorconfig-vim'
+Plug 'godlygeek/tabular'
+Plug 'jiangmiao/auto-pairs'
+Plug 'joshdick/onedark.vim', { 'dir': '~/.vim/pack/vendor/opt/onedark' }
+Plug 'junegunn/fzf.vim'
+Plug 'junegunn/vader.vim'
+Plug 'ludovicchabant/vim-gutentags'
+Plug 'mileszs/ack.vim'
+Plug 'neoclide/coc-neco'
+Plug 'neoclide/coc-sources'
+Plug 'neoclide/coc.nvim', { 'branch': 'release' }
+Plug 'sheerun/vim-polyglot'
+Plug 'sickill/vim-pasta'
+Plug 'tomtom/tcomment_vim'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-surround'
+Plug 'yegappan/mru'
+Plug 'git@github.com:kkoomen/gfi.vim'
+Plug 'git@github.com:kkoomen/vim-doge'
+Plug 'git@github.com:kkoomen/vim-readdir'
+call plug#end()
+
+" }}}
 " Plugins: HTML Close Tag {{{
 
 let g:closetag_filenames = "*.html,*.xhtml,*.phtml,*.tpl,*.twig,*.htm,*.php,*.pug,*.jsx,*.js,*.mdx,*.plop,*.tsx,*.ts"
@@ -389,103 +420,6 @@ endfunction
 
 let g:indentLine_char = '│'
 let g:indentLine_faster = 1
-
-" }}}
-" Plugins: Ale {{{
-
-let g:ale_set_highlights = 0
-highlight! ALEWarning ctermfg=none ctermbg=none guibg=NONE guifg=NONE
-highlight! ALEError   ctermfg=none ctermbg=none guibg=NONE guifg=NONE
-
-highlight! ALEWarningSign guibg=NONE guifg=white
-highlight! ALEErrorSign   guibg=NONE guifg=#e07798
-
-let g:ale_sign_error = '➜'
-let g:ale_sign_warning = '➜'
-
-" Open list of errors when new buffer opens.
-let g:ale_open_list = 0
-
-" Unset loclist and enable quickfix list.
-let g:ale_set_loclist = 0
-let g:ale_set_quickfix = 1
-
-" This means when entering a file, not when pressing <ENTER>.
-let g:ale_lint_on_enter = 1
-
-let g:ale_lint_on_save = 1
-let g:ale_lint_on_text_changed = 1
-" let g:ale_php_phpcs_standard = 'Drupal'
-let g:ale_linters_explicit = 1
-
-let g:ale_linters = {
-      \ 'python': ['pycodestyle'],
-      \ 'go': ['gometalinter', 'gofmt', 'goimports'],
-      \ 'vim': ['vint'],
-      \ 'html': ['htmlhint'],
-      \ 'smarty': ['htmlhint'],
-      \ 'css': ['stylelint'],
-      \ 'scss': ['stylelint'],
-      \ 'less': ['stylelint'],
-      \ 'javascript': ['eslint'],
-      \ 'javascript.jsx': ['eslint'],
-      \ 'typescript': ['tslint'],
-      \ 'typescript.jsx': ['tslint'],
-      \ }
-
-let g:ale_linter_aliases = {
-      \ 'smarty': ['html']
-      \ }
-
-" Do not lint or fix minified files.
-let g:ale_pattern_options = {
-      \ '\.min\.js$': {'ale_linters': [], 'ale_fixers': []},
-      \ '\.min\.css$': {'ale_linters': [], 'ale_fixers': []},
-      \ '\.tpl\.php$': {'ale_linters': [], 'ale_fixers': []},
-      \ }
-
-" }}}
-" Plugins: Emmet {{{
-
-" After the leader key you should always enter a comma to trigger emmet.
-let g:user_emmet_leader_key='<C-f>'
-let g:user_emmet_settings = {
-      \   'typescript.jsx' : {
-      \     'extends': 'jsx',
-      \   },
-      \   'javascript.jsx' : {
-      \     'extends': 'jsx',
-      \   },
-      \ }
-
-
-" }}}
-" Plugins: Signify {{{
-
-let g:signify_sign_add               = '+'
-let g:signify_sign_delete            = '-'
-let g:signify_sign_delete_first_line = '^'
-let g:signify_sign_change            = 'M'
-let g:signify_sign_changedelete      = 'M-'
-
-" }}}
-" Plugins: YouCompleteMe {{{
-
-let g:ycm_key_list_select_completion=['<Down>']
-let g:ycm_key_list_previous_completion=['<Up>']
-let g:ycm_max_num_identifier_candidates = 6
-let g:ycm_collect_identifiers_from_tags_files = 1
-let g:ycm_collect_identifiers_from_comments_and_strings = 1
-let g:ycm_seed_identifiers_with_syntax = 1
-let g:ycm_add_preview_to_completeopt = 0
-let g:ycm_complete_in_comments = 0
-
-let g:ycm_server_python_interpreter = 'python3'
-let g:ycm_filepath_blacklist = {}
-
-" Disable diagnostics, those are provided by ALE.
-let g:ycm_always_populate_location_list = 0
-let g:ycm_show_diagnostics_ui = 0
 
 " }}}
 " Plugins: MRU {{{
@@ -682,13 +616,34 @@ let loaded_netrwPlugin = 1
 let g:readdir_hidden = 2
 
 " }}}
-" Plugins: Vim-GO {{{
-
-let g:go_template_autocreate = 0
-
-" }}}
 " Plugins: DoGe {{{
 
 let g:doge_mapping = '<C-d>'
+
+" }}}
+" Plugins: coc {{{
+
+let g:coc_global_extensions = ['coc-tsserver',
+      \ 'coc-html',
+      \ 'coc-css',
+      \ 'coc-python',
+      \ 'coc-phpls',
+      \ 'coc-yaml',
+      \ 'coc-emmet',
+      \ 'coc-git',
+      \ 'coc-vimlsp',
+      \ 'coc-dictionary',
+      \ 'coc-tag',
+      \ 'coc-word',
+      \ 'coc-ultisnips'
+      \ ]
+
+if exists('g:did_coc_loaded')
+  augroup coc
+    autocmd!
+    autocmd CursorHold * silent call CocActionAsync('highlight')
+  augroup END
+endif
+
 
 " }}}
