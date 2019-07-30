@@ -1,41 +1,6 @@
 #!/usr/bin/env bash
 
-sudo true || exit 1
-
-DOTFILES=~/dotfiles
-VIM_VENDOR_PACK_DIR=$DOTFILES/.vim/pack/vendor/start
-ACTION=$1
-
-cd $DOTFILES
-git submodule deinit -f --all
-if [[ $ACTION == "update" ]]; then
-  git submodule update --init --remote --merge
-  git submodule foreach "git checkout master && git pull origin master && git submodule update --init --recursive"
-else
-  git submodule update --init --recursive
-fi
-
-# -----------------------------------------------------------------------------
-#
-# coc
-#
-# ----------------------------------------------------------------------------
-coc_packages=(
-  coc-tsserver
-  coc-json
-  coc-html
-  coc-css
-  coc-python
-  coc-phpls
-  coc-yaml
-  coc-emmet
-  coc-vimlsp
-  coc-dictionary
-  coc-tag
-  coc-word
-  coc-ultisnips
-)
-vim -c "CocInstall ${coc_packages[@]}|q"
+# sudo true || exit 1
 
 # -----------------------------------------------------------------------------
 #
