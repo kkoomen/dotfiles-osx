@@ -122,10 +122,10 @@ set iskeyword+=-
 
 " Set all the autocompleters.
 " autocmd FileType * setlocal omnifunc=syntaxcomplete#Complete
-autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType javascript,javascript.jsx,jsx,typescript,typescript.jsx setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType php setlocal omnifunc=phpactor#Complete
+" autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+" autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+" autocmd FileType javascript,javascript.jsx,jsx,typescript,typescript.jsx setlocal omnifunc=javascriptcomplete#CompleteJS
+" autocmd FileType php setlocal omnifunc=phpactor#Complete
 
 " Unset some complete options for optimised completion performance.
 " i   Scan the current and included files.
@@ -282,9 +282,9 @@ let g:mapleader = "\<Space>"
 
 " Buffers
 " ------------------------------------------------------------------------------
-nnoremap Z :bprev<CR>
-nnoremap X :bnext<CR>
-nnoremap Q :bw<CR>
+nnoremap <silent> Z :bprev<CR>
+nnoremap <silent> X :bnext<CR>
+nnoremap <silent> Q :bw<CR>
 
 " Moving lines up or down
 " ------------------------------------------------------------------------------
@@ -629,8 +629,9 @@ let g:coc_global_extensions = ['coc-tsserver',
       \ 'coc-python',
       \ 'coc-phpls',
       \ 'coc-yaml',
+      \ 'coc-highlight',
+      \ 'coc-json',
       \ 'coc-emmet',
-      \ 'coc-git',
       \ 'coc-vimlsp',
       \ 'coc-dictionary',
       \ 'coc-tag',
@@ -638,12 +639,29 @@ let g:coc_global_extensions = ['coc-tsserver',
       \ 'coc-ultisnips'
       \ ]
 
-if exists('g:did_coc_loaded')
-  augroup coc
-    autocmd!
-    autocmd CursorHold * silent call CocActionAsync('highlight')
-  augroup END
-endif
+augroup coc
+  autocmd!
+  autocmd CursorHold * :if exists('g:did_coc_loaded') | silent call CocActionAsync('highlight') | endif
+augroup END
 
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h ' . expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+
+
+" Use K to show documentation in preview window
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+nmap <silent> gd <Plug>(coc-definition)
+
+" autocmd ColorScheme *
+  " \ hi! CocErrorSign guifg=#d97084
+" \ | hi! CocWarningSign guifg=#e9cb87
+" \ | hi! CocInfoSign guifg=#d0d2d2
+" \ | hi! CocHintSign guifg=#6face4
 
 " }}}
