@@ -363,12 +363,10 @@ cnoremap WW w
 
 call plug#begin('~/.vim/plugged')
 Plug 'AndrewRadev/splitjoin.vim'
-Plug 'SirVer/ultisnips'
 Plug 'Yggdroot/indentLine'
 Plug 'alvan/vim-closetag'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'godlygeek/tabular'
-Plug 'honza/vim-snippets'
 Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vader.vim'
@@ -659,10 +657,9 @@ nnoremap <silent> K :call <SID>show_documentation()<CR>
 
 nmap <silent> gd <Plug>(coc-definition)
 
-" autocmd ColorScheme *
-  " \ hi! CocErrorSign guifg=#d97084
-" \ | hi! CocWarningSign guifg=#e9cb87
-" \ | hi! CocInfoSign guifg=#d0d2d2
-" \ | hi! CocHintSign guifg=#6face4
+hi! CocErrorSign guifg=#d97084
+hi! CocWarningSign guifg=#e9cb87
+hi! CocInfoSign guifg=#d0d2d2
+hi! CocHintSign guifg=#6face4
 
 " }}}
