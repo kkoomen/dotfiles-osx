@@ -363,12 +363,13 @@ cnoremap WW w
 
 call plug#begin('~/.vim/plugged')
 Plug 'AndrewRadev/splitjoin.vim'
+Plug 'SirVer/ultisnips'
 Plug 'Yggdroot/indentLine'
 Plug 'alvan/vim-closetag'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'godlygeek/tabular'
+Plug 'honza/vim-snippets'
 Plug 'jiangmiao/auto-pairs'
-Plug 'joshdick/onedark.vim', { 'dir': '~/.vim/pack/vendor/opt/onedark' }
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vader.vim'
 Plug 'ludovicchabant/vim-gutentags'
@@ -623,7 +624,8 @@ let g:doge_mapping = '<C-d>'
 " }}}
 " Plugins: coc {{{
 
-let g:coc_global_extensions = ['coc-tsserver',
+let g:coc_global_extensions = [
+      \ 'coc-tsserver',
       \ 'coc-html',
       \ 'coc-css',
       \ 'coc-python',
@@ -651,7 +653,6 @@ function! s:show_documentation()
     call CocAction('doHover')
   endif
 endfunction
-
 
 " Use K to show documentation in preview window
 nnoremap <silent> K :call <SID>show_documentation()<CR>
