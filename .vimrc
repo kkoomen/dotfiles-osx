@@ -28,7 +28,7 @@ set nocompatible                    " Use vim defaults instead of vi.
 set signcolumn=yes                  " Always show signcolumn
 set updatetime=300                  " The time in ms to redraw
 set backspace=indent,eol,start      " Set priorities for the backspace key.
-set foldenable foldmethod=marker    " Enable folding.
+set foldenable                      " Enable folding.
 set list listchars=tab:\│\ ,trail:• " Make additional characters visible.
 set completeopt-=preview            " Disable scratch preview window.
 set infercase                       " Enable ignorecase for keyword completion.
@@ -193,7 +193,7 @@ augroup styles
   autocmd FileType go setlocal tabstop=4 shiftwidth=4 softtabstop=4
   autocmd FileType php setlocal iskeyword-=-
   autocmd FileType css,less,scss setlocal iskeyword+=.
-  autocmd FileType vim setlocal iskeyword+=:
+  autocmd FileType vim setlocal iskeyword+=: foldmethod=marker
   autocmd FileType markdown setlocal spell
   autocmd FileType json syntax match Comment +\/\/.\+$+
 
@@ -371,6 +371,7 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vader.vim'
 Plug 'ludovicchabant/vim-gutentags'
+Plug 'mattn/emmet-vim'
 Plug 'mileszs/ack.vim'
 Plug 'neoclide/coc-neco'
 Plug 'neoclide/coc-sources'
@@ -385,6 +386,21 @@ Plug 'git@github.com:kkoomen/gfi.vim'
 Plug 'git@github.com:kkoomen/vim-doge'
 Plug 'git@github.com:kkoomen/vim-readdir'
 call plug#end()
+
+" }}}
+" Plugins: Emmet {{{
+
+" After the leader key you should always enter a comma to trigger emmet.
+let g:user_emmet_leader_key='<C-f>'
+let g:user_emmet_settings = {
+      \   'typescript.jsx' : {
+      \     'extends': 'jsx',
+      \   },
+      \   'javascript.jsx' : {
+      \     'extends': 'jsx',
+      \   },
+      \ }
+
 
 " }}}
 " Plugins: HTML Close Tag {{{
@@ -630,6 +646,7 @@ let g:coc_global_extensions = [
       \ 'coc-phpls',
       \ 'coc-yaml',
       \ 'coc-highlight',
+      \ 'coc-snippets',
       \ 'coc-json',
       \ 'coc-emmet',
       \ 'coc-vimlsp',
