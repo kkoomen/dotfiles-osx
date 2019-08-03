@@ -208,17 +208,17 @@ augroup END
 
 function OnBufWritePre()
   " Delete empty lines at the end of the buffer.
-  call execute('v/\n*./d')
+  keepjumps execute('v/\n*./d')
 
   " Execute commands only for non-test files.
   let l:test_file_regex = '\m\(test\|spec\|.\+\.vader$\)'
   if expand('%:t') !~# l:test_file_regex
 
     " Delete trailing whitespaces for each line.
-    call execute('%s/\s\+$//ge')
+    keepjumps execute('%s/\s\+$//ge')
 
     " Retab the file to ensure no mixed usage of tabs and spaces.
-    call execute('%retab!')
+    keepjumps execute('%retab!')
   endif
 endfunction
 
@@ -255,12 +255,12 @@ function! OnBufRead()
   command! GBP :let @+=GetRelativeBufferPathInGitDirectory() | echo @*
 endfunction
 
-function! IndentCode()
+function! s:IndentCode()
   " Save the cursor position.
   let l:cursor_pos = getpos('.')
 
   " Indent code.
-  execute('normal! gg=G')
+  keepjumps execute('normal! gg=G')
 
   " Set the cursor position back at where we started.
   call setpos('.', l:cursor_pos)
@@ -308,7 +308,8 @@ nnoremap <silent> <F6> ggg?G<CR>
 noremap <silent> <Space> :silent! noh<CR>
 
 " Re-indent code.
-noremap <Leader>i :call IndentCode()<CR>
+" ------------------------------------------------------------------------------
+noremap <Leader>i :call <SID>IndentCode()<CR>
 
 " Allow saving of files as sudo when I forgot to start vim using sudo
 " ------------------------------------------------------------------------------
@@ -567,7 +568,7 @@ let g:visual_surround_characters = [
       \ '%', '-', '_', '*'
       \ ]
 for char in g:visual_surround_characters
-  execute('vmap ' . char . ' S' . char)
+  keepjumps execute('vmap ' . char . ' S' . char)
 endfor
 
 " }}}
