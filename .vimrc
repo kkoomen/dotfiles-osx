@@ -266,12 +266,24 @@ function! s:IndentCode()
   call setpos('.', l:cursor_pos)
 endfunction
 
+function! OnVimEnter() abort
+  " Run PlugUpdate every week automatically when entering Vim.
+  if exists('g:plug_home')
+    let l:filename = printf('%s/.vim_plug_update_%s', g:plug_home, strftime('%Y_%V'))
+    if filereadable(l:filename) == 0
+      call execute('PlugUpdate')
+      call system(printf('touch %s', l:filename))
+    endif
+  endif
+endfunction
+
 " }}}
 " Hooks {{{
 
-autocmd BufWritePre *        :call OnBufWritePre()
-autocmd BufReadPost *        :call OnBufReadPost()
-autocmd BufRead,BufNewFile * :call OnBufRead()
+autocmd BufWritePre *         call OnBufWritePre()
+autocmd BufReadPost *         call OnBufReadPost()
+autocmd BufRead,BufNewFile *  call OnBufRead()
+autocmd VimEnter *            call OnVimEnter()
 
 " }}}
 " Mappings {{{
