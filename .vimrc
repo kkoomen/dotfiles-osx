@@ -8,31 +8,36 @@ scriptencoding utf-8
 " }}}
 " Basic setup {{{
 
-syntax on                           " Enable syntax highlighting.
-filetype plugin indent on           " Enable file detection.
-set hidden                          " Hide when switching buffers, don't unload.
-set mouse=                          " Disable mouse in all modes.
-set synmaxcol=9999                  " Amount of cols to enable syntax highlighting for.
-set nowrap                          " No word wrap.
-set number                          " Show line numbers.
-set nocursorline                    " Disable cursor line (makes vim very slow).
-set title                           " Use filename in window title.
-set ttyfast                         " Indicates a fast terminal connection.
-set lazyredraw                      " Will buffer screen updates instead of updating all the time.
-set clipboard=unnamed               " Enable clipboard.
-set autoread                        " Set to auto read when a file is changed from the outside.
-set nospell                         " Disable spellcheck on default.
-set scrolloff=7                     " Minimal number of screen lines to keep above and below the cursor when scrolling.
-set textwidth=80                    " Set a max text width.
-set nocompatible                    " Use vim defaults instead of vi.
-set signcolumn=yes                  " Always show signcolumn
-set updatetime=300                  " The time in ms to redraw
-set backspace=indent,eol,start      " Set priorities for the backspace key.
-set foldenable                      " Enable folding.
-set list listchars=tab:\│\ ,trail:• " Make additional characters visible.
-set completeopt-=preview            " Disable scratch preview window.
-set infercase                       " Enable ignorecase for keyword completion.
-set diffopt=filler,iwhite           " Ignore whitespace as well when diffing.
+syntax on
+filetype plugin indent on
+set hidden
+set mouse=
+set synmaxcol=9999
+set nowrap
+set number
+set nocursorline
+set nocursorcolumn
+set title
+set ttyfast
+set lazyredraw
+set clipboard=unnamed
+set autoread
+set nospell
+set scrolloff=7
+set textwidth=80
+set nocompatible
+set signcolumn=yes
+set updatetime=300
+set backspace=indent,eol,start
+set foldenable
+set list listchars=tab:\│\ ,trail:•
+set completeopt-=preview
+set infercase
+set diffopt=filler,iwhite
+set ttimeoutlen=50
+set wildoptions=tagfile
+set display=lastline
+set nofsync
 
 " Make our custom aliases available within a non-interactive vim.
 " -----------------------------------------------------------------------------
@@ -41,21 +46,21 @@ let $BASH_ENV = '~/.bash_aliases'
 " }}}
 " Search {{{
 
-set ignorecase " Case insensitive.
-set incsearch  " Show match as search proceeds.
-set hlsearch   " Search highlighting.
+set ignorecase
+set incsearch
+set hlsearch
 
 " }}}
 " Indentation {{{
 
-set autoindent    " Copy indent from previous line.
-set smartindent   " Auto indent when starting a new line.
-set shiftwidth=2  " Spaces for autoindenting.
-set smarttab      " <BS> removes shiftwidth worth of spaces.
-set softtabstop=2 " Spaces for editing, e.g. <Tab> or <BS>.
-set tabstop=2     " Amount of spaces for <Tab>.
-set shiftround    " Round indent to multiple of 'shiftwidth'.
-set expandtab     " Use spaces by default.
+set autoindent
+set smartindent
+set shiftwidth=2
+set smarttab
+set softtabstop=2
+set tabstop=2
+set shiftround
+set expandtab
 
 " }}}
 " Wildmenu {{{
@@ -199,7 +204,7 @@ augroup styles
 
   " Format options have impact when formatting code with the 'gq' binding.
   " Default: crqlo (see ':h fo-table' for more info)
-  autocmd FileType * set fo=crql
+  autocmd FileType * set formatoptions=crqlt
 augroup END
 
 
@@ -248,11 +253,11 @@ endfunction
 function! OnBufRead()
   " Set the absolute path of the current buffer to the system clipboard.
   " 'BP' refers to 'Buffer Path'.
-  command! BP :let @+=expand('%:p') | echo @*
+  command! -nargs=0 BP :let @+=expand('%:p') | echo @*
 
   " Set the path of the current buffer relative to its git diretory to the
   " system clipboard. 'GBP' refers for 'Git Buffer Path'.
-  command! GBP :let @+=GetRelativeBufferPathInGitDirectory() | echo @*
+  command! -nargs=0 GBP :let @+=GetRelativeBufferPathInGitDirectory() | echo @*
 endfunction
 
 function! s:IndentCode()
@@ -269,10 +274,16 @@ endfunction
 function! OnVimEnter() abort
   " Run PlugUpdate every week automatically when entering Vim.
   if exists('g:plug_home')
-    let l:filename = printf('%s/.vim_plug_update_%s', g:plug_home, strftime('%Y_%V'))
+    let l:filename = printf('%s/.vim_plug_update', g:plug_home)
     if filereadable(l:filename) == 0
+      call writefile([], l:filename)
+    endif
+
+    let l:this_week = strftime('%Y_%V')
+    let l:contents = readfile(l:filename)
+    if index(l:contents, l:this_week) < 0
       call execute('PlugUpdate')
-      call system(printf('touch %s', l:filename))
+      call writefile([l:this_week], l:filename, 'a')
     endif
   endif
 endfunction
@@ -280,10 +291,13 @@ endfunction
 " }}}
 " Hooks {{{
 
-autocmd BufWritePre *         call OnBufWritePre()
-autocmd BufReadPost *         call OnBufReadPost()
-autocmd BufRead,BufNewFile *  call OnBufRead()
-autocmd VimEnter *            call OnVimEnter()
+augroup hooks
+  autocmd!
+  autocmd BufWritePre *         call OnBufWritePre()
+  autocmd BufReadPost *         call OnBufReadPost()
+  autocmd BufRead,BufNewFile *  call OnBufRead()
+  autocmd VimEnter *            call OnVimEnter()
+augroup END
 
 " }}}
 " Mappings {{{
