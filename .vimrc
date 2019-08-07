@@ -33,7 +33,7 @@ set foldenable
 set list listchars=tab:\│\ ,trail:•
 set completeopt-=preview
 set infercase
-set diffopt=filler,iwhite
+set diffopt=filler,internal,algorithm:histogram,indent-heuristic
 set ttimeoutlen=50
 set wildoptions=tagfile
 set display=lastline
@@ -193,6 +193,11 @@ augroup END
 
 augroup styles
   autocmd!
+  " Format options have impact when formatting code with the 'gq' binding.
+  " Default: crqlo (see ':h fo-table' for more info)
+  autocmd FileType * set formatoptions=crql
+  autocmd FileType markdown set formatoptions+=t
+
   autocmd BufRead,BufNewFile *.min.* setlocal syntax=off
   autocmd FileType python setlocal tabstop=4 shiftwidth=4 softtabstop=4
   autocmd FileType go setlocal tabstop=4 shiftwidth=4 softtabstop=4
@@ -202,9 +207,6 @@ augroup styles
   autocmd FileType markdown setlocal spell
   autocmd FileType json syntax match Comment +\/\/.\+$+
 
-  " Format options have impact when formatting code with the 'gq' binding.
-  " Default: crqlo (see ':h fo-table' for more info)
-  autocmd FileType * set formatoptions=crqlt
 augroup END
 
 
@@ -384,6 +386,19 @@ cnoremap ww w
 cnoremap Ww w
 cnoremap wW w
 cnoremap WW w
+
+" }}}
+" Commands {{{
+
+command! -bar -nargs=1 -complete=file Rename :
+  \ let s:oldfile = expand('%:p') |
+  \ let s:newfile = simplify(expand('%:p:h') . '/<args>') |
+  \ setlocal modifiable |
+  \ call execute(':saveas<bang> ' . s:newfile) |
+  \ call delete(s:oldfile) |
+  \ call execute(':' . bufnr('$') . 'bw') |
+  \ unlet s:oldfile |
+  \ unlet s:newfile
 
 " }}}
 " Plugins: Vim-Plug {{{
