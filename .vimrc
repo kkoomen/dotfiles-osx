@@ -30,7 +30,8 @@ set signcolumn=yes
 set updatetime=300
 set backspace=indent,eol,start
 set foldenable
-set list listchars=tab:\│\ ,trail:•
+" set list listchars=tab:\│\ ,trail:•
+set list listchars=trail:•
 set completeopt-=preview
 set infercase
 set diffopt=filler,internal,algorithm:histogram,indent-heuristic
@@ -46,7 +47,7 @@ let $BASH_ENV = '~/.bash_aliases'
 " }}}
 " Search {{{
 
-set ignorecase
+" set ignorecase
 set incsearch
 set hlsearch
 
@@ -206,7 +207,6 @@ augroup styles
   autocmd FileType vim setlocal iskeyword+=: foldmethod=marker
   autocmd FileType markdown setlocal spell
   autocmd FileType json syntax match Comment +\/\/.\+$+
-
 augroup END
 
 
@@ -214,18 +214,20 @@ augroup END
 " Functions {{{
 
 function OnBufWritePre()
-  " Delete empty lines at the end of the buffer.
-  keepjumps execute('v/\n*./d')
+  if !exists('b:disable_hook_bufprewrite')
+    " Delete empty lines at the end of the buffer.
+    keepjumps execute('v/\n*./d')
 
-  " Execute commands only for non-test files.
-  let l:test_file_regex = '\m\(test\|spec\|.\+\.vader$\)'
-  if expand('%:t') !~# l:test_file_regex
+    " Execute commands only for non-test files.
+    let l:test_file_regex = '\m\(test\|spec\|.\+\.vader$\)'
+    if expand('%:t') !~# l:test_file_regex
 
-    " Delete trailing whitespaces for each line.
-    keepjumps execute('%s/\s\+$//ge')
+      " Delete trailing whitespaces for each line.
+      keepjumps execute('%s/\s\+$//ge')
 
-    " Retab the file to ensure no mixed usage of tabs and spaces.
-    keepjumps execute('%retab!')
+      " Retab the file to ensure no mixed usage of tabs and spaces.
+      keepjumps execute('%retab!')
+    endif
   endif
 endfunction
 
@@ -405,7 +407,7 @@ command! -bar -nargs=1 -complete=file Rename :
 
 call plug#begin('~/.vim/plugged')
 Plug 'AndrewRadev/splitjoin.vim'
-Plug 'Yggdroot/indentLine'
+Plug 'thaerkh/vim-indentguides'
 Plug 'alvan/vim-closetag'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'godlygeek/tabular'
@@ -415,8 +417,6 @@ Plug 'junegunn/vader.vim'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'mattn/emmet-vim'
 Plug 'mileszs/ack.vim'
-Plug 'neoclide/coc-neco'
-Plug 'neoclide/coc-sources'
 Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 Plug 'sheerun/vim-polyglot'
 Plug 'sickill/vim-pasta'
@@ -473,10 +473,10 @@ function! GetFileOrDirectory()
 endfunction
 
 " }}}
-" Plugins: Indent Line {{{
+" Plugins: Indent Guides {{{
 
-let g:indentLine_char = '│'
-let g:indentLine_faster = 1
+let g:indentguides_spacechar = '│'
+let g:indentguides_tabchar = '│'
 
 " }}}
 " Plugins: MRU {{{
@@ -688,26 +688,25 @@ let g:coc_global_extensions = [
       \ 'coc-phpls',
       \ 'coc-yaml',
       \ 'coc-highlight',
-      \ 'coc-snippets',
       \ 'coc-json',
-      \ 'coc-emmet',
       \ 'coc-vimlsp',
-      \ 'coc-dictionary',
+      \ 'coc-emmet',
       \ 'coc-tag',
-      \ 'coc-word',
-      \ 'coc-ultisnips'
       \ ]
 
 augroup coc
   autocmd!
-  autocmd CursorHold * :if exists('g:did_coc_loaded') | silent call CocActionAsync('highlight') | endif
+  autocmd CursorHold * :
+        \ if exists('g:did_coc_loaded') |
+        \   silent call CocActionAsync('highlight') |
+        \ endif
 augroup END
 
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)
     execute 'h ' . expand('<cword>')
   else
-    call CocAction('doHover')
+    call CocActionAsync('doHover')
   endif
 endfunction
 
