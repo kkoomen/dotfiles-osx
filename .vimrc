@@ -283,7 +283,7 @@ function! OnVimEnter() abort
       call writefile([], l:filename)
     endif
 
-    let l:this_week = strftime('%Y_%V')
+    let l:this_week = strftime('%Y_%U')
     let l:contents = readfile(l:filename)
     if index(l:contents, l:this_week) < 0
       call execute('PlugUpdate')
