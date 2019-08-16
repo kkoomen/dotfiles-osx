@@ -213,8 +213,52 @@ augroup END
 " }}}
 " Functions {{{
 
-function OnBufWritePre()
+function s:Rename(bang, args) abort
+  let l:oldfile = expand('%:p')
+  let l:newfile = simplify(expand('%:p:h') . '/' . a:args)
+  setlocal modifiable
+  call execute(':saveas' . a:bang . ' ' . l:newfile)
+  call delete(l:oldfile)
+  call execute(':' . bufnr('$') . 'bw')
+endfunction
+
+function! s:IndentCode()
+  " Save the current window view.
+  let l:winview = winsaveview()
+
+  " Indent code.
+  keepjumps execute('normal! gg=G')
+
+  " Restore the window view.
+  call winrestview(l:winview)
+endfunction
+
+function s:PHPConvertArrays() abort
+  let l:winview = winsaveview()
+  while search('\m\(\w\)\@<!\carray\s*(') > 0
+    call execute('normal! diw')
+    let [l:match_pair_line, l:match_pair_col] = searchpairpos('(', '', ')', 'n')
+    call execute('normal! r[')
+    call setpos('.', [0, l:match_pair_line, l:match_pair_col, 0])
+    call execute('normal! r]')
+  endwhile
+  call winrestview(l:winview)
+endfunction
+
+function! s:GetRelativeBufferPathInGitDirectory()
+  return substitute(
+        \ expand('%:p'),
+        \ trim(system('git -C ' . shellescape(expand('%:p:h')) . ' rev-parse --show-toplevel')),
+        \ '',
+        \ 'g'
+        \ )
+endfunction
+
+function s:OnBufWritePre()
   if !exists('b:disable_hook_bufprewrite')
+    " Save the current window view.
+    let l:winview = winsaveview()
+
     " Delete empty lines at the end of the buffer.
     keepjumps execute('v/\n*./d')
 
@@ -228,10 +272,13 @@ function OnBufWritePre()
       " Retab the file to ensure no mixed usage of tabs and spaces.
       keepjumps execute('%retab!')
     endif
+
+    " Restore the window view.
+    call winrestview(l:winview)
   endif
 endfunction
 
-function OnBufReadPost()
+function s:OnBufReadPost()
   " Set the last edit position.
   if line("'\"") > 0 && line("'\"") <= line("$") |
     execute("normal! g`\"") |
@@ -245,37 +292,17 @@ function OnBufReadPost()
   endif
 endfunction
 
-function! GetRelativeBufferPathInGitDirectory()
-  return substitute(
-        \ expand('%:p'),
-        \ trim(system('git -C ' . shellescape(expand('%:p:h')) . ' rev-parse --show-toplevel')),
-        \ '',
-        \ 'g'
-        \ )
-endfunction
-
-function! OnBufRead()
+function! s:OnBufRead()
   " Set the absolute path of the current buffer to the system clipboard.
   " 'BP' refers to 'Buffer Path'.
   command! -nargs=0 BP :let @+=expand('%:p') | echo @*
 
   " Set the path of the current buffer relative to its git diretory to the
   " system clipboard. 'GBP' refers for 'Git Buffer Path'.
-  command! -nargs=0 GBP :let @+=GetRelativeBufferPathInGitDirectory() | echo @*
+  command! -nargs=0 GBP :let @+=<SID>GetRelativeBufferPathInGitDirectory() | echo @*
 endfunction
 
-function! s:IndentCode()
-  " Save the cursor position.
-  let l:cursor_pos = getpos('.')
-
-  " Indent code.
-  keepjumps execute('normal! gg=G')
-
-  " Set the cursor position back at where we started.
-  call setpos('.', l:cursor_pos)
-endfunction
-
-function! OnVimEnter() abort
+function! s:OnVimEnter() abort
   " Run PlugUpdate every week automatically when entering Vim.
   if exists('g:plug_home')
     let l:filename = printf('%s/.vim_plug_update', g:plug_home)
@@ -297,11 +324,17 @@ endfunction
 
 augroup hooks
   autocmd!
-  autocmd BufWritePre *         call OnBufWritePre()
-  autocmd BufReadPost *         call OnBufReadPost()
-  autocmd BufRead,BufNewFile *  call OnBufRead()
-  autocmd VimEnter *            call OnVimEnter()
+  autocmd BufWritePre *         call <SID>OnBufWritePre()
+  autocmd BufReadPost *         call <SID>OnBufReadPost()
+  autocmd BufRead,BufNewFile *  call <SID>OnBufRead()
+  autocmd VimEnter *            call <SID>OnVimEnter()
 augroup END
+
+" }}}
+" Commands {{{
+
+command! -bar -nargs=1 -complete=file Rename call <SID>Rename('<bang>', '<args>')
+command! -bar -nargs=0 PHPConvertArrays call <SID>PHPConvertArrays()
 
 " }}}
 " Mappings {{{
@@ -339,7 +372,7 @@ noremap <silent> <Space> :silent! noh<CR>
 
 " Re-indent code.
 " ------------------------------------------------------------------------------
-noremap <Leader>i :call <SID>IndentCode()<CR>
+noremap <Leader>i :call s:IndentCode()<CR>
 
 " Allow saving of files as sudo when I forgot to start vim using sudo
 " ------------------------------------------------------------------------------
@@ -388,19 +421,6 @@ cnoremap ww w
 cnoremap Ww w
 cnoremap wW w
 cnoremap WW w
-
-" }}}
-" Commands {{{
-
-command! -bar -nargs=1 -complete=file Rename :
-  \ let s:oldfile = expand('%:p') |
-  \ let s:newfile = simplify(expand('%:p:h') . '/<args>') |
-  \ setlocal modifiable |
-  \ call execute(':saveas<bang> ' . s:newfile) |
-  \ call delete(s:oldfile) |
-  \ call execute(':' . bufnr('$') . 'bw') |
-  \ unlet s:oldfile |
-  \ unlet s:newfile
 
 " }}}
 " Plugins: Vim-Plug {{{
@@ -661,7 +681,8 @@ command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-h
 " }}}
 " Plugins: EditorConfig {{{
 
-let g:EditorConfig_disable_rules = ['max_line_length', 'indent_size', 'tab_width']
+" let g:EditorConfig_disable_rules = ['max_line_length', 'indent_size', 'tab_width']
+let g:EditorConfig_disable_rules = ['max_line_length']
 
 " }}}
 " Plugins: Readdir {{{

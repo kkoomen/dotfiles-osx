@@ -8,5 +8,6 @@
   "diagnostic.warningSign": "➜",
   "diagnostic.infoSign": "➜",
   "diagnostic.hintSign": "➜",
-  "suggest.maxCompleteItemCount": 10
+  "suggest.maxCompleteItemCount": 10,
+  "suggest.minTriggerInputLength": 3
 }
