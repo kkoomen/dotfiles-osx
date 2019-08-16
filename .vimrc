@@ -236,11 +236,7 @@ endfunction
 function s:PHPConvertArrays() abort
   let l:winview = winsaveview()
   while search('\m\(\w\)\@<!\carray\s*(') > 0
-    call execute('normal! diw')
-    let [l:match_pair_line, l:match_pair_col] = searchpairpos('(', '', ')', 'n')
-    call execute('normal! r[')
-    call setpos('.', [0, l:match_pair_line, l:match_pair_col, 0])
-    call execute('normal! r]')
+    call execute("normal! dt(%r]\<C-O>r[")
   endwhile
   call winrestview(l:winview)
 endfunction
