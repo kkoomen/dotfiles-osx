@@ -214,6 +214,15 @@ augroup END
 " }}}
 " Functions {{{
 
+function s:HelpWindow(args) abort
+  if winwidth('.') >= 160
+    call execute('vertical h ' . a:args)
+    call execute('vertical resize 80<CR>')
+  else
+    call execute('h ' . a:args)
+  endif
+endfunction
+
 function! s:SpaceToTab(str)
   let l:remainer = len(a:str) % shiftwidth()
   return repeat("\t", len(a:str) / shiftwidth()) . repeat(' ', l:remainer)
@@ -343,11 +352,15 @@ augroup END
 " }}}
 " Commands {{{
 
+" Rename current buffer.
 command! -bar -nargs=1 -complete=file Rename call <SID>Rename('<bang>', '<args>')
-command! -bar -nargs=0 PHPConvertArrays call <SID>PHPConvertArrays()
-command! -bar -nargs=* H :vertical h <args> | vertical resize 80<CR>
 
-" Open help menu in a 80-column vertical window
+" Convert PHP <= 5.3 syntax array() to [].
+command! -bar -nargs=0 PHPConvertArrays call <SID>PHPConvertArrays()
+
+" Open help menu in a 80-column vertical window.
+command! -bar -nargs=* H call <SID>HelpWindow('<args>')
+
 
 " }}}
 " Mappings {{{
