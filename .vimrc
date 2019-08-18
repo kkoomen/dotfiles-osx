@@ -30,6 +30,7 @@ set signcolumn=yes
 set updatetime=300
 set backspace=indent,eol,start
 set foldenable
+set redrawtime=4000
 " set list listchars=tab:\│\ ,trail:•
 set list listchars=trail:•
 set completeopt-=preview
@@ -213,6 +214,11 @@ augroup END
 " }}}
 " Functions {{{
 
+function! s:SpaceToTab(str)
+  let l:remainer = len(a:str) % shiftwidth()
+  return repeat("\t", len(a:str) / shiftwidth()) . repeat(' ', l:remainer)
+endfunction
+
 function s:Rename(bang, args) abort
   let l:oldfile = expand('%:p')
   let l:newfile = simplify(expand('%:p:h') . '/' . a:args)
@@ -265,8 +271,16 @@ function s:OnBufWritePre()
       " Delete trailing whitespaces for each line.
       keepjumps execute('%s/\s\+$//ge')
 
-      " Retab the file to ensure no mixed usage of tabs and spaces.
-      keepjumps execute('%retab!')
+      " We want to 'retab!' the whole file, but this will convert spaces to tabs
+      " inside comments when using tabs. To fix this we will check if tabs are
+      " used, then convert everything to spaces and then convert the indentation
+      " to tabs.
+      if &expandtab == v:false
+        setlocal expandtab
+        keepjumps execute('%retab!')
+        keepjumps execute('%s/^\s\+/\=<SID>SpaceToTab(submatch(0))/')
+        setlocal noexpandtab
+      endif
     endif
 
     " Restore the window view.
@@ -331,6 +345,9 @@ augroup END
 
 command! -bar -nargs=1 -complete=file Rename call <SID>Rename('<bang>', '<args>')
 command! -bar -nargs=0 PHPConvertArrays call <SID>PHPConvertArrays()
+command! -bar -nargs=* H :vertical h <args> | vertical resize 80<CR>
+
+" Open help menu in a 80-column vertical window
 
 " }}}
 " Mappings {{{
