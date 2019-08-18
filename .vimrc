@@ -448,12 +448,6 @@ cnoremap Ww w
 cnoremap wW w
 cnoremap WW w
 
-" Help
-" ------------------------------------------------------------------------------
-" Since 'H' is our custom command, we map the regular 'h' to 'H' for laziness.
-" ------------------------------------------------------------------------------
-cnoremap h H
-
 " }}}
 " Plugins: Vim-Plug {{{
 
