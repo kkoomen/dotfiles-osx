@@ -53,7 +53,7 @@ shopt -s checkwinsize
 # Autocorrect typos in path names when using "cd".
 shopt -s cdspell
 
-# GPG
+# Enable terminal password prompt for GPG.
 export GPG_TTY=$(tty)
 
 # Set PS1 format.

@@ -27,9 +27,4 @@ alias ix="curl -s -F 'f:1=<-' ix.io"
 alias pb="curl -s -F c=@- https://ptpb.pw/ | grep url"
 
 # DOCKER
-alias dsh="docker-compose exec php sh"
-
-# LINTERS
-alias drupalcs="phpcs --standard=Drupal --extensions='php,module,inc,install,test,profile,theme,css,info,txt,md' --ignore=node_modules,bower_components,vendor,profiles/*.info.yml"
-alias drupalcsp="phpcs --standard=DrupalPractice --extensions='php,module,inc,install,test,profile,theme,css,info,txt,md' --ignore=node_modules,bower_components,vendor,profiles/*.info.yml"
-alias drupalcbf="phpcbf --standard=Drupal --extensions='php,module,inc,install,test,profile,theme,css,info,txt,md' --ignore=node_modules,bower_components,vendor,profiles/*.info.yml"
+alias dsh="docker-compose exec php bash"

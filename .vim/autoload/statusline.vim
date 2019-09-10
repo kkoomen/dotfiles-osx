@@ -34,8 +34,8 @@ function! statusline#bufferinfo() abort
   " Current line / total lines.
   let l:statusline .= ' %l/%L'
 
-  " Current column
-  let l:statusline .= ':%c '
+  " Current column.
+  let l:statusline .= ':%v '
 
   let l:statusline .= '%*'
   return l:statusline

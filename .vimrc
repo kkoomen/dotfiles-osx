@@ -15,6 +15,7 @@ set mouse=
 set synmaxcol=9999
 set nowrap
 set number
+set relativenumber
 set nocursorline
 set nocursorcolumn
 set title
@@ -23,16 +24,16 @@ set lazyredraw
 set clipboard=unnamed
 set autoread
 set nospell
-set scrolloff=7
+set scrolloff=4
 set textwidth=80
 set nocompatible
+set conceallevel=0
 set signcolumn=yes
 set updatetime=300
 set backspace=indent,eol,start
 set foldenable
 set redrawtime=4000
-" set list listchars=tab:\│\ ,trail:•
-set list listchars=trail:•
+set list listchars=tab:\│\ ,trail:•
 set completeopt-=preview
 set infercase
 set diffopt=filler,internal,algorithm:histogram,indent-heuristic
@@ -215,9 +216,9 @@ augroup END
 " Functions {{{
 
 function s:HelpWindow(args) abort
-  if winwidth('.') >= 160
+  if winwidth('.') >= 164
     call execute('vertical h ' . a:args)
-    call execute('vertical resize 80<CR>')
+    call execute('vertical resize 84')
   else
     call execute('h ' . a:args)
   endif
@@ -271,14 +272,14 @@ function s:OnBufWritePre()
     let l:winview = winsaveview()
 
     " Delete empty lines at the end of the buffer.
-    keepjumps execute('v/\n*./d')
+    keepjumps call execute('v/\n*./d', 'silent!')
 
     " Execute commands only for non-test files.
     let l:test_file_regex = '\m\(test\|spec\|.\+\.vader$\)'
     if expand('%:t') !~# l:test_file_regex
 
       " Delete trailing whitespaces for each line.
-      keepjumps execute('%s/\s\+$//ge')
+      keepjumps call execute('%s/\s\+$//ge', 'silent!')
 
       " We want to 'retab!' the whole file, but this will convert spaces to tabs
       " inside comments when using tabs. To fix this we will check if tabs are
@@ -286,8 +287,8 @@ function s:OnBufWritePre()
       " to tabs.
       if &expandtab == v:false
         setlocal expandtab
-        keepjumps execute('%retab!')
-        keepjumps execute('%s/^\s\+/\=<SID>SpaceToTab(submatch(0))/')
+        keepjumps call execute('%retab!', 'silent!')
+        keepjumps call execute('%s/^\s\+/\=<SID>SpaceToTab(submatch(0))/', 'silent!')
         setlocal noexpandtab
       endif
     endif
@@ -359,7 +360,7 @@ command! -bar -nargs=1 -complete=file Rename call <SID>Rename('<bang>', '<args>'
 command! -bar -nargs=0 PHPConvertArrays call <SID>PHPConvertArrays()
 
 " Open help menu in a 80-column vertical window.
-command! -bar -nargs=* H call <SID>HelpWindow('<args>')
+command! -bar -nargs=* -complete=help H call <SID>HelpWindow('<args>')
 
 
 " }}}
@@ -398,7 +399,7 @@ noremap <silent> <Space> :silent! noh<CR>
 
 " Re-indent code.
 " ------------------------------------------------------------------------------
-noremap <Leader>i :call s:IndentCode()<CR>
+noremap <Leader>i :call <SID>IndentCode()<CR>
 
 " Allow saving of files as sudo when I forgot to start vim using sudo
 " ------------------------------------------------------------------------------
@@ -443,17 +444,13 @@ cnoremap w; w
 cnoremap w: w
 cnoremap W; w
 cnoremap W: w
-cnoremap ww w
-cnoremap Ww w
-cnoremap wW w
-cnoremap WW w
 
 " }}}
 " Plugins: Vim-Plug {{{
 
 call plug#begin('~/.vim/plugged')
 Plug 'AndrewRadev/splitjoin.vim'
-Plug 'thaerkh/vim-indentguides'
+Plug 'Yggdroot/indentLine'
 Plug 'alvan/vim-closetag'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'godlygeek/tabular'
@@ -519,10 +516,9 @@ function! GetFileOrDirectory()
 endfunction
 
 " }}}
-" Plugins: Indent Guides {{{
+" Plugins: indentLine {{{
 
-let g:indentguides_spacechar = '│'
-let g:indentguides_tabchar = '│'
+let g:indentLine_char = '│'
 
 " }}}
 " Plugins: MRU {{{
