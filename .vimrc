@@ -40,6 +40,9 @@ set diffopt=filler,internal,algorithm:histogram,indent-heuristic
 set ttimeoutlen=50
 set wildoptions=tagfile
 set display=lastline
+set laststatus=2
+set noshowmode
+set showtabline=2
 set nofsync
 
 " Make our custom aliases available within a non-interactive vim.
@@ -114,9 +117,9 @@ colorscheme onedark
 highlight! ColorColumn ctermbg=red ctermfg=white guibg=#BE5046 guifg=#151515
 call matchadd('ColorColumn', '\%81v.', 100)
 
-highlight! Tabline     guibg=#444444 guifg=#888888
-highlight! TablineFill guibg=#303030 guifg=#888888
-highlight! TablineSel  guibg=#ABB2BF guifg=#444444
+" highlight! Tabline     guibg=#444444 guifg=#888888
+" highlight! TablineFill guibg=#303030 guifg=#888888
+" highlight! TablineSel  guibg=#ABB2BF guifg=#444444
 highlight! MatchParen  guibg=#606060 guifg=#E5C07B
 
 highlight! Folded ctermfg=8 ctermbg=0 guifg=#666666 guibg=#303030
@@ -454,11 +457,14 @@ Plug 'Yggdroot/indentLine'
 Plug 'alvan/vim-closetag'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'godlygeek/tabular'
+Plug 'itchyny/lightline.vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vader.vim'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'mattn/emmet-vim'
+Plug 'mengelbrecht/lightline-bufferline'
+" Plug 'taohexxx/lightline-buffer'
 Plug 'mileszs/ack.vim'
 Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 Plug 'sheerun/vim-polyglot'
@@ -762,5 +768,48 @@ hi! CocErrorSign guifg=#d97084
 hi! CocWarningSign guifg=#e9cb87
 hi! CocInfoSign guifg=#d0d2d2
 hi! CocHintSign guifg=#6face4
+
+" }}}
+" Plugins: Lightline {{{
+
+let g:lightline = {
+\  'colorscheme': 'onedark',
+\  'active': {
+\    'left': [
+\      ['mode', 'paste'],
+\      ['gitbranch', 'readonly', 'filename', 'modified'],
+\    ],
+\  },
+\  'component': {
+\    'lineinfo': ' %3l:%-2v',
+\  },
+\  'component_function': {
+\   'filename': 'LightlineFilename',
+\    'readonly': 'LightlineReadonly',
+\    'fugitive': 'LightlineFugitive',
+\    'gitbranch': 'fugitive#head'
+\  },
+\  'separator': {'left': '', 'right': ''},
+\  'subseparator': {'left': '', 'right': ''},
+\  'tabline': {'left': [['buffers']], 'right': [['close']]},
+\  'component_expand': {'buffers': 'lightline#bufferline#buffers'},
+\  'component_type': {'buffers': 'tabsel'},
+\  }
+
+function! LightlineFilename()
+  return expand('%:p') !=# '' ? expand('%:p') : '[No Name]'
+endfunction
+
+function! LightlineReadonly()
+  return &readonly ? '' : ''
+endfunction
+
+function! LightlineFugitive()
+  if exists('*fugitive#head')
+    let branch = fugitive#head()
+    return branch !=# '' ? '' . branch : ''
+  endif
+  return ''
+endfunction
 
 " }}}
