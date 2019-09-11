@@ -9,5 +9,5 @@
   "diagnostic.infoSign": "➜",
   "diagnostic.hintSign": "➜",
   "suggest.maxCompleteItemCount": 10,
-  "suggest.minTriggerInputLength": 3
+  "suggest.minTriggerInputLength": 2
 }

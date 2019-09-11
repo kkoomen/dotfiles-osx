@@ -160,7 +160,7 @@ augroup styles
   autocmd FileType go setlocal tabstop=4 shiftwidth=4 softtabstop=4
   autocmd FileType php setlocal iskeyword-=-
   autocmd FileType css,less,scss setlocal iskeyword+=.
-  autocmd FileType vim setlocal iskeyword+=: foldmethod=marker
+  autocmd FileType vim setlocal iskeyword+=: foldmethod=marker " TODO: `foldmethod=marker` should be global after https://github.com/neoclide/coc.nvim/issues/1048 is fixed
   autocmd FileType markdown setlocal spell
   autocmd FileType json syntax match Comment +\/\/.\+$+
 augroup END
@@ -410,6 +410,8 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'godlygeek/tabular'
 Plug 'itchyny/lightline.vim'
 Plug 'jiangmiao/auto-pairs'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vader.vim'
 Plug 'ludovicchabant/vim-gutentags'
@@ -807,5 +809,12 @@ let g:lightline = {
 
 let g:lightline#bufferline#unnamed = '[No name]'
 let g:lightline#bufferline#filename_modifier = ':t'
+
+" }}}
+" Plugins: UltiSnips {{{
+
+let g:UltiSnipsExpandTrigger="<Tab>"
+let g:UltiSnipsJumpForwardTrigger="<Tab>"
+let g:UltiSnipsJumpBackwardTrigger="<S-Tab>"
 
 " }}}
