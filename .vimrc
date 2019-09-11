@@ -772,6 +772,22 @@ hi! CocHintSign guifg=#6face4
 " }}}
 " Plugins: Lightline {{{
 
+function! LightlineFilename()
+  return expand('%:p') !=# '' ? expand('%:p') : '[No Name]'
+endfunction
+
+function! LightlineReadonly()
+  return &readonly ? '' : ''
+endfunction
+
+function! LightlineGitBranch()
+  if exists('*fugitive#head')
+    let branch = fugitive#head()
+    return branch !=# '' ? ' ' . branch : ''
+  endif
+  return ''
+endfunction
+
 let g:lightline = {
 \  'colorscheme': 'onedark',
 \  'active': {
@@ -786,8 +802,7 @@ let g:lightline = {
 \  'component_function': {
 \   'filename': 'LightlineFilename',
 \    'readonly': 'LightlineReadonly',
-\    'fugitive': 'LightlineFugitive',
-\    'gitbranch': 'fugitive#head'
+\    'gitbranch': 'LightlineGitBranch'
 \  },
 \  'separator': {'left': '', 'right': ''},
 \  'subseparator': {'left': '', 'right': ''},
@@ -795,21 +810,5 @@ let g:lightline = {
 \  'component_expand': {'buffers': 'lightline#bufferline#buffers'},
 \  'component_type': {'buffers': 'tabsel'},
 \  }
-
-function! LightlineFilename()
-  return expand('%:p') !=# '' ? expand('%:p') : '[No Name]'
-endfunction
-
-function! LightlineReadonly()
-  return &readonly ? '' : ''
-endfunction
-
-function! LightlineFugitive()
-  if exists('*fugitive#head')
-    let branch = fugitive#head()
-    return branch !=# '' ? '' . branch : ''
-  endif
-  return ''
-endfunction
 
 " }}}
