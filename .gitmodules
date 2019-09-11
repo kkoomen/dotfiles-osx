@@ -1,3 +1,0 @@
-[submodule ".vim/pack/vendor/opt/onedark"]
-	path = .vim/pack/vendor/opt/onedark
-	url = git@github.com:kkoomen/onedark.vim.git
