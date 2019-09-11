@@ -76,20 +76,6 @@ set wildignorecase
 set wildmode=list:longest,full
 
 " }}}
-" Custom Highlighting {{{
-
-" Only highlight the color column when the line is expanding the 80th column.
-highlight! ColorColumn ctermbg=red ctermfg=white guibg=#BE5046 guifg=#151515
-call matchadd('ColorColumn', '\%81v.', 100)
-
-" highlight! Tabline     guibg=#444444 guifg=#888888
-" highlight! TablineFill guibg=#303030 guifg=#888888
-" highlight! TablineSel  guibg=#ABB2BF guifg=#444444
-highlight! MatchParen  guibg=#606060 guifg=#E5C07B
-
-highlight! Folded ctermfg=8 ctermbg=0 guifg=#666666 guibg=#303030
-
-" }}}
 " Omni completion {{{
 
 " Enable omni completion and enable more characters to be available within
@@ -475,6 +461,16 @@ let g:onedark_color_overrides = {
 set background=dark
 set termguicolors
 colorscheme onedark
+
+" }}}
+" Custom Highlighting {{{
+
+" Only highlight the color column when the line is expanding the 80th column.
+highlight! ColorColumn ctermbg=red ctermfg=white guibg=#BE5046 guifg=#151515
+call matchadd('ColorColumn', '\%81v.', 100)
+
+highlight! MatchParen  guibg=#606060 guifg=#E5C07B
+highlight! Folded ctermfg=8 ctermbg=0 guifg=#666666 guibg=#303030
 
 " }}}
 " Plugins: Emmet {{{
