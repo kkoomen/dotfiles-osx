@@ -52,7 +52,7 @@ let $BASH_ENV = '~/.bash_aliases'
 " }}}
 " Search {{{
 
-" set ignorecase
+set ignorecase
 set incsearch
 set hlsearch
 
@@ -160,8 +160,8 @@ augroup styles
   autocmd FileType go setlocal tabstop=4 shiftwidth=4 softtabstop=4
   autocmd FileType php setlocal iskeyword-=-
   autocmd FileType css,less,scss setlocal iskeyword+=.
-  autocmd FileType vim setlocal iskeyword+=: foldmethod=marker " TODO: `foldmethod=marker` should be global after https://github.com/neoclide/coc.nvim/issues/1048 is fixed
-  autocmd FileType markdown setlocal spell
+  autocmd FileType vim setlocal iskeyword+=: foldmethod=marker
+  autocmd FileType markdown setlocal spell conceallevel=0
   autocmd FileType json syntax match Comment +\/\/.\+$+
 augroup END
 
@@ -229,7 +229,7 @@ function s:OnBufWritePre()
     keepjumps call execute('v/\n*./d', 'silent!')
 
     " Execute commands only for non-test files.
-    let l:test_file_regex = '\m\(test\|spec\|.\+\.vader$\)'
+    let l:test_file_regex = '\m.\+\.vader$'
     if expand('%:t') !~# l:test_file_regex
 
       " Delete trailing whitespaces for each line.
@@ -309,6 +309,10 @@ augroup END
 
 " Rename current buffer.
 command! -bar -nargs=1 -complete=file Rename call <SID>Rename('<bang>', '<args>')
+
+" Paste current buffer to ix.io, this requires this alias in your .bash_profile:
+" alias ix="curl -s -F 'f:1=<-' ix.io"
+command! -bar -nargs=0 IX :!cat % | ix<CR>
 
 " Convert PHP <= 5.3 syntax array() to [].
 command! -bar -nargs=0 PHPConvertArrays call <SID>PHPConvertArrays()
@@ -404,14 +408,15 @@ cnoremap W: w
 
 call plug#begin('~/.vim/plugged')
 Plug 'AndrewRadev/splitjoin.vim'
+Plug 'SirVer/ultisnips'
 Plug 'Yggdroot/indentLine'
 Plug 'alvan/vim-closetag'
+Plug 'arthurxavierx/vim-caser'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'godlygeek/tabular'
+Plug 'honza/vim-snippets'
 Plug 'itchyny/lightline.vim'
 Plug 'jiangmiao/auto-pairs'
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vader.vim'
 Plug 'ludovicchabant/vim-gutentags'
@@ -451,7 +456,7 @@ let g:onedark_color_overrides = {
       \ 'white': { 'gui': '#d0d2d2', 'cterm': '145', 'cterm16': '15' },
       \ 'black': { 'gui': '#303030', 'cterm': '235', 'cterm16': '0' },
       \ 'visual_black': { 'gui': '#b7bdc0', 'cterm': 'NONE', 'cterm16': '0' },
-      \ 'comment_grey': { 'gui': '#666666', 'cterm': '59', 'cterm16': '15' },
+      \ 'comment_grey': { 'gui': '#868686', 'cterm': '59', 'cterm16': '15' },
       \ 'gutter_fg_grey': { 'gui': '#666666', 'cterm': '235', 'cterm16': '15' },
       \ 'cursor_grey': { 'gui': '#383838', 'cterm': '236', 'cterm16': '8' },
       \ 'visual_grey': { 'gui': '#474646', 'cterm': '237', 'cterm16': '15' },
@@ -520,6 +525,7 @@ endfunction
 " }}}
 " Plugins: indentLine {{{
 
+let g:indentLine_setConceal = 0
 let g:indentLine_char = '│'
 
 " }}}
@@ -749,7 +755,7 @@ augroup END
 
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)
-    execute 'h ' . expand('<cword>')
+    execute 'H ' . expand('<cword>')
   else
     call CocActionAsync('doHover')
   endif
@@ -816,5 +822,10 @@ let g:lightline#bufferline#filename_modifier = ':t'
 let g:UltiSnipsExpandTrigger="<Tab>"
 let g:UltiSnipsJumpForwardTrigger="<Tab>"
 let g:UltiSnipsJumpBackwardTrigger="<S-Tab>"
+
+" }}}
+" Plugins: Caser {{{
+
+let g:caser_prefix = 'ac'
 
 " }}}

@@ -69,7 +69,12 @@ export GOROOT="$BREW_PREFIX/opt/go/libexec"
 export NVM_DIR="$HOME/.nvm"
 
 # PATH
-export PATH="/usr/local/opt/ruby/bin:/usr/local/sbin:$PATH:$GOPATH/bin:$GOROOT/bin"
+export PATH="/usr/local/opt/ruby/bin:$PATH"
+export PATH="/usr/local/sbin:$PATH"
+export PATH="$GOPATH/bin:$GOROOT/bin:$PATH"
+export PATH="$HOME/Library/Python:$PATH"
+export PATH="/usr/local/opt/php@7.1/bin:$PATH"
+export PATH="/usr/local/opt/php@7.1/sbin:$PATH"
 
 # LANG
 export LANG="C"
