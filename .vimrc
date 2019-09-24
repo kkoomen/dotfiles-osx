@@ -11,7 +11,7 @@ scriptencoding utf-8
 syntax on
 filetype plugin indent on
 set hidden
-set mouse=
+set mouse=a
 set synmaxcol=9999
 set nowrap
 set number
@@ -59,12 +59,12 @@ set hlsearch
 " }}}
 " Indentation {{{
 
-set autoindent
-set smartindent
 set shiftwidth=2
-set smarttab
 set softtabstop=2
 set tabstop=2
+set autoindent
+set smartindent
+set smarttab
 set shiftround
 set expandtab
 
@@ -179,8 +179,8 @@ function s:HelpWindow(args) abort
 endfunction
 
 function! s:SpaceToTab(str)
-  let l:remainer = len(a:str) % shiftwidth()
-  return repeat("\t", len(a:str) / shiftwidth()) . repeat(' ', l:remainer)
+  let l:remainder = len(a:str) % shiftwidth()
+  return repeat("\t", len(a:str) / shiftwidth()) . repeat(' ', l:remainder)
 endfunction
 
 function s:Rename(bang, args) abort
@@ -308,17 +308,13 @@ augroup END
 " Commands {{{
 
 " Rename current buffer.
-command! -bar -nargs=1 -complete=file Rename call <SID>Rename('<bang>', '<args>')
-
-" Paste current buffer to ix.io, this requires this alias in your .bash_profile:
-" alias ix="curl -s -F 'f:1=<-' ix.io"
-command! -bar -nargs=0 IX :!cat % | ix<CR>
+command! -nargs=1 -complete=file Rename call <SID>Rename('<bang>', '<args>')
 
 " Convert PHP <= 5.3 syntax array() to [].
-command! -bar -nargs=0 PHPConvertArrays call <SID>PHPConvertArrays()
+command! -nargs=0 PHPConvertArrays call <SID>PHPConvertArrays()
 
 " Open help menu in a 80-column vertical window.
-command! -bar -nargs=* -complete=help H call <SID>HelpWindow('<args>')
+command! -nargs=* -complete=help H call <SID>HelpWindow('<args>')
 
 
 " }}}
@@ -427,7 +423,6 @@ Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 Plug 'sheerun/vim-polyglot'
 Plug 'sickill/vim-pasta'
 Plug 'tomtom/tcomment_vim'
-Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'yegappan/mru'
 Plug 'git@github.com:kkoomen/gfi.vim'
@@ -543,7 +538,6 @@ vmap <C-c> g>b<CR>
 map <C-x> g<c<CR>
 vmap <C-x> g<b<CR>
 
-
 " }}}
 " Plugins: Gutentags {{{
 
@@ -551,11 +545,11 @@ vmap <C-x> g<b<CR>
 let g:gutentags_cache_dir = expand('~/.cache/vim/ctags/')
 
 " Add a custom command for clearing all the cached tags.
-command! GutentagsClearCache :call system('rm ' . g:gutentags_cache_dir . '/*')
+command! -nargs=0 GutentagsClearCache call system('rm ' . g:gutentags_cache_dir . '/*')
 
 " Disable the default project root markers and add our own.
-let g:gutentags_project_root = ['package.json', '.git']
 let g:gutentags_add_default_project_roots = 0
+let g:gutentags_project_root = ['package.json', '.git']
 
 " If set to 1, Gutentags will start generating the tag file when a new project
 " is open. A new project is considered open when a buffer is created for a file
@@ -774,20 +768,25 @@ hi! CocHintSign guifg=#6face4
 " }}}
 " Plugins: Lightline {{{
 
-function! LightlineFilename()
+function! LightlineFilename() abort
   return expand('%:p') !=# '' ? expand('%:p') : '[No Name]'
 endfunction
 
-function! LightlineReadonly()
+function! LightlineReadonly() abort
   return &readonly ? '' : ''
 endfunction
 
-function! LightlineGitBranch()
-  if exists('*fugitive#head')
-    let branch = fugitive#head()
-    return branch !=# '' ? ' ' . branch : ''
-  endif
+function! LightlineGitBranch() abort
   return ''
+  let l:branch = trim(system('git -C ' . shellescape(expand('%:p:h')) . ' rev-parse --abbrev-ref HEAD'))
+  if l:branch ==# 'HEAD'
+    let l:branch = 'detached'
+  endif
+  return l:branch !=# '' && v:shell_error == 0 ? ' ' . l:branch : ''
+endfunction
+
+function! LightlineIndent() abort
+  return &expandtab ? 'spaces' : 'tabs'
 endfunction
 
 let g:lightline = {
@@ -797,6 +796,11 @@ let g:lightline = {
 \      ['mode', 'paste'],
 \      ['gitbranch', 'readonly', 'filename', 'modified'],
 \    ],
+\    'right': [
+\      ['lineinfo'],
+\      ['percent'],
+\      ['indent', 'fileformat', 'fileencoding', 'filetype'],
+\    ],
 \  },
 \  'component': {
 \    'lineinfo': ' %3l:%-2v',
@@ -804,7 +808,8 @@ let g:lightline = {
 \  'component_function': {
 \    'filename': 'LightlineFilename',
 \    'readonly': 'LightlineReadonly',
-\    'gitbranch': 'LightlineGitBranch'
+\    'gitbranch': 'LightlineGitBranch',
+\    'indent': 'LightlineIndent',
 \  },
 \  'separator': {'left': '', 'right': ''},
 \  'subseparator': {'left': '', 'right': ''},
