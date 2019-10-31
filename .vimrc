@@ -156,11 +156,11 @@ augroup styles
   autocmd FileType markdown set formatoptions+=t
 
   autocmd BufRead,BufNewFile *.min.* setlocal syntax=off
-  autocmd FileType python setlocal tabstop=4 shiftwidth=4 softtabstop=4
-  autocmd FileType go setlocal tabstop=4 shiftwidth=4 softtabstop=4
+  autocmd FileType python,go,apache setlocal tabstop=4 shiftwidth=4 softtabstop=4
   autocmd FileType php setlocal iskeyword-=-
   autocmd FileType css,less,scss setlocal iskeyword+=.
   autocmd FileType vim setlocal iskeyword+=: foldmethod=marker
+  autocmd FileType html setlocal filetype=php.html
   autocmd FileType markdown setlocal spell conceallevel=0
   autocmd FileType json syntax match Comment +\/\/.\+$+
 augroup END
@@ -244,6 +244,8 @@ function s:OnBufWritePre()
         keepjumps call execute('%retab!', 'silent!')
         keepjumps call execute('%s/^\s\+/\=<SID>SpaceToTab(submatch(0))/', 'silent!')
         setlocal noexpandtab
+      else
+        keepjumps call execute('%retab!', 'silent!')
       endif
     endif
 
@@ -264,16 +266,6 @@ function s:OnBufReadPost()
     set syntax=off
     let b:statusline_show_syntax_disabled = 1
   endif
-endfunction
-
-function! s:OnBufRead()
-  " Set the absolute path of the current buffer to the system clipboard.
-  " 'BP' refers to 'Buffer Path'.
-  command! -nargs=0 BP :let @+=expand('%:p') | echo @*
-
-  " Set the path of the current buffer relative to its git diretory to the
-  " system clipboard. 'GBP' refers for 'Git Buffer Path'.
-  command! -nargs=0 GBP :let @+=<SID>GetRelativeBufferPathInGitDirectory() | echo @*
 endfunction
 
 function! s:OnVimEnter() abort
@@ -300,7 +292,6 @@ augroup hooks
   autocmd!
   autocmd BufWritePre *         call <SID>OnBufWritePre()
   autocmd BufReadPost *         call <SID>OnBufReadPost()
-  autocmd BufRead,BufNewFile *  call <SID>OnBufRead()
   autocmd VimEnter *            call <SID>OnVimEnter()
 augroup END
 
@@ -310,11 +301,28 @@ augroup END
 " Rename current buffer.
 command! -nargs=1 -complete=file Rename call <SID>Rename('<bang>', '<args>')
 
-" Convert PHP <= 5.3 syntax array() to [].
-command! -nargs=0 PHPConvertArrays call <SID>PHPConvertArrays()
+" Set the absolute path of the current buffer to the system clipboard.
+" 'BP' refers to 'Buffer Path'.
+command! -nargs=0 BP :let @+=expand('%:p') | echo @*
+
+" Set the path of the current buffer relative to its git diretory to the
+" system clipboard. 'GBP' refers for 'Git Buffer Path'.
+command! -nargs=0 GBP :let @+=<SID>GetRelativeBufferPathInGitDirectory() | echo @*
 
 " Open help menu in a 80-column vertical window.
 command! -nargs=* -complete=help H call <SID>HelpWindow('<args>')
+
+" Convert PHP <= 5.3 syntax array() to [].
+command! -nargs=0 PHPConvertArrays call <SID>PHPConvertArrays()
+
+" Convert PHP <= 5.3 syntax array() to [].
+command! -nargs=0 CSSBeautify call <SID>CSSBeautify()
+
+" Convert function(){} to () => {}.
+command! -nargs=0 JSFuncToArrow :%s/function\s*\%(\w\+\)\?\s*(\(.\{-}\))\_\s*{/(\1) => {/g | silent! noh
+
+" Convert () => {} to function(){}.
+command! -nargs=0 JSArrowToFunc :%s/\(\%(const\|let\|var\) \(\w\+\)\s*=\s*\)\?(\(.\{-}\))\s*=>\s*[{(]\+/\1function \2(\3) {/g | silent! noh
 
 
 " }}}
@@ -594,6 +602,7 @@ let g:gutentags_ctags_exclude = [
       \ 'vendor',
       \ '*.md',
       \ '*-lock.json',
+      \ 'composer.phar',
       \ '*.lock',
       \ '*bundle*.js',
       \ '*build*.js',
@@ -732,20 +741,11 @@ let g:coc_global_extensions = [
       \ 'coc-python',
       \ 'coc-phpls',
       \ 'coc-yaml',
-      \ 'coc-highlight',
       \ 'coc-json',
       \ 'coc-vimlsp',
       \ 'coc-emmet',
       \ 'coc-tag',
       \ ]
-
-augroup coc
-  autocmd!
-  autocmd CursorHold * :
-        \ if exists('g:did_coc_loaded') |
-        \   silent call CocActionAsync('highlight') |
-        \ endif
-augroup END
 
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)
@@ -786,7 +786,14 @@ function! LightlineGitBranch() abort
 endfunction
 
 function! LightlineIndent() abort
-  return &expandtab ? 'spaces' : 'tabs'
+  return (&expandtab ? 'spaces' : 'tabs') . ':' . shiftwidth()
+endfunction
+
+function! LightlineGutentags() abort
+  if exists('*gutentags#statusline')
+    return gutentags#statusline('', ':running')
+  endif
+  return ''
 endfunction
 
 let g:lightline = {
@@ -799,17 +806,18 @@ let g:lightline = {
 \    'right': [
 \      ['lineinfo'],
 \      ['percent'],
-\      ['indent', 'fileformat', 'fileencoding', 'filetype'],
+\      ['gutentags', 'indent', 'fileformat', 'fileencoding', 'filetype'],
 \    ],
 \  },
 \  'component': {
-\    'lineinfo': ' %3l:%-2v',
+\    'lineinfo': ' %3l/%L:%-2v',
 \  },
 \  'component_function': {
 \    'filename': 'LightlineFilename',
 \    'readonly': 'LightlineReadonly',
 \    'gitbranch': 'LightlineGitBranch',
 \    'indent': 'LightlineIndent',
+\    'gutentags': 'LightlineGutentags',
 \  },
 \  'separator': {'left': '', 'right': ''},
 \  'subseparator': {'left': '', 'right': ''},

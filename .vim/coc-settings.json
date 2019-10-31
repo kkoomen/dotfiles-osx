@@ -12,5 +12,6 @@
   "suggest.minTriggerInputLength": 2,
   "python.linting.pylintEnabled": false,
   "python.linting.pep8Enabled": true,
-  "python.linting.enabled": true
+  "python.linting.enabled": true,
+  "coc.preferences.colorSupport": false
 }

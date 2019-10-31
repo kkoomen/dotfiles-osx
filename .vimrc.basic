@@ -105,7 +105,7 @@ set history=10000            " Sets how many lines of history vim has to remembe
 
 set directory=~/.vim/swap,~/tmp,.
 set backupdir=~/.vim/backup,~/tmp,.
-" set noswapfile
+set noswapfile
 set nobackup
 
 " }}}
@@ -234,14 +234,14 @@ function s:OnBufWritePre()
     let l:winview = winsaveview()
 
     " Delete empty lines at the end of the buffer.
-    keepjumps call execute 'v/\n*./d', 'silent!'
+    silent! keepjumps call execute 'v/\n*./d'
 
     " Execute commands only for non-test files.
     let l:test_file_regex = '\m.\+\.vader$'
     if expand('%:t') !~# l:test_file_regex
 
       " Delete trailing whitespaces for each line.
-      keepjumps call execute '%s/\s\+$//ge', 'silent!'
+      silent! keepjumps call execute '%s/\s\+$//ge'
 
       " We want to 'retab!' the whole file, but this will convert spaces to tabs
       " inside comments when using tabs. To fix this we will check if tabs are
@@ -249,8 +249,8 @@ function s:OnBufWritePre()
       " to tabs.
       if &expandtab == 0
         setlocal expandtab
-        keepjumps call execute '%retab!', 'silent!'
-        keepjumps call execute '%s/^\s\+/\=<SID>SpaceToTab(submatch(0)/', 'silent!')
+        silent! keepjumps call execute '%retab!'
+        silent! keepjumps call execute '%s/^\s\+/\=<SID>SpaceToTab(submatch(0)/'
         setlocal noexpandtab
       endif
     endif
