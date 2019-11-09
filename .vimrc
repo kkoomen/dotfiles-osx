@@ -33,7 +33,6 @@ set updatetime=300
 set backspace=indent,eol,start
 set foldenable
 set redrawtime=4000
-set list listchars=tab:\│\ ,trail:•
 set completeopt-=preview
 set infercase
 set diffopt=filler,internal,algorithm:histogram,indent-heuristic
@@ -430,7 +429,7 @@ Plug 'mileszs/ack.vim'
 Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 Plug 'sheerun/vim-polyglot'
 Plug 'sickill/vim-pasta'
-Plug 'tomtom/tcomment_vim'
+Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
 Plug 'yegappan/mru'
 Plug 'git@github.com:kkoomen/gfi.vim'
@@ -538,13 +537,13 @@ let MRU_Window_Height = 10
 noremap <Leader>r :MRU<CR>
 
 " }}}
-" Plugins: tComment {{{
+" Plugins: vim-commentary {{{
 
-map <C-c> g>c<CR>
-vmap <C-c> g>b<CR>
+map <C-c> gcc<CR>
+vmap <C-c> gc<CR>
 
-map <C-x> g<c<CR>
-vmap <C-x> g<b<CR>
+map <C-x> gcc<CR>
+vmap <C-x> gc<CR>
 
 " }}}
 " Plugins: Gutentags {{{

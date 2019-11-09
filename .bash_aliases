@@ -6,7 +6,6 @@ alias vi="vim"
 alias ls="ls -lhG"
 alias sl="ls"
 alias tree="tree -C"
-alias calc="bc -l"
 alias cb="pbcopy"
 alias yt-dl='cd ~/NewMusic && youtube-dl --extract-audio --audio-format mp3 -o "%(title)s.%(ext)s"'
 alias make-tar="tar -czvf"

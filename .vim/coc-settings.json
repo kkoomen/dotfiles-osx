@@ -1,17 +1,15 @@
 {
-  "git.addedSign.hlGroup": "GitGutterAdd",
-  "git.changedSign.hlGroup": "GitGutterChange",
-  "git.removedSign.hlGroup": "GitGutterDelete",
-  "git.topRemovedSign.hlGroup": "GitGutterDelete",
-  "git.changeRemovedSign.hlGroup": "GitGutterChangeDelete",
   "diagnostic.errorSign": "➜",
   "diagnostic.warningSign": "➜",
   "diagnostic.infoSign": "➜",
   "diagnostic.hintSign": "➜",
   "suggest.maxCompleteItemCount": 10,
   "suggest.minTriggerInputLength": 2,
-  "python.linting.pylintEnabled": false,
-  "python.linting.pep8Enabled": true,
+  "python.linting.pylintEnabled": true,
+  "python.linting.pep8Enabled": false,
+  "python.linting.pylintArgs": [
+    "--enable=W0614"
+  ],
   "python.linting.enabled": true,
   "coc.preferences.colorSupport": false
 }
