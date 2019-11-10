@@ -429,7 +429,7 @@ Plug 'mileszs/ack.vim'
 Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 Plug 'sheerun/vim-polyglot'
 Plug 'sickill/vim-pasta'
-Plug 'tpope/vim-commentary'
+Plug 'tomtom/tcomment_vim'
 Plug 'tpope/vim-surround'
 Plug 'yegappan/mru'
 Plug 'git@github.com:kkoomen/gfi.vim'
@@ -455,7 +455,7 @@ let g:onedark_color_overrides = {
       \ 'dark_cyan': { 'gui': '#68c5cd', 'cterm': '38', 'cterm16': '6' },
       \ 'cyan': { 'gui': '#68c5cd', 'cterm': '38', 'cterm16': '14' },
       \ 'dark_white': { 'gui': '#bbbebf', 'cterm': '145', 'cterm16': '7' },
-      \ 'white': { 'gui': '#d0d2d2', 'cterm': '145', 'cterm16': '15' },
+      \ 'white': { 'gui': '#bababa', 'cterm': '145', 'cterm16': '15' },
       \ 'black': { 'gui': '#303030', 'cterm': '235', 'cterm16': '0' },
       \ 'visual_black': { 'gui': '#b7bdc0', 'cterm': 'NONE', 'cterm16': '0' },
       \ 'comment_grey': { 'gui': '#868686', 'cterm': '59', 'cterm16': '15' },
@@ -537,13 +537,13 @@ let MRU_Window_Height = 10
 noremap <Leader>r :MRU<CR>
 
 " }}}
-" Plugins: vim-commentary {{{
+" Plugins: tComment {{{
 
-map <C-c> gcc<CR>
-vmap <C-c> gc<CR>
+map <C-c> g>c<CR>
+vmap <C-c> g>b<CR>
 
-map <C-x> gcc<CR>
-vmap <C-x> gc<CR>
+map <C-x> g<c<CR>
+vmap <C-x> g<b<CR>
 
 " }}}
 " Plugins: Gutentags {{{
