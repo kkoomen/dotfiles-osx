@@ -1128,13 +1128,13 @@ Reset</string>
 	<key>NSWindow Frame NSFontPanel</key>
 	<string>489 74 799 228 0 0 1680 1027 </string>
 	<key>NSWindow Frame SUUpdateAlert</key>
-	<string>530 476 620 392 0 0 1680 1027 </string>
+	<string>490 303 700 622 0 0 1680 1027 </string>
 	<key>NSWindow Frame SessionsPreferences</key>
 	<string>269 126 606 469 0 0 1680 1027 </string>
 	<key>NSWindow Frame SharedPreferences</key>
 	<string>738 45 918 514 0 0 1680 1027 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>0 0 1680 1027 0 0 1680 1027 </string>
+	<string>0 114 970 663 0 0 1680 1027 </string>
 	<key>New Bookmarks</key>
 	<array>
 		<dict>
@@ -1487,13 +1487,13 @@ Reset</string>
 				<key>Alpha Component</key>
 				<real>1</real>
 				<key>Blue Component</key>
-				<real>0.69837278127670288</real>
+				<real>0.730499267578125</real>
 				<key>Color Space</key>
-				<string>Calibrated</string>
+				<string>sRGB</string>
 				<key>Green Component</key>
-				<real>0.6924973726272583</real>
+				<real>0.730499267578125</real>
 				<key>Red Component</key>
-				<real>0.68094366788864136</real>
+				<real>0.730499267578125</real>
 			</dict>
 			<key>Guid</key>
 			<string>76984D41-DE30-4D36-BD46-CC0782361575</string>
@@ -1809,13 +1809,13 @@ Reset</string>
 				<key>Alpha Component</key>
 				<real>1</real>
 				<key>Blue Component</key>
-				<real>0.78806769847869873</real>
+				<real>0.72941176470588232</real>
 				<key>Color Space</key>
-				<string>Calibrated</string>
+				<string>sRGB</string>
 				<key>Green Component</key>
-				<real>0.78344428539276123</real>
+				<real>0.72941176470588232</real>
 				<key>Red Component</key>
-				<real>0.77435576915740967</real>
+				<real>0.72941176470588232</real>
 			</dict>
 			<key>Selection Color</key>
 			<dict>
@@ -2060,16 +2060,17 @@ Reset</string>
 	</array>
 	<key>NoSyncAllAppVersions</key>
 	<array>
-		<string>3.3.2</string>
+		<string>3.3.6</string>
 		<string>3.2.9</string>
 		<string>3.3.1</string>
-		<string>3.3.0</string>
 		<string>3.3.3</string>
+		<string>3.3.0</string>
+		<string>3.3.2</string>
+		<string>3.3.4</string>
 	</array>
 	<key>NoSyncBFPRecents</key>
 	<array>
 		<string>Liberation Mono for Powerline</string>
-		<string>Inconsolata for Powerline</string>
 	</array>
 	<key>NoSyncFrame_SessionsPreferences</key>
 	<dict>
@@ -2083,7 +2084,7 @@ Reset</string>
 		<key>screenFrame</key>
 		<string>{{0, 0}, {1680, 1050}}</string>
 		<key>topLeft</key>
-		<string>{650, 687}</string>
+		<string>{508, 849}</string>
 	</dict>
 	<key>NoSyncHaveRequestedFullDiskAccess</key>
 	<true/>
@@ -2092,7 +2093,7 @@ Reset</string>
 	<key>NoSyncInstallationId</key>
 	<string>CE7EB9E2-E064-4E26-A43F-420554AE34DE</string>
 	<key>NoSyncLaunchExperienceControllerRunCount</key>
-	<integer>20</integer>
+	<integer>37</integer>
 	<key>NoSyncNeverAskAboutSettingAlternateMouseScroll</key>
 	<true/>
 	<key>NoSyncNextAnnoyanceTime</key>
@@ -2596,6 +2597,22 @@ Reset</string>
 			</dict>
 			<dict>
 				<key>isTerminal</key>
+				<false/>
+				<key>name</key>
+				<string>title</string>
+				<key>nonterminalContext</key>
+				<integer>1</integer>
+			</dict>
+			<dict>
+				<key>isTerminal</key>
+				<true/>
+				<key>name</key>
+				<string>title</string>
+				<key>nonterminalContext</key>
+				<integer>0</integer>
+			</dict>
+			<dict>
+				<key>isTerminal</key>
 				<true/>
 				<key>name</key>
 				<string>tmuxWindowTitle</string>
@@ -2785,10 +2802,16 @@ Reset</string>
 	</dict>
 	<key>NoSyncSearchHistory2</key>
 	<array>
-		<string>vim </string>
-		<string>      -tag v7.4.2200 -build \
-</string>
-		<string>      -tag v7.4.2200 -build \ </string>
+		<string>line 90</string>
+		<string>line 89</string>
+		<string>openvpnas</string>
+		<string>mongo</string>
+		<string>^mongo</string>
+		<string>word</string>
+		<string>analysis</string>
+		<string>boundary</string>
+		<string>relays</string>
+		<string>48.</string>
 	</array>
 	<key>NoSyncTimeOfFirstLaunchOfVersionWithTip</key>
 	<real>549019301.23498595</real>
@@ -2848,7 +2871,7 @@ Reset</string>
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2019-09-10T11:31:23Z</date>
+	<date>2019-11-09T01:49:20Z</date>
 	<key>SUSendProfileInfo</key>
 	<false/>
 	<key>SUUpdateRelaunchingMarker</key>
@@ -2886,7 +2909,7 @@ Reset</string>
 	<key>findMode_iTerm</key>
 	<integer>0</integer>
 	<key>iTerm Version</key>
-	<string>3.3.3</string>
+	<string>3.3.6</string>
 	<key>kCPFavoritesUserDefaultsKey</key>
 	<array>
 		<data>
