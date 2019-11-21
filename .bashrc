@@ -9,6 +9,7 @@ export EDITOR=vim
 export NODE_ENV=development
 export BROWSER=firefox
 export BREW_PREFIX=$(brew --prefix)
+export TERM=xterm-256color
 
 # virtualenv
 export VIRTUAL_ENV_DISABLE_PROMPT=true

@@ -116,6 +116,7 @@ apps=(
   git
 
   # Terminal
+  tmux
   vim
   wget
   curl
