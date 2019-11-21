@@ -76,15 +76,5 @@ export PATH="$HOME/Library/Python:$PATH"
 export PATH="/usr/local/opt/php@7.1/bin:$PATH"
 export PATH="/usr/local/opt/php@7.1/sbin:$PATH"
 
-export PATH="/usr/local/Cellar/llvm/9.0.0_1/bin:$PATH"
-export LD_LIBRARY_PATH="/Library/Developer/CommandLineTools/usr/lib:$LD_LIBRARY_PATH"
-
 # LANG
-export LANG="C"
-export LC_COLLATE="C"
-export LC_CTYPE="C"
-export LC_MESSAGES="C"
-export LC_MONETARY="C"
-export LC_NUMERIC="C"
-export LC_TIME="C"
-export LC_ALL="C"
+export LC_ALL="en_US.UTF-8"
