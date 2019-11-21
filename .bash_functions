@@ -34,11 +34,26 @@ function git-branch {
 
   # Check if the current git directory has uncommitted changes.
   if [[ -n $(git status --porcelain --ignore-submodules 2> /dev/null) ]]; then
-    printf "$git_branch $(tput setaf 1)[+]$(tput setaf 15)"
+    printf "$git_branch $(tput setaf 1)[+]$(tput setaf 7)"
   else
     printf "$git_branch"
   fi
 
+}
+
+function is-screen-term {
+  if [[ $TERM == "screen" ]]; then
+    printf "[s] "
+  else
+    printf ""
+  fi
+}
+
+function screenkill {
+  pids=($(screen -list | grep "[0-9].[[:alnum:]].$USER" | cut -d '.' -f 1 | awk '{$1=$1};1'));
+  for pid in "${pids[@]}"; do
+    screen -X -S  "$pid" quit
+  done
 }
 
 function get-virtualenv {

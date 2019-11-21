@@ -10,7 +10,9 @@ alias cb="pbcopy"
 alias yt-dl='cd ~/NewMusic && youtube-dl --extract-audio --audio-format mp3 -o "%(title)s.%(ext)s"'
 alias make-tar="tar -czvf"
 alias rsync="rsync -azh -P --stats --timeout=120"
-alias gr='rg --column --line-number --no-heading --fixed-strings --ignore-case --follow --hidden --glob "!.git/*" --color "always"'
+alias gr='rg --column --line-number --no-heading --fixed-strings --ignore-case --follow --hidden --glob "!.git/*" --color "always" --'
+alias brew='HOMEBREW_NO_AUTO_UPDATE=1 brew'
+alias screen='screen -U'
 
 # NETWORK
 alias xip="curl icanhazip.com"

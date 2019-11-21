@@ -57,8 +57,8 @@ shopt -s cdspell
 export GPG_TTY=$(tty)
 
 # Set PS1 format.
-PS1_NORMAL="$(tput setaf 15)┌─ \w\[$(tput setaf 3)\]\$(git-branch)\[$(tput setaf 15)\]\$(get-virtualenv)\n└──── ➜  "
-PS1_ERROR="$(tput setaf 1)┌─ $(tput setaf 15)\w\[$(tput setaf 3)\]\$(git-branch)\[$(tput setaf 15)\]\$(get-virtualenv)\n\[$(tput setaf 1)\]└──── ➜  \[$(tput setaf 15)\]"
+PS1_NORMAL="$(tput setaf 7)┌─ \$(is-screen-term)\w\[$(tput setaf 3)\]\$(git-branch)\[$(tput setaf 7)\]\$(get-virtualenv)\n└──── ➜  "
+PS1_ERROR="$(tput setaf 1)┌─ $(tput setaf 7)\$(is-screen-term)\w\[$(tput setaf 3)\]\$(git-branch)\[$(tput setaf 7)\]\$(get-virtualenv)\n\[$(tput setaf 1)\]└──── ➜  \[$(tput setaf 7)\]"
 export PS1="\$([[ \$? == 0 ]] && echo \"$PS1_NORMAL\" || echo \"$PS1_ERROR\")"
 
 # GOLANG
@@ -75,6 +75,9 @@ export PATH="$GOPATH/bin:$GOROOT/bin:$PATH"
 export PATH="$HOME/Library/Python:$PATH"
 export PATH="/usr/local/opt/php@7.1/bin:$PATH"
 export PATH="/usr/local/opt/php@7.1/sbin:$PATH"
+
+export PATH="/usr/local/Cellar/llvm/9.0.0_1/bin:$PATH"
+export LD_LIBRARY_PATH="/Library/Developer/CommandLineTools/usr/lib:$LD_LIBRARY_PATH"
 
 # LANG
 export LANG="C"

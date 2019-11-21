@@ -15,7 +15,6 @@ set mouse=a
 set synmaxcol=9999
 set nowrap
 set number
-set relativenumber
 set nocursorline
 set nocursorcolumn
 set title
@@ -33,6 +32,7 @@ set updatetime=300
 set backspace=indent,eol,start
 set foldenable
 set redrawtime=4000
+set list listchars=tab:\│\ ,trail:•
 set completeopt-=preview
 set infercase
 set diffopt=filler,internal,algorithm:histogram,indent-heuristic
@@ -358,6 +358,11 @@ nnoremap <silent> <F6> ggg?G<CR>
 " ------------------------------------------------------------------------------
 noremap <silent> <Space> :silent! noh<CR>
 
+" Search for the word under the cursor using Find.
+" ------------------------------------------------------------------------------
+nnoremap <Leader>f :execute('Find ' . expand('<cword>'))<CR>
+
+
 " Re-indent code.
 " ------------------------------------------------------------------------------
 noremap <Leader>i :call <SID>IndentCode()<CR>
@@ -680,8 +685,8 @@ noremap <Leader>c :Commits<CR>
 " let g:fzf_layout = { 'window': 'enew' }
 let g:fzf_layout = {'down': '35%'}
 let g:fzf_tags_command = 'ctags --extra=+f -R'
-let g:fzf_colors =
-      \ { 'fg':    ['fg', 'Normal'],
+let g:fzf_colors = {
+      \ 'fg':      ['fg', 'Normal'],
       \ 'bg':      ['bg', 'Normal'],
       \ 'hl':      ['fg', 'Comment'],
       \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
@@ -708,7 +713,8 @@ let g:fzf_colors =
 " --follow: Follow symlinks
 " --glob: Additional conditions for search
 " --color: Search color options
-command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --follow --hidden --glob "!.git/*" --color "always" ' . shellescape(<q-args>), 1, <bang>0)
+command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --follow --hidden --glob "!.git/*" --color "always" ' . shellescape(<q-args>), 1, <bang>0)
+command! -bang -nargs=* IFind call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --follow --hidden --glob "!.git/*" --color "always" ' . shellescape(<q-args>), 1, <bang>0)
 
 " }}}
 " Plugins: EditorConfig {{{
