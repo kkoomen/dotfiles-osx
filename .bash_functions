@@ -41,14 +41,6 @@ function git-branch {
 
 }
 
-function is-screen-term {
-  if [[ $TERM == "screen" ]]; then
-    printf "[s] "
-  else
-    printf ""
-  fi
-}
-
 function screenkill {
   pids=($(screen -list | grep "[0-9].[[:alnum:]].$USER" | cut -d '.' -f 1 | awk '{$1=$1};1'));
   for pid in "${pids[@]}"; do
