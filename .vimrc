@@ -172,14 +172,14 @@ function s:CSSFormat() abort
   " Save the current window state.
   let l:winview = winsaveview()
 
-  " Remove all empty lines.
-  keepjumps call execute('g/^[\t\s]*$/d', 'silent!')
-
   " Add lines in-between selector blocks.
-  keepjumps call execute('%s/\([};]\)\%([\n\t\s]*.\{-}{\+\)\@=/\1\r/g', 'silent!')
+  keepjumps call execute('%s/\([};]\)\%(\_[^;{}]\{-}{\)\@=/\1\r/g', 'silent!')
 
-  " Indent Code.
-  call <SID>IndentCode()
+  " Remove all duplicate lines.
+  keepjumps call execute('%s/^[\n[:space:]]*$//g', 'silent!')
+
+  " Remove all extra lines between closing brackets.
+  keepjumps call execute('g/}[}\n[:space:]]*}/s/\n^[\n[:space:]]*$//g', 'silent!')
 
   " Restore the window view.
   call winrestview(l:winview)
