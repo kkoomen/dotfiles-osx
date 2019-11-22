@@ -168,6 +168,23 @@ augroup END
 " }}}
 " Functions {{{
 
+function s:CSSFormat() abort
+  " Save the current window state.
+  let l:winview = winsaveview()
+
+  " Remove all empty lines.
+  keepjumps call execute('g/^[\t\s]*$/d', 'silent!')
+
+  " Add lines in-between selector blocks.
+  keepjumps call execute('%s/\([};]\)\%([\n\t\s]*.\{-}{\+\)\@=/\1\r/g', 'silent!')
+
+  " Indent Code.
+  call <SID>IndentCode()
+
+  " Restore the window view.
+  call winrestview(l:winview)
+endfunction
+
 function s:HelpWindow(args) abort
   if winwidth('.') >= 164
     call execute('vertical h ' . a:args)
@@ -289,9 +306,10 @@ endfunction
 
 augroup hooks
   autocmd!
-  autocmd BufWritePre *         call <SID>OnBufWritePre()
-  autocmd BufReadPost *         call <SID>OnBufReadPost()
-  autocmd VimEnter *            call <SID>OnVimEnter()
+  autocmd BufWritePre *                 call <SID>OnBufWritePre()
+  autocmd BufReadPost *                 call <SID>OnBufReadPost()
+  autocmd VimEnter *                    call <SID>OnVimEnter()
+  autocmd BufWritePre *.{css,scss,less} call <SID>CSSFormat()
 augroup END
 
 " }}}
@@ -310,6 +328,9 @@ command! -nargs=0 GBP :let @+=<SID>GetRelativeBufferPathInGitDirectory() | echo 
 
 " Open help menu in a 80-column vertical window.
 command! -nargs=* -complete=help H call <SID>HelpWindow('<args>')
+
+" Format (LE|SA|C)SS.
+command! -nargs=0 CSSFormat call <SID>CSSFormat()
 
 " Convert PHP <= 5.3 syntax array() to [].
 command! -nargs=0 PHPConvertArrays call <SID>PHPConvertArrays()

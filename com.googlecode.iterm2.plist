@@ -26,6 +26,10 @@
 	<true/>
 	<key>ClosingTmuxTabKillsTmuxWindows_selection</key>
 	<integer>1</integer>
+	<key>ClosingTmuxWindowKillsTmuxWindows</key>
+	<true/>
+	<key>ClosingTmuxWindowKillsTmuxWindows_selection</key>
+	<integer>0</integer>
 	<key>CommandSelection</key>
 	<true/>
 	<key>CopyLastNewline</key>
@@ -1138,7 +1142,7 @@ Reset</string>
 	<key>NSWindow Frame SharedPreferences</key>
 	<string>738 45 918 514 0 0 1680 1027 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>0 0 1680 1027 0 0 1680 1027 </string>
+	<string>0 4 1674 1023 0 0 1680 1027 </string>
 	<key>New Bookmarks</key>
 	<array>
 		<dict>
