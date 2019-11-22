@@ -172,11 +172,14 @@ function s:CSSFormat() abort
   " Save the current window state.
   let l:winview = winsaveview()
 
+  " Remove all duplicate lines.
+  keepjumps call execute('g/^[\n[:space:]]*$/d', 'silent!')
+
   " Add lines in-between selector blocks.
   keepjumps call execute('%s/\([};]\)\%(\_[^;{}]\{-}{\)\@=/\1\r/g', 'silent!')
 
-  " Remove all duplicate lines.
-  keepjumps call execute('%s/^[\n[:space:]]*$//g', 'silent!')
+  " Add lines in-between closing bracket and variables.
+  keepjumps call execute('%s/\(}\)\%(\_[[:space:]]\{-}\$\)\@=/\1\r/g', 'silent!')
 
   " Remove all extra lines between closing brackets.
   keepjumps call execute('g/}[}\n[:space:]]*}/s/\n^[\n[:space:]]*$//g', 'silent!')
