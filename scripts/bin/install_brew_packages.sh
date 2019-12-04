@@ -45,9 +45,6 @@ cask_apps=(
   # Documents
   libreoffice
 
-  # Editors
-  macvim
-
   # Media players
   vlc
 
@@ -114,6 +111,10 @@ apps=(
   go
   typescript
   git
+
+  # Development: C
+  gcc
+  llvm
 
   # Terminal
   tmux

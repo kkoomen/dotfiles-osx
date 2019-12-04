@@ -172,8 +172,11 @@ function s:CSSFormat() abort
   " Save the current window state.
   let l:winview = winsaveview()
 
-  " Remove all duplicate lines.
-  keepjumps call execute('g/^[\n[:space:]]*$/d', 'silent!')
+  " Persist the old search.
+  let s:oldsearch = @/
+
+  " Remove all lines with nothing but spaces.
+  keepjumps call execute('g/^[\n[:space:]]*$/d _', 'silent!')
 
   " Add lines in-between selector blocks.
   keepjumps call execute('%s/\([};]\)\%(\_[^;{}]\{-}{\)\@=/\1\r/g', 'silent!')
@@ -181,8 +184,14 @@ function s:CSSFormat() abort
   " Add lines in-between closing bracket and variables.
   keepjumps call execute('%s/\(}\)\%(\_[[:space:]]\{-}\$\)\@=/\1\r/g', 'silent!')
 
+  " Add lines before comments.
+  keepjumps call execute('%s/^\(\/\/\|\/\*\)/\r\1/g', 'silent!')
+
   " Remove all extra lines between closing brackets.
   keepjumps call execute('g/}[}\n[:space:]]*}/s/\n^[\n[:space:]]*$//g', 'silent!')
+
+  " Re-add the old search.
+  let @/ = s:oldsearch
 
   " Restore the window view.
   call winrestview(l:winview)
@@ -245,7 +254,7 @@ function s:OnBufWritePre()
     let l:winview = winsaveview()
 
     " Delete empty lines at the end of the buffer.
-    keepjumps call execute('v/\n*./d', 'silent!')
+    keepjumps call execute('v/\n*./d _', 'silent!')
 
     " Execute commands only for non-test files.
     let l:test_file_regex = '\m.\+\.vader$'
@@ -447,6 +456,7 @@ Plug 'arthurxavierx/vim-caser'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'godlygeek/tabular'
 Plug 'honza/vim-snippets'
+Plug 'tpope/vim-repeat'
 Plug 'itchyny/lightline.vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/fzf.vim'
