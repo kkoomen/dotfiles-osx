@@ -8,5 +8,25 @@
   "python.linting.pylintEnabled": true,
   "python.linting.pep8Enabled": false,
   "python.linting.enabled": true,
-  "coc.preferences.colorSupport": false
+  "coc.preferences.colorSupport": false,
+  "languageserver": {
+    "ccls": {
+      "command": "ccls",
+      "filetypes": ["c", "cpp", "cuda", "objc", "objcpp"],
+      "rootPatterns": [".ccls", "compile_commands.json", ".git/"],
+      "initializationOptions": {
+        "clang": {
+          "extraArgs": [
+            // For MacOS 10.14+ an install of the correct headers is required.
+            // $ sudo installer -pkg /Library/Developer/CommandLineTools/Packages/macOS_SDK_headers_for_macOS_10.14.pkg -allowUntrusted -target /
+            "-isystem/usr/include"
+          ],
+          "resourceDir": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/11.0.0/include"
+        },
+        "cache": {
+          "directory": "/tmp/ccls"
+        }
+      }
+    }
+  }
 }

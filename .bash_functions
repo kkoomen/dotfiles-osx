@@ -20,6 +20,14 @@ function editorconfig-init {
     fi
 }
 
+function get-largest-files {
+  if [[ "$2" ]]; then
+    files=($(find "$1" -type f -exec ls -s {} \; 2> /dev/null | sort -n -r | head -n "$2" | awk '{ print $2 }')); for f in "${files[@]}"; do du -sh "$f"; done
+  else
+    files=($(find "$1" -type f -exec ls -s {} \; 2> /dev/null | sort -n -r | head -n 20 | awk '{ print $2 }')); for f in "${files[@]}"; do du -sh "$f"; done
+  fi
+}
+
 function git-branch {
   # Based on: http://stackoverflow.com/a/13003854/170413
   local branch

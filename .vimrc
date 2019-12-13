@@ -152,7 +152,7 @@ augroup styles
   " Format options have impact when formatting code with the 'gq' binding.
   " Default: crqlo (see ':h fo-table' for more info)
   autocmd FileType * set formatoptions=crql
-  autocmd FileType markdown set formatoptions+=t
+  autocmd FileType text,markdown set formatoptions+=t
 
   autocmd BufRead,BufNewFile *.min.* setlocal syntax=off
   autocmd FileType python,go,apache setlocal tabstop=4 shiftwidth=4 softtabstop=4
@@ -160,13 +160,25 @@ augroup styles
   autocmd FileType css,less,scss setlocal iskeyword+=.
   autocmd FileType vim setlocal iskeyword+=: foldmethod=marker
   autocmd FileType html setlocal filetype=php.html
-  autocmd FileType markdown setlocal spell conceallevel=0
+  autocmd FileType text,markdown setlocal spell conceallevel=0
   autocmd FileType json syntax match Comment +\/\/.\+$+
 augroup END
 
 
 " }}}
 " Functions {{{
+
+function s:DeleteTrailingLeadingLines() abort
+  " Delete empty lines at the start of the buffer.
+  if getline(1) !~ '\S'
+    keepjumps call execute('normal! gg"_dip', 'silent!')
+  endif
+
+  " Delete empty lines at the end of the buffer.
+  if getline('$') !~ '\S'
+    keepjumps call execute('normal! G"_dip', 'silent!')
+  endif
+endfunction
 
 function s:CSSFormat() abort
   " Save the current window state.
@@ -189,6 +201,8 @@ function s:CSSFormat() abort
 
   " Remove all extra lines between closing brackets.
   keepjumps call execute('g/}[}\n[:space:]]*}/s/\n^[\n[:space:]]*$//g', 'silent!')
+
+  call s:DeleteTrailingLeadingLines()
 
   " Re-add the old search.
   let @/ = s:oldsearch
@@ -253,8 +267,7 @@ function s:OnBufWritePre()
     " Save the current window view.
     let l:winview = winsaveview()
 
-    " Delete empty lines at the end of the buffer.
-    keepjumps call execute('v/\n*./d _', 'silent!')
+    call s:DeleteTrailingLeadingLines()
 
     " Execute commands only for non-test files.
     let l:test_file_regex = '\m.\+\.vader$'
