@@ -15,7 +15,6 @@ set mouse=a
 set synmaxcol=9999
 set nowrap
 set number
-set relativenumber
 set nocursorline
 set nocursorcolumn
 set title

@@ -78,6 +78,7 @@ brew cask install "${cask_apps[@]}"
 apps=(
   # Base
   coreutils
+  telnet
 
   # Encryption
   gpg

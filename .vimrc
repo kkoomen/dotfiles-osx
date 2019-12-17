@@ -185,7 +185,7 @@ function s:CSSFormat() abort
   let l:winview = winsaveview()
 
   " Persist the old search.
-  let s:oldsearch = @/
+  " let s:oldsearch = @/
 
   " Remove all lines with nothing but spaces.
   keepjumps call execute('g/^[\n[:space:]]*$/d _', 'silent!')
@@ -204,11 +204,14 @@ function s:CSSFormat() abort
 
   call s:DeleteTrailingLeadingLines()
 
-  " Re-add the old search.
-  let @/ = s:oldsearch
-
   " Restore the window view.
   call winrestview(l:winview)
+
+  " Re-add the old search.
+  " let @/ = s:oldsearch
+
+  " Remove search highlighting
+  call execute('silent! noh')
 endfunction
 
 function s:HelpWindow(args) abort
@@ -284,6 +287,7 @@ function s:OnBufWritePre()
         setlocal expandtab
         keepjumps call execute('%retab!', 'silent!')
         keepjumps call execute('%s/^\s\+/\=<SID>SpaceToTab(submatch(0))/', 'silent!')
+        call execute('silent! noh')
         setlocal noexpandtab
       else
         keepjumps call execute('%retab!', 'silent!')
@@ -760,8 +764,8 @@ let g:fzf_colors = {
 " --follow: Follow symlinks
 " --glob: Additional conditions for search
 " --color: Search color options
-command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --follow --hidden --glob "!.git/*" --color "always" ' . shellescape(<q-args>), 1, <bang>0)
-command! -bang -nargs=* IFind call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --follow --hidden --glob "!.git/*" --color "always" ' . shellescape(<q-args>), 1, <bang>0)
+command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --follow --hidden --glob "!.git/*" --color "always" -- ' . shellescape(<q-args>), 1, <bang>0)
+command! -bang -nargs=* IFind call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --follow --hidden --glob "!.git/*" --color "always" -- ' . shellescape(<q-args>), 1, <bang>0)
 
 " }}}
 " Plugins: EditorConfig {{{
