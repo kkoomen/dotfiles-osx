@@ -199,6 +199,9 @@ function s:CSSFormat() abort
   " Remove all extra lines between closing brackets.
   keepjumps call execute('g/}[}\n[:space:]]*}/s/\n^[\n[:space:]]*$//g', 'silent!')
 
+  " Remove all extra lines
+  keepjumps call execute('%s/\n\{3,}/\r\r/g', 'silent!')
+
   call s:DeleteTrailingLeadingLines()
 
   " Restore the window view.
