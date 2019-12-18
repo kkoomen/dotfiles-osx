@@ -184,9 +184,6 @@ function s:CSSFormat() abort
   " Save the current window state.
   let l:winview = winsaveview()
 
-  " Persist the old search.
-  " let s:oldsearch = @/
-
   " Remove all lines with nothing but spaces.
   keepjumps call execute('g/^[\n[:space:]]*$/d _', 'silent!')
 
@@ -206,9 +203,6 @@ function s:CSSFormat() abort
 
   " Restore the window view.
   call winrestview(l:winview)
-
-  " Re-add the old search.
-  " let @/ = s:oldsearch
 
   " Remove search highlighting
   call execute('silent! noh')
