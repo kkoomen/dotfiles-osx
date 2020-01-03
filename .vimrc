@@ -168,6 +168,31 @@ augroup END
 " }}}
 " Functions {{{
 
+function s:PrepareSubstitute(mode) range abort
+  let l:expr = ''
+
+  if a:mode ==# 'n'
+    let l:expr = expand('<cword>')
+  elseif a:mode ==# 'v'
+    let [line_start, column_start] = getpos("'<")[1:2]
+    let [line_end, column_end] = getpos("'>")[1:2]
+    let l:lines = getline(line_start, line_end)
+
+    if len(l:lines) == 0
+      return ''
+    endif
+
+    let l:lines[-1] = l:lines[-1][: column_end - (&selection == 'inclusive' ? 1 : 2)]
+    let l:lines[0] = l:lines[0][column_start - 1:]
+    let l:expr = join(l:lines, "\n")
+  endif
+
+  for l:char in split('.$^[]', '\zs')
+    let l:expr = substitute(l:expr, '\'.l:char, '\\'.l:char, 'g')
+  endfor
+  call feedkeys(":%s/" . l:expr . "//g\<Left>\<Left>")
+endfunction
+
 function s:DeleteTrailingLeadingLines() abort
   " Delete empty lines at the start of the buffer.
   if getline(1) !~ '\S'
@@ -188,7 +213,7 @@ function s:CSSFormat() abort
   keepjumps call execute('g/^[\n[:space:]]*$/d _', 'silent!')
 
   " Add lines in-between selector blocks.
-  keepjumps call execute('%s/\([};]\)\%(\_[^;{}]\{-}{\)\@=/\1\r/g', 'silent!')
+  keepjumps call execute('%s/\([};]\)\(.\{-}\%(\/\/[^\n]*\|\/\*.\{-}\*\/[^\n]*\)\)\?\%(\_[^;{}]\{-}{\)\@=/\1\2\r/g', 'silent!')
 
   " Add lines in-between closing bracket and variables.
   keepjumps call execute('%s/\(}\)\%(\_[[:space:]]\{-}\$\)\@=/\1\r/g', 'silent!')
@@ -201,6 +226,9 @@ function s:CSSFormat() abort
 
   " Remove all extra lines
   keepjumps call execute('%s/\n\{3,}/\r\r/g', 'silent!')
+
+  " Ensure every property is spaced correctly.
+  keepjumps call execute('%s/^\(\s*[[:alnum:]-]\+\)\s*:\s*\(\_.\{-};\)$/\1: \2/g', 'silent!')
 
   call s:DeleteTrailingLeadingLines()
 
@@ -220,7 +248,7 @@ function s:HelpWindow(args) abort
   endif
 endfunction
 
-function! s:SpaceToTab(str)
+function! s:SpaceToTab(str) abort
   let l:remainder = len(a:str) % shiftwidth()
   return repeat("\t", len(a:str) / shiftwidth()) . repeat(' ', l:remainder)
 endfunction
@@ -234,7 +262,16 @@ function s:Rename(bang, args) abort
   call execute(':' . bufnr('$') . 'bw')
 endfunction
 
-function! s:IndentCode()
+function s:Remove(args) abort
+  let l:success = delete(a:args) == 0
+  " If we're deleting the current buffer, then remove the buffer itself.
+  if l:success == v:true && a:args == expand('%')
+    bdelete!
+  endif
+  echo 'Remove: ' . a:args . ' ' . (l:success ? 'succeeded' : 'failed')
+endfunction
+
+function! s:IndentCode() abort
   " Save the current window view.
   let l:winview = winsaveview()
 
@@ -253,7 +290,7 @@ function s:PHPConvertArrays() abort
   call winrestview(l:winview)
 endfunction
 
-function! s:GetRelativeBufferPathInGitDirectory()
+function! s:GetRelativeBufferPathInGitDirectory() abort
   return substitute(
         \ expand('%:p'),
         \ trim(system('git -C ' . shellescape(expand('%:p:h')) . ' rev-parse --show-toplevel')),
@@ -262,7 +299,7 @@ function! s:GetRelativeBufferPathInGitDirectory()
         \ )
 endfunction
 
-function s:OnBufWritePre()
+function s:OnBufWritePre() abort
   if !exists('b:disable_hook_bufprewrite')
     " Save the current window view.
     let l:winview = winsaveview()
@@ -296,7 +333,7 @@ function s:OnBufWritePre()
   endif
 endfunction
 
-function s:OnBufReadPost()
+function s:OnBufReadPost() abort
   " Set the last edit position.
   if line("'\"") > 0 && line("'\"") <= line("$") |
     execute("normal! g`\"") |
@@ -343,6 +380,8 @@ augroup END
 
 " Rename current buffer.
 command! -nargs=1 -complete=file Rename call <SID>Rename('<bang>', '<args>')
+
+command! -complete=file -nargs=1 Remove call <SID>Remove('<args>')
 
 " Set the absolute path of the current buffer to the system clipboard.
 " 'BP' refers to 'Buffer Path'.
@@ -396,6 +435,11 @@ vnoremap <silent> <C-Up> :m '<-2<CR>gv=gv
 " Set pastetoggle
 " ------------------------------------------------------------------------------
 set pastetoggle=<F2>
+
+" Substitue words easily
+" ------------------------------------------------------------------------------
+nnoremap <buffer> <nowait> <silent> <Leader>s :call <SID>PrepareSubstitute('n')<CR>
+vnoremap <buffer> <nowait> <silent> <Leader>s :call <SID>PrepareSubstitute('v')<CR>
 
 " Rot13
 " ------------------------------------------------------------------------------
