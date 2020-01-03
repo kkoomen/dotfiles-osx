@@ -168,29 +168,45 @@ augroup END
 " }}}
 " Functions {{{
 
+function s:GetVisualModeContent() abort
+  let [line_start, column_start] = getpos("'<")[1:2]
+  let [line_end, column_end] = getpos("'>")[1:2]
+  let l:lines = getline(line_start, line_end)
+
+  if len(l:lines) == 0
+    return ''
+  endif
+
+  let l:lines[-1] = l:lines[-1][: column_end - (&selection == 'inclusive' ? 1 : 2)]
+  let l:lines[0] = l:lines[0][column_start - 1:]
+  return join(l:lines, "\n")
+endfunction
+
 function s:PrepareSubstitute(mode) range abort
   let l:expr = ''
 
   if a:mode ==# 'n'
     let l:expr = expand('<cword>')
   elseif a:mode ==# 'v'
-    let [line_start, column_start] = getpos("'<")[1:2]
-    let [line_end, column_end] = getpos("'>")[1:2]
-    let l:lines = getline(line_start, line_end)
-
-    if len(l:lines) == 0
-      return ''
-    endif
-
-    let l:lines[-1] = l:lines[-1][: column_end - (&selection == 'inclusive' ? 1 : 2)]
-    let l:lines[0] = l:lines[0][column_start - 1:]
-    let l:expr = join(l:lines, "\n")
+    let l:expr = <SID>GetVisualModeContent()
   endif
 
   for l:char in split('.$^[]', '\zs')
     let l:expr = substitute(l:expr, '\'.l:char, '\\'.l:char, 'g')
   endfor
   call feedkeys(":%s/" . l:expr . "//g\<Left>\<Left>")
+endfunction
+
+function s:Find(mode) range abort
+  let l:expr = ''
+
+  if a:mode ==# 'n'
+    let l:expr = expand('<cword>')
+  elseif a:mode ==# 'v'
+    let l:expr = <SID>GetVisualModeContent()
+  endif
+
+  call feedkeys(':Find ' . l:expr . "\<CR>")
 endfunction
 
 function s:DeleteTrailingLeadingLines() abort
@@ -229,6 +245,9 @@ function s:CSSFormat() abort
 
   " Ensure every property is spaced correctly.
   keepjumps call execute('%s/^\(\s*[[:alnum:]-]\+\)\s*:\s*\(\_.\{-};\)$/\1: \2/g', 'silent!')
+
+  " Ensure selectors and opening brackets are a single whitespace.
+  keepjumps call execute('%s/\(.\)\s*{/\1 {/g', 'silent!')
 
   call s:DeleteTrailingLeadingLines()
 
@@ -436,11 +455,6 @@ vnoremap <silent> <C-Up> :m '<-2<CR>gv=gv
 " ------------------------------------------------------------------------------
 set pastetoggle=<F2>
 
-" Substitue words easily
-" ------------------------------------------------------------------------------
-nnoremap <buffer> <nowait> <silent> <Leader>s :call <SID>PrepareSubstitute('n')<CR>
-vnoremap <buffer> <nowait> <silent> <Leader>s :call <SID>PrepareSubstitute('v')<CR>
-
 " Rot13
 " ------------------------------------------------------------------------------
 nnoremap <silent> <F6> ggg?G<CR>
@@ -451,8 +465,13 @@ noremap <silent> <Space> :silent! noh<CR>
 
 " Search for the word under the cursor using Find.
 " ------------------------------------------------------------------------------
-nnoremap <Leader>f :execute('Find ' . expand('<cword>'))<CR>
+nnoremap <buffer> <nowait> <silent> <Leader>f :call <SID>Find('n')<CR>
+vnoremap <buffer> <nowait> <silent> <Leader>f :call <SID>Find('v')<CR>
 
+" Substitue words easily
+" ------------------------------------------------------------------------------
+nnoremap <buffer> <nowait> <silent> <Leader>s :call <SID>PrepareSubstitute('n')<CR>
+vnoremap <buffer> <nowait> <silent> <Leader>s :call <SID>PrepareSubstitute('v')<CR>
 
 " Re-indent code.
 " ------------------------------------------------------------------------------
@@ -464,7 +483,7 @@ cnoremap w!! w !sudo tee > /dev/null %
 
 " Spell check
 " ------------------------------------------------------------------------------
-nnoremap <Leader>sc :setlocal spell!<CR>
+nnoremap <Leader>sp :setlocal spell!<CR>
 
 " Remove ^M
 " ------------------------------------------------------------------------------
