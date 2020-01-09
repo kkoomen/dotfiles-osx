@@ -125,7 +125,7 @@ apps=(
   tree
   htop
   acrogenesis/macchanger/macchanger
-  --HEAD universal-ctags/universal-ctags/universal-ctags
+  --HEAD --with-jansson universal-ctags/universal-ctags/universal-ctags
 
   # Omnitagger
   chromaprint

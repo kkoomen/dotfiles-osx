@@ -381,6 +381,16 @@ function! s:OnVimEnter() abort
       call writefile([l:this_week], l:filename, 'a')
     endif
   endif
+
+  " Open Vista window
+  call execute('Vista', 'silent!')
+endfunction
+
+function s:OnBufEnter() abort
+  " Quit Vista if it's the last remaining open window.
+  if winnr('$') == 1 && bufwinnr('__vista__') != -1 && &filetype ==# 'vista'
+    call execute('qa!', 'silent!')
+  endif
 endfunction
 
 " }}}
@@ -390,7 +400,8 @@ augroup hooks
   autocmd!
   autocmd BufWritePre *                 call <SID>OnBufWritePre()
   autocmd BufReadPost *                 call <SID>OnBufReadPost()
-  autocmd VimEnter *                    call <SID>OnVimEnter()
+  autocmd VimEnter    *                 call <SID>OnVimEnter()
+  autocmd BufEnter    *                 call <SID>OnBufEnter()
   autocmd BufWritePre *.{css,scss,less} call <SID>CSSFormat()
 augroup END
 
@@ -533,11 +544,11 @@ Plug 'arthurxavierx/vim-caser'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'godlygeek/tabular'
 Plug 'honza/vim-snippets'
-Plug 'tpope/vim-repeat'
 Plug 'itchyny/lightline.vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vader.vim'
+Plug 'liuchengxu/vista.vim'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'mattn/emmet-vim'
 Plug 'mengelbrecht/lightline-bufferline'
@@ -548,7 +559,6 @@ Plug 'sickill/vim-pasta'
 Plug 'tomtom/tcomment_vim'
 Plug 'tpope/vim-surround'
 Plug 'yegappan/mru'
-Plug 'git@github.com:kkoomen/gfi.vim'
 Plug 'git@github.com:kkoomen/onedark.vim'
 Plug 'git@github.com:kkoomen/vim-doge'
 Plug 'git@github.com:kkoomen/vim-readdir'
@@ -874,6 +884,9 @@ endfunction
 " Use K to show documentation in preview window
 nnoremap <silent> K :call <SID>show_documentation()<CR>
 
+" Use `:Format` to format current buffer
+command! -nargs=0 Format :call CocAction('format')
+
 nmap <silent> gd <Plug>(coc-definition)
 
 hi! CocErrorSign guifg=#d97084
@@ -956,5 +969,14 @@ let g:UltiSnipsJumpBackwardTrigger="<S-Tab>"
 " Plugins: Caser {{{
 
 let g:caser_prefix = 'ac'
+
+" }}}
+" Plugins: Vista {{{
+
+let g:vista_sidebar_width = 60
+let g:vista_echo_cursor_strategy = 'floating_win'
+let g:vista_stay_on_open = 0
+let g:vista_disable_statusline = 1
+let g:vista#renderer#enable_icon = 0
 
 " }}}
