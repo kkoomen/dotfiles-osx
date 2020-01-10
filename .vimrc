@@ -168,6 +168,12 @@ augroup END
 " }}}
 " Functions {{{
 
+" Helpers {{{2
+
+function! s:IsVistaWindow() abort
+  return bufwinnr('__vista__') != -1 && &filetype ==# 'vista'
+endfunction
+
 function s:GetVisualModeContent() abort
   let [line_start, column_start] = getpos("'<")[1:2]
   let [line_end, column_end] = getpos("'>")[1:2]
@@ -197,6 +203,45 @@ function s:PrepareSubstitute(mode) range abort
   call feedkeys(":%s/" . l:expr . "//g\<Left>\<Left>")
 endfunction
 
+function s:DeleteTrailingLeadingLines() abort
+  " Delete empty lines at the start of the buffer.
+  if getline(1) !~ '\S'
+    keepjumps call execute('normal! gg"_dip', 'silent!')
+  endif
+
+  " Delete empty lines at the end of the buffer.
+  if getline('$') !~ '\S'
+    keepjumps call execute('normal! G"_dip', 'silent!')
+  endif
+endfunction
+
+function s:HelpWindow(args) abort
+  if winwidth('.') >= 164
+    call execute('vertical h ' . a:args)
+    call execute('vertical resize 84')
+  else
+    call execute('h ' . a:args)
+  endif
+endfunction
+
+function! s:SpaceToTab(str) abort
+  let l:remainder = len(a:str) % shiftwidth()
+  return repeat("\t", len(a:str) / shiftwidth()) . repeat(' ', l:remainder)
+endfunction
+
+function! s:GetRelativeBufferPathInGitDirectory() abort
+  return substitute(
+        \ expand('%:p'),
+        \ trim(system('git -C ' . shellescape(expand('%:p:h')) . ' rev-parse --show-toplevel')),
+        \ '',
+        \ 'g'
+        \ )
+endfunction
+
+" }}}
+
+" Commands {{{2
+
 function s:Find(mode) range abort
   let l:expr = ''
 
@@ -209,16 +254,24 @@ function s:Find(mode) range abort
   call feedkeys(':Find ' . l:expr . "\<CR>")
 endfunction
 
-function s:DeleteTrailingLeadingLines() abort
-  " Delete empty lines at the start of the buffer.
-  if getline(1) !~ '\S'
-    keepjumps call execute('normal! gg"_dip', 'silent!')
-  endif
+" Rename a buffer.
+function s:Rename(bang, args) abort
+  let l:oldfile = expand('%:p')
+  let l:newfile = simplify(expand('%:p:h') . '/' . a:args)
+  setlocal modifiable
+  call execute(':saveas' . a:bang . ' ' . l:newfile)
+  call delete(l:oldfile)
+  call execute(':' . bufnr('$') . 'bw')
+endfunction
 
-  " Delete empty lines at the end of the buffer.
-  if getline('$') !~ '\S'
-    keepjumps call execute('normal! G"_dip', 'silent!')
+" Remove a file.
+function s:Remove(args) abort
+  let l:success = delete(a:args) == 0
+  " If we're deleting the current buffer, then remove the buffer itself.
+  if l:success == v:true && a:args == expand('%')
+    bdelete!
   endif
+  echo 'Remove: ' . a:args . ' ' . (l:success ? 'succeeded' : 'failed')
 endfunction
 
 function s:CSSFormat() abort
@@ -249,45 +302,13 @@ function s:CSSFormat() abort
   " Ensure selectors and opening brackets are a single whitespace.
   keepjumps call execute('%s/\(.\)\s*{/\1 {/g', 'silent!')
 
-  call s:DeleteTrailingLeadingLines()
+  call <SID>DeleteTrailingLeadingLines()
 
   " Restore the window view.
   call winrestview(l:winview)
 
   " Remove search highlighting
   call execute('silent! noh')
-endfunction
-
-function s:HelpWindow(args) abort
-  if winwidth('.') >= 164
-    call execute('vertical h ' . a:args)
-    call execute('vertical resize 84')
-  else
-    call execute('h ' . a:args)
-  endif
-endfunction
-
-function! s:SpaceToTab(str) abort
-  let l:remainder = len(a:str) % shiftwidth()
-  return repeat("\t", len(a:str) / shiftwidth()) . repeat(' ', l:remainder)
-endfunction
-
-function s:Rename(bang, args) abort
-  let l:oldfile = expand('%:p')
-  let l:newfile = simplify(expand('%:p:h') . '/' . a:args)
-  setlocal modifiable
-  call execute(':saveas' . a:bang . ' ' . l:newfile)
-  call delete(l:oldfile)
-  call execute(':' . bufnr('$') . 'bw')
-endfunction
-
-function s:Remove(args) abort
-  let l:success = delete(a:args) == 0
-  " If we're deleting the current buffer, then remove the buffer itself.
-  if l:success == v:true && a:args == expand('%')
-    bdelete!
-  endif
-  echo 'Remove: ' . a:args . ' ' . (l:success ? 'succeeded' : 'failed')
 endfunction
 
 function! s:IndentCode() abort
@@ -309,21 +330,16 @@ function s:PHPConvertArrays() abort
   call winrestview(l:winview)
 endfunction
 
-function! s:GetRelativeBufferPathInGitDirectory() abort
-  return substitute(
-        \ expand('%:p'),
-        \ trim(system('git -C ' . shellescape(expand('%:p:h')) . ' rev-parse --show-toplevel')),
-        \ '',
-        \ 'g'
-        \ )
-endfunction
+" }}}
+
+" Hooks {{{2
 
 function s:OnBufWritePre() abort
   if !exists('b:disable_hook_bufprewrite')
     " Save the current window view.
     let l:winview = winsaveview()
 
-    call s:DeleteTrailingLeadingLines()
+    call <SID>DeleteTrailingLeadingLines()
 
     " Execute commands only for non-test files.
     let l:test_file_regex = '\m.\+\.vader$'
@@ -388,10 +404,12 @@ endfunction
 
 function s:OnBufEnter() abort
   " Quit Vista if it's the last remaining open window.
-  if winnr('$') == 1 && bufwinnr('__vista__') != -1 && &filetype ==# 'vista'
+  if winnr('$') == 1 && <SID>IsVistaWindow()
     call execute('qa!', 'silent!')
   endif
 endfunction
+
+" }}}
 
 " }}}
 " Hooks {{{
@@ -408,9 +426,12 @@ augroup END
 " }}}
 " Commands {{{
 
+" Global {{{2
+
 " Rename current buffer.
 command! -nargs=1 -complete=file Rename call <SID>Rename('<bang>', '<args>')
 
+" Remove a file.
 command! -complete=file -nargs=1 Remove call <SID>Remove('<args>')
 
 " Set the absolute path of the current buffer to the system clipboard.
@@ -423,6 +444,10 @@ command! -nargs=0 GBP :let @+=<SID>GetRelativeBufferPathInGitDirectory() | echo 
 
 " Open help menu in a 80-column vertical window.
 command! -nargs=* -complete=help H call <SID>HelpWindow('<args>')
+
+" }}}
+
+" Language-specific {{{2
 
 " Format (LE|SA|C)SS.
 command! -nargs=0 CSSFormat call <SID>CSSFormat()
@@ -439,6 +464,7 @@ command! -nargs=0 JSFuncToArrow :%s/function\s*\%(\w\+\)\?\s*(\(.\{-}\))\_\s*{/(
 " Convert () => {} to function(){}.
 command! -nargs=0 JSArrowToFunc :%s/\(\%(const\|let\|var\) \(\w\+\)\s*=\s*\)\?(\(.\{-}\))\s*=>\s*[{(]\+/\1function \2(\3) {/g | silent! noh
 
+" }}}
 
 " }}}
 " Mappings {{{
@@ -472,7 +498,7 @@ nnoremap <silent> <F6> ggg?G<CR>
 
 " Space bar un-highligths search
 " ------------------------------------------------------------------------------
-noremap <silent> <Space> :silent! noh<CR>
+noremap <silent> <Space><Esc> :silent! noh<CR>
 
 " Search for the word under the cursor using Find.
 " ------------------------------------------------------------------------------
@@ -549,6 +575,7 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vader.vim'
 Plug 'liuchengxu/vista.vim'
+" Plug 'majutsushi/tagbar'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'mattn/emmet-vim'
 Plug 'mengelbrecht/lightline-bufferline'
@@ -898,6 +925,7 @@ hi! CocHintSign guifg=#6face4
 " Plugins: Lightline {{{
 
 function! LightlineFilename() abort
+  if <SID>IsVistaWindow() | return '' | endif
   return expand('%:p') !=# '' ? expand('%:p') : '[No Name]'
 endfunction
 
@@ -906,6 +934,9 @@ function! LightlineReadonly() abort
 endfunction
 
 function! LightlineGitBranch() abort
+  if <SID>IsVistaWindow() | return '' | endif
+
+  " TODO: fix git branch
   return ''
   let l:branch = trim(system('git -C ' . shellescape(expand('%:p:h')) . ' rev-parse --abbrev-ref HEAD'))
   if l:branch ==# 'HEAD'
@@ -915,14 +946,36 @@ function! LightlineGitBranch() abort
 endfunction
 
 function! LightlineIndent() abort
+  if <SID>IsVistaWindow() | return '' | endif
   return (&expandtab ? 'spaces' : 'tabs') . ':' . shiftwidth()
 endfunction
 
 function! LightlineGutentags() abort
+  if <SID>IsVistaWindow() | return '' | endif
   if exists('*gutentags#statusline')
     return gutentags#statusline('', ':running')
   endif
   return ''
+endfunction
+
+function LightlineModified() abort
+  if <SID>IsVistaWindow() | return '' | endif
+  return &modifiable && &modified ? '+' : ''
+endfunction
+
+function LightlineFileFormat() abort
+  if <SID>IsVistaWindow() | return '' | endif
+  return &fileformat
+endfunction
+
+function LightlineFileEncoding() abort
+  if <SID>IsVistaWindow() | return '' | endif
+  return &fenc !=# '' ? &fenc : &enc
+endfunction
+
+function LightlineFiletype() abort
+  if <SID>IsVistaWindow() | return '' | endif
+  return &ft !=# '' ? &ft : 'no ft'
 endfunction
 
 let g:lightline = {
@@ -938,22 +991,30 @@ let g:lightline = {
 \      ['gutentags', 'indent', 'fileformat', 'fileencoding', 'filetype'],
 \    ],
 \  },
+\  'inactive': {
+\    'left': [['filename']],
+\    'right': []
+\  },
 \  'component': {
 \    'lineinfo': ' %3l/%L:%-2v',
 \  },
 \  'component_function': {
-\    'filename': 'LightlineFilename',
-\    'readonly': 'LightlineReadonly',
 \    'gitbranch': 'LightlineGitBranch',
-\    'indent': 'LightlineIndent',
+\    'readonly': 'LightlineReadonly',
+\    'filename': 'LightlineFilename',
+\    'modified': 'LightlineModified',
 \    'gutentags': 'LightlineGutentags',
+\    'indent': 'LightlineIndent',
+\    'fileformat': 'LightlineFileFormat',
+\    'fileencoding': 'LightlineFileEncoding',
+\    'filetype': 'LightlineFiletype',
 \  },
 \  'separator': {'left': '', 'right': ''},
 \  'subseparator': {'left': '', 'right': ''},
 \  'tabline': {'left': [['buffers']], 'right': [['close']]},
 \  'component_expand': {'buffers': 'lightline#bufferline#buffers'},
 \  'component_type': {'buffers': 'tabsel'},
-\  }
+\}
 
 let g:lightline#bufferline#unnamed = '[No name]'
 let g:lightline#bufferline#filename_modifier = ':t'
@@ -978,5 +1039,6 @@ let g:vista_echo_cursor_strategy = 'floating_win'
 let g:vista_stay_on_open = 0
 let g:vista_disable_statusline = 1
 let g:vista#renderer#enable_icon = 0
+let g:vista_top_level_blink = [3, 100]
 
 " }}}
