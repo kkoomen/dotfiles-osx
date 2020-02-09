@@ -13,6 +13,7 @@ alias rsync="rsync -azh --inplace --no-whole-file -P --stats --timeout=120"
 alias gr='rg --column --line-number --no-heading --fixed-strings --ignore-case --follow --hidden --glob "!.git/*" --color "always" --'
 alias brew='HOMEBREW_NO_AUTO_UPDATE=1 brew'
 alias screen='screen -U'
+alias getsubs='subliminal download -s -f -l en'
 
 # NETWORK
 alias xip="curl icanhazip.com"

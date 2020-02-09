@@ -170,10 +170,6 @@ augroup END
 
 " Helpers {{{2
 
-function! s:IsVistaWindow() abort
-  return bufwinnr('__vista__') != -1 && &filetype ==# 'vista'
-endfunction
-
 function s:GetVisualModeContent() abort
   let [line_start, column_start] = getpos("'<")[1:2]
   let [line_end, column_end] = getpos("'>")[1:2]
@@ -397,16 +393,6 @@ function! s:OnVimEnter() abort
       call writefile([l:this_week], l:filename, 'a')
     endif
   endif
-
-  " Open Vista window
-  call execute('Vista', 'silent!')
-endfunction
-
-function s:OnBufEnter() abort
-  " Quit Vista if it's the last remaining open window.
-  if winnr('$') == 1 && <SID>IsVistaWindow()
-    call execute('qa!', 'silent!')
-  endif
 endfunction
 
 " }}}
@@ -419,7 +405,6 @@ augroup hooks
   autocmd BufWritePre *                 call <SID>OnBufWritePre()
   autocmd BufReadPost *                 call <SID>OnBufReadPost()
   autocmd VimEnter    *                 call <SID>OnVimEnter()
-  autocmd BufEnter    *                 call <SID>OnBufEnter()
   autocmd BufWritePre *.{css,scss,less} call <SID>CSSFormat()
 augroup END
 
@@ -574,8 +559,6 @@ Plug 'itchyny/lightline.vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vader.vim'
-Plug 'liuchengxu/vista.vim'
-" Plug 'majutsushi/tagbar'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'mattn/emmet-vim'
 Plug 'mengelbrecht/lightline-bufferline'
@@ -925,7 +908,6 @@ hi! CocHintSign guifg=#6face4
 " Plugins: Lightline {{{
 
 function! LightlineFilename() abort
-  if <SID>IsVistaWindow() | return '' | endif
   return expand('%:p') !=# '' ? expand('%:p') : '[No Name]'
 endfunction
 
@@ -934,8 +916,6 @@ function! LightlineReadonly() abort
 endfunction
 
 function! LightlineGitBranch() abort
-  if <SID>IsVistaWindow() | return '' | endif
-
   " TODO: fix git branch
   return ''
   let l:branch = trim(system('git -C ' . shellescape(expand('%:p:h')) . ' rev-parse --abbrev-ref HEAD'))
@@ -946,12 +926,10 @@ function! LightlineGitBranch() abort
 endfunction
 
 function! LightlineIndent() abort
-  if <SID>IsVistaWindow() | return '' | endif
   return (&expandtab ? 'spaces' : 'tabs') . ':' . shiftwidth()
 endfunction
 
 function! LightlineGutentags() abort
-  if <SID>IsVistaWindow() | return '' | endif
   if exists('*gutentags#statusline')
     return gutentags#statusline('', ':running')
   endif
@@ -959,22 +937,18 @@ function! LightlineGutentags() abort
 endfunction
 
 function LightlineModified() abort
-  if <SID>IsVistaWindow() | return '' | endif
   return &modifiable && &modified ? '+' : ''
 endfunction
 
 function LightlineFileFormat() abort
-  if <SID>IsVistaWindow() | return '' | endif
   return &fileformat
 endfunction
 
 function LightlineFileEncoding() abort
-  if <SID>IsVistaWindow() | return '' | endif
   return &fenc !=# '' ? &fenc : &enc
 endfunction
 
 function LightlineFiletype() abort
-  if <SID>IsVistaWindow() | return '' | endif
   return &ft !=# '' ? &ft : 'no ft'
 endfunction
 
@@ -1030,15 +1004,5 @@ let g:UltiSnipsJumpBackwardTrigger="<S-Tab>"
 " Plugins: Caser {{{
 
 let g:caser_prefix = 'ac'
-
-" }}}
-" Plugins: Vista {{{
-
-let g:vista_sidebar_width = 60
-let g:vista_echo_cursor_strategy = 'floating_win'
-let g:vista_stay_on_open = 0
-let g:vista_disable_statusline = 1
-let g:vista#renderer#enable_icon = 0
-let g:vista_top_level_blink = [3, 100]
 
 " }}}
