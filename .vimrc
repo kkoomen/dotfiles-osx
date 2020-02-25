@@ -270,6 +270,7 @@ function s:Remove(args) abort
   echo 'Remove: ' . a:args . ' ' . (l:success ? 'succeeded' : 'failed')
 endfunction
 
+B
 function s:CSSFormat() abort
   " Save the current window state.
   let l:winview = winsaveview()
@@ -293,7 +294,7 @@ function s:CSSFormat() abort
   keepjumps call execute('%s/\n\{3,}/\r\r/g', 'silent!')
 
   " Ensure every property is spaced correctly.
-  keepjumps call execute('%s/^\(\s*[[:alnum:]-]\+\)\s*:\s*\(\_.\{-};\)$/\1: \2/g', 'silent!')
+  keepjumps call execute('%s/^\(\s*[[:alnum:]-]\+\)\s*:\s*\(\_[^:]\{-};\)$/\1: \2/g', 'silent!')
 
   " Ensure selectors and opening brackets are a single whitespace.
   keepjumps call execute('%s/\(.\)\s*{/\1 {/g', 'silent!')
