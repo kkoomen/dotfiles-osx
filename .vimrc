@@ -270,7 +270,6 @@ function s:Remove(args) abort
   echo 'Remove: ' . a:args . ' ' . (l:success ? 'succeeded' : 'failed')
 endfunction
 
-B
 function s:CSSFormat() abort
   " Save the current window state.
   let l:winview = winsaveview()
