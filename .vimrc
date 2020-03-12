@@ -278,7 +278,7 @@ function s:CSSFormat() abort
   keepjumps call execute('g/^[\n[:space:]]*$/d _', 'silent!')
 
   " Add lines in-between selector blocks.
-  keepjumps call execute('%s/\([};]\)\(.\{-}\%(\/\/[^\n]*\|\/\*.\{-}\*\/[^\n]*\)\)\?\%(\_[^;{}]\{-}{\)\@=/\1\2\r/g', 'silent!')
+  keepjumps call execute('%s/\%(#.\{-}\)\@<!\([};]\)\(.\{-}\%(\/\/[^\n]*\|\/\*.\{-}\*\/[^\n]*\)\)\?\%(\_[^;{}]\{-}{\)\@=/\1\2\r/g', 'silent!')
 
   " Add lines in-between closing bracket and variables.
   keepjumps call execute('%s/\(}\)\%(\_[[:space:]]\{-}\$\)\@=/\1\r/g', 'silent!')
@@ -296,7 +296,7 @@ function s:CSSFormat() abort
   keepjumps call execute('%s/^\(\s*[[:alnum:]-]\+\)\s*:\s*\(\_[^:]\{-};\)$/\1: \2/g', 'silent!')
 
   " Ensure selectors and opening brackets are a single whitespace.
-  keepjumps call execute('%s/\(.\)\s*{/\1 {/g', 'silent!')
+  keepjumps call execute('%s/\%(#\)\@<!\s*{/ {/g', 'silent!')
 
   call <SID>DeleteTrailingLeadingLines()
 
