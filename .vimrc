@@ -284,7 +284,7 @@ function s:CSSFormat() abort
   keepjumps call execute('%s/\(}\)\%(\_[[:space:]]\{-}\$\)\@=/\1\r/g', 'silent!')
 
   " Add lines before comments.
-  keepjumps call execute('%s/^\(\/\/\|\/\*\)/\r\1/g', 'silent!')
+  keepjumps call execute('%s/^\(\(\/\/.\{-}\n\)\@<!\/\/\|\/\*\)/\r\1/g', 'silent!')
 
   " Remove all extra lines between closing brackets.
   keepjumps call execute('g/}[}\n[:space:]]*}/s/\n^[\n[:space:]]*$//g', 'silent!')
