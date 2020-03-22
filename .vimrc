@@ -635,7 +635,7 @@ let g:user_emmet_settings = {
 " }}}
 " Plugins: HTML Close Tag {{{
 
-let g:closetag_filenames = "*.html,*.xhtml,*.phtml,*.tpl,*.twig,*.htm,*.php,*.pug,*.jsx,*.js,*.mdx,*.plop,*.tsx,*.ts"
+let g:closetag_filenames = "*.html,*.xhtml,*.phtml,*.tpl,*.twig,*.htm,*.php,*.pug,*.jsx,*.js,*.mdx,*.plop,*.tsx,*.ts,*.erb"
 
 " }}}
 " Plugins: Templates {{{
@@ -881,6 +881,7 @@ let g:coc_global_extensions = [
       \ 'coc-vimlsp',
       \ 'coc-emmet',
       \ 'coc-tag',
+      \ 'coc-solargraph',
       \ ]
 
 function! s:show_documentation()
