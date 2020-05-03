@@ -44,13 +44,11 @@ shopt -s checkwinsize
 [[ -f ~/.bash_functions ]] && . ~/.bash_functions
 [[ -f ~/.bash_private ]] && . ~/.bash_private
 [[ -f ~/.fzf.bash ]] && . ~/.fzf.bash
-[[ -s /usr/local/opt/nvm/nvm.sh ]] && . $BREW_PREFIX/opt/nvm/nvm.sh
 
-# Completions
+# Completions.
 [[ -d ~/.completions ]] && . ~/.completions/* > /dev/null 2>&1
 [[ -f /usr/local/etc/bash_completion ]] && . /usr/local/etc/bash_completion > /dev/null 2>&1
 [[ -d /usr/local/etc/bash_completion.d ]] && . /usr/local/etc/bash_completion.d/* > /dev/null 2>&1
-
 
 # Autocorrect typos in path names when using "cd".
 shopt -s cdspell
@@ -63,22 +61,25 @@ PS1_NORMAL="$(tput setaf 7)┌─ \w\[$(tput setaf 3)\]\$(git-branch)\[$(tput se
 PS1_ERROR="$(tput setaf 1)┌─ $(tput setaf 7)\w\[$(tput setaf 3)\]\$(git-branch)\[$(tput setaf 7)\]\$(get-virtualenv)\n\[$(tput setaf 1)\]└──── ➜  \[$(tput setaf 7)\]"
 export PS1="\$([[ \$? == 0 ]] && echo \"$PS1_NORMAL\" || echo \"$PS1_ERROR\")"
 
-# GOLANG
-export GOPATH="$HOME/tech/go"
-export GOROOT="$BREW_PREFIX/opt/go/libexec"
-
-# NVM
-export NVM_DIR="$HOME/.nvm"
-
 # PATH
 export PATH="/usr/local/sbin:$PATH"
-export PATH="/usr/local/opt/ruby/bin:$PATH"
+
+# -- PATH: GOLANG
+export GOPATH="$HOME/tech/go"
+export GOROOT="$BREW_PREFIX/opt/go/libexec"
 export PATH="$GOPATH/bin:$GOROOT/bin:$PATH"
+
+# -- PATH: Ruby
+export PATH="/usr/local/opt/ruby/bin:$PATH"
+
+# -- PATH: Python
 export PATH="$HOME/Library/Python:$PATH"
+
+# -- PATH: PHP
 export PATH="/usr/local/opt/php@7.1/bin:$PATH"
 export PATH="/usr/local/opt/php@7.1/sbin:$PATH"
 
-# PATH: LLVM
+-- PATH: LLVM
 export PATH="/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include:$PATH"
 export PATH="/usr/local/Cellar/llvm/9.0.0_1/bin:$PATH"
 export LD_LIBRARY_PATH="/Library/Developer/CommandLineTools/usr/lib:$LD_LIBRARY_PATH"
@@ -86,9 +87,14 @@ export LD_LIBRARY_PATH="/Library/Developer/CommandLineTools/usr/lib:$LD_LIBRARY_
 # Swift
 export TOOLCHAINS=swift
 
+# RUBY
+# surpress warnings
+# see: https://stackoverflow.com/a/59594760
+export RUBYOPT='-W0'
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+
 # Damn Apple who made zsh the default shell on OS X ¯\_(///▽///)_/¯
 export BASH_SILENCE_DEPRECATION_WARNING=1
 
 # LANG
 export LC_ALL="en_US.UTF-8"
-if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi

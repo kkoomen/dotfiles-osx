@@ -135,6 +135,7 @@ augroup javascript
   autocmd!
   autocmd BufRead,BufNewFile *.mdx,*.plop setlocal filetype=javascript
   autocmd BufRead,BufNewFile *.tsx setlocal filetype=typescript.jsx
+  autocmd FileType coffee setlocal filetype=javascript.coffee
 augroup END
 
 augroup rc
@@ -228,7 +229,7 @@ endfunction
 function! s:GetRelativeBufferPathInGitDirectory() abort
   return substitute(
         \ expand('%:p'),
-        \ trim(system('git -C ' . shellescape(expand('%:p:h')) . ' rev-parse --show-toplevel')),
+        \ trim(system('git -C ' . shellescape(expand('%:p:h')) . ' rev-parse --show-toplevel')) . '/',
         \ '',
         \ 'g'
         \ )
@@ -285,6 +286,9 @@ function s:CSSFormat() abort
 
   " Add lines before comments.
   keepjumps call execute('%s/^\(\(\/\/.\{-}\n\)\@<!\/\/\|\/\*\)/\r\1/g', 'silent!')
+
+  " Add lines in-between @import and other expressions starting with '@'.
+  keepjumps call execute('%s/}\n@\([[:alpha:]]\+\)/}\r\r@\1/g', 'silent!')
 
   " Remove all extra lines between closing brackets.
   keepjumps call execute('g/}[}\n[:space:]]*}/s/\n^[\n[:space:]]*$//g', 'silent!')
@@ -567,6 +571,7 @@ Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 Plug 'sheerun/vim-polyglot'
 Plug 'sickill/vim-pasta'
 Plug 'tomtom/tcomment_vim'
+Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-surround'
 Plug 'yegappan/mru'
 Plug 'git@github.com:kkoomen/onedark.vim'
@@ -641,7 +646,7 @@ let g:closetag_filenames = "*.html,*.xhtml,*.phtml,*.tpl,*.twig,*.htm,*.php,*.pu
 " Plugins: Templates {{{
 
 let g:username = 'Kim Koomen'
-let g:email = 'koomen@protonail.com'
+let g:email = 'koomen@pm.me'
 let g:license = 'MIT'
 
 let g:templates_user_variables = [

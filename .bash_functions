@@ -20,12 +20,8 @@ function editorconfig-init {
     fi
 }
 
-function get-largest-files {
-  if [[ "$2" ]]; then
-    files=($(find "$1" -type f -exec ls -s {} \; 2> /dev/null | sort -n -r | head -n "$2" | awk '{ print $2 }')); for f in "${files[@]}"; do du -sh "$f"; done
-  else
-    files=($(find "$1" -type f -exec ls -s {} \; 2> /dev/null | sort -n -r | head -n 20 | awk '{ print $2 }')); for f in "${files[@]}"; do du -sh "$f"; done
-  fi
+function jb {
+  curl -s -F file=@- -F expire="${1:-}" https://jinb.in
 }
 
 function git-branch {
@@ -47,13 +43,6 @@ function git-branch {
     printf "$git_branch"
   fi
 
-}
-
-function screenkill {
-  pids=($(screen -list | grep "[0-9].[[:alnum:]].$USER" | cut -d '.' -f 1 | awk '{$1=$1};1'));
-  for pid in "${pids[@]}"; do
-    screen -X -S  "$pid" quit
-  done
 }
 
 function get-virtualenv {
@@ -109,7 +98,7 @@ function vim-format {
 # -----------------------------------------------------------------------------
 
 # fbr - checkout git branch (including remote branches)
-gc() {
+funtion gc {
   local branches branch
   branches=$(git branch --all | grep -v HEAD) &&
   branch=$(echo "$branches" |
@@ -119,7 +108,7 @@ gc() {
 
 # fshow_preview - git commit browser with previews
 alias glNoGraph='git log --color=always --format="%C(auto)%h%d %s %C(magenta)%cr %C(white)➜  %C(blue)%an <%ae> %C(green)%GK%C(auto)" "$@"'
-gl() {
+function gl {
   local _gitLogLineToHash="echo {} | grep -o '[a-f0-9]\{7\}' | head -1"
   local _viewGitLogLine="$_gitLogLineToHash | xargs -I % sh -c 'git show --color=always % | diff-so-fancy'"
 

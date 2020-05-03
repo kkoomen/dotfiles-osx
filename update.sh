@@ -39,8 +39,6 @@ TOUCH_DIRS=(
   Library/KeyBindings/
 )
 
-# :: SETUP PROCESS
-
 # Set permissions for executables.
 chmod -R 775 $DOTFILES_DIR/bin/
 sudo cp $DOTFILES_DIR/bin/* /usr/local/bin

@@ -21,7 +21,7 @@ echo "[Setting] A really fast keyrepeat is set."
 
 defaults write com.apple.dock wvous-br-corner -int 5
 defaults write com.apple.dock wvous-br-modifier -int 0
-# echo "[Setting] Run the screensaver if we're in the bottom-right hot corner."
+echo "[Setting] Run the screensaver if we're in the bottom-right hot corner."
 
 # The notification 'Your disk is almost full' should only warn us when we're
 # below a certain threshold of GiB.
@@ -217,7 +217,7 @@ sudo defaults write /Library/Preferences/com.apple.Bluetooth.plist ControllerPow
 
 # Turn off hibernation [laptops only].
 sudo pmset -a hibernatemode 0
-# sudo rm /var/vm/sleepimage
+# sudo rm -f /var/vm/sleepimage
 
 # remove FileVault keys on hibernation.
 sudo pmset -a destroyfvkeyonstandby 1
@@ -231,7 +231,7 @@ sudo pmset -a standby 0
 sudo pmset -a standbydelay 0
 sudo pmset -a autopoweroff 0
 
-# Enable fireFault.
+# Enable FireFault.
 sudo fdesetup enable
 sudo /usr/libexec/ApplicationFirewall/socketfilterfw --setglobalstate on
 
@@ -266,18 +266,13 @@ defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool false
 
 # Disable siri.
 sudo launchctl unload -w /System/Library/LaunchAgents/com.apple.Siri.agent.plist
-# sudo launchctl unload -w /System/Library/LaunchAgents/com.apple.photolibraryd.plist
-# sudo launchctl unload -w /System/Library/LaunchAgents/com.apple.SocialPushAgent.plist
+sudo launchctl unload -w /System/Library/LaunchAgents/com.apple.photolibraryd.plist
+sudo launchctl unload -w /System/Library/LaunchAgents/com.apple.SocialPushAgent.plist
 sudo launchctl unload -w /System/Library/LaunchAgents/com.apple.ManagedClientAgent.enrollagent.plist
-
-printf "[Info] A more secure setup can be achieved by running ${ORANGE}./scripts/install_extra.sh${NC}\n"
-echo "[Info] For more security settings see https://github.com/drduh/macOS-Security-and-Privacy-Guide"
-
-echo "[Setting] Your mac is now safer."
 
 echo
 echo "You need to restart your computer for the changes to take effect."
-echo "After reboot, please run install_2.sh for dev modules"
+echo "After the reboot, please run install_2.sh for development packages."
 
 # See if the user wants to reboot.
 function reboot() {

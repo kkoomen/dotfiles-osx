@@ -13,7 +13,7 @@ test -d "${GOPATH}/src/github.com" || mkdir -p "${GOPATH}/src/github.com"
 # Check for Homebrew
 if test ! $(which brew)
 then
-  echo "  Installing Homebrew for you."
+  echo "Installing Homebrew."
 
   # Install the correct homebrew for each OS type
   if test "$(uname)" = "Darwin"
@@ -23,7 +23,6 @@ then
   then
     ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install)"
   fi
-
 fi
 
 # update brew
@@ -104,8 +103,6 @@ apps=(
   python
   python3
   ruby
-  sqlite
-  watchman
   openssl
   composer
   curlftpfs
@@ -114,11 +111,10 @@ apps=(
   git
 
   # Development: C
-  gcc
-  llvm
+  # gcc
+  # llvm
 
   # Terminal
-  tmux
   vim
   wget
   curl

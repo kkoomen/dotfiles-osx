@@ -13,7 +13,9 @@ alias rsync="rsync -azh --inplace --no-whole-file -P --stats --timeout=120"
 alias gr='rg --column --line-number --no-heading --fixed-strings --ignore-case --follow --hidden --glob "!.git/*" --color "always" --'
 alias brew='HOMEBREW_NO_AUTO_UPDATE=1 brew'
 alias screen='screen -U'
+alias getsubs-zh='subliminal download -s -f -l zh'
 alias getsubs='subliminal download -s -f -l en'
+alias mpv-16-9='mpv --video-aspect-override=16:9'
 
 # NETWORK
 alias xip="curl icanhazip.com"
@@ -23,10 +25,6 @@ alias lip="ipconfig getifaddr en0"
 alias bashrc="vim ~/.bashrc"
 alias vimrc="vim ~/.vimrc"
 alias reload="source ~/.bash_profile"
-
-# PASTEBINS
-alias ix="curl -s -F 'f:1=<-' ix.io"
-alias pb="curl -s -F c=@- https://ptpb.pw/ | grep url"
 
 # DOCKER
 alias dsh="docker-compose exec php bash"

@@ -4,30 +4,21 @@ npm_packages=(
   # Package managers
   yarn
 
-  # Development
-  gulp
-  nodemon
-  http-server
-  cra-gen
-
   # For security check npm packages
   nsp
 
   # Linting
-  eslint
-  eslint-config-airbnb
-  eslint-plugin-html
-  eslint-plugin-import
-  eslint-plugin-jsx-a11y
-  eslint-plugin-react
-  stylelint
+  # eslint
+  # eslint-config-airbnb
+  # eslint-plugin-html
+  # eslint-plugin-import
+  # eslint-plugin-jsx-a11y
+  # eslint-plugin-react
+  # stylelint
 
   # CSS prefixing
   autoprefixer-cli
 )
-
-# Setup NVM
-[[ ! -d ~/.nvm ]] && mkdir ~/.nvm
 
 npm install -g "${npm_packages[@]}"
 echo "Installed NPM modules."
