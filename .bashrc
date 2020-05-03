@@ -79,11 +79,6 @@ export PATH="$HOME/Library/Python:$PATH"
 export PATH="/usr/local/opt/php@7.1/bin:$PATH"
 export PATH="/usr/local/opt/php@7.1/sbin:$PATH"
 
-# -- PATH: LLVM
-export PATH="/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include:$PATH"
-export PATH="/usr/local/Cellar/llvm/9.0.0_1/bin:$PATH"
-export LD_LIBRARY_PATH="/Library/Developer/CommandLineTools/usr/lib:$LD_LIBRARY_PATH"
-
 # Swift
 export TOOLCHAINS=swift
 
