@@ -98,7 +98,7 @@ function vim-format {
 # -----------------------------------------------------------------------------
 
 # fbr - checkout git branch (including remote branches)
-funtion gc {
+function gc {
   local branches branch
   branches=$(git branch --all | grep -v HEAD) &&
   branch=$(echo "$branches" |
