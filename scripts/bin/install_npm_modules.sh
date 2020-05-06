@@ -20,6 +20,6 @@ npm_packages=(
   autoprefixer-cli
 )
 
-npm install -g "${npm_packages[@]}"
+sudo npm install -g "${npm_packages[@]}"
 echo "Installed NPM modules."
 exit 0

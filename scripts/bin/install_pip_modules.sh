@@ -7,6 +7,6 @@ pip_packages=(
   vim-vint
 )
 
-pip3 install "${pip_packages[@]}"
+sudo pip3 install "${pip_packages[@]}"
 echo "Installed pip3 modules."
 exit 0
