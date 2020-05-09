@@ -565,7 +565,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vader.vim'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'mattn/emmet-vim'
-Plug 'mengelbrecht/lightline-bufferline'
+" Plug 'mengelbrecht/lightline-bufferline'
 Plug 'mileszs/ack.vim'
 Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 Plug 'sheerun/vim-polyglot'
@@ -574,6 +574,7 @@ Plug 'tomtom/tcomment_vim'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-surround'
 Plug 'yegappan/mru'
+Plug 'git@github.com:kkoomen/lightline-bufferline'
 Plug 'git@github.com:kkoomen/onedark.vim'
 Plug 'git@github.com:kkoomen/vim-doge'
 Plug 'git@github.com:kkoomen/vim-readdir'
@@ -998,6 +999,7 @@ let g:lightline = {
 
 let g:lightline#bufferline#unnamed = '[No name]'
 let g:lightline#bufferline#filename_modifier = ':t'
+let g:lightline#bufferline#show_basedir = 1
 
 " }}}
 " Plugins: UltiSnips {{{
