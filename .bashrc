@@ -53,9 +53,6 @@ shopt -s checkwinsize
 # Autocorrect typos in path names when using "cd".
 shopt -s cdspell
 
-# Enable terminal password prompt for GPG.
-export GPG_TTY=$(tty)
-
 # Set PS1 format.
 PS1_NORMAL="$(tput setaf 7)┌─ \w\[$(tput setaf 3)\]\$(git-branch)\[$(tput setaf 7)\]\$(get-virtualenv)\n└──── ➜  "
 PS1_ERROR="$(tput setaf 1)┌─ $(tput setaf 7)\w\[$(tput setaf 3)\]\$(git-branch)\[$(tput setaf 7)\]\$(get-virtualenv)\n\[$(tput setaf 1)\]└──── ➜  \[$(tput setaf 7)\]"
