@@ -1,6 +1,6 @@
 [user]
   email = 10693490+kkoomen@users.noreply.github.com
-  name = Kim K
+  name = Kim 金可明
   signingkey = 63861BD482F9BBA2
 [alias]
   cleanup = "!git branch --merged | grep -v '\\*\\|master\\|develop\\|development\\|origin' | xargs -n 1 git branch -D"
