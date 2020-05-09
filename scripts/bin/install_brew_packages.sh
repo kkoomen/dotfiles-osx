@@ -25,11 +25,7 @@ then
   fi
 fi
 
-# update brew
-brew update
-
-# Upgrade any already-installed formulae
-brew upgrade --all
+brew update && brew upgrade
 
 # Set everything correct
 brew doctor
