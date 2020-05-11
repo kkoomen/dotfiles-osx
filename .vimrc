@@ -786,6 +786,13 @@ let g:polyglot_disabled = ['markdown']
 " ------------------------------------------------------------------------------
 let g:jsx_ext_required = 0
 
+" Vue
+" ------------------------------------------------------------------------------
+" Fix for css in Vue files having no syntax highlighting
+" https://github.com/posva/vim-vue/issues/135#issuecomment-526167470
+" ------------------------------------------------------------------------------
+let html_no_rendering=1
+
 " }}}
 " Plugins: Surround {{{
 

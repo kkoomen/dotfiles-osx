@@ -7,8 +7,9 @@
 
 
 # Setup GOLANG paths
-test -d "${GOPATH}" || mkdir "${GOPATH}"
-test -d "${GOPATH}/src/github.com" || mkdir -p "${GOPATH}/src/github.com"
+#. ~/.bashrc
+#test -d "${GOPATH}" || mkdir "${GOPATH}"
+#test -d "${GOPATH}/src/github.com" || mkdir -p "${GOPATH}/src/github.com"
 
 # Check for Homebrew
 if test ! $(which brew)
@@ -117,7 +118,7 @@ apps=(
   tree
   htop
   acrogenesis/macchanger/macchanger
-  --HEAD --with-jansson universal-ctags/universal-ctags/universal-ctags
+  --HEAD universal-ctags/universal-ctags/universal-ctags
 
   # Omnitagger
   chromaprint
