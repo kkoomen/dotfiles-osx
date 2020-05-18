@@ -10,6 +10,19 @@
   "python.linting.enabled": true,
   "coc.preferences.colorSupport": false,
   "solargraph.diagnostics": true,
+  "eslint.autoFix": true,
+  "eslint.autoFixOnSave": true,
+  "eslint.filetypes": [
+    "javascript",
+    "javascript.jsx",
+    "javascriptreact",
+    "javascript.tsx",
+    "typescriptreact",
+    "typescript",
+    "html",
+    "vue"
+  ],
+  "typescript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces": true,
   "languageserver": {
     "ccls": {
       "command": "ccls",
