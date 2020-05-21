@@ -1016,6 +1016,7 @@ let g:lightline#bufferline#filename_modifier = ':p:gs?/\([^/]\+/\)*\([^/]\+/[^/]
 let g:UltiSnipsExpandTrigger="<Tab>"
 let g:UltiSnipsJumpForwardTrigger="<Tab>"
 let g:UltiSnipsJumpBackwardTrigger="<S-Tab>"
+let g:UltiSnipsSnippetDirectories = ['UltiSnips']
 
 " }}}
 " Plugins: Caser {{{
