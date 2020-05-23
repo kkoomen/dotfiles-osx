@@ -70,7 +70,7 @@ export PATH="$GOPATH/bin:$GOROOT/bin:$PATH"
 export PATH="/usr/local/opt/ruby/bin:$PATH"
 
 # -- PATH: Python
-export PATH="$HOME/Library/Python:$PATH"
+export PATH="$HOME/Library/Python/3.7/bin:$PATH"
 
 # -- PATH: PHP
 export PATH="/usr/local/opt/php@7.1/bin:$PATH"

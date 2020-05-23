@@ -5,10 +5,14 @@
   "diagnostic.hintSign": "➜",
   "suggest.maxCompleteItemCount": 10,
   "suggest.minTriggerInputLength": 2,
-  "python.linting.pylintEnabled": true,
-  "python.linting.pep8Enabled": false,
+  "python.linting.pylintEnabled": false,
+  "python.linting.pep8Enabled": true,
   "python.linting.enabled": true,
+  "python.analysis.logLevel": "Warning",
   "coc.preferences.colorSupport": false,
+  "coc.preferences.formatOnSaveFiletypes": [
+    "python"
+  ],
   "solargraph.diagnostics": true,
   "eslint.autoFix": true,
   "eslint.autoFixOnSave": true,

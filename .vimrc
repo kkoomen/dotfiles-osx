@@ -410,6 +410,7 @@ augroup hooks
   autocmd BufReadPost *                 call <SID>OnBufReadPost()
   autocmd VimEnter    *                 call <SID>OnVimEnter()
   autocmd BufWritePre *.{css,scss,less} call <SID>CSSFormat()
+  autocmd BufWritePost *.py             :PythonAutoflake
 augroup END
 
 " }}}
@@ -453,6 +454,9 @@ command! -nargs=0 JSFuncToArrow :%s/function\s*\%(\w\+\)\?\s*(\(.\{-}\))\_\s*{/(
 " Convert () => {} to function(){}.
 command! -nargs=0 JSArrowToFunc :%s/\(\%(const\|let\|var\) \(\w\+\)\s*=\s*\)\?(\(.\{-}\))\s*=>\s*[{(]\+/\1function \2(\3) {/g | silent! noh
 
+" Run autoflake on the current python file
+command! -nargs=0 PythonAutoflake :call system('autoflake --in-place --remove-unused-variables --remove-all-unused-imports ' . expand('%')) | :checktime
+
 " }}}
 
 " }}}
@@ -461,6 +465,11 @@ command! -nargs=0 JSArrowToFunc :%s/\(\%(const\|let\|var\) \(\w\+\)\s*=\s*\)\?(\
 " Leader key
 " ------------------------------------------------------------------------------
 let g:mapleader = "\<Space>"
+
+" Leader key
+" ------------------------------------------------------------------------------
+" Run 'checktime' when the cursor stops moving.
+au CursorHold,CursorHoldI * checktime
 
 " Buffers
 " ------------------------------------------------------------------------------

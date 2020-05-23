@@ -48,7 +48,7 @@ function git-branch {
 function get-virtualenv {
   local venv
   if [[ ! -z "$VIRTUAL_ENV" ]]; then
-    venv=" ➜  $(basename "$VIRTUAL_ENV")"
+    venv=" ➜ $(tput setaf 4)$(basename "$VIRTUAL_ENV")$(tput setaf 7)"
   else
     venv=""
   fi

@@ -5,8 +5,11 @@ pip_packages=(
   omnitagger
   youtube-dl
   vim-vint
+  autoflake
+  autopep8
+  pep8
 )
 
-sudo pip3 install "${pip_packages[@]}"
+pip3 install "${pip_packages[@]}" --user
 echo "Installed pip3 modules."
 exit 0
