@@ -406,11 +406,12 @@ endfunction
 
 augroup hooks
   autocmd!
-  autocmd BufWritePre *                 call <SID>OnBufWritePre()
-  autocmd BufReadPost *                 call <SID>OnBufReadPost()
-  autocmd VimEnter    *                 call <SID>OnVimEnter()
-  autocmd BufWritePre *.{css,scss,less} call <SID>CSSFormat()
-  autocmd BufWritePost *.py             :PythonAutoflake
+  autocmd BufWritePre *                     call <SID>OnBufWritePre()
+  autocmd BufReadPost *                     call <SID>OnBufReadPost()
+  autocmd VimEnter    *                     call <SID>OnVimEnter()
+  autocmd BufWritePre *.{css,scss,less}     call <SID>CSSFormat()
+  autocmd BufWritePost *.py                 :PythonAutoflake
+  autocmd BufWritePre *.ts,*.tsx,*.js,*.jsx :OrganizeImports
 augroup END
 
 " }}}
