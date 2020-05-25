@@ -918,8 +918,11 @@ endfunction
 " Use K to show documentation in preview window
 nnoremap <silent> K :call <SID>show_documentation()<CR>
 
-" Use `:Format` to format current buffer
+" Use to format current buffer
 command! -nargs=0 Format :call CocAction('format')
+
+" Use to organize imports of the current buffer.
+command! -nargs=0 OrganizeImports :call CocAction('runCommand', 'editor.action.organizeImport')
 
 nmap <silent> gd <Plug>(coc-definition)
 

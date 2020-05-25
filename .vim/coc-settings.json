@@ -3,7 +3,7 @@
   "diagnostic.warningSign": "➜",
   "diagnostic.infoSign": "➜",
   "diagnostic.hintSign": "➜",
-  "suggest.maxCompleteItemCount": 10,
+  "suggest.maxCompleteItemCount": 15,
   "suggest.minTriggerInputLength": 2,
   "python.linting.pylintEnabled": false,
   "python.linting.pep8Enabled": true,
