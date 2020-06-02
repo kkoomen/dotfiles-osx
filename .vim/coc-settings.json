@@ -39,6 +39,8 @@
     "default": "default"
   },
   "coc.preferences.colorSupport": false,
+  "prettier.tslintIntegration": false,
+  "prettier.eslintIntegration": true,
   "solargraph.diagnostics": true,
   "eslint.autoFix": true,
   "eslint.autoFixOnSave": true,
