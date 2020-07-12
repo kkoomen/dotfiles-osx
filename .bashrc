@@ -49,13 +49,14 @@ shopt -s checkwinsize
 [[ -d ~/.completions ]] && . ~/.completions/* > /dev/null 2>&1
 [[ -f /usr/local/etc/bash_completion ]] && . /usr/local/etc/bash_completion > /dev/null 2>&1
 [[ -d /usr/local/etc/bash_completion.d ]] && . /usr/local/etc/bash_completion.d/* > /dev/null 2>&1
-[ -s /usr/local/opt/nvm/etc/bash_completion.d/nvm ] && . /usr/local/opt/nvm/etc/bash_completion.d/nvm 2>&1
 
 # Autocorrect typos in path names when using "cd".
 shopt -s cdspell
 
 # Load NVM
+export NVM_DIR="$HOME/.nvm"
 [ -s /usr/local/opt/nvm/nvm.sh ] && . /usr/local/opt/nvm/nvm.sh
+[ -s /usr/local/opt/nvm/etc/bash_completion.d/nvm ] && . /usr/local/opt/nvm/etc/bash_completion.d/nvm
 
 # Set PS1 format.
 PS1_NORMAL="$(tput setaf 7)┌─ \w\[$(tput setaf 3)\]\$(git-branch)\[$(tput setaf 7)\]\$(get-virtualenv)\n└──── ➜  "

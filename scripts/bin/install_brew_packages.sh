@@ -93,8 +93,6 @@ apps=(
   ripgrep
 
   # Developement
-  nvm
-  node
   yarn
   php71
   python
