@@ -1,3 +1,11 @@
 snippet cl "console.log"
 console.log("${2:$1} >>>>", ${1});
 endsnippet
+
+snippet try "try { ... } catch(err) { ... }"
+	try {
+		${0:${VISUAL}}
+	} catch (err) {
+		${1:/* handle error */}
+	}
+endsnippet

@@ -497,7 +497,7 @@ nnoremap <silent> <F6> ggg?G<CR>
 
 " Space bar un-highligths search
 " ------------------------------------------------------------------------------
-noremap <silent> <Space><Esc> :silent! noh<CR>
+noremap <silent> <nowait> <Space><Esc> :silent! noh<CR>
 
 " Search for the word under the cursor using Find.
 " ------------------------------------------------------------------------------
@@ -543,10 +543,6 @@ vnoremap ; :B<space>
 " ------------------------------------------------------------------------------
 noremap > >gv
 noremap < <gv
-
-" Auto complete
-" ------------------------------------------------------------------------------
-"inoremap <expr> <tab> InsertTabWrapper()
 
 " Typo's while saving
 " ------------------------------------------------------------------------------
@@ -906,6 +902,7 @@ let g:coc_global_extensions = [
       \ 'coc-solargraph',
       \ 'coc-vetur',
       \ 'coc-eslint',
+      \ 'coc-prettier',
       \ ]
 
 function! s:show_documentation()
@@ -924,6 +921,7 @@ command! -nargs=0 Format :call CocAction('format')
 
 " Use to organize imports of the current buffer.
 command! -nargs=0 OrganizeImports :call CocAction('runCommand', 'editor.action.organizeImport')
+command! -nargs=0 EslintFix :call CocAction('runCommand', 'eslint.executeAutofix')
 
 nmap <silent> gd <Plug>(coc-definition)
 
