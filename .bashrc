@@ -49,9 +49,13 @@ shopt -s checkwinsize
 [[ -d ~/.completions ]] && . ~/.completions/* > /dev/null 2>&1
 [[ -f /usr/local/etc/bash_completion ]] && . /usr/local/etc/bash_completion > /dev/null 2>&1
 [[ -d /usr/local/etc/bash_completion.d ]] && . /usr/local/etc/bash_completion.d/* > /dev/null 2>&1
+[ -s /usr/local/opt/nvm/etc/bash_completion.d/nvm ] && . /usr/local/opt/nvm/etc/bash_completion.d/nvm 2>&1
 
 # Autocorrect typos in path names when using "cd".
 shopt -s cdspell
+
+# Load NVM
+[ -s /usr/local/opt/nvm/nvm.sh ] && . /usr/local/opt/nvm/nvm.sh
 
 # Set PS1 format.
 PS1_NORMAL="$(tput setaf 7)┌─ \w\[$(tput setaf 3)\]\$(git-branch)\[$(tput setaf 7)\]\$(get-virtualenv)\n└──── ➜  "
@@ -75,6 +79,11 @@ export PATH="$HOME/Library/Python/3.7/bin:$PATH"
 # -- PATH: PHP
 export PATH="/usr/local/opt/php@7.1/bin:$PATH"
 export PATH="/usr/local/opt/php@7.1/sbin:$PATH"
+
+# -- PATH: LLVM
+export PATH="/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include:$PATH"
+export PATH="/usr/local/Cellar/llvm/9.0.0_1/bin:$PATH"
+export LD_LIBRARY_PATH="/Library/Developer/CommandLineTools/usr/lib:$LD_LIBRARY_PATH"
 
 # Swift
 export TOOLCHAINS=swift
