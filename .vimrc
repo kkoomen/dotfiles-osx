@@ -497,7 +497,7 @@ nnoremap <silent> <F6> ggg?G<CR>
 
 " Space bar un-highligths search
 " ------------------------------------------------------------------------------
-noremap <silent> <nowait> <Space><Esc> :silent! noh<CR>
+nnoremap <silent> <nowait> <Space> :silent! noh<CR>
 
 " Search for the word under the cursor using Find.
 " ------------------------------------------------------------------------------
@@ -862,8 +862,8 @@ let g:fzf_colors = {
 " --follow: Follow symlinks
 " --glob: Additional conditions for search
 " --color: Search color options
-command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --follow --hidden --glob "!.git/*" --color "always" -- ' . shellescape(<q-args>), 1, <bang>0)
-command! -bang -nargs=* IFind call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --follow --hidden --glob "!.git/*" --color "always" -- ' . shellescape(<q-args>), 1, <bang>0)
+command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --follow --hidden --glob "!{.git/*,*.lock}" --color "always" -- ' . shellescape(<q-args>), 1, <bang>0)
+command! -bang -nargs=* IFind call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --follow --hidden --glob "!{.git/*,*.lock}" --color "always" -- ' . shellescape(<q-args>), 1, <bang>0)
 
 " }}}
 " Plugins: EditorConfig {{{
