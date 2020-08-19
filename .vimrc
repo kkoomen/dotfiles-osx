@@ -342,8 +342,8 @@ function s:OnBufWritePre() abort
     call <SID>DeleteTrailingLeadingLines()
 
     " Execute commands only for non-test files.
-    let l:test_file_regex = '\m.\+\.vader$'
-    if expand('%:t') !~# l:test_file_regex
+    let l:ignore_pattern = '\m\(vader\|gitcommit\)'
+    if expand('%:t') !~# l:ignore_pattern
 
       " Delete trailing whitespaces for each line.
       keepjumps call execute('%s/\s\+$//ge', 'silent!')
@@ -567,7 +567,7 @@ Plug 'godlygeek/tabular'
 Plug 'honza/vim-snippets'
 Plug 'itchyny/lightline.vim'
 Plug 'jiangmiao/auto-pairs'
-Plug 'junegunn/fzf.vim'
+Plug 'junegunn/fzf.vim', { 'commit' : '23dda8602f138a9d75dd03803a79733ee783e356' }
 Plug 'junegunn/vader.vim'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'mattn/emmet-vim'
