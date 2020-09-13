@@ -22,6 +22,7 @@
   default = current
 [core]
   pager = diff-so-fancy | less --tabs=4 -RFX
+  ignorecase = false
 [color]
   ui = true
 [color "diff-highlight"]
