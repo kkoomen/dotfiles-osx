@@ -582,7 +582,7 @@ Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-surround'
 Plug 'yegappan/mru'
 Plug 'git@github.com:kkoomen/onedark.vim'
-Plug 'git@github.com:kkoomen/vim-doge'
+Plug 'git@github.com:kkoomen/vim-doge', { 'do': { -> doge#install() } }
 Plug 'git@github.com:kkoomen/vim-readdir'
 call plug#end()
 
