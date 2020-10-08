@@ -50,6 +50,9 @@ shopt -s checkwinsize
 [[ -f /usr/local/etc/bash_completion ]] && . /usr/local/etc/bash_completion > /dev/null 2>&1
 [[ -d /usr/local/etc/bash_completion.d ]] && . /usr/local/etc/bash_completion.d/* > /dev/null 2>&1
 
+# COMPOSER
+export COMPOSER_MEMORY_LIMIT=-1
+
 # Autocorrect typos in path names when using "cd".
 shopt -s cdspell
 
