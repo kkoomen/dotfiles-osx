@@ -582,7 +582,7 @@ Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-surround'
 Plug 'yegappan/mru'
 Plug 'git@github.com:kkoomen/onedark.vim'
-Plug 'git@github.com:kkoomen/vim-doge'
+Plug 'git@github.com:kkoomen/vim-doge', { 'do': { -> doge#install() } }
 Plug 'git@github.com:kkoomen/vim-readdir'
 call plug#end()
 
@@ -816,7 +816,7 @@ let g:visual_surround_characters = [
       \ '%', '-', '_', '*'
       \ ]
 for char in g:visual_surround_characters
-  keepjumps execute('vmap ' . char . ' S' . char)
+  keepjumps call execute('vmap ' . char . ' S' . char)
 endfor
 
 " }}}
@@ -1020,6 +1020,7 @@ let g:lightline = {
 let g:lightline#bufferline#unnamed = '[No name]'
 let g:lightline#bufferline#filename_modifier = ':t'
 let g:lightline#bufferline#shorten_path = 0
+let g:lightline#bufferline#smart_path = 0
 let g:lightline#bufferline#filename_modifier = ':p:gs?/\([^/]\+/\)*\([^/]\+/[^/]\+\)$?\2?'
 
 " }}}
