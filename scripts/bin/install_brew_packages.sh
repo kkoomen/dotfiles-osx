@@ -83,7 +83,7 @@ apps=(
 
   # Developement
   yarn
-  php71
+  php
   python
   python3
   ruby
