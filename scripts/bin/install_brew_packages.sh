@@ -15,18 +15,10 @@
 if test ! $(which brew)
 then
   echo "Installing Homebrew."
-
-  # Install the correct homebrew for each OS type
-  if test "$(uname)" = "Darwin"
-  then
-    ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-  elif test "$(expr substr $(uname -s) 1 5)" = "Linux"
-  then
-    ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install)"
-  fi
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 fi
 
-brew update && brew upgrade
+#brew update && brew upgrade
 
 # Set everything correct
 brew doctor
@@ -64,9 +56,6 @@ cask_apps=(
   suspicious-package
   quicklookase
   qlvideo
-
-  # Tools
-  keycastr
 )
 
 brew cask install "${cask_apps[@]}"
@@ -86,7 +75,7 @@ apps=(
   bash-completion
 
   # Image
-  imagemagick --with-webp --with-librsvg
+  imagemagick
   jpeg
 
   # Searching
