@@ -43,6 +43,9 @@ cask_apps=(
   xquartz
   osxfuse
 
+  # Compiling
+  cmake
+
   # Development
   postman
   sequel-pro
@@ -58,7 +61,9 @@ cask_apps=(
   qlvideo
 )
 
-brew cask install "${cask_apps[@]}"
+for app in "${cask_apps[@]}"; do
+  brew cask install "$app"
+done
 
 apps=(
   # Base
@@ -67,9 +72,6 @@ apps=(
 
   # Encryption
   gpg
-
-  # Compiling
-  cmake
 
   # Shell
   bash-completion
@@ -118,7 +120,9 @@ apps=(
   unrar
 )
 
-brew install "${apps[@]}"
+for app in "${apps[@]}"; do
+  brew install "$app"
+done
 
 # Remove outdated versions from the cellar
 brew cleanup

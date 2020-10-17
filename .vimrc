@@ -35,7 +35,6 @@ set redrawtime=4000
 set list listchars=tab:\│\ ,trail:•
 set completeopt-=preview
 set infercase
-set diffopt=filler,internal,algorithm:histogram,indent-heuristic
 set ttimeoutlen=50
 set wildoptions=tagfile
 set display=lastline
