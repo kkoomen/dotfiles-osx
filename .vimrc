@@ -553,82 +553,6 @@ cnoremap W; w
 cnoremap W: w
 
 " }}}
-" Plugins {{{
-
-call plug#begin('~/.vim/plugged')
-Plug 'AndrewRadev/splitjoin.vim'
-Plug 'SirVer/ultisnips'
-Plug 'Yggdroot/indentLine'
-Plug 'alvan/vim-closetag'
-Plug 'arthurxavierx/vim-caser'
-Plug 'editorconfig/editorconfig-vim'
-Plug 'godlygeek/tabular'
-Plug 'honza/vim-snippets'
-Plug 'itchyny/lightline.vim'
-Plug 'jiangmiao/auto-pairs'
-Plug 'junegunn/fzf.vim', { 'commit' : '23dda8602f138a9d75dd03803a79733ee783e356' }
-Plug 'junegunn/vader.vim'
-Plug 'ludovicchabant/vim-gutentags'
-Plug 'mattn/emmet-vim'
-Plug 'mengelbrecht/lightline-bufferline'
-Plug 'mileszs/ack.vim'
-Plug 'neoclide/coc.nvim', { 'branch': 'release' }
-Plug 'pechorin/any-jump.vim'
-Plug 'sheerun/vim-polyglot'
-Plug 'sickill/vim-pasta'
-Plug 'tomtom/tcomment_vim'
-Plug 'tpope/vim-endwise'
-Plug 'tpope/vim-surround'
-Plug 'yegappan/mru'
-Plug 'git@github.com:kkoomen/onedark.vim'
-Plug 'git@github.com:kkoomen/vim-doge', { 'do': { -> doge#install() } }
-Plug 'git@github.com:kkoomen/vim-readdir'
-call plug#end()
-
-" }}}
-" Color scheme {{{
-
-let g:onedark_color_overrides = {
-      \ 'dark_red': { 'gui': '#d97084', 'cterm': '204', 'cterm16': '1' },
-      \ 'red': { 'gui': '#ed8499', 'cterm': '196', 'cterm16': '9' },
-      \ 'dark_green': { 'gui': '#87bb7c', 'cterm': '114', 'cterm16': '2' },
-      \ 'green': { 'gui': '#97d589', 'cterm': '114', 'cterm16': '10' },
-      \ 'dark_yellow': { 'gui': '#d5b874', 'cterm': '180', 'cterm16': '3' },
-      \ 'yellow': { 'gui': '#e9cb87', 'cterm': '173', 'cterm16': '11' },
-      \ 'dark_blue': { 'gui': '#6face4', 'cterm': '39', 'cterm16': '4' },
-      \ 'blue': { 'gui': '#87bff5', 'cterm': '39', 'cterm16': '12' },
-      \ 'dark_purple': { 'gui': '#a389dd', 'cterm': '170', 'cterm16': '5' },
-      \ 'purple': { 'gui': '#b9a0ee', 'cterm': '170', 'cterm16': '13' },
-      \ 'dark_cyan': { 'gui': '#68c5cd', 'cterm': '38', 'cterm16': '6' },
-      \ 'cyan': { 'gui': '#68c5cd', 'cterm': '38', 'cterm16': '14' },
-      \ 'dark_white': { 'gui': '#bbbebf', 'cterm': '145', 'cterm16': '7' },
-      \ 'white': { 'gui': '#bababa', 'cterm': '145', 'cterm16': '15' },
-      \ 'black': { 'gui': '#303030', 'cterm': '235', 'cterm16': '0' },
-      \ 'visual_black': { 'gui': '#b7bdc0', 'cterm': 'NONE', 'cterm16': '0' },
-      \ 'comment_grey': { 'gui': '#868686', 'cterm': '59', 'cterm16': '15' },
-      \ 'gutter_fg_grey': { 'gui': '#666666', 'cterm': '235', 'cterm16': '15' },
-      \ 'cursor_grey': { 'gui': '#383838', 'cterm': '236', 'cterm16': '8' },
-      \ 'visual_grey': { 'gui': '#474646', 'cterm': '237', 'cterm16': '15' },
-      \ 'menu_grey': { 'gui': '#404040', 'cterm': '237', 'cterm16': '8' },
-      \ 'special_grey': { 'gui': '#666666', 'cterm': '238', 'cterm16': '15' },
-      \ 'vertsplit': { 'gui': '#181A1F', 'cterm': '59', 'cterm16': '15' },
-      \}
-
-set background=dark
-set termguicolors
-colorscheme onedark
-
-" }}}
-" Custom Highlighting {{{
-
-" Only highlight the color column when the line is expanding the 80th column.
-highlight! ColorColumn ctermbg=red ctermfg=white guibg=#BE5046 guifg=#151515
-call matchadd('ColorColumn', '\%81v.', 100)
-
-highlight! MatchParen  guibg=#606060 guifg=#E5C07B
-highlight! Folded ctermfg=8 ctermbg=0 guifg=#666666 guibg=#303030
-
-" }}}
 " Plugins: Emmet {{{
 
 " After the leader key you should always enter a comma to trigger emmet.
@@ -1034,5 +958,81 @@ let g:UltiSnipsSnippetDirectories = ['UltiSnips']
 " Plugins: Caser {{{
 
 let g:caser_prefix = 'ac'
+
+" }}}
+" Plugins {{{
+
+call plug#begin('~/.vim/plugged')
+Plug 'AndrewRadev/splitjoin.vim'
+Plug 'SirVer/ultisnips'
+Plug 'Yggdroot/indentLine'
+Plug 'alvan/vim-closetag'
+Plug 'arthurxavierx/vim-caser'
+Plug 'editorconfig/editorconfig-vim'
+Plug 'godlygeek/tabular'
+Plug 'honza/vim-snippets'
+Plug 'itchyny/lightline.vim'
+Plug 'jiangmiao/auto-pairs'
+Plug 'junegunn/fzf.vim', { 'commit' : '23dda8602f138a9d75dd03803a79733ee783e356' }
+Plug 'junegunn/vader.vim'
+Plug 'ludovicchabant/vim-gutentags'
+Plug 'mattn/emmet-vim'
+Plug 'mengelbrecht/lightline-bufferline'
+Plug 'mileszs/ack.vim'
+Plug 'neoclide/coc.nvim', { 'branch': 'release' }
+Plug 'pechorin/any-jump.vim'
+Plug 'sheerun/vim-polyglot'
+Plug 'sickill/vim-pasta'
+Plug 'tomtom/tcomment_vim'
+Plug 'tpope/vim-endwise'
+Plug 'tpope/vim-surround'
+Plug 'yegappan/mru'
+Plug 'git@github.com:kkoomen/onedark.vim'
+Plug 'git@github.com:kkoomen/vim-doge', { 'do': { -> doge#install() } }
+Plug 'git@github.com:kkoomen/vim-readdir'
+call plug#end()
+
+" }}}
+" Color scheme {{{
+
+let g:onedark_color_overrides = {
+      \ 'dark_red': { 'gui': '#d97084', 'cterm': '204', 'cterm16': '1' },
+      \ 'red': { 'gui': '#ed8499', 'cterm': '196', 'cterm16': '9' },
+      \ 'dark_green': { 'gui': '#87bb7c', 'cterm': '114', 'cterm16': '2' },
+      \ 'green': { 'gui': '#97d589', 'cterm': '114', 'cterm16': '10' },
+      \ 'dark_yellow': { 'gui': '#d5b874', 'cterm': '180', 'cterm16': '3' },
+      \ 'yellow': { 'gui': '#e9cb87', 'cterm': '173', 'cterm16': '11' },
+      \ 'dark_blue': { 'gui': '#6face4', 'cterm': '39', 'cterm16': '4' },
+      \ 'blue': { 'gui': '#87bff5', 'cterm': '39', 'cterm16': '12' },
+      \ 'dark_purple': { 'gui': '#a389dd', 'cterm': '170', 'cterm16': '5' },
+      \ 'purple': { 'gui': '#b9a0ee', 'cterm': '170', 'cterm16': '13' },
+      \ 'dark_cyan': { 'gui': '#68c5cd', 'cterm': '38', 'cterm16': '6' },
+      \ 'cyan': { 'gui': '#68c5cd', 'cterm': '38', 'cterm16': '14' },
+      \ 'dark_white': { 'gui': '#bbbebf', 'cterm': '145', 'cterm16': '7' },
+      \ 'white': { 'gui': '#bababa', 'cterm': '145', 'cterm16': '15' },
+      \ 'black': { 'gui': '#303030', 'cterm': '235', 'cterm16': '0' },
+      \ 'visual_black': { 'gui': '#b7bdc0', 'cterm': 'NONE', 'cterm16': '0' },
+      \ 'comment_grey': { 'gui': '#868686', 'cterm': '59', 'cterm16': '15' },
+      \ 'gutter_fg_grey': { 'gui': '#666666', 'cterm': '235', 'cterm16': '15' },
+      \ 'cursor_grey': { 'gui': '#383838', 'cterm': '236', 'cterm16': '8' },
+      \ 'visual_grey': { 'gui': '#474646', 'cterm': '237', 'cterm16': '15' },
+      \ 'menu_grey': { 'gui': '#404040', 'cterm': '237', 'cterm16': '8' },
+      \ 'special_grey': { 'gui': '#666666', 'cterm': '238', 'cterm16': '15' },
+      \ 'vertsplit': { 'gui': '#181A1F', 'cterm': '59', 'cterm16': '15' },
+      \}
+
+set background=dark
+set termguicolors
+colorscheme onedark
+
+" }}}
+" Custom Highlighting {{{
+
+" Only highlight the color column when the line is expanding the 80th column.
+highlight! ColorColumn ctermbg=red ctermfg=white guibg=#BE5046 guifg=#151515
+call matchadd('ColorColumn', '\%81v.', 100)
+
+highlight! MatchParen  guibg=#606060 guifg=#E5C07B
+highlight! Folded ctermfg=8 ctermbg=0 guifg=#666666 guibg=#303030
 
 " }}}
