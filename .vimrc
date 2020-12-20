@@ -969,7 +969,7 @@ Plug 'honza/vim-snippets'
 Plug 'itchyny/lightline.vim'
 Plug 'itchyny/vim-gitbranch'
 Plug 'jiangmiao/auto-pairs'
-Plug 'junegunn/fzf.vim', { 'commit' : '23dda8602f138a9d75dd03803a79733ee783e356' }
+Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vader.vim'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'mattn/emmet-vim'
