@@ -866,30 +866,8 @@ function! LightlineReadonly() abort
 endfunction
 
 function! LightlineGitBranch() abort
-  if exists('g:git_branch_cache') == v:false
-    let g:git_branch_cache = {}
-  endif
-
-  let l:curr_dir = expand('%:p:h')
-  if has_key(g:git_branch_cache, l:curr_dir)
-    return g:git_branch_cache[l:curr_dir]
-  endif
-
-  " Get the current branch using -C, if it throws an error then remove -C and
-  " try again. This will solve scenarios where the current dir is a symlink.
-  let l:branch = trim(system('git -C ' . shellescape(expand('%:p:h')) . ' rev-parse --abbrev-ref HEAD'))
-  if v:shell_error != 0
-    let l:branch = trim(system('git rev-parse --abbrev-ref HEAD'))
-  endif
-
-  if l:branch ==# 'HEAD'
-    let l:branch = 'detached'
-  endif
-
-  " Set current branch.
-  let g:git_branch_cache[l:curr_dir] = l:branch !=# '' && v:shell_error == 0 ? ' ' . l:branch : ''
-
-  return g:git_branch_cache[l:curr_dir]
+  let l:branch = gitbranch#name()
+  return l:branch !=# '' ? ' ' . l:branch : ''
 endfunction
 
 function! LightlineIndent() abort
@@ -989,6 +967,7 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'godlygeek/tabular'
 Plug 'honza/vim-snippets'
 Plug 'itchyny/lightline.vim'
+Plug 'itchyny/vim-gitbranch'
 Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/fzf.vim', { 'commit' : '23dda8602f138a9d75dd03803a79733ee783e356' }
 Plug 'junegunn/vader.vim'
