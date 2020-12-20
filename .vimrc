@@ -866,13 +866,30 @@ function! LightlineReadonly() abort
 endfunction
 
 function! LightlineGitBranch() abort
-  " TODO: fix git branch
-  return ''
+  if exists('g:git_branch_cache') == v:false
+    let g:git_branch_cache = {}
+  endif
+
+  let l:curr_dir = expand('%:p:h')
+  if has_key(g:git_branch_cache, l:curr_dir)
+    return g:git_branch_cache[l:curr_dir]
+  endif
+
+  " Get the current branch using -C, if it throws an error then remove -C and
+  " try again. This will solve scenarios where the current dir is a symlink.
   let l:branch = trim(system('git -C ' . shellescape(expand('%:p:h')) . ' rev-parse --abbrev-ref HEAD'))
+  if v:shell_error != 0
+    let l:branch = trim(system('git rev-parse --abbrev-ref HEAD'))
+  endif
+
   if l:branch ==# 'HEAD'
     let l:branch = 'detached'
   endif
-  return l:branch !=# '' && v:shell_error == 0 ? ' ' . l:branch : ''
+
+  " Set current branch.
+  let g:git_branch_cache[l:curr_dir] = l:branch !=# '' && v:shell_error == 0 ? ' ' . l:branch : ''
+
+  return g:git_branch_cache[l:curr_dir]
 endfunction
 
 function! LightlineIndent() abort
