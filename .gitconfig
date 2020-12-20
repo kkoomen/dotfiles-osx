@@ -3,7 +3,7 @@
 	name = Kim 金可明
 	signingkey = 63861BD482F9BBA2
 [alias]
-	cleanup = "!git branch --merged | grep -v '\\*\\|master\\|develop\\|development\\|origin' | xargs -n 1 git branch -D"
+	cleanup = "!git branch --merged | grep -v '\\*\\|master\\|develop\\|development\\|uat\\|origin' | xargs -n 1 git branch -D"
 	pom = push origin master
 	pum = pull origin master
 	pod = push origin develop
