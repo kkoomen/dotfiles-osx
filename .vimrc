@@ -866,6 +866,9 @@ function! LightlineReadonly() abort
 endfunction
 
 function! LightlineGitBranch() abort
+  if exists('*gitbranch#name') == v:false
+    return ''
+  endif
   let l:branch = gitbranch#name()
   return l:branch !=# '' ? ' ' . l:branch : ''
 endfunction
