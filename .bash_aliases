@@ -17,7 +17,7 @@ alias getsubs='subliminal download -s -f -l en'
 alias mpv-16-9='mpv --video-aspect-override=16:9'
 
 # NETWORK
-alias xip="curl icanhazip.com"
+alias xip="curl ifconfig.me"
 alias lip="ipconfig getifaddr en0"
 
 # DOTFILES

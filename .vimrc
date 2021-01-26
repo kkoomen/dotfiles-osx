@@ -409,8 +409,8 @@ augroup hooks
   autocmd BufReadPost *                     call <SID>OnBufReadPost()
   autocmd VimEnter    *                     call <SID>OnVimEnter()
   autocmd BufWritePre *.{css,scss,less}     call <SID>CSSFormat()
-  autocmd BufWritePost *.py                 :PythonAutoflake
-  autocmd BufWritePre *.ts,*.tsx,*.js,*.jsx :OrganizeImports
+  " autocmd BufWritePost *.py                 :PythonAutoflake
+  " autocmd BufWritePre *.ts,*.tsx,*.js,*.jsx :OrganizeImports
 augroup END
 
 " }}}
@@ -958,6 +958,17 @@ let g:UltiSnipsSnippetDirectories = ['UltiSnips']
 let g:caser_prefix = 'ac'
 
 " }}}
+" Plugins: NERDTree {{{
+
+let g:NERDTreeWinSize = 50
+let g:NERDTreeShowHidden = 1
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * NERDTree | if argc() > 0 || exists("s:std_in") | wincmd p | endif
+autocmd BufWinEnter * silent NERDTreeMirror
+autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() |
+    \ quit | endif
+
+" }}}
 " Plugins {{{
 
 call plug#begin('~/.vim/plugged')
@@ -979,6 +990,9 @@ Plug 'ludovicchabant/vim-gutentags'
 Plug 'mattn/emmet-vim'
 Plug 'mengelbrecht/lightline-bufferline'
 Plug 'mileszs/ack.vim'
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+Plug 'preservim/nerdtree'
+Plug 'ryanoasis/vim-devicons'
 Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 Plug 'pechorin/any-jump.vim'
 Plug 'sheerun/vim-polyglot'
