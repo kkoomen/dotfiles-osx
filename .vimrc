@@ -962,11 +962,9 @@ let g:caser_prefix = 'ac'
 
 let g:NERDTreeWinSize = 50
 let g:NERDTreeShowHidden = 1
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * NERDTree | if argc() > 0 || exists("s:std_in") | wincmd p | endif
-autocmd BufWinEnter * silent NERDTreeMirror
 autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() |
-    \ quit | endif
+      \ quit | endif
+nnoremap <C-n> :NERDTreeToggle<CR>
 
 " }}}
 " Plugins {{{
