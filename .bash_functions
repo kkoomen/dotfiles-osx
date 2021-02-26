@@ -24,6 +24,15 @@ function jb {
   curl -s -F file=@- -F expire="${1:-}" https://jinb.in
 }
 
+function chsh() {
+  local lang=$1
+  shift
+  local keywords_raw=$1
+  shift;
+  keywords=$(printf %s "$keywords_raw" "${@/#/+}")
+  curl cht.sh/$lang/$keywords\?Q
+}
+
 function git-branch {
   # Based on: http://stackoverflow.com/a/13003854/170413
   local branch
