@@ -30,7 +30,7 @@ function chsh() {
   local keywords_raw=$1
   shift;
   keywords=$(printf %s "$keywords_raw" "${@/#/+}")
-  curl cht.sh/$lang/$keywords\?Q
+  curl cht.sh/$lang/$keywords
 }
 
 function git-branch {
