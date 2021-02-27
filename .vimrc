@@ -967,6 +967,23 @@ autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTr
 nnoremap <C-n> :NERDTreeToggle<CR>
 
 " }}}
+" Plugins: cht.sh {{{
+
+let g:CheatSheetDoNotMap=1
+
+" Next
+nnoremap <script> <silent> <leader>cnq :call cheat#navigate(1,'Q')<CR>
+vnoremap <script> <silent> <leader>cnq :call cheat#navigate(1,'Q')<CR>
+nnoremap <script> <silent> <leader>cna :call cheat#navigate(1, 'A')<CR>
+vnoremap <script> <silent> <leader>cna :call cheat#navigate(1, 'A')<CR>
+
+" Prev
+nnoremap <script> <silent> <leader>cpq :call cheat#navigate(-1,'Q')<CR>
+vnoremap <script> <silent> <leader>cpq :call cheat#navigate(-1,'Q')<CR>
+nnoremap <script> <silent> <leader>cpa :call cheat#navigate(-1,'A')<CR>
+vnoremap <script> <silent> <leader>cpa :call cheat#navigate(-1,'A')<CR>
+
+" }}}
 " Plugins {{{
 
 call plug#begin('~/.vim/plugged')
@@ -975,6 +992,7 @@ Plug 'SirVer/ultisnips'
 Plug 'Yggdroot/indentLine'
 Plug 'alvan/vim-closetag'
 Plug 'arthurxavierx/vim-caser'
+Plug 'dbeniamine/cheat.sh-vim'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'godlygeek/tabular'
 Plug 'honza/vim-snippets'
@@ -988,13 +1006,13 @@ Plug 'ludovicchabant/vim-gutentags'
 Plug 'mattn/emmet-vim'
 Plug 'mengelbrecht/lightline-bufferline'
 Plug 'mileszs/ack.vim'
-Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
-Plug 'preservim/nerdtree'
-Plug 'ryanoasis/vim-devicons'
 Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 Plug 'pechorin/any-jump.vim'
+Plug 'preservim/nerdtree'
+Plug 'ryanoasis/vim-devicons'
 Plug 'sheerun/vim-polyglot'
 Plug 'sickill/vim-pasta'
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'tomtom/tcomment_vim'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-surround'
