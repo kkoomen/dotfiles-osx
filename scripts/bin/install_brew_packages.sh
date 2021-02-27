@@ -18,7 +18,7 @@ then
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 fi
 
-#brew update && brew upgrade
+brew update && brew upgrade
 
 # Set everything correct
 brew doctor
@@ -62,7 +62,7 @@ cask_apps=(
 )
 
 for app in "${cask_apps[@]}"; do
-  brew cask install "$app"
+  brew install --cask "$app"
 done
 
 apps=(
