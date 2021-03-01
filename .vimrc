@@ -253,11 +253,16 @@ endfunction
 " Rename a buffer.
 function s:Rename(bang, args) abort
   let l:oldfile = expand('%:p')
-  let l:newfile = simplify(expand('%:p:h') . '/' . a:args)
+  let l:newfile = a:args
   setlocal modifiable
   call execute(':saveas' . a:bang . ' ' . l:newfile)
   call delete(l:oldfile)
   call execute(':' . bufnr('$') . 'bw')
+endfunction
+
+function s:Open(bang, args) abort
+  let l:filename = a:args
+  call system('open ' . l:filename)
 endfunction
 
 " Remove a file.
@@ -421,8 +426,11 @@ augroup END
 " Rename current buffer.
 command! -nargs=1 -complete=file Rename call <SID>Rename('<bang>', '<args>')
 
+" Open a file using the 'open <filename>' command on OSX.
+command! -nargs=1 -complete=file Open call <SID>Open('<bang>', '<args>')
+
 " Remove a file.
-command! -complete=file -nargs=1 Remove call <SID>Remove('<args>')
+command! -nargs=1 -complete=file Remove call <SID>Remove('<args>')
 
 " Set the absolute path of the current buffer to the system clipboard.
 " 'BP' refers to 'Buffer Path'.
