@@ -835,6 +835,7 @@ let g:coc_global_extensions = [
       \ 'coc-vetur',
       \ 'coc-eslint',
       \ 'coc-prettier',
+      \ 'coc-rls',
       \ ]
 
 function! s:show_documentation()

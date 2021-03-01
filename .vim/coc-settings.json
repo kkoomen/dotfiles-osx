@@ -12,6 +12,7 @@
   "python.linting.enabled": true,
   "python.jediEnabled": false,
   "python.analysis.logLevel": "Warning",
+  "coc.preferences.formatOnSaveFiletypes": ["rust"],
   "suggest.completionItemKindLabels": {
     "keyword": "keyword",
     "variable": "variable",

@@ -126,6 +126,9 @@ export TOOLCHAINS=swift
 export RUBYOPT='-W0'
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
+# Rust
+source "$HOME/.cargo/env"
+
 # Damn Apple who made zsh the default shell on OS X ¯\_(///▽///)_/¯
 export BASH_SILENCE_DEPRECATION_WARNING=1
 
