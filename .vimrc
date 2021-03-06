@@ -1016,6 +1016,7 @@ Plug 'mattn/emmet-vim'
 Plug 'mengelbrecht/lightline-bufferline'
 Plug 'mileszs/ack.vim'
 Plug 'neoclide/coc.nvim', { 'branch': 'release' }
+Plug 'pantharshit00/vim-prisma'
 Plug 'pechorin/any-jump.vim'
 Plug 'preservim/nerdtree'
 Plug 'ryanoasis/vim-devicons'
